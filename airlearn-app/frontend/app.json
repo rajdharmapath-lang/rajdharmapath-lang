@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "Raj Dharma Learn",
+    "slug": "airlearn",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FDF9F6"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "org.rajdharma.airlearn",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Used for Speech Practice so you can record yourself pronouncing words."
+      }
+    },
+    "android": {
+      "package": "org.rajdharma.airlearn",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FDF9F6"
+      },
+      "permissions": [
+        "RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font"
+    ]
+  }
+}

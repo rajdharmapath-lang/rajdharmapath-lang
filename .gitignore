@@ -1,0 +1,49 @@
+## Visual Studio generated
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+out/
+
+# Visual Studio Code workspace
+.vscode/
+
+# NuGet
+*.nupkg
+packages/
+
+# Publish
+publish/
+
+# Test results
+TestResults/
+*.trx
+
+# Dotnet
+project.lock.json
+artifacts/
+
+# Rider
+.idea/
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# User secrets and environment files
+secrets.json
+.env
+
+# Ignore local tooling
+*.vsconfig

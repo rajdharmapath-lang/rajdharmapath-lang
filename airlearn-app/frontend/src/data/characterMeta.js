@@ -1,0 +1,91 @@
+// Pinyin + meaning captions for the character grid.
+// The bundled HSK500_CHARACTERS list (see vendor/chinese-stroke-rn/src/hsk500.ts) only
+// contains the raw characters, no captions — so this table supplies them.
+// Covers the most common/beginner characters first; anything not listed here still
+// works for stroke practice, it just renders without a pinyin/meaning caption
+// (falls back gracefully in CharacterCard). Extend this table any time — it's the
+// single place captions live, and a CSV/dictionary API could replace it later.
+export const characterMeta = {
+  '你': { pinyin: 'Nǐ', meaning: 'You' },
+  '我': { pinyin: 'Wǒ', meaning: 'I / Me' }, // the SVG mockup labels this "You" — that's a content typo, corrected here
+  '他': { pinyin: 'Tā', meaning: 'He' },
+  '她': { pinyin: 'Tā', meaning: 'She' },
+  '好': { pinyin: 'Hǎo', meaning: 'Good' },
+  '学': { pinyin: 'Xué', meaning: 'Learn / Study' },
+  '人': { pinyin: 'Rén', meaning: 'Person' },
+  '大': { pinyin: 'Dà', meaning: 'Big' },
+  '小': { pinyin: 'Xiǎo', meaning: 'Small' },
+  '是': { pinyin: 'Shì', meaning: 'To be' },
+  '不': { pinyin: 'Bù', meaning: 'Not / No' },
+  '了': { pinyin: 'Le', meaning: 'Completed (particle)' },
+  '在': { pinyin: 'Zài', meaning: 'At / In' },
+  '有': { pinyin: 'Yǒu', meaning: 'To have' },
+  '这': { pinyin: 'Zhè', meaning: 'This' },
+  '为': { pinyin: 'Wèi', meaning: 'For' },
+  '之': { pinyin: 'Zhī', meaning: "'s (possessive)" },
+  '来': { pinyin: 'Lái', meaning: 'To come' },
+  '以': { pinyin: 'Yǐ', meaning: 'To use / With' },
+  '个': { pinyin: 'Gè', meaning: 'Measure word' },
+  '中': { pinyin: 'Zhōng', meaning: 'Middle / China' },
+  '上': { pinyin: 'Shàng', meaning: 'Up / Above' },
+  '们': { pinyin: 'Men', meaning: 'Plural marker' },
+  '到': { pinyin: 'Dào', meaning: 'To arrive' },
+  '说': { pinyin: 'Shuō', meaning: 'To speak' },
+  '国': { pinyin: 'Guó', meaning: 'Country' },
+  '和': { pinyin: 'Hé', meaning: 'And' },
+  '地': { pinyin: 'Dì', meaning: 'Land / Place' },
+  '也': { pinyin: 'Yě', meaning: 'Also' },
+  '子': { pinyin: 'Zǐ', meaning: 'Child / Son' },
+  '时': { pinyin: 'Shí', meaning: 'Time' },
+  '道': { pinyin: 'Dào', meaning: 'Way / Road' },
+  '出': { pinyin: 'Chū', meaning: 'To go out' },
+  '而': { pinyin: 'Ér', meaning: 'And / But' },
+  '要': { pinyin: 'Yào', meaning: 'To want' },
+  '于': { pinyin: 'Yú', meaning: 'At / In' },
+  '就': { pinyin: 'Jiù', meaning: 'Then / Just' },
+  '下': { pinyin: 'Xià', meaning: 'Down / Below' },
+  '得': { pinyin: 'Dé', meaning: 'To get' },
+  '可': { pinyin: 'Kě', meaning: 'Can / May' },
+  '年': { pinyin: 'Nián', meaning: 'Year' },
+  '生': { pinyin: 'Shēng', meaning: 'To be born / Life' },
+  '自': { pinyin: 'Zì', meaning: 'Self' },
+  '会': { pinyin: 'Huì', meaning: 'Can / Will' },
+  '那': { pinyin: 'Nà', meaning: 'That' },
+  '后': { pinyin: 'Hòu', meaning: 'After / Behind' },
+  '能': { pinyin: 'Néng', meaning: 'To be able to' },
+  '对': { pinyin: 'Duì', meaning: 'Correct / Towards' },
+  '一': { pinyin: 'Yī', meaning: 'One' },
+  '二': { pinyin: 'Èr', meaning: 'Two' },
+  '三': { pinyin: 'Sān', meaning: 'Three' },
+  '四': { pinyin: 'Sì', meaning: 'Four' },
+  '五': { pinyin: 'Wǔ', meaning: 'Five' },
+  '六': { pinyin: 'Liù', meaning: 'Six' },
+  '七': { pinyin: 'Qī', meaning: 'Seven' },
+  '八': { pinyin: 'Bā', meaning: 'Eight' },
+  '九': { pinyin: 'Jiǔ', meaning: 'Nine' },
+  '十': { pinyin: 'Shí', meaning: 'Ten' },
+  '爱': { pinyin: 'Ài', meaning: 'Love' },
+  '爸': { pinyin: 'Bà', meaning: 'Dad' },
+  '妈': { pinyin: 'Mā', meaning: 'Mom' },
+  '谢': { pinyin: 'Xiè', meaning: 'Thanks' },
+  '再': { pinyin: 'Zài', meaning: 'Again' },
+  '见': { pinyin: 'Jiàn', meaning: 'To see' },
+  '请': { pinyin: 'Qǐng', meaning: 'Please' },
+  '吗': { pinyin: 'Ma', meaning: 'Question particle' },
+  '吃': { pinyin: 'Chī', meaning: 'To eat' },
+  '喝': { pinyin: 'Hē', meaning: 'To drink' },
+  '水': { pinyin: 'Shuǐ', meaning: 'Water' },
+  '天': { pinyin: 'Tiān', meaning: 'Sky / Day' },
+  '今': { pinyin: 'Jīn', meaning: 'Now / Present' },
+  '明': { pinyin: 'Míng', meaning: 'Bright / Tomorrow' },
+  '日': { pinyin: 'Rì', meaning: 'Sun / Day' },
+  '月': { pinyin: 'Yuè', meaning: 'Moon / Month' },
+  '书': { pinyin: 'Shū', meaning: 'Book' },
+};
+
+/**
+ * Returns { pinyin, meaning } for a character, or null if we don't have a caption yet.
+ */
+export function getCharacterMeta(character) {
+  return characterMeta[character] || null;
+}

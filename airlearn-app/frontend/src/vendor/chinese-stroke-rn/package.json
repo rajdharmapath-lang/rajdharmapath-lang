@@ -1,0 +1,17 @@
+{
+  "name": "@rajdharma/chinese-stroke-rn-offline-hsk500",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Fully offline React Native stroke animation and tracing bundle with data for exactly 500 characters",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "peerDependencies": {
+    "react": ">=18",
+    "react-native": ">=0.72",
+    "react-native-webview": ">=13"
+  },
+  "scripts": {
+    "check": "node scripts/validate.mjs"
+  },
+  "license": "MIT"
+}
