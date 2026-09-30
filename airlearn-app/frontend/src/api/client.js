@@ -79,6 +79,7 @@ export const userApi = {
   updateProfile: (payload) => client.patch('/user/profile', payload),
   setLanguage: (language) => client.post('/user/set-language', { language }),
   getMe: () => client.get('/user/me'),
+  deleteAccount: () => client.delete('/user/account'),
 };
 
 export default client;

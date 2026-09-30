@@ -64,6 +64,13 @@ export function AuthProvider({ children }) {
     setPendingPhone(null);
   }, []);
 
+  const deleteAccount = useCallback(async () => {
+    await userApi.deleteAccount();
+    await AsyncStorage.removeItem('authToken');
+    setUser(null);
+    setPendingPhone(null);
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -76,6 +83,7 @@ export function AuthProvider({ children }) {
         updateAccount,
         setLanguage,
         logout,
+        deleteAccount,
       }}
     >
       {children}

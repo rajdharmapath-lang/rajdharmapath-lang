@@ -38,6 +38,11 @@ export function PaymentProvider({ children }) {
     });
   }, []);
 
+  const clearPurchasedBatches = useCallback(async () => {
+    setPurchasedBatches({});
+    await AsyncStorage.removeItem(ENTITLEMENTS_KEY).catch(() => {});
+  }, []);
+
   const hasAnyBatchAccess = useCallback(
     () => Object.keys(purchasedBatches).length > 0,
     [purchasedBatches]
@@ -64,6 +69,7 @@ export function PaymentProvider({ children }) {
         loaded,
         purchasedBatches,
         grantBatchAccess,
+        clearPurchasedBatches,
         hasAnyBatchAccess,
         hasBatchAccess,
         hasLiveAccess,

@@ -1,4 +1,10 @@
-const { usersById } = require('../db/db');
+const {
+  usersById,
+  usersByPhoneKey,
+  phoneKey,
+  otpsByPhoneKey,
+  tokensToUserId,
+} = require('../db/db');
 
 function getCurrentUser(req) {
   return usersById.get(req.userId);
@@ -47,4 +53,20 @@ function getMe(req, res) {
   res.json({ user });
 }
 
-module.exports = { createAccount, updateProfile, setLanguage, getMe };
+function deleteAccount(req, res) {
+  const user = getCurrentUser(req);
+  if (!user) return res.status(404).json({ message: 'User not found' });
+
+  const key = phoneKey(user.dialCode, user.phone);
+  usersById.delete(user.id);
+  usersByPhoneKey.delete(key);
+  otpsByPhoneKey.delete(key);
+
+  for (const [token, userId] of tokensToUserId) {
+    if (userId === user.id) tokensToUserId.delete(token);
+  }
+
+  res.json({ success: true });
+}
+
+module.exports = { createAccount, updateProfile, setLanguage, getMe, deleteAccount };

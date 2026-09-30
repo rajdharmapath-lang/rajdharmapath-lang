@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, Pressable, StyleSheet, ScrollView, ImageBackground } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
@@ -14,6 +14,20 @@ export default function BatchListScreen({ navigation, route }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const { hasAnyLiveAccess } = usePayment();
+  const cardAnimations = useRef(batches.map(() => new Animated.Value(0))).current;
+
+  useEffect(() => {
+    Animated.stagger(
+      120,
+      cardAnimations.map((animation) =>
+        Animated.timing(animation, {
+          toValue: 1,
+          duration: 320,
+          useNativeDriver: true,
+        })
+      )
+    ).start();
+  }, [cardAnimations]);
 
   // Note: liveClass isn't tied to a specific batch in the current data model
   // (one global banner, not one per batch), so this checks "any batch with the
@@ -33,23 +47,40 @@ export default function BatchListScreen({ navigation, route }) {
         <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
           <Text style={styles.title}>Videos</Text>
 
-          {batches.map((batch) => (
-            <Pressable
+          {batches.map((batch, index) => (
+            <Animated.View
               key={batch.id}
-              style={[styles.card, { backgroundColor: colors[batch.colorBg] }]}
-              onPress={() => navigation.navigate('VideoList', { batchId: batch.id })}
+              style={[
+                styles.cardAnimation,
+                {
+                  opacity: cardAnimations[index],
+                  transform: [
+                    {
+                      translateX: cardAnimations[index].interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [-24, 0],
+                      }),
+                    },
+                  ],
+                },
+              ]}
             >
-              <View style={styles.cardText}>
-                <Text style={[styles.cardName, { color: colors[batch.colorAccent] }]}>
-                  {batch.name}
-                </Text>
-                <Text style={styles.cardSubtitle}>{batch.subtitle}</Text>
-                <Text style={styles.cardCount}>{batch.videoCount} Videos</Text>
-              </View>
-              <View style={[styles.badge, { backgroundColor: colors[batch.colorAccent] }]}>
-                <Text style={styles.badgeGlyph}>{batch.glyph}</Text>
-              </View>
-            </Pressable>
+              <Pressable
+                style={[styles.card, { backgroundColor: colors[batch.colorBg] }]}
+                onPress={() => navigation.navigate('VideoList', { batchId: batch.id })}
+              >
+                <View style={styles.cardText}>
+                  <Text style={[styles.cardName, { color: colors[batch.colorAccent] }]}>
+                    {batch.name}
+                  </Text>
+                  <Text style={styles.cardSubtitle}>{batch.subtitle}</Text>
+                  <Text style={styles.cardCount}>{batch.videoCount} Videos</Text>
+                </View>
+                <View style={[styles.badge, { backgroundColor: colors[batch.colorAccent] }]}>
+                  <Text style={styles.badgeGlyph}>{batch.glyph}</Text>
+                </View>
+              </Pressable>
+            </Animated.View>
           ))}
 
           {liveClass.status ? (
@@ -86,6 +117,7 @@ export default function BatchListScreen({ navigation, route }) {
         active="Videos"
         onNavigate={(key) => {
           if (key === 'Home') navigation.navigate('Home');
+          if (key === 'Language') navigation.navigate('Vocabulary');
           if (key === 'Videos') navigation.navigate('BatchList');
           if (key === 'Profile') navigation.navigate('Settings');
         }}
@@ -97,6 +129,7 @@ export default function BatchListScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.background },
   scrollContent: { flexGrow: 1 },
+  cardAnimation: { flexGrow: 1 },
   container: {
     flexGrow: 1,
     paddingHorizontal: 20,

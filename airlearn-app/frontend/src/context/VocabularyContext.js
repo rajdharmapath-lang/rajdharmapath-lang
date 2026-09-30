@@ -48,9 +48,23 @@ export function VocabularyProvider({ children }) {
 
   const isFavorite = useCallback((wordId) => favoriteIds.includes(wordId), [favoriteIds]);
 
+  const clearVocabulary = useCallback(async () => {
+    setFavoriteIds([]);
+    setRecentIds([]);
+    await AsyncStorage.multiRemove([FAVORITES_KEY, RECENTS_KEY]).catch(() => {});
+  }, []);
+
   return (
     <VocabularyContext.Provider
-      value={{ loaded, favoriteIds, recentIds, toggleFavorite, recordRecentWord, isFavorite }}
+      value={{
+        loaded,
+        favoriteIds,
+        recentIds,
+        toggleFavorite,
+        recordRecentWord,
+        isFavorite,
+        clearVocabulary,
+      }}
     >
       {children}
     </VocabularyContext.Provider>

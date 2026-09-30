@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const { usersById } = require('../db/db');
 
 // Dev-only secret — replace with a real secret from an environment variable
 // before this is ever deployed anywhere.
@@ -16,6 +17,9 @@ function requireAuth(req, res, next) {
   }
   try {
     const payload = jwt.verify(token, JWT_SECRET);
+    if (!usersById.has(payload.userId)) {
+      return res.status(401).json({ message: 'Account no longer exists' });
+    }
     req.userId = payload.userId;
     next();
   } catch (e) {

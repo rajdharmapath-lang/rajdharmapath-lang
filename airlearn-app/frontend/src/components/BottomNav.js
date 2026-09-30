@@ -22,12 +22,7 @@ export default function BottomNav({ active, onNavigate }) {
             onPress={() => onNavigate && onNavigate(tab.key)}
           >
             {tab.glyph ? (
-              <View
-                style={[
-                  styles.glyphBox,
-                  { backgroundColor: isActive ? 'transparent' : colors.navInactiveBg },
-                ]}
-              >
+              <View style={styles.glyphBox}>
                 <Text style={[styles.glyphText, isActive && { color: colors.homeOrange }]}>
                   {tab.glyph}
                 </Text>

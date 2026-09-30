@@ -1,6 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, Pressable, StyleSheet, ScrollView, Alert } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView, Modal } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
@@ -16,11 +16,20 @@ function formatDate(ms) {
   return new Date(ms).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 }
 
+function getInitials(name) {
+  const parts = name?.trim().split(/\s+/).filter(Boolean) || [];
+  return parts.length
+    ? parts.slice(0, 2).map((part) => part.charAt(0).toUpperCase()).join('')
+    : 'RD';
+}
+
 export default function SettingsScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const { user, logout } = useAuth();
   const { purchasedBatches, hasAnyBatchAccess } = usePayment();
+  const [profileDialog, setProfileDialog] = useState(null);
+  const [loggingOut, setLoggingOut] = useState(false);
 
   const validTill = useMemo(() => {
     const entries = Object.values(purchasedBatches);
@@ -30,21 +39,31 @@ export default function SettingsScreen({ navigation }) {
   }, [purchasedBatches]);
 
   const handleLogout = () => {
-    Alert.alert('Log out', 'Are you sure you want to log out?', [
-      { text: 'Cancel', style: 'cancel' },
-      {
-        text: 'Log out',
-        style: 'destructive',
-        onPress: async () => {
-          await logout();
-          navigation.reset({ index: 0, routes: [{ name: 'PhoneEntry' }] });
-        },
-      },
-    ]);
+    setProfileDialog({ type: 'logout', title: 'Log out?', message: 'Are you sure you want to log out?' });
   };
 
   const handleComingSoon = (feature) => {
-    Alert.alert(feature, "This section isn't available yet — check back soon.");
+    setProfileDialog({ type: 'notice', title: feature });
+  };
+
+  const dismissProfileDialog = () => {
+    if (loggingOut) return;
+    setProfileDialog(null);
+  };
+
+  const confirmLogout = async () => {
+    setLoggingOut(true);
+    try {
+      await logout();
+      navigation.reset({ index: 0, routes: [{ name: 'PhoneEntry' }] });
+    } catch (err) {
+      setProfileDialog({
+        type: 'notice',
+        title: 'Could not log out',
+        message: err.message,
+      });
+      setLoggingOut(false);
+    }
   };
 
   return (
@@ -55,7 +74,7 @@ export default function SettingsScreen({ navigation }) {
 
           <View style={styles.profileRow}>
             <View style={styles.avatar}>
-              <Ionicons name="person" size={48} color="#fff" />
+              <Text style={styles.avatarInitials}>{getInitials(user?.name)}</Text>
             </View>
             <View style={{ marginLeft: 16 }}>
               <Text style={styles.profileLine}>{user?.name || 'Name'}</Text>
@@ -130,6 +149,70 @@ export default function SettingsScreen({ navigation }) {
         </View>
       </ScrollView>
 
+      <Modal
+        visible={Boolean(profileDialog)}
+        transparent
+        animationType="fade"
+        statusBarTranslucent
+        onRequestClose={dismissProfileDialog}
+      >
+        <View style={styles.modalOverlay}>
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            onPress={dismissProfileDialog}
+            disabled={loggingOut}
+            accessibilityRole="button"
+            accessibilityLabel="Dismiss dialog"
+          />
+          <View
+            style={[styles.noticeModal, { maxWidth: Math.min(maxWidth - 48, 420) }]}
+            accessibilityViewIsModal
+          >
+            <View style={styles.noticeIcon}>
+              <Ionicons
+                name={
+                  profileDialog?.type === 'logout'
+                    ? 'log-out-outline'
+                    : profileDialog?.title === 'Notifications'
+                      ? 'notifications-outline'
+                      : 'information-circle-outline'
+                }
+                size={26}
+                color={profileDialog?.type === 'logout' ? colors.primary : colors.homeOrange}
+              />
+            </View>
+            <Text style={styles.noticeTitle}>{profileDialog?.title}</Text>
+            <Text style={styles.noticeMessage}>
+              {profileDialog?.message || "This section isn't available yet. Check back soon."}
+            </Text>
+            {profileDialog?.type === 'logout' ? (
+              <View style={styles.dialogActions}>
+                <Pressable
+                  style={[styles.dialogButton, styles.cancelButton]}
+                  onPress={dismissProfileDialog}
+                  disabled={loggingOut}
+                >
+                  <Text style={styles.cancelButtonText}>Cancel</Text>
+                </Pressable>
+                <Pressable
+                  style={[styles.dialogButton, styles.logoutButton]}
+                  onPress={confirmLogout}
+                  disabled={loggingOut}
+                >
+                  <Text style={styles.logoutButtonText}>
+                    {loggingOut ? 'Logging out...' : 'Log Out'}
+                  </Text>
+                </Pressable>
+              </View>
+            ) : (
+              <Pressable style={styles.noticeButton} onPress={dismissProfileDialog} accessibilityRole="button">
+                <Text style={styles.noticeButtonText}>Got it</Text>
+              </Pressable>
+            )}
+          </View>
+        </View>
+      </Modal>
+
       <BottomNav
         active="Profile"
         onNavigate={(key) => {
@@ -152,10 +235,13 @@ const styles = StyleSheet.create({
     width: 84,
     height: 84,
     borderRadius: 42,
-    backgroundColor: colors.avatarGray,
+    backgroundColor: colors.homeOrangeBg,
+    borderWidth: 2,
+    borderColor: colors.homeOrangeLight,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  avatarInitials: { fontSize: 28, fontWeight: '700', color: colors.accentRedAlt },
   profileLine: { fontSize: 16, color: colors.textDark, marginBottom: 4 },
   planBanner: {
     flexDirection: 'row',
@@ -191,4 +277,65 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   logoutText: { fontSize: 17, fontWeight: '700', color: colors.accentRedAlt },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 32,
+  },
+  noticeModal: {
+    width: '100%',
+    borderRadius: 28,
+    backgroundColor: colors.card,
+    alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 28,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.18,
+    shadowRadius: 20,
+    elevation: 10,
+  },
+  noticeIcon: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: colors.homeOrangeBg,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 14,
+  },
+  noticeTitle: { fontSize: 20, fontWeight: '700', color: colors.textDark, textAlign: 'center' },
+  noticeMessage: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: colors.textLabel,
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  noticeButton: {
+    minHeight: 48,
+    width: '100%',
+    borderRadius: 24,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 22,
+  },
+  noticeButtonText: { color: '#fff', fontSize: 15, fontWeight: '700' },
+  dialogActions: { flexDirection: 'row', gap: 12, width: '100%', marginTop: 22 },
+  dialogButton: {
+    flex: 1,
+    minHeight: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 12,
+  },
+  cancelButton: { borderWidth: 1, borderColor: colors.border },
+  cancelButtonText: { color: colors.textDark, fontSize: 15, fontWeight: '700' },
+  logoutButton: { backgroundColor: colors.primary },
+  logoutButtonText: { color: '#fff', fontSize: 15, fontWeight: '700' },
 });

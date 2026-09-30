@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView, Animated } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
@@ -10,29 +11,66 @@ import { batches } from '../data/courses';
 export default function QuizBatchListScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
+  const cardAnimations = useRef(batches.map(() => new Animated.Value(0))).current;
+
+  useEffect(() => {
+    Animated.stagger(
+      120,
+      cardAnimations.map((animation) =>
+        Animated.timing(animation, {
+          toValue: 1,
+          duration: 320,
+          useNativeDriver: true,
+        })
+      )
+    ).start();
+  }, [cardAnimations]);
 
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
-          <Text style={styles.title}>Quiz</Text>
-
-          {batches.map((batch) => (
-            <Pressable
-              key={batch.id}
-              style={[styles.card, { backgroundColor: colors[batch.colorBg] }]}
-              onPress={() => navigation.navigate('QuizList', { batchId: batch.id })}
-            >
-              <View style={styles.cardText}>
-                <Text style={[styles.cardName, { color: colors[batch.colorAccent] }]}>
-                  {batch.name}
-                </Text>
-                <Text style={styles.cardSubtitle}>{batch.subtitle}</Text>
-              </View>
-              <View style={[styles.badge, { backgroundColor: colors[batch.colorAccent] }]}>
-                <Text style={styles.badgeGlyph}>{batch.glyph}</Text>
-              </View>
+          <View style={styles.header}>
+            <Pressable onPress={() => navigation.goBack()} hitSlop={12}>
+              <Ionicons name="chevron-back" size={26} color={colors.border} />
             </Pressable>
+            <Text style={styles.title}>Quiz</Text>
+            <View style={styles.headerSpacer} />
+          </View>
+
+          {batches.map((batch, index) => (
+            <Animated.View
+              key={batch.id}
+              style={[
+                styles.cardAnimation,
+                {
+                  opacity: cardAnimations[index],
+                  transform: [
+                    {
+                      translateX: cardAnimations[index].interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [-24, 0],
+                      }),
+                    },
+                  ],
+                },
+              ]}
+            >
+              <Pressable
+                style={[styles.card, { backgroundColor: colors[batch.colorBg] }]}
+                onPress={() => navigation.navigate('QuizList', { batchId: batch.id })}
+              >
+                <View style={styles.cardText}>
+                  <Text style={[styles.cardName, { color: colors[batch.colorAccent] }]}>
+                    {batch.name}
+                  </Text>
+                  <Text style={styles.cardSubtitle}>{batch.subtitle}</Text>
+                </View>
+                <View style={[styles.badge, { backgroundColor: colors[batch.colorAccent] }]}>
+                  <Text style={styles.badgeGlyph}>{batch.glyph}</Text>
+                </View>
+              </Pressable>
+            </Animated.View>
           ))}
         </View>
       </ScrollView>
@@ -52,14 +90,29 @@ export default function QuizBatchListScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.background },
-  container: { paddingHorizontal: 20, paddingTop: 24 },
-  title: { ...typography.h2, color: colors.accentRedAlt, textAlign: 'center', marginBottom: 24 },
-  card: {
-    borderRadius: 18,
-    padding: 20,
-    marginBottom: 16,
+  scrollContent: { flexGrow: 1 },
+  cardAnimation: { flexGrow: 1 },
+  container: {
+    flexGrow: 1,
+    paddingHorizontal: 20,
+    paddingTop: 24,
+    paddingBottom: 16,
+    gap: 16,
+  },
+  header: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  title: { ...typography.h2, color: colors.accentRedAlt, textAlign: 'center', flex: 1 },
+  headerSpacer: { width: 26 },
+  card: {
+    flexGrow: 1,
+    borderRadius: 18,
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    overflow: 'hidden',
   },
   cardText: { flex: 1 },
   cardName: { fontSize: 20, fontWeight: '700', marginBottom: 4 },

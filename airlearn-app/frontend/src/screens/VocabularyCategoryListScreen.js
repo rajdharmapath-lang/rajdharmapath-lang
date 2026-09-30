@@ -6,6 +6,7 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
+import StaggeredSlideItem from '../components/StaggeredSlideItem';
 import { vocabularyCategories } from '../data/vocabulary';
 import { usePayment } from '../context/PaymentContext';
 import { useAccessGate } from '../utils/paywall';
@@ -37,17 +38,19 @@ export default function VocabularyCategoryListScreen({ route, navigation }) {
           data={vocabularyCategories}
           keyExtractor={(item) => item.id}
           contentContainerStyle={{ paddingBottom: 20 }}
-          renderItem={({ item }) => (
-            <Pressable
-              style={styles.row}
-              onPress={() => navigation.navigate(destination, { categoryId: item.id })}
-            >
-              <View>
-                <Text style={styles.rowTitle}>{item.name}</Text>
-                <Text style={styles.rowSubtitle}>{item.declaredWordCount} Words</Text>
-              </View>
-              <Ionicons name="chevron-forward" size={20} color={colors.textDark} />
-            </Pressable>
+          renderItem={({ item, index }) => (
+            <StaggeredSlideItem index={index} style={styles.rowEntry}>
+              <Pressable
+                style={styles.row}
+                onPress={() => navigation.navigate(destination, { categoryId: item.id })}
+              >
+                <View>
+                  <Text style={styles.rowTitle}>{item.name}</Text>
+                  <Text style={styles.rowSubtitle}>{item.declaredWordCount} Words</Text>
+                </View>
+                <Ionicons name="chevron-forward" size={20} color={colors.textDark} />
+              </Pressable>
+            </StaggeredSlideItem>
           )}
         />
       </View>
@@ -75,6 +78,7 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   title: { ...typography.h2, color: colors.accentRedAlt },
+  rowEntry: { marginBottom: 14 },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -84,7 +88,6 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     paddingHorizontal: 18,
     paddingVertical: 18,
-    marginBottom: 14,
   },
   rowTitle: { fontSize: 17, color: colors.textDark, marginBottom: 4 },
   rowSubtitle: { fontSize: 13, color: colors.textLabel },

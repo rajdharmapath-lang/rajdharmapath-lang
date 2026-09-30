@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, Pressable, StyleSheet, Alert } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Modal, ActivityIndicator } from 'react-native';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
-import PrimaryButton from '../components/PrimaryButton';
 import { useAuth } from '../context/AuthContext';
 
 const LANGUAGES = [
@@ -30,15 +29,21 @@ export default function LanguageChooseScreen({ navigation }) {
   const { setLanguage } = useAuth();
   const [selected, setSelected] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [dialog, setDialog] = useState(null);
 
-  const handleContinue = async () => {
-    if (!selected) return;
+  const handleSelectLanguage = async (language) => {
+    if (loading) return;
+    setSelected(language);
     setLoading(true);
     try {
-      await setLanguage(selected);
+      await setLanguage(language);
       navigation.reset({ index: 0, routes: [{ name: 'Home' }] });
     } catch (err) {
-      Alert.alert('Could not save language', err?.response?.data?.message || err.message);
+      setSelected(null);
+      setDialog({
+        title: 'Could not save language',
+        message: err?.response?.data?.message || err.message,
+      });
     } finally {
       setLoading(false);
     }
@@ -55,7 +60,10 @@ export default function LanguageChooseScreen({ navigation }) {
             return (
               <Pressable
                 key={lang.key}
-                onPress={() => setSelected(lang.key)}
+                onPress={() => handleSelectLanguage(lang.key)}
+                disabled={loading}
+                accessibilityRole="button"
+                accessibilityState={{ selected: isSelected, disabled: loading }}
                 style={[
                   styles.card,
                   { backgroundColor: lang.bg, borderColor: lang.border },
@@ -63,7 +71,11 @@ export default function LanguageChooseScreen({ navigation }) {
                 ]}
               >
                 <View style={styles.circle}>
-                  <Text style={styles.glyph}>{lang.glyph}</Text>
+                  {loading && isSelected ? (
+                    <ActivityIndicator color="#fff" />
+                  ) : (
+                    <Text style={styles.glyph}>{lang.glyph}</Text>
+                  )}
                 </View>
                 <Text style={styles.cardLabel}>{lang.label}</Text>
               </Pressable>
@@ -71,14 +83,34 @@ export default function LanguageChooseScreen({ navigation }) {
           })}
         </View>
 
-        <PrimaryButton
-          title="Continue"
-          onPress={handleContinue}
-          disabled={!selected}
-          loading={loading}
-          style={{ marginTop: 50 }}
-        />
       </View>
+
+      <Modal
+        visible={Boolean(dialog)}
+        transparent
+        animationType="fade"
+        statusBarTranslucent
+        onRequestClose={() => setDialog(null)}
+      >
+        <View style={styles.modalOverlay}>
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            onPress={() => setDialog(null)}
+            accessibilityRole="button"
+            accessibilityLabel="Dismiss dialog"
+          />
+          <View style={[styles.dialog, { maxWidth: Math.min(maxWidth - 48, 420) }]} accessibilityViewIsModal>
+            <View style={styles.dialogIcon}>
+              <Text style={styles.dialogIconText}>!</Text>
+            </View>
+            <Text style={styles.dialogTitle}>{dialog?.title}</Text>
+            <Text style={styles.dialogMessage}>{dialog?.message}</Text>
+            <Pressable style={styles.dialogButton} onPress={() => setDialog(null)}>
+              <Text style={styles.dialogButtonText}>Got it</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -122,4 +154,49 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 24,
   },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 32,
+  },
+  dialog: {
+    width: '100%',
+    borderRadius: 28,
+    backgroundColor: colors.card,
+    alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 28,
+    elevation: 10,
+  },
+  dialogIcon: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: colors.homeOrangeBg,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 14,
+  },
+  dialogIconText: { color: colors.homeOrange, fontSize: 24, fontWeight: '700' },
+  dialogTitle: { fontSize: 20, fontWeight: '700', color: colors.textDark, textAlign: 'center' },
+  dialogMessage: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: colors.textLabel,
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  dialogButton: {
+    minHeight: 48,
+    width: '100%',
+    borderRadius: 24,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 22,
+  },
+  dialogButtonText: { color: '#fff', fontSize: 15, fontWeight: '700' },
 });

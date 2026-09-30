@@ -81,7 +81,13 @@ export default function CharacterSelectScreen({ navigation, route }) {
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
-        <Text style={styles.title}>Choose Characters</Text>
+        <View style={styles.header}>
+          <Pressable onPress={() => navigation.goBack()} hitSlop={12}>
+            <Ionicons name="chevron-back" size={26} color={colors.border} />
+          </Pressable>
+          <Text style={styles.title}>Choose Characters</Text>
+          <View style={styles.headerSpacer} />
+        </View>
         <Text style={styles.subtitle}>Select words to practice writing</Text>
 
         <View style={styles.searchBox}>
@@ -159,7 +165,14 @@ export default function CharacterSelectScreen({ navigation, route }) {
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.background },
   container: { flex: 1, paddingHorizontal: 20, paddingTop: 24 },
-  title: { ...typography.h2, color: colors.accentRedAlt, textAlign: 'center', marginBottom: 4 },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 4,
+  },
+  title: { ...typography.h2, color: colors.accentRedAlt, textAlign: 'center', flex: 1 },
+  headerSpacer: { width: 26 },
   subtitle: { ...typography.body, color: colors.textDark, textAlign: 'center', marginBottom: 20 },
   searchBox: {
     flexDirection: 'row',

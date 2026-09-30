@@ -77,9 +77,9 @@ function RootNavigator({ initialRouteName }) {
       <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
       <Stack.Screen name="LanguageChoose" component={LanguageChooseScreen} />
 
-      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen name="Home" component={HomeScreen} options={{ animation: 'none' }} />
 
-      <Stack.Screen name="BatchList" component={BatchListScreen} />
+      <Stack.Screen name="BatchList" component={BatchListScreen} options={{ animation: 'none' }} />
       <Stack.Screen name="VideoList" component={VideoListScreen} />
       <Stack.Screen name="VideoPlayer" component={VideoPlayerScreen} />
       <Stack.Screen name="LiveClass" component={LiveClassScreen} />
@@ -88,7 +88,7 @@ function RootNavigator({ initialRouteName }) {
       <Stack.Screen name="StrokePractice" component={StrokePracticeScreen} />
       <Stack.Screen name="StrokeResult" component={StrokeResultScreen} />
 
-      <Stack.Screen name="Vocabulary" component={VocabularyScreen} />
+      <Stack.Screen name="Vocabulary" component={VocabularyScreen} options={{ animation: 'none' }} />
       <Stack.Screen name="VocabularyCategoryList" component={VocabularyCategoryListScreen} />
       <Stack.Screen name="FullVocabulary" component={FullVocabularyScreen} />
 
@@ -107,7 +107,7 @@ function RootNavigator({ initialRouteName }) {
       <Stack.Screen name="PaymentSuccess" component={PaymentSuccessScreen} />
       <Stack.Screen name="PaymentFailed" component={PaymentFailedScreen} />
 
-      <Stack.Screen name="Settings" component={SettingsScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} options={{ animation: 'none' }} />
       <Stack.Screen name="SettingsAccount" component={SettingsAccountScreen} />
       <Stack.Screen name="SettingsLanguage" component={SettingsLanguageScreen} />
       <Stack.Screen

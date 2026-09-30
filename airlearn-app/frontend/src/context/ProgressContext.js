@@ -86,6 +86,15 @@ export function ProgressProvider({ children }) {
     [recordActivity]
   );
 
+  const clearProgress = useCallback(async () => {
+    setLearnedWordIds([]);
+    setCompletedVideoIds([]);
+    setStreak({ lastActiveDate: null, currentStreak: 0 });
+    await AsyncStorage.multiRemove([LEARNED_WORDS_KEY, COMPLETED_VIDEOS_KEY, STREAK_KEY]).catch(
+      () => {}
+    );
+  }, []);
+
   return (
     <ProgressContext.Provider
       value={{
@@ -96,6 +105,7 @@ export function ProgressProvider({ children }) {
         recordWordLearned,
         recordVideoCompleted,
         recordActivity,
+        clearProgress,
       }}
     >
       {children}

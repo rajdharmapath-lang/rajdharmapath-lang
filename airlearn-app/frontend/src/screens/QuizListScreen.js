@@ -6,6 +6,7 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
+import StaggeredSlideItem from '../components/StaggeredSlideItem';
 import { batches } from '../data/courses';
 import { getQuizzesForBatch } from '../data/quizzes';
 
@@ -31,14 +32,16 @@ export default function QuizListScreen({ route, navigation }) {
           data={quizzes}
           keyExtractor={(item) => item.id}
           contentContainerStyle={{ paddingBottom: 20 }}
-          renderItem={({ item }) => (
-            <Pressable
-              style={styles.row}
-              onPress={() => navigation.navigate('QuizIntro', { batchId, quizId: item.id })}
-            >
-              <Text style={styles.rowTitle}>{item.name}</Text>
-              <Ionicons name="chevron-forward" size={20} color={colors.textDark} />
-            </Pressable>
+          renderItem={({ item, index }) => (
+            <StaggeredSlideItem index={index} style={styles.rowEntry}>
+              <Pressable
+                style={styles.row}
+                onPress={() => navigation.navigate('QuizIntro', { batchId, quizId: item.id })}
+              >
+                <Text style={styles.rowTitle}>{item.name}</Text>
+                <Ionicons name="chevron-forward" size={20} color={colors.textDark} />
+              </Pressable>
+            </StaggeredSlideItem>
           )}
         />
       </View>
@@ -66,6 +69,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: { ...typography.h2, color: colors.accentRedAlt, fontSize: 20 },
+  rowEntry: { marginBottom: 14 },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -75,7 +79,6 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     paddingHorizontal: 18,
     paddingVertical: 20,
-    marginBottom: 14,
   },
   rowTitle: { fontSize: 17, color: colors.textDark },
 });

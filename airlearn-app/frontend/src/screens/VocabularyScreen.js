@@ -6,6 +6,7 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
+import StaggeredSlideItem from '../components/StaggeredSlideItem';
 import VocabularyWordRow from '../components/VocabularyWordRow';
 import { vocabularyCategories, getAllWords, findWordById } from '../data/vocabulary';
 import { useVocabulary } from '../context/VocabularyContext';
@@ -81,23 +82,30 @@ export default function VocabularyScreen({ navigation }) {
             <>
               <Text style={styles.sectionTitle}>Categories</Text>
               <View style={styles.grid}>
-                {gridCategories.map((cat) => (
-                  <Pressable
+                {gridCategories.map((cat, index) => (
+                  <StaggeredSlideItem
                     key={cat.id}
-                    style={styles.categoryCard}
-                    onPress={() => openCategory(cat)}
+                    index={index}
+                    style={styles.categoryCardEntry}
                   >
-                    <Text style={styles.categoryName}>{cat.name}</Text>
-                    <Text style={styles.categoryCount}>{cat.declaredWordCount} Words</Text>
-                  </Pressable>
+                    <Pressable style={styles.categoryCard} onPress={() => openCategory(cat)}>
+                      <Text style={styles.categoryName}>{cat.name}</Text>
+                      <Text style={styles.categoryCount}>{cat.declaredWordCount} Words</Text>
+                    </Pressable>
+                  </StaggeredSlideItem>
                 ))}
                 {hasMore && (
-                  <Pressable
-                    style={styles.categoryCard}
-                    onPress={() => navigation.navigate('VocabularyCategoryList')}
+                  <StaggeredSlideItem
+                    index={gridCategories.length}
+                    style={styles.categoryCardEntry}
                   >
-                    <Text style={styles.categoryName}>More...</Text>
-                  </Pressable>
+                    <Pressable
+                      style={styles.categoryCard}
+                      onPress={() => navigation.navigate('VocabularyCategoryList')}
+                    >
+                      <Text style={styles.categoryName}>More...</Text>
+                    </Pressable>
+                  </StaggeredSlideItem>
                 )}
               </View>
 
@@ -166,14 +174,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 28,
   },
+  categoryCardEntry: { width: '48%', marginBottom: 14 },
   categoryCard: {
-    width: '48%',
+    width: '100%',
     borderWidth: 1,
     borderColor: colors.strokeAccent,
     borderRadius: 14,
     paddingHorizontal: 16,
     paddingVertical: 16,
-    marginBottom: 14,
   },
   categoryName: { fontSize: 16, fontWeight: '600', color: colors.textDark, marginBottom: 4 },
   categoryCount: { fontSize: 13, color: colors.textLabel },

@@ -7,6 +7,7 @@ import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
 import ProgressRing from '../components/ProgressRing';
+import StaggeredSlideItem from '../components/StaggeredSlideItem';
 import { useAuth } from '../context/AuthContext';
 import { useProgress } from '../context/ProgressContext';
 import { lessonsByBatch } from '../data/courses';
@@ -93,24 +94,35 @@ export default function HomeScreen({ navigation }) {
 
           <Text style={styles.sectionTitle}>Access</Text>
           <View style={styles.accessGrid}>
-            {ACCESS_ITEMS.map((item) => (
-              <Pressable
+            {ACCESS_ITEMS.map((item, index) => (
+              <StaggeredSlideItem
                 key={item.key}
-                style={[styles.accessTile, !item.enabled && styles.accessTileDisabled]}
-                onPress={() => handleAccessPress(item)}
+                index={index}
+                style={styles.accessTileAnimation}
               >
-                {item.glyph ? (
-                  <Text style={styles.accessGlyph}>{item.glyph}</Text>
-                ) : item.key === 'speech' ? (
-                  <View style={styles.speechIconCircle}>
-                    <Ionicons name={item.icon} size={20} color="#fff" />
-                  </View>
-                ) : (
-                  <Ionicons name={item.icon} size={26} color={colors.homeOrange} />
-                )}
-                <Text style={styles.accessLabel}>{item.label}</Text>
-                {!item.enabled && <Text style={styles.comingSoon}>Coming soon</Text>}
-              </Pressable>
+                <Pressable
+                  style={[styles.accessTile, !item.enabled && styles.accessTileDisabled]}
+                  onPress={() => handleAccessPress(item)}
+                >
+                  {item.glyph ? (
+                    <View style={styles.accessIconSlot}>
+                      <Text style={styles.accessGlyph}>{item.glyph}</Text>
+                    </View>
+                  ) : item.key === 'speech' ? (
+                    <View style={styles.accessIconSlot}>
+                      <View style={styles.speechIconCircle}>
+                        <Ionicons name={item.icon} size={20} color="#fff" />
+                      </View>
+                    </View>
+                  ) : (
+                    <View style={styles.accessIconSlot}>
+                      <Ionicons name={item.icon} size={26} color={colors.homeOrange} />
+                    </View>
+                  )}
+                  <Text style={styles.accessLabel}>{item.label}</Text>
+                  {!item.enabled && <Text style={styles.comingSoon}>Coming soon</Text>}
+                </Pressable>
+              </StaggeredSlideItem>
             ))}
           </View>
         </View>
@@ -180,9 +192,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 20,
   },
+  accessTileAnimation: { width: '23%', aspectRatio: 0.85 },
   accessTile: {
-    width: '23%',
-    aspectRatio: 0.85,
+    flex: 1,
     backgroundColor: colors.homeOrangeBgAlt,
     borderRadius: 14,
     alignItems: 'center',
@@ -190,7 +202,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   accessTileDisabled: { opacity: 0.5 },
-  accessGlyph: { fontSize: 26, color: colors.homeOrange, marginBottom: 8, fontWeight: '600' },
+  accessIconSlot: {
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 8,
+  },
+  accessGlyph: { fontSize: 26, color: colors.homeOrange, fontWeight: '600' },
   speechIconCircle: {
     width: 36,
     height: 36,
@@ -198,7 +217,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.homeOrange,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 8,
   },
   accessLabel: { fontSize: 12, color: colors.textDark, fontWeight: '600', textAlign: 'center' },
   comingSoon: { fontSize: 9, color: colors.textLabel, marginTop: 2, textAlign: 'center' },
