@@ -33,7 +33,13 @@ export default function VideoListScreen({ route, navigation }) {
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
-        <Text style={styles.title}>{batch?.name || 'Batch'}</Text>
+        <View style={styles.header}>
+          <Pressable onPress={() => navigation.goBack()} hitSlop={12}>
+            <Ionicons name="chevron-back" size={26} color={colors.border} />
+          </Pressable>
+          <Text style={styles.title}>{batch?.name || 'Batch'}</Text>
+          <View style={styles.headerSpacer} />
+        </View>
 
         <FlatList
           data={lessons}
@@ -76,7 +82,14 @@ export default function VideoListScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.background },
   container: { flex: 1, paddingHorizontal: 20, paddingTop: 24 },
-  title: { ...typography.h2, color: colors.accentRedAlt, textAlign: 'center', marginBottom: 20 },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  title: { ...typography.h2, color: colors.accentRedAlt, textAlign: 'center' },
+  headerSpacer: { width: 26 },
   row: {
     flexDirection: 'row',
     alignItems: 'center',

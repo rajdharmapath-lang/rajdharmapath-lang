@@ -27,7 +27,8 @@ let resolvedBaseUrl = null;
 
 async function isReachable(baseUrl) {
   try {
-    const res = await axios.get(`${baseUrl}/health`, { timeout: 3000 });
+    const healthUrl = baseUrl.replace(/\/api\/?$/, '') + '/health';
+    const res = await axios.get(healthUrl, { timeout: 3000 });
     return res.status === 200;
   } catch {
     return false;

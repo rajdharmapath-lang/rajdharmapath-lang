@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import * as ExpoSplashScreen from 'expo-splash-screen';
 
-import { AuthProvider } from './src/context/AuthContext';
+import { AuthProvider, useAuth } from './src/context/AuthContext';
 import { PaymentProvider } from './src/context/PaymentContext';
 import { VocabularyProvider } from './src/context/VocabularyContext';
 import { ProgressProvider } from './src/context/ProgressContext';
@@ -13,7 +14,6 @@ import { loadVoiceSpeed } from './src/services/audio';
 import NoInternetScreen from './src/screens/NoInternetScreen';
 
 // --- Onboarding / auth -------------------------------------------------------
-import SplashScreen from './src/screens/SplashScreen';
 import PhoneEntryScreen from './src/screens/PhoneEntryScreen';
 import OtpVerifyScreen from './src/screens/OtpVerifyScreen';
 import CreateAccountScreen from './src/screens/CreateAccountScreen';
@@ -64,13 +64,14 @@ import SettingsLearningPreferenceScreen from './src/screens/SettingsLearningPref
 
 const Stack = createNativeStackNavigator();
 
-function RootNavigator() {
+ExpoSplashScreen.preventAutoHideAsync().catch(() => {});
+
+function RootNavigator({ initialRouteName }) {
   return (
     <Stack.Navigator
-      initialRouteName="Splash"
+      initialRouteName={initialRouteName}
       screenOptions={{ headerShown: false, animation: 'slide_from_right' }}
     >
-      <Stack.Screen name="Splash" component={SplashScreen} />
       <Stack.Screen name="PhoneEntry" component={PhoneEntryScreen} />
       <Stack.Screen name="OtpVerify" component={OtpVerifyScreen} />
       <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
@@ -117,6 +118,18 @@ function RootNavigator() {
   );
 }
 
+function AppNavigation() {
+  const { isLoading, user } = useAuth();
+
+  if (isLoading) return null;
+
+  return (
+    <NavigationContainer onReady={() => ExpoSplashScreen.hideAsync().catch(() => {})}>
+      <RootNavigator initialRouteName={user ? 'Home' : 'PhoneEntry'} />
+    </NavigationContainer>
+  );
+}
+
 // Shows the No Internet screen as a full-screen overlay on top of whatever the
 // user was doing the moment connectivity drops, then returns them to it once
 // back online — rather than a route you navigate to and lose your place.
@@ -141,9 +154,7 @@ export default function App() {
             <VocabularyProvider>
               <ProgressProvider>
                 <ConnectivityGate>
-                  <NavigationContainer>
-                    <RootNavigator />
-                  </NavigationContainer>
+                  <AppNavigation />
                 </ConnectivityGate>
               </ProgressProvider>
             </VocabularyProvider>

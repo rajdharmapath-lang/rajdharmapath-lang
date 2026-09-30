@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { View, Text, Pressable, StyleSheet, ScrollView, Alert } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
@@ -66,8 +66,18 @@ export default function SettingsScreen({ navigation }) {
 
           {hasAnyBatchAccess() ? (
             <View style={styles.planBanner}>
-              <Text style={styles.planTitle}>Premium Member</Text>
-              <Text style={styles.planSubtitle}>Valid till {validTill}</Text>
+              <View style={styles.memberContent}>
+                <View style={styles.memberTitleRow}>
+                  <MaterialCommunityIcons
+                    name="crown"
+                    size={22}
+                    color={colors.accentRedAlt}
+                    style={styles.crownIcon}
+                  />
+                  <Text style={styles.planTitle}>Prime Member</Text>
+                </View>
+                <Text style={styles.planSubtitle}>Valid till {validTill}</Text>
+              </View>
             </View>
           ) : (
             <View style={styles.planBanner}>
@@ -155,7 +165,10 @@ const styles = StyleSheet.create({
     padding: 18,
     marginBottom: 20,
   },
-  planTitle: { fontSize: 19, fontWeight: '700', color: colors.accentRedAlt, marginBottom: 4 },
+  memberContent: { flex: 1 },
+  memberTitleRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 4 },
+  crownIcon: { marginRight: 8 },
+  planTitle: { fontSize: 19, fontWeight: '700', color: colors.accentRedAlt },
   planSubtitle: { fontSize: 13, color: '#fff' },
   joinButton: {
     backgroundColor: colors.playerCircle,

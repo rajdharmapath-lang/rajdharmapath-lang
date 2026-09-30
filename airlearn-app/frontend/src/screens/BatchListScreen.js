@@ -29,7 +29,7 @@ export default function BatchListScreen({ navigation, route }) {
 
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
           <Text style={styles.title}>Videos</Text>
 
@@ -96,12 +96,20 @@ export default function BatchListScreen({ navigation, route }) {
 
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.background },
-  container: { paddingHorizontal: 20, paddingTop: 24 },
-  title: { ...typography.h2, color: colors.accentRedAlt, textAlign: 'center', marginBottom: 24 },
+  scrollContent: { flexGrow: 1 },
+  container: {
+    flexGrow: 1,
+    paddingHorizontal: 20,
+    paddingTop: 24,
+    paddingBottom: 16,
+    justifyContent: 'flex-start',
+    gap: 16,
+  },
+  title: { ...typography.h2, color: colors.accentRedAlt, textAlign: 'center' },
   card: {
+    flexGrow: 1,
     borderRadius: 18,
     padding: 20,
-    marginBottom: 16,
     flexDirection: 'row',
     alignItems: 'center',
     overflow: 'hidden',
@@ -119,10 +127,11 @@ const styles = StyleSheet.create({
   },
   badgeGlyph: { color: '#fff', fontSize: 20, fontWeight: '700' },
   liveBanner: {
+    flexGrow: 1,
     backgroundColor: colors.liveClassBg,
     borderRadius: 18,
     padding: 18,
-    marginTop: 8,
+    justifyContent: 'center',
   },
   liveBannerEmpty: {
     flexDirection: 'row',
