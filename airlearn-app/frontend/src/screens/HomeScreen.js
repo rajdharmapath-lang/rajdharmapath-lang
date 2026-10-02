@@ -53,93 +53,101 @@ export default function HomeScreen({ navigation }) {
 
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
-          <Text style={styles.greeting}>Hi, {user?.name || 'there'}</Text>
-          <Text style={styles.subtitle}>Let's continue your Chinese Learning.</Text>
-
-          <View style={styles.progressCard}>
-            <Text style={styles.progressLabel}>Your Progress</Text>
-            <View style={styles.progressRow}>
-              <Text style={styles.batchName}>Foundation Batch</Text>
-              <ProgressRing percent={batchPercent} size={64} strokeWidth={6} />
-            </View>
-            <View style={styles.statsRow}>
-              <View style={styles.statItem}>
-                <Text style={styles.statValue}>{videosCompletedCount}</Text>
-                <Text style={styles.statLabel}>Videos Completed</Text>
-              </View>
-              <View style={styles.statDivider} />
-              <View style={styles.statItem}>
-                <Text style={styles.statValue}>{wordsLearnedCount}</Text>
-                <Text style={styles.statLabel}>Words Learned</Text>
-              </View>
-              <View style={styles.statDivider} />
-              <View style={styles.statItem}>
-                <Text style={styles.statValue}>{daysStreak}</Text>
-                <Text style={styles.statLabel}>Days Streak</Text>
-              </View>
-            </View>
+          <View>
+            <Text style={styles.greeting}>Hi, {user?.name || 'there'}</Text>
+            <Text style={styles.subtitle}>Let's continue your Chinese Learning.</Text>
           </View>
 
-          <Text style={styles.sectionTitle}>Continue Learning</Text>
-          {continueLesson && (
-            <Pressable
-              style={styles.continueCard}
-              onPress={() =>
-                navigation.navigate('VideoPlayer', {
-                  batchId: 'foundation',
-                  lessonId: continueLesson.id,
-                })
-              }
-            >
-              <View style={styles.continueThumb}>
-                <Ionicons name="play-circle-outline" size={36} color={colors.homeOrange} />
+          <View style={styles.learningSections}>
+            <View style={styles.progressCard}>
+              <Text style={styles.progressLabel}>Your Progress</Text>
+              <View style={styles.progressRow}>
+                <Text style={styles.batchName}>Foundation Batch</Text>
+                <ProgressRing percent={batchPercent} size={72} strokeWidth={7} />
               </View>
-              <View style={styles.continueText}>
-                <Text style={styles.continueTitle}>{continueLesson.title}</Text>
-                <Text style={styles.continueSubtitle}>{continueLesson.subtitle}</Text>
+              <View style={styles.statsRow}>
+                <View style={styles.statItem}>
+                  <Text style={styles.statValue}>{videosCompletedCount}</Text>
+                  <Text style={styles.statLabel}>Videos Completed</Text>
+                </View>
+                <View style={styles.statDivider} />
+                <View style={styles.statItem}>
+                  <Text style={styles.statValue}>{wordsLearnedCount}</Text>
+                  <Text style={styles.statLabel}>Words Learned</Text>
+                </View>
+                <View style={styles.statDivider} />
+                <View style={styles.statItem}>
+                  <Text style={styles.statValue}>{daysStreak}</Text>
+                  <Text style={styles.statLabel}>Days Streak</Text>
+                </View>
               </View>
-              <Ionicons name="chevron-forward" size={22} color={colors.textDark} />
-            </Pressable>
-          )}
+            </View>
 
-          <Text style={styles.sectionTitle}>Access</Text>
-          <View style={styles.accessGrid}>
-            {ACCESS_ITEMS.map((item, index) => (
-              <StaggeredSlideItem
-                key={item.key}
-                index={index}
-                style={styles.accessTileAnimation}
-              >
+            <View>
+              <Text style={styles.sectionTitle}>Continue Learning</Text>
+              {continueLesson && (
                 <Pressable
-                  style={[styles.accessTile, !item.enabled && styles.accessTileDisabled]}
-                  onPress={() => handleAccessPress(item)}
+                  style={styles.continueCard}
+                  onPress={() =>
+                    navigation.navigate('VideoPlayer', {
+                      batchId: 'foundation',
+                      lessonId: continueLesson.id,
+                    })
+                  }
                 >
-                  {item.glyph ? (
-                    <View style={styles.accessIconSlot}>
-                      <Text style={styles.accessGlyph}>{item.glyph}</Text>
-                    </View>
-                  ) : item.key === 'speech' ? (
-                    <View style={styles.accessIconSlot}>
-                      <View style={styles.speechIconCircle}>
-                        <Ionicons name={item.icon} size={20} color="#fff" />
-                      </View>
-                    </View>
-                  ) : item.image ? (
-                    <View style={styles.accessIconSlot}>
-                      <Image source={item.image} style={styles.accessImage} resizeMode="contain" />
-                    </View>
-                  ) : (
-                    <View style={styles.accessIconSlot}>
-                      <Ionicons name={item.icon} size={26} color={colors.homeOrange} />
-                    </View>
-                  )}
-                  <Text style={styles.accessLabel}>{item.label}</Text>
-                  {!item.enabled && <Text style={styles.comingSoon}>Coming soon</Text>}
+                  <View style={styles.continueThumb}>
+                    <Ionicons name="play-circle-outline" size={36} color={colors.homeOrange} />
+                  </View>
+                  <View style={styles.continueText}>
+                    <Text style={styles.continueTitle}>{continueLesson.title}</Text>
+                    <Text style={styles.continueSubtitle}>{continueLesson.subtitle}</Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={22} color={colors.textDark} />
                 </Pressable>
-              </StaggeredSlideItem>
-            ))}
+              )}
+            </View>
+
+            <View>
+              <Text style={styles.sectionTitle}>Access</Text>
+              <View style={styles.accessGrid}>
+                {ACCESS_ITEMS.map((item, index) => (
+                  <StaggeredSlideItem
+                    key={item.key}
+                    index={index}
+                    style={styles.accessTileAnimation}
+                  >
+                    <Pressable
+                      style={[styles.accessTile, !item.enabled && styles.accessTileDisabled]}
+                      onPress={() => handleAccessPress(item)}
+                    >
+                      {item.glyph ? (
+                        <View style={styles.accessIconSlot}>
+                          <Text style={styles.accessGlyph}>{item.glyph}</Text>
+                        </View>
+                      ) : item.key === 'speech' ? (
+                        <View style={styles.accessIconSlot}>
+                          <View style={styles.speechIconCircle}>
+                            <Ionicons name={item.icon} size={20} color="#fff" />
+                          </View>
+                        </View>
+                      ) : item.image ? (
+                        <View style={styles.accessIconSlot}>
+                          <Image source={item.image} style={styles.accessImage} resizeMode="contain" />
+                        </View>
+                      ) : (
+                        <View style={styles.accessIconSlot}>
+                          <Ionicons name={item.icon} size={26} color={colors.homeOrange} />
+                        </View>
+                      )}
+                      <Text style={styles.accessLabel}>{item.label}</Text>
+                      {!item.enabled && <Text style={styles.comingSoon}>Coming soon</Text>}
+                    </Pressable>
+                  </StaggeredSlideItem>
+                ))}
+              </View>
+            </View>
           </View>
         </View>
       </ScrollView>
@@ -159,14 +167,21 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.background },
-  container: { paddingHorizontal: 20, paddingTop: 32 },
+  scrollContent: { flexGrow: 1 },
+  container: {
+    flexGrow: 1,
+    paddingHorizontal: 20,
+    paddingTop: 24,
+    paddingBottom: 20,
+  },
+  learningSections: { marginTop: 12, gap: 8 },
   greeting: { ...typography.h2, color: colors.accentRedAlt, marginBottom: 4 },
   subtitle: { ...typography.body, color: colors.textDark, marginBottom: 20 },
   progressCard: {
     backgroundColor: colors.homeOrangeBg,
     borderRadius: 18,
-    padding: 20,
-    marginBottom: 28,
+    padding: 22,
+    marginBottom: 24,
   },
   progressLabel: { fontSize: 16, color: colors.textDark, marginBottom: 4 },
   progressRow: {
@@ -187,12 +202,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.homeOrangeBgAlt,
     borderRadius: 16,
-    padding: 12,
-    marginBottom: 28,
+    padding: 14,
+    minHeight: 108,
+    marginBottom: 24,
   },
   continueThumb: {
-    width: 90,
-    height: 66,
+    width: 100,
+    height: 74,
     borderRadius: 10,
     backgroundColor: colors.navInactiveBg,
     alignItems: 'center',
@@ -206,9 +222,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',
-    marginBottom: 20,
+    marginBottom: 12,
   },
-  accessTileAnimation: { width: '23%', aspectRatio: 0.85 },
+  accessTileAnimation: { width: '23%', aspectRatio: 0.76 },
   accessTile: {
     flex: 1,
     backgroundColor: colors.homeOrangeBgAlt,
@@ -219,17 +235,17 @@ const styles = StyleSheet.create({
   },
   accessTileDisabled: { opacity: 0.5 },
   accessIconSlot: {
-    width: 36,
-    height: 36,
+    width: 40,
+    height: 40,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
   },
-  accessGlyph: { fontSize: 26, color: colors.homeOrange, fontWeight: '600' },
-  accessImage: { width: 30, height: 30 },
+  accessGlyph: { fontSize: 28, color: colors.homeOrange, fontWeight: '600' },
+  accessImage: { width: 34, height: 34 },
   speechIconCircle: {
-    width: 36,
-    height: 36,
+    width: 40,
+    height: 40,
     borderRadius: 18,
     backgroundColor: colors.homeOrange,
     alignItems: 'center',

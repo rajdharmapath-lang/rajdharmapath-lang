@@ -1,4 +1,5 @@
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const {
   usersById,
@@ -6,11 +7,13 @@ const {
   phoneKey,
   otpsByPhoneKey,
   tokensToUserId,
+  purchasedBatchesByUserId,
+  razorpayOrdersById,
 } = require('../db/db');
 
 const LEARNING_PDF_PATH = path.resolve(
-  __dirname,
-  '../../../frontend/learns/Foundation.pdf'
+  process.env.LEARNING_PDF_PATH ||
+    path.join(os.homedir(), 'Downloads', 'RD chinese workbook.pdf')
 );
 
 function getCurrentUser(req) {
@@ -68,6 +71,11 @@ function deleteAccount(req, res) {
   usersById.delete(user.id);
   usersByPhoneKey.delete(key);
   otpsByPhoneKey.delete(key);
+  purchasedBatchesByUserId.delete(user.id);
+
+  for (const [orderId, order] of razorpayOrdersById) {
+    if (order.userId === user.id) razorpayOrdersById.delete(orderId);
+  }
 
   for (const [token, userId] of tokensToUserId) {
     if (userId === user.id) tokensToUserId.delete(token);
@@ -81,7 +89,7 @@ function downloadLearningPdf(req, res) {
     return res.status(404).json({ message: 'The learning PDF is not available.' });
   }
 
-  res.download(LEARNING_PDF_PATH, 'Foundation.pdf', (error) => {
+  res.download(LEARNING_PDF_PATH, 'RD chinese workbook.pdf', (error) => {
     if (error && !res.headersSent) {
       res.status(500).json({ message: 'Could not download the learning PDF.' });
     }

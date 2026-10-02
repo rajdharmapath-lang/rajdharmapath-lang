@@ -23,11 +23,11 @@ export function PaymentProvider({ children }) {
     })();
   }, []);
 
-  const grantBatchAccess = useCallback((batchId, plan) => {
+  const grantBatchAccess = useCallback((batchId, plan, purchasedAt = Date.now()) => {
     setPurchasedBatches((prev) => {
       const next = {
         ...prev,
-        [batchId]: { tier: plan.tier, planId: plan.id, purchasedAt: Date.now() },
+        [batchId]: { tier: plan.tier, planId: plan.id, purchasedAt },
       };
       AsyncStorage.setItem(ENTITLEMENTS_KEY, JSON.stringify(next)).catch(() => {});
       // TODO once backend exists: this should really be driven by a server-side

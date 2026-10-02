@@ -16,7 +16,7 @@ import { colors } from '../theme/colors';
 import { useResponsive } from '../theme/responsive';
 import { getAuthenticatedDownloadRequest } from '../api/client';
 
-const PDF_FILE_NAME = 'Foundation.pdf';
+const PDF_FILE_NAME = 'RD chinese workbook.pdf';
 const NOTE_FILES = [
   {
     id: 'foundation-notes',

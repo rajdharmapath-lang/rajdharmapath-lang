@@ -12,7 +12,8 @@ import { plansByBatch } from '../data/plans';
 export default function PaywallChoosePlanScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
-  const returnTo = route?.params?.returnTo;
+  const { batchId, returnTo } = route?.params || {};
+  const batchesToShow = batchId ? batches.filter((batch) => batch.id === batchId) : batches;
 
   const handleSelectPlan = (plan) => {
     navigation.navigate('Checkout', { planId: plan.id, returnTo });
@@ -30,7 +31,7 @@ export default function PaywallChoosePlanScreen({ route, navigation }) {
             <View style={{ width: 26 }} />
           </View>
 
-          {batches.map((batch) => (
+          {batchesToShow.map((batch) => (
             <View
               key={batch.id}
               style={[styles.batchSection, { backgroundColor: colors[batch.colorBg] }]}

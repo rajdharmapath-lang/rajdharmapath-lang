@@ -7,6 +7,8 @@ const usersByPhoneKey = new Map(); // key: `${dialCode}${phone}` -> user object
 const usersById = new Map(); // id -> user object
 const otpsByPhoneKey = new Map(); // key -> { code, expiresAt }
 const tokensToUserId = new Map(); // token -> userId
+const razorpayOrdersById = new Map(); // orderId -> pending checkout metadata
+const purchasedBatchesByUserId = new Map(); // userId -> { [batchId]: entitlement }
 
 let nextUserId = 1;
 
@@ -35,6 +37,8 @@ module.exports = {
   usersById,
   otpsByPhoneKey,
   tokensToUserId,
+  razorpayOrdersById,
+  purchasedBatchesByUserId,
   phoneKey,
   createUser,
 };

@@ -9,16 +9,21 @@ import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
 import { lessonsByBatch } from '../data/courses';
 import { useProgress } from '../context/ProgressContext';
+import { usePayment } from '../context/PaymentContext';
+import { useAccessGate } from '../utils/paywall';
 
 export default function VideoPlayerScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const { recordVideoCompleted } = useProgress();
+  const { hasBatchAccess } = usePayment();
   const { batchId = 'foundation', lessonId } = route?.params || {};
   const lessons = lessonsByBatch[batchId] || [];
   const currentIndex = Math.max(0, lessons.findIndex((l) => l.id === lessonId));
   const lesson = lessons[currentIndex] || lessons[0];
   const upNext = lessons.filter((_, i) => i !== currentIndex);
+
+  useAccessGate(navigation, route, hasBatchAccess(batchId), batchId);
 
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);

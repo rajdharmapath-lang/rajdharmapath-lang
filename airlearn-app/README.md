@@ -27,6 +27,57 @@ npm start
 
 This starts the API on http://localhost:4000. Leave it running.
 
+Razorpay checkout is wired in **test mode only**. Copy `backend/.env.example`
+to `backend/.env` and add a rotated Razorpay test key pair there. The backend
+loads `.env` at startup; never put the secret in the frontend or commit `.env`.
+Live keys are deliberately rejected while purchase entitlements are stored only
+in memory and disappear when the backend restarts. Before enabling live charges,
+move users, orders, and entitlements to durable storage and verify your store's
+rules for external billing of digital lessons.
+
+### Payment flow
+
+The app's payment flow is intentionally simple and local-first:
+
+1. The user selects a plan in the mobile app, optionally with the `WELCOME500`
+coupon code. The frontend sends `planId` and `couponCode` to
+`POST /api/payments/create-order`.
+2. The backend validates the plan and coupon, checks that the Razorpay keys are
+test keys, and creates a Razorpay order for the discounted amount.
+3. The API responds with the Razorpay `keyId`, `orderId`, `amount`, `currency`,
+and the selected `planId`/`batchId`.
+4. The frontend launches the Razorpay checkout. When the user successfully pays,
+frontend submits the Razorpay callback payload with
+`razorpay_order_id`, `razorpay_payment_id`, and `razorpay_signature`.
+5. The backend verifies the HMAC signature, fetches the payment details from
+Razorpay, confirms the order, amount, currency, and captured status, and then
+stores the entitlement for that batch in memory.
+6. Subsequent calls to the user/profile endpoints read the purchased batches and
+unlock the corresponding lessons or live access.
+
+This is a safe local test flow, not a production billing setup. Until entitlements
+are persisted in a real database and the app store policy is reviewed, the backend
+continues to reject live keys and the app should only be tested with Razorpay test
+credentials.
+
+The Razorpay native checkout does not run inside stock Expo Go. Build and install
+a custom Android/iOS development client (or release build) after installing the
+native package. Store releases may require Google Play Billing or Apple In-App
+Purchase unless your app is approved for an external-payment program.
+
+The Notes download is served from `Downloads/RD chinese workbook.pdf` in the
+backend user's home directory by default. Keep this large PDF out of Git. To
+use a different local path, set `LEARNING_PDF_PATH` before starting the backend:
+
+```powershell
+$env:LEARNING_PDF_PATH = 'D:\private-files\RD chinese workbook.pdf'
+npm start
+```
+
+For deployment, place the PDF in external storage or a mounted volume and set
+`LEARNING_PDF_PATH` to that location on the backend host. The mobile app
+downloads it through the authenticated `/api/user/learning-pdf` endpoint.
+
 There's no real SMS/WhatsApp OTP provider wired up yet. When you request an
 OTP, the actual 6-digit code is printed in this terminal window, e.g.:
 
@@ -72,9 +123,9 @@ account -> language -> learning preference).
 
 - Live Class screen is a placeholder. No design was provided for it yet -
   tapping "Join Live" (once unlocked) shows a "coming soon" stub.
-- Razorpay isn't connected. services/payment.js simulates a checkout
-  (succeeds about 85% of the time, fails the rest, so you can see both
-  outcomes). The integration point is commented in that file.
+- Razorpay test checkout creates orders and verifies payment signatures on the
+  backend. Live checkout remains disabled until entitlements use persistent
+  storage and the applicable app-store billing rules are satisfied.
 - Azure pronunciation/speech APIs aren't connected. Word audio uses
   on-device text-to-speech; pronunciation scoring returns realistic
   simulated numbers. Integration points are commented in services/audio.js
@@ -87,10 +138,9 @@ account -> language -> learning preference).
 - Home's progress stats (10 videos / 120 words / 7-day streak) are mock
   numbers, not derived from real activity - there's no progress-tracking
   backend yet.
-- Purchases are stored locally on the device (AsyncStorage), not verified
-  server-side. Fine for trying the app; not fine for production - real
-  entitlements need to come from your backend after Razorpay payment
-  verification.
+- Verified test purchases are recorded in backend memory and cached locally on
+  the device. Backend memory resets on restart, so this is not production-ready;
+  persist entitlements before accepting live payments.
 - Notifications and Support & About in Settings are stubbed ("coming soon")
   since you said you'd provide these later.
 - This has been tested by actually running the backend and exercising every

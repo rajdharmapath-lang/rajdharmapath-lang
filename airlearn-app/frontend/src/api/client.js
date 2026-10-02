@@ -91,4 +91,10 @@ export const userApi = {
   deleteAccount: () => client.delete('/user/account'),
 };
 
+export const paymentApi = {
+  createOrder: (payload) => client.post('/payments/create-order', payload),
+  verifyPayment: (payload) => client.post('/payments/verify', payload),
+  getEntitlements: () => client.get('/payments/entitlements'),
+};
+
 export default client;

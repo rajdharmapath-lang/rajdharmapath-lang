@@ -17,40 +17,60 @@ export default function QuizPlayScreen({ route, navigation }) {
   const { hasBatchAccess } = usePayment();
   const language = user?.language === 'tamil' ? 'tamil' : 'english';
 
-  const { batchId = 'foundation', quizId = 'quiz1' } = route?.params || {};
+  const {
+    batchId = 'foundation',
+    quizId = 'quiz1',
+    startIndex = 0,
+  } = route?.params || {};
   const quiz = getQuiz(batchId, quizId);
   const questions = quiz?.questions || [];
+  const firstQuestionIndex = Math.min(
+    Math.max(startIndex, 0),
+    Math.max(questions.length - 1, 0)
+  );
+  const questionsInRun = questions.length - firstQuestionIndex;
 
   // Safety net in case this screen is ever reached without going through
   // QuizIntroScreen's own gate (e.g. a deep link) — same batch-specific check.
   useAccessGate(navigation, route, hasBatchAccess(batchId), batchId);
 
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(firstQuestionIndex);
   const [correctCount, setCorrectCount] = useState(0);
+  const [answeredCount, setAnsweredCount] = useState(0);
+  const [answerPending, setAnswerPending] = useState(false);
   const startTimeRef = useRef(Date.now());
 
   const question = questions[index];
 
-  const finishQuiz = (finalCorrectCount) => {
+  const finishQuiz = (finalCorrectCount, finalAnsweredCount) => {
     const elapsedMs = Date.now() - startTimeRef.current;
     navigation.replace('QuizResult', {
       batchId,
       quizId,
-      total: questions.length,
+      total: questionsInRun,
       correctCount: finalCorrectCount,
+      answeredCount: finalAnsweredCount,
       elapsedMs,
+      startIndex,
     });
   };
 
   const handleAnswered = (isCorrect) => {
     const nextCorrectCount = correctCount + (isCorrect ? 1 : 0);
+    const nextAnsweredCount = answeredCount + 1;
     setCorrectCount(nextCorrectCount);
+    setAnsweredCount(nextAnsweredCount);
 
     if (index < questions.length - 1) {
       setIndex(index + 1);
     } else {
-      finishQuiz(nextCorrectCount);
+      finishQuiz(nextCorrectCount, nextAnsweredCount);
     }
+  };
+
+  const handleFinishTest = () => {
+    if (answerPending) return;
+    finishQuiz(correctCount, answeredCount);
   };
 
   if (!question) {
@@ -66,9 +86,11 @@ export default function QuizPlayScreen({ route, navigation }) {
       <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
         <QuizProgressHeader
           quizName={quiz.name}
-          current={index + 1}
-          total={questions.length}
+          current={index - firstQuestionIndex + 1}
+          total={questionsInRun}
           onBack={() => navigation.goBack()}
+          onFinish={handleFinishTest}
+          finishDisabled={answerPending}
         />
 
         <QuizQuestionRenderer
@@ -76,6 +98,7 @@ export default function QuizPlayScreen({ route, navigation }) {
           question={question}
           language={language}
           onAnswered={handleAnswered}
+          onAnswerPending={setAnswerPending}
         />
       </View>
     </View>

@@ -8,7 +8,7 @@ import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
 import { batches, lessonsByBatch } from '../data/courses';
 import { usePayment } from '../context/PaymentContext';
-import { useAccessGate } from '../utils/paywall';
+import { redirectToPaywall } from '../utils/paywall';
 
 export default function VideoListScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
@@ -18,11 +18,11 @@ export default function VideoListScreen({ route, navigation }) {
   const batch = batches.find((b) => b.id === batchId);
   const lessons = lessonsByBatch[batchId] || [];
 
-  // Batch-specific gate: this batch's own tier must be purchased, unlike the
-  // "any batch unlocks it" gate used for Stroke/Speech/Vocabulary.
-  useAccessGate(navigation, route, hasBatchAccess(batchId), batchId);
-
   const handleOpenLesson = (lesson) => {
+    if (!hasBatchAccess(batchId)) {
+      redirectToPaywall(navigation, route, batchId);
+      return;
+    }
     if (lesson.locked) {
       Alert.alert('Locked', 'Complete the previous lesson to unlock this one.');
       return;

@@ -7,6 +7,7 @@ import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
 import { batches } from '../data/courses';
+import { getQuizzesForBatch } from '../data/quizzes';
 
 const BATCH_ARTWORK = {
   foundation: require('../../assets/foundatin Batch asset.png'),
@@ -66,23 +67,40 @@ export default function QuizBatchListScreen({ navigation }) {
                 style={[styles.card, { backgroundColor: colors[batch.colorBg] }]}
                 onPress={() => navigation.navigate('QuizList', { batchId: batch.id })}
               >
+                {getQuizzesForBatch(batch.id).some((quiz) => quiz.questions?.length) ? (
+                  <View style={styles.cardContent}>
+                    <View style={[styles.badge, { backgroundColor: colors[batch.colorAccent] }]}>
+                      <Text style={styles.badgeGlyph}>{batch.glyph}</Text>
+                    </View>
+                    <View style={styles.cardText}>
+                      <Text style={[styles.cardName, { color: colors[batch.colorAccent] }]}>
+                        {batch.name}
+                      </Text>
+                      <Text style={styles.cardSubtitle}>{batch.subtitle}</Text>
+                      <Text style={styles.cardAvailability}>Practice path ready to explore</Text>
+                    </View>
+                  </View>
+                ) : (
+                  <View style={styles.unavailableContent}>
+                    <View style={styles.unavailableIcon}>
+                      <Ionicons name="game-controller-outline" size={24} color={colors[batch.colorAccent]} />
+                    </View>
+                    <Text style={[styles.cardName, styles.unavailableTitle, { color: colors[batch.colorAccent] }]}>
+                      {batch.name}
+                    </Text>
+                    <Text style={[styles.cardAvailability, styles.unavailableMessage]}>
+                      {batch.id === 'elevation'
+                        ? 'Your next practice path is taking shape'
+                        : 'Advanced challenges are being crafted'}
+                    </Text>
+                  </View>
+                )}
                 <Image
                   source={BATCH_ARTWORK[batch.id]}
                   style={styles.batchArtwork}
                   resizeMode="stretch"
                   accessible={false}
                 />
-                <View style={styles.cardContent}>
-                  <View style={styles.cardText}>
-                    <Text style={[styles.cardName, { color: colors[batch.colorAccent] }]}>
-                      {batch.name}
-                    </Text>
-                    <Text style={styles.cardSubtitle}>{batch.subtitle}</Text>
-                  </View>
-                  <View style={[styles.badge, { backgroundColor: colors[batch.colorAccent] }]}>
-                    <Text style={styles.badgeGlyph}>{batch.glyph}</Text>
-                  </View>
-                </View>
               </Pressable>
             </Animated.View>
           ))}
@@ -130,7 +148,25 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     overflow: 'hidden',
   },
-  cardContent: { flexDirection: 'row', alignItems: 'center' },
+  cardContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 12,
+  },
+  unavailableContent: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingBottom: 12 },
+  cardText: { width: '100%', alignItems: 'center' },
+  unavailableIcon: {
+    width: 42,
+    height: 42,
+    borderRadius: 21,
+    backgroundColor: colors.card,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 6,
+  },
+  unavailableTitle: { textAlign: 'center' },
+  unavailableMessage: { textAlign: 'center', maxWidth: 240 },
   batchArtwork: {
     position: 'absolute',
     left: 0,
@@ -139,15 +175,16 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 58,
   },
-  cardText: { flex: 1 },
   cardName: { fontSize: 20, fontWeight: '700', marginBottom: 4 },
-  cardSubtitle: { fontSize: 14, color: colors.textDark },
+  cardSubtitle: { fontSize: 14, color: colors.textDark, textAlign: 'center' },
+  cardAvailability: { fontSize: 11, fontWeight: '600', color: colors.textLabel, textAlign: 'center', marginTop: 5 },
   badge: {
     width: 56,
     height: 56,
     borderRadius: 28,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 8,
   },
   badgeGlyph: { color: '#fff', fontSize: 20, fontWeight: '700' },
 });

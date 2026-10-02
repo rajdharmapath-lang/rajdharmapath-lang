@@ -28,16 +28,41 @@
  * @param {{ planId: string, amount: number }} order
  * @returns {Promise<{ success: boolean, paymentId?: string, reason?: string }>}
  */
-export async function processPayment(order) {
-  // Simulated network + checkout-sheet delay.
-  await new Promise((resolve) => setTimeout(resolve, 1200));
+import RazorpayCheckout from 'react-native-razorpay';
+import { paymentApi } from '../api/client';
 
-  // Simulated outcome: succeeds most of the time so the happy path is easy to
-  // test, but occasionally fails so the failure screen/retry path is exercised too.
-  const success = Math.random() > 0.15;
+export async function processPayment({ planId, couponCode }) {
+  const { data: order } = await paymentApi.createOrder({ planId, couponCode });
 
-  if (success) {
-    return { success: true, paymentId: `sim_${Date.now()}` };
+  let checkoutResult;
+  try {
+    checkoutResult = await RazorpayCheckout.open({
+      key: order.keyId,
+      order_id: order.orderId,
+      amount: order.amount,
+      currency: order.currency,
+      name: 'Raj Dharma',
+      description: 'Course access',
+      theme: { color: '#730B07' },
+    });
+  } catch (error) {
+    const cancelled = error?.code === 0 || error?.code === 'payment_cancelled';
+    return {
+      success: false,
+      cancelled,
+      reason: error?.description || error?.message || 'Payment was not completed.',
+    };
   }
-  return { success: false, reason: 'Payment was not completed.' };
+
+  const { data: verification } = await paymentApi.verifyPayment({
+    razorpay_order_id: checkoutResult.razorpay_order_id || order.orderId,
+    razorpay_payment_id: checkoutResult.razorpay_payment_id,
+    razorpay_signature: checkoutResult.razorpay_signature,
+  });
+
+  return {
+    ...verification,
+    success: verification.success === true,
+    paymentId: checkoutResult.razorpay_payment_id,
+  };
 }

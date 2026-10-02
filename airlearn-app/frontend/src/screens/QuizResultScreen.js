@@ -22,18 +22,24 @@ export default function QuizResultScreen({ route, navigation }) {
     recordActivity(); // finishing a practice session counts toward today's streak
   }, []);
   const { maxWidth } = useResponsive();
-  const { batchId, quizId, total = 0, correctCount = 0, elapsedMs = 0 } = route?.params || {};
+  const {
+    batchId,
+    quizId,
+    total = 0,
+    correctCount = 0,
+    answeredCount,
+    elapsedMs = 0,
+    startIndex = 0,
+  } = route?.params || {};
 
   const stats = useMemo(() => {
-    const safeTotal = total || 1;
-    const correctPct = Math.round((correctCount / safeTotal) * 100);
-    const wrongPct = 100 - correctPct; // always complements correctPct — unlike the
-    // mockup's placeholder numbers (60% correct / 85% wrong), these two always sum to 100.
-    return { correctPct, wrongPct };
-  }, [total, correctCount]);
+    const answered = Math.min(answeredCount ?? total, total);
+    const correctPct = answered > 0 ? Math.round((correctCount / answered) * 100) : 0;
+    return { answered, correctPct };
+  }, [total, answeredCount, correctCount]);
 
   const handlePracticeAgain = () => {
-    navigation.replace('QuizPlay', { batchId, quizId });
+    navigation.replace('QuizPlay', { batchId, quizId, startIndex });
   };
 
   const handleBackToQuizList = () => {
@@ -43,7 +49,7 @@ export default function QuizResultScreen({ route, navigation }) {
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
-        <Text style={styles.title}>Challenge Complete</Text>
+          <Text style={styles.title}>Practice Complete</Text>
 
         <View style={styles.card}>
           <Text style={styles.great}>{stats.correctPct >= 60 ? 'Great!' : 'Keep practicing!'}</Text>
@@ -57,12 +63,12 @@ export default function QuizResultScreen({ route, navigation }) {
 
           <View style={styles.statsRow}>
             <View style={styles.statItem}>
-              <Text style={styles.statLabel}>Correct</Text>
-              <Text style={styles.statValue}>{stats.correctPct}%</Text>
+              <Text style={styles.statLabel}>Answered</Text>
+              <Text style={styles.statValue}>{stats.answered}/{total}</Text>
             </View>
             <View style={styles.statItem}>
-              <Text style={styles.statLabel}>Wrong</Text>
-              <Text style={styles.statValue}>{stats.wrongPct}%</Text>
+              <Text style={styles.statLabel}>Correct</Text>
+              <Text style={styles.statValue}>{correctCount}</Text>
             </View>
             <View style={styles.statItem}>
               <Text style={styles.statLabel}>Time</Text>
@@ -76,7 +82,7 @@ export default function QuizResultScreen({ route, navigation }) {
         </Pressable>
 
         <Pressable style={styles.secondaryButton} onPress={handleBackToQuizList}>
-          <Text style={styles.secondaryButtonText}>Back to Challenges</Text>
+          <Text style={styles.secondaryButtonText}>Back to Path</Text>
         </Pressable>
       </View>
 

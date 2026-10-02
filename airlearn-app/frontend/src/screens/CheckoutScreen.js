@@ -36,16 +36,19 @@ export default function CheckoutScreen({ route, navigation }) {
     if (!plan) return;
     setIsPaying(true);
     try {
-      // TODO once Razorpay key is available: this is where the real order
-      // gets created and the Razorpay checkout sheet opens — see the comment
-      // block in services/payment.js for the exact integration steps.
-      const result = await processPayment({ planId: plan.id, amount: total });
+      const result = await processPayment({
+        planId: plan.id,
+        couponCode: discount > 0 ? couponInput.trim().toUpperCase() : undefined,
+      });
+      if (result.cancelled) return;
       if (result.success) {
-        grantBatchAccess(plan.batchId, plan);
+        grantBatchAccess(plan.batchId, plan, result.entitlement.purchasedAt);
         navigation.replace('PaymentSuccess', { planId: plan.id, returnTo });
       } else {
         navigation.replace('PaymentFailed', { planId: plan.id, returnTo });
       }
+    } catch (error) {
+      Alert.alert('Could not complete payment', error?.response?.data?.message || error.message);
     } finally {
       setIsPaying(false);
     }

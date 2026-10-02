@@ -18,6 +18,7 @@ const SKILL_ICONS = {
   Listening: 'headset-outline',
   Speech: 'mic-outline',
   Stroke: 'create-outline',
+  'Sentence Building': 'chatbubble-ellipses-outline',
 };
 
 const CHECKLIST = [
