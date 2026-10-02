@@ -54,14 +54,14 @@ export default function QuizIntroScreen({ route, navigation }) {
             <Pressable onPress={() => navigation.goBack()} hitSlop={12}>
               <Ionicons name="chevron-back" size={26} color={colors.border} />
             </Pressable>
-            <Text style={styles.eyebrow}>{quiz?.name || 'Quiz'}</Text>
+            <Text style={styles.eyebrow}>{quiz?.name || 'Practice'}</Text>
             <View style={{ width: 26 }} />
           </View>
 
           <Text style={styles.title}>
-            {batch?.name || 'Batch'} {quiz?.name || 'Quiz'}
+            {batch?.name || 'Batch'} {quiz?.name || 'Practice'}
           </Text>
-          <Text style={styles.subtitle}>Ready to Test your Chinese skills</Text>
+          <Text style={styles.subtitle}>Ready to take on this Chinese challenge?</Text>
 
           <Text style={styles.sectionTitle}>Skill Included</Text>
           <View style={styles.chipsRow}>
@@ -102,10 +102,10 @@ export default function QuizIntroScreen({ route, navigation }) {
             disabled={!hasQuestions}
             onPress={handleStartQuiz}
           >
-            <Text style={styles.startButtonText}>Start Quiz</Text>
+            <Text style={styles.startButtonText}>Start Challenge</Text>
           </Pressable>
           <Pressable onPress={() => navigation.navigate('QuizList', { batchId })} style={{ marginTop: 12 }}>
-            <Text style={styles.returnLink}>Return to Quiz List</Text>
+            <Text style={styles.returnLink}>Return to Practice</Text>
           </Pressable>
         </View>
       </ScrollView>

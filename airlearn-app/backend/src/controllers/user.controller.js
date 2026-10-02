@@ -1,3 +1,5 @@
+const fs = require('fs');
+const path = require('path');
 const {
   usersById,
   usersByPhoneKey,
@@ -5,6 +7,11 @@ const {
   otpsByPhoneKey,
   tokensToUserId,
 } = require('../db/db');
+
+const LEARNING_PDF_PATH = path.resolve(
+  __dirname,
+  '../../../frontend/learns/Foundation.pdf'
+);
 
 function getCurrentUser(req) {
   return usersById.get(req.userId);
@@ -69,4 +76,23 @@ function deleteAccount(req, res) {
   res.json({ success: true });
 }
 
-module.exports = { createAccount, updateProfile, setLanguage, getMe, deleteAccount };
+function downloadLearningPdf(req, res) {
+  if (!fs.existsSync(LEARNING_PDF_PATH)) {
+    return res.status(404).json({ message: 'The learning PDF is not available.' });
+  }
+
+  res.download(LEARNING_PDF_PATH, 'Foundation.pdf', (error) => {
+    if (error && !res.headersSent) {
+      res.status(500).json({ message: 'Could not download the learning PDF.' });
+    }
+  });
+}
+
+module.exports = {
+  createAccount,
+  updateProfile,
+  setLanguage,
+  getMe,
+  deleteAccount,
+  downloadLearningPdf,
+};

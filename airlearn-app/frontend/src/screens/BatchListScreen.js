@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, Pressable, StyleSheet, ScrollView, Animated } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView, Animated, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
@@ -9,6 +9,12 @@ import BottomNav from '../components/BottomNav';
 import { batches, liveClass } from '../data/courses';
 import { usePayment } from '../context/PaymentContext';
 import { redirectToPaywall } from '../utils/paywall';
+
+const BATCH_ARTWORK = {
+  foundation: require('../../assets/foundatin Batch asset.png'),
+  elevation: require('../../assets/Elevation Batch asset.png'),
+  distinction: require('../../assets/Distinction Batch asset.png'),
+};
 
 export default function BatchListScreen({ navigation, route }) {
   const insets = useSafeAreaInsets();
@@ -69,15 +75,23 @@ export default function BatchListScreen({ navigation, route }) {
                 style={[styles.card, { backgroundColor: colors[batch.colorBg] }]}
                 onPress={() => navigation.navigate('VideoList', { batchId: batch.id })}
               >
-                <View style={styles.cardText}>
-                  <Text style={[styles.cardName, { color: colors[batch.colorAccent] }]}>
-                    {batch.name}
-                  </Text>
-                  <Text style={styles.cardSubtitle}>{batch.subtitle}</Text>
-                  <Text style={styles.cardCount}>{batch.videoCount} Videos</Text>
-                </View>
-                <View style={[styles.badge, { backgroundColor: colors[batch.colorAccent] }]}>
-                  <Text style={styles.badgeGlyph}>{batch.glyph}</Text>
+                <Image
+                  source={BATCH_ARTWORK[batch.id]}
+                  style={styles.batchArtwork}
+                  resizeMode="stretch"
+                  accessible={false}
+                />
+                <View style={styles.cardContent}>
+                  <View style={styles.cardText}>
+                    <Text style={[styles.cardName, { color: colors[batch.colorAccent] }]}>
+                      {batch.name}
+                    </Text>
+                    <Text style={styles.cardSubtitle}>{batch.subtitle}</Text>
+                    <Text style={styles.cardCount}>{batch.videoCount} Videos</Text>
+                  </View>
+                  <View style={[styles.badge, { backgroundColor: colors[batch.colorAccent] }]}>
+                    <Text style={styles.badgeGlyph}>{batch.glyph}</Text>
+                  </View>
                 </View>
               </Pressable>
             </Animated.View>
@@ -141,11 +155,22 @@ const styles = StyleSheet.create({
   title: { ...typography.h2, color: colors.accentRedAlt, textAlign: 'center' },
   card: {
     flexGrow: 1,
+    minHeight: 164,
     borderRadius: 18,
-    padding: 20,
-    flexDirection: 'row',
-    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 18,
+    paddingBottom: 54,
+    justifyContent: 'center',
     overflow: 'hidden',
+  },
+  cardContent: { flexDirection: 'row', alignItems: 'center' },
+  batchArtwork: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: 58,
   },
   cardText: { flex: 1 },
   cardName: { fontSize: 20, fontWeight: '700', marginBottom: 4 },

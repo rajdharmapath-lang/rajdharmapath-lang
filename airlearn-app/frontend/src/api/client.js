@@ -57,6 +57,15 @@ const client = axios.create({
   timeout: 15000,
 });
 
+export async function getAuthenticatedDownloadRequest(path) {
+  const baseUrl = await resolveBaseUrl();
+  const token = await AsyncStorage.getItem('authToken');
+  return {
+    url: `${baseUrl}${path}`,
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  };
+}
+
 client.interceptors.request.use(async (config) => {
   const baseURL = await resolveBaseUrl();
   config.baseURL = baseURL;

@@ -6,6 +6,7 @@ const {
 	setLanguage,
 	getMe,
 	deleteAccount,
+	downloadLearningPdf,
 } = require('../controllers/user.controller');
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.patch('/profile', updateProfile);
 router.post('/set-language', setLanguage);
 router.get('/me', getMe);
 router.delete('/account', deleteAccount);
+router.get('/learning-pdf', downloadLearningPdf);
 
 module.exports = router;

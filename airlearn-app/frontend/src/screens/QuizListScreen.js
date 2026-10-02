@@ -15,7 +15,7 @@ export default function QuizListScreen({ route, navigation }) {
   const { maxWidth } = useResponsive();
   const batchId = route?.params?.batchId || 'foundation';
   const batch = batches.find((b) => b.id === batchId);
-  const quizzes = getQuizzesForBatch(batchId);
+  const quizzes = getQuizzesForBatch(batchId).filter((quiz) => quiz.questions?.length);
 
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
@@ -24,22 +24,51 @@ export default function QuizListScreen({ route, navigation }) {
           <Pressable onPress={() => navigation.goBack()} hitSlop={12}>
             <Ionicons name="chevron-back" size={26} color={colors.border} />
           </Pressable>
-          <Text style={styles.title}>{batch?.name || 'Batch'}</Text>
+          <Text style={styles.title}>Challenges</Text>
           <View style={{ width: 26 }} />
         </View>
+        <Text style={styles.batchTitle}>{batch?.name || 'Batch'}</Text>
 
         <FlatList
           data={quizzes}
           keyExtractor={(item) => item.id}
+          ListEmptyComponent={(
+            <View style={styles.emptyState}>
+              <Ionicons name="game-controller-outline" size={38} color={colors.homeOrange} />
+              <Text style={styles.emptyTitle}>New challenges are on the way</Text>
+              <Text style={styles.emptyMessage}>This batch doesn't have a playable challenge yet.</Text>
+            </View>
+          )}
           contentContainerStyle={{ paddingBottom: 20 }}
           renderItem={({ item, index }) => (
             <StaggeredSlideItem index={index} style={styles.rowEntry}>
               <Pressable
-                style={styles.row}
+                style={styles.challengeCard}
                 onPress={() => navigation.navigate('QuizIntro', { batchId, quizId: item.id })}
               >
-                <Text style={styles.rowTitle}>{item.name}</Text>
-                <Ionicons name="chevron-forward" size={20} color={colors.textDark} />
+                <View style={styles.challengeHeading}>
+                  <View style={styles.challengeIcon}>
+                    <Ionicons name="flash" size={22} color={colors.primary} />
+                  </View>
+                  <View style={styles.challengeText}>
+                    <Text style={styles.challengeTitle}>{item.name}</Text>
+                    <Text style={styles.challengeSubtitle}>A mixed-skills Chinese challenge</Text>
+                  </View>
+                </View>
+                <View style={styles.challengeMeta}>
+                  <View style={styles.metaItem}>
+                    <Ionicons name="help-circle-outline" size={16} color={colors.textLabel} />
+                    <Text style={styles.metaText}>{item.questions.length} questions</Text>
+                  </View>
+                  <View style={styles.metaItem}>
+                    <Ionicons name="sparkles-outline" size={16} color={colors.textLabel} />
+                    <Text style={styles.metaText}>{item.skillsIncluded.length} skills</Text>
+                  </View>
+                </View>
+                <View style={styles.playButton}>
+                  <Text style={styles.playButtonText}>Play challenge</Text>
+                  <Ionicons name="arrow-forward" size={18} color="#fff" />
+                </View>
               </Pressable>
             </StaggeredSlideItem>
           )}
@@ -69,16 +98,42 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: { ...typography.h2, color: colors.accentRedAlt, fontSize: 20 },
-  rowEntry: { marginBottom: 14 },
-  row: {
+  batchTitle: { fontSize: 15, color: colors.textLabel, marginBottom: 20 },
+  rowEntry: { marginBottom: 16 },
+  challengeCard: {
+    backgroundColor: colors.homeOrangeBg,
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: colors.homeOrangeLight,
+    padding: 18,
+  },
+  challengeHeading: { flexDirection: 'row', alignItems: 'center', marginBottom: 16 },
+  challengeIcon: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: colors.homeOrangeLight,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  challengeText: { flex: 1 },
+  challengeTitle: { fontSize: 18, fontWeight: '700', color: colors.accentRedAlt, marginBottom: 3 },
+  challengeSubtitle: { fontSize: 13, color: colors.textLabel },
+  challengeMeta: { flexDirection: 'row', gap: 18, marginBottom: 16 },
+  metaItem: { flexDirection: 'row', alignItems: 'center', gap: 5 },
+  metaText: { fontSize: 13, color: colors.textLabel },
+  playButton: {
+    minHeight: 46,
+    borderRadius: 23,
+    backgroundColor: colors.primary,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    borderWidth: 1,
-    borderColor: colors.strokeAccent,
-    borderRadius: 14,
-    paddingHorizontal: 18,
-    paddingVertical: 20,
+    justifyContent: 'center',
+    gap: 8,
   },
-  rowTitle: { fontSize: 17, color: colors.textDark },
+  playButtonText: { fontSize: 15, fontWeight: '700', color: '#fff' },
+  emptyState: { alignItems: 'center', paddingHorizontal: 24, paddingVertical: 48 },
+  emptyTitle: { fontSize: 17, fontWeight: '700', color: colors.accentRedAlt, textAlign: 'center', marginTop: 14 },
+  emptyMessage: { fontSize: 14, lineHeight: 20, color: colors.textLabel, textAlign: 'center', marginTop: 8 },
 });

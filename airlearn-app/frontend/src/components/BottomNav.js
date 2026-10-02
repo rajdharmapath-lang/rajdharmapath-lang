@@ -1,13 +1,17 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { View, Pressable, StyleSheet, Image } from 'react-native';
 import { colors } from '../theme/colors';
 
 const TABS = [
-  { key: 'Home', icon: 'home', label: 'Home' },
-  { key: 'Language', glyph: 'A文', label: 'Language' },
-  { key: 'Videos', icon: 'play-circle-outline', label: 'Videos' },
-  { key: 'Profile', icon: 'person-outline', label: 'Profile' },
+  { key: 'Home', image: require('../../assets/home.png'), label: 'Home' },
+  {
+    key: 'Language',
+    image: require('../../assets/Vocabulary.png'),
+    inactiveImage: require('../../assets/Vocabulary1.png'),
+    label: 'Language',
+  },
+  { key: 'Videos', image: require('../../assets/video.png'), label: 'Videos' },
+  { key: 'Profile', image: require('../../assets/profile.png'), label: 'Profile' },
 ];
 
 export default function BottomNav({ active, onNavigate }) {
@@ -21,19 +25,17 @@ export default function BottomNav({ active, onNavigate }) {
             style={styles.tab}
             onPress={() => onNavigate && onNavigate(tab.key)}
           >
-            {tab.glyph ? (
-              <View style={styles.glyphBox}>
-                <Text style={[styles.glyphText, isActive && { color: colors.homeOrange }]}>
-                  {tab.glyph}
-                </Text>
-              </View>
-            ) : (
-              <Ionicons
-                name={tab.icon}
-                size={26}
-                color={isActive ? colors.homeOrange : colors.navInactive}
-              />
-            )}
+            <Image
+              source={isActive ? tab.image : tab.inactiveImage || tab.image}
+              style={[
+                styles.icon,
+                tab.key !== 'Language' && {
+                  tintColor: isActive ? colors.homeOrange : colors.navInactive,
+                },
+              ]}
+              resizeMode="contain"
+              accessibilityLabel={tab.label}
+            />
           </Pressable>
         );
       })}
@@ -46,14 +48,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderTopWidth: 1,
     borderTopColor: colors.navInactiveBg,
-    paddingVertical: 10,
+    height: 68,
     backgroundColor: colors.background,
   },
   tab: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  glyphBox: {
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-  },
-  glyphText: { fontSize: 14, fontWeight: '700', color: colors.navInactive },
+  icon: { width: 30, height: 30 },
 });

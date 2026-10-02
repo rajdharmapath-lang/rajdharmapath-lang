@@ -43,7 +43,7 @@ export default function QuizResultScreen({ route, navigation }) {
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
-        <Text style={styles.title}>Quiz</Text>
+        <Text style={styles.title}>Challenge Complete</Text>
 
         <View style={styles.card}>
           <Text style={styles.great}>{stats.correctPct >= 60 ? 'Great!' : 'Keep practicing!'}</Text>
@@ -72,11 +72,11 @@ export default function QuizResultScreen({ route, navigation }) {
         </View>
 
         <Pressable style={styles.primaryButton} onPress={handlePracticeAgain}>
-          <Text style={styles.primaryButtonText}>Practice Again</Text>
+          <Text style={styles.primaryButtonText}>Play Again</Text>
         </Pressable>
 
         <Pressable style={styles.secondaryButton} onPress={handleBackToQuizList}>
-          <Text style={styles.secondaryButtonText}>Back to Quiz</Text>
+          <Text style={styles.secondaryButtonText}>Back to Challenges</Text>
         </Pressable>
       </View>
 

@@ -56,7 +56,7 @@ export default function QuizPlayScreen({ route, navigation }) {
   if (!question) {
     return (
       <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
-        <Text style={styles.emptyText}>This quiz has no questions yet.</Text>
+        <Text style={styles.emptyText}>This challenge has no questions yet.</Text>
       </View>
     );
   }

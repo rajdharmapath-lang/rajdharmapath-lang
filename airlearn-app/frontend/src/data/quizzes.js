@@ -11,11 +11,9 @@
 //     the trace counts as correct (no separate "wrong" state, since HanziWriter's
 //     trace mode requires eventual correct order rather than accepting a bad one).
 //
-// Only foundation/quiz1 has real questions, built entirely from the 11 verified
-// Greetings words (data/vocabulary.js) and characters with real stroke data
-// (vendor/chinese-stroke-rn). Every other quiz slot is a named placeholder with
-// no questions yet — same pattern as the empty vocabulary categories, for the
-// same reason: inventing quiz content at scale risks shipping wrong answers.
+// The available Foundation challenge uses verified Greetings words and
+// characters with real stroke data. Add more challenges when their question
+// content is ready rather than showing empty numbered entries.
 //
 // IMPORTANT: the question count per quiz is NOT fixed anywhere in the app.
 // QuizPlayScreen, QuizProgressHeader, and QuizResultScreen all derive "total"
@@ -28,7 +26,7 @@ export const quizzesByBatch = {
   foundation: [
     {
       id: 'quiz1',
-      name: 'Quiz 1',
+      name: 'Greetings Quest',
       skillsIncluded: ['Vocabulary', 'Listening', 'Speech', 'Stroke'],
       questions: [
         { id: 'q1', type: 'vocabulary', wordId: 'g1', optionWordIds: ['g1', 'g7', 'g11', 'g10'] },
@@ -43,12 +41,6 @@ export const quizzesByBatch = {
         { id: 'q10', type: 'stroke', character: '学' },
       ],
     },
-    { id: 'quiz2', name: 'Quiz 2', skillsIncluded: [], questions: [] },
-    { id: 'quiz3', name: 'Quiz 3', skillsIncluded: [], questions: [] },
-    { id: 'quiz4', name: 'Quiz 4', skillsIncluded: [], questions: [] },
-    { id: 'quiz5', name: 'Quiz 5', skillsIncluded: [], questions: [] },
-    { id: 'quiz6', name: 'Quiz 6', skillsIncluded: [], questions: [] },
-    { id: 'quiz7', name: 'Quiz 7', skillsIncluded: [], questions: [] },
   ],
   elevation: [],
   distinction: [],

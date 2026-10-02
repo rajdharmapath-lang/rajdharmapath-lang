@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
@@ -15,8 +15,20 @@ import { lessonsByBatch } from '../data/courses';
 const ACCESS_ITEMS = [
   { key: 'stroke', label: 'Stroke', glyph: '学', destination: 'CharacterSelect', enabled: true },
   { key: 'speech', label: 'Speech', icon: 'mic', destination: 'VocabularyCategoryList', params: { mode: 'speech' }, enabled: true },
-  { key: 'quiz', label: 'Quiz', icon: 'create-outline', destination: 'QuizBatchList', enabled: true },
-  { key: 'listening', label: 'Listening', icon: 'headset-outline', enabled: false },
+  {
+    key: 'quiz',
+    label: 'Practice',
+    image: require('../../assets/Quiz.png'),
+    destination: 'QuizBatchList',
+    enabled: true,
+  },
+  {
+    key: 'pdf',
+    label: 'Notes',
+    image: require('../../assets/Pdf_Icon.png'),
+    destination: 'LearningPdf',
+    enabled: true,
+  },
 ];
 
 export default function HomeScreen({ navigation }) {
@@ -35,7 +47,7 @@ export default function HomeScreen({ navigation }) {
     : 0;
 
   const handleAccessPress = (item) => {
-    if (!item.enabled) return; // Listening has no screens built yet
+    if (!item.enabled) return;
     navigation.navigate(item.destination, item.params);
   };
 
@@ -114,6 +126,10 @@ export default function HomeScreen({ navigation }) {
                         <Ionicons name={item.icon} size={20} color="#fff" />
                       </View>
                     </View>
+                  ) : item.image ? (
+                    <View style={styles.accessIconSlot}>
+                      <Image source={item.image} style={styles.accessImage} resizeMode="contain" />
+                    </View>
                   ) : (
                     <View style={styles.accessIconSlot}>
                       <Ionicons name={item.icon} size={26} color={colors.homeOrange} />
@@ -143,7 +159,7 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.background },
-  container: { paddingHorizontal: 20, paddingTop: 24 },
+  container: { paddingHorizontal: 20, paddingTop: 32 },
   greeting: { ...typography.h2, color: colors.accentRedAlt, marginBottom: 4 },
   subtitle: { ...typography.body, color: colors.textDark, marginBottom: 20 },
   progressCard: {
@@ -210,6 +226,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   accessGlyph: { fontSize: 26, color: colors.homeOrange, fontWeight: '600' },
+  accessImage: { width: 30, height: 30 },
   speechIconCircle: {
     width: 36,
     height: 36,

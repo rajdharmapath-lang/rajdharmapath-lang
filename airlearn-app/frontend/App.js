@@ -27,6 +27,7 @@ import BatchListScreen from './src/screens/BatchListScreen';
 import VideoListScreen from './src/screens/VideoListScreen';
 import VideoPlayerScreen from './src/screens/VideoPlayerScreen';
 import LiveClassScreen from './src/screens/LiveClassScreen';
+import LearningPdfScreen from './src/screens/LearningPdfScreen';
 
 // --- Stroke ---------------------------------------------------------------------
 import CharacterSelectScreen from './src/screens/CharacterSelectScreen';
@@ -83,6 +84,7 @@ function RootNavigator({ initialRouteName }) {
       <Stack.Screen name="VideoList" component={VideoListScreen} />
       <Stack.Screen name="VideoPlayer" component={VideoPlayerScreen} />
       <Stack.Screen name="LiveClass" component={LiveClassScreen} />
+      <Stack.Screen name="LearningPdf" component={LearningPdfScreen} />
 
       <Stack.Screen name="CharacterSelect" component={CharacterSelectScreen} />
       <Stack.Screen name="StrokePractice" component={StrokePracticeScreen} />

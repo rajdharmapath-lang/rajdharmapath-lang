@@ -1,7 +1,9 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 const db = require('../src/db/db');
-const { deleteAccount } = require('../src/controllers/user.controller');
+const { deleteAccount, downloadLearningPdf } = require('../src/controllers/user.controller');
 const { issueToken, requireAuth } = require('../src/middleware/auth.middleware');
 
 test('deleteAccount removes user records and invalidates existing tokens', () => {
@@ -48,4 +50,21 @@ test('deleteAccount removes user records and invalidates existing tokens', () =>
 
   assert.equal(authStatus, 401);
   assert.equal(nextCalled, false);
+});
+
+test('downloadLearningPdf sends the supplied learning PDF with its filename', () => {
+  let sentFile;
+  let sentName;
+  const expectedFile = path.resolve(__dirname, '../../frontend/learns/Foundation.pdf');
+
+  downloadLearningPdf({}, {
+    download(filePath, fileName) {
+      sentFile = filePath;
+      sentName = fileName;
+    },
+  });
+
+  assert.equal(fs.existsSync(expectedFile), true);
+  assert.equal(sentFile, expectedFile);
+  assert.equal(sentName, 'Foundation.pdf');
 });
