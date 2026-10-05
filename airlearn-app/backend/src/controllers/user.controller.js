@@ -1,12 +1,10 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const userRepository = require('../db/user.repository');
 const {
-  usersById,
-  usersByPhoneKey,
   phoneKey,
   otpsByPhoneKey,
-  tokensToUserId,
   purchasedBatchesByUserId,
   razorpayOrdersById,
 } = require('../db/db');
@@ -16,60 +14,68 @@ const LEARNING_PDF_PATH = path.resolve(
     path.join(os.homedir(), 'Downloads', 'RD chinese workbook.pdf')
 );
 
-function getCurrentUser(req) {
-  return usersById.get(req.userId);
-}
-
-function createAccount(req, res) {
-  const user = getCurrentUser(req);
-  if (!user) return res.status(404).json({ message: 'User not found' });
-
+async function createAccount(req, res) {
   const { name, email, occupation } = req.body;
   if (!name || !email || !occupation) {
     return res.status(400).json({ message: 'name, email and occupation are required' });
   }
-  user.name = name;
-  user.email = email;
-  user.occupation = occupation;
-  res.json({ user });
+  try {
+    const user = await userRepository.updateUser(req.userId, { name, email, occupation });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    return res.json({ user });
+  } catch (error) {
+    return res.status(503).json({ message: 'Could not save your account to the database.' });
+  }
 }
 
-function updateProfile(req, res) {
-  const user = getCurrentUser(req);
-  if (!user) return res.status(404).json({ message: 'User not found' });
-
+async function updateProfile(req, res) {
   const { name, email, occupation } = req.body;
-  if (name !== undefined) user.name = name;
-  if (email !== undefined) user.email = email;
-  if (occupation !== undefined) user.occupation = occupation;
-  res.json({ user });
+  const fields = {};
+  if (name !== undefined) fields.name = name;
+  if (email !== undefined) fields.email = email;
+  if (occupation !== undefined) fields.occupation = occupation;
+  try {
+    const user = await userRepository.updateUser(req.userId, fields);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    return res.json({ user });
+  } catch (error) {
+    return res.status(503).json({ message: 'Could not save your account to the database.' });
+  }
 }
 
-function setLanguage(req, res) {
-  const user = getCurrentUser(req);
-  if (!user) return res.status(404).json({ message: 'User not found' });
-
+async function setLanguage(req, res) {
   const { language } = req.body;
   if (!['tamil', 'english'].includes(language)) {
     return res.status(400).json({ message: "language must be 'tamil' or 'english'" });
   }
-  user.language = language;
-  res.json({ user });
+  try {
+    const user = await userRepository.updateUser(req.userId, { language });
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    return res.json({ user });
+  } catch (error) {
+    return res.status(503).json({ message: 'Could not save your account to the database.' });
+  }
 }
 
-function getMe(req, res) {
-  const user = getCurrentUser(req);
-  if (!user) return res.status(404).json({ message: 'User not found' });
-  res.json({ user });
+async function getMe(req, res) {
+  try {
+    const user = await userRepository.getUserById(req.userId);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+    return res.json({ user });
+  } catch (error) {
+    return res.status(503).json({ message: 'Could not load your account from the database.' });
+  }
 }
 
-function deleteAccount(req, res) {
-  const user = getCurrentUser(req);
-  if (!user) return res.status(404).json({ message: 'User not found' });
-
+async function deleteAccount(req, res) {
+  let user;
+  try {
+    user = await userRepository.archiveAndDeleteUser(req.userId);
+    if (!user) return res.status(404).json({ message: 'User not found' });
+  } catch (error) {
+    return res.status(503).json({ message: 'Could not delete your account from the database.' });
+  }
   const key = phoneKey(user.dialCode, user.phone);
-  usersById.delete(user.id);
-  usersByPhoneKey.delete(key);
   otpsByPhoneKey.delete(key);
   purchasedBatchesByUserId.delete(user.id);
 
@@ -77,11 +83,7 @@ function deleteAccount(req, res) {
     if (order.userId === user.id) razorpayOrdersById.delete(orderId);
   }
 
-  for (const [token, userId] of tokensToUserId) {
-    if (userId === user.id) tokensToUserId.delete(token);
-  }
-
-  res.json({ success: true });
+  return res.json({ success: true });
 }
 
 function downloadLearningPdf(req, res) {

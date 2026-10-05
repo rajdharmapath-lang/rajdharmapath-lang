@@ -27,6 +27,9 @@ export default function SettingsAccountScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const { user, updateAccount, deleteAccount } = useAuth();
+  const { clearPurchasedBatches } = usePayment();
+  const { clearProgress } = useProgress();
+  const { clearVocabulary } = useVocabulary();
   const [name, setName] = useState(user?.name || '');
   const [email, setEmail] = useState(user?.email || '');
   const [occupation, setOccupation] = useState(user?.occupation || null);

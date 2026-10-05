@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, TextInput, Pressable, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, Pressable, StyleSheet, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
@@ -19,6 +19,7 @@ export default function CheckoutScreen({ route, navigation }) {
   const [couponInput, setCouponInput] = useState('');
   const [discount, setDiscount] = useState(0);
   const [isPaying, setIsPaying] = useState(false);
+  const [dialog, setDialog] = useState(null);
 
   const total = Math.max((plan?.price || 0) - discount, 0);
 
@@ -26,7 +27,7 @@ export default function CheckoutScreen({ route, navigation }) {
     const code = couponInput.trim().toUpperCase();
     const coupon = mockCoupons[code];
     if (!coupon) {
-      Alert.alert('Invalid coupon', 'That coupon code is not valid.');
+      setDialog({ title: 'Invalid coupon', message: 'That coupon code is not valid.' });
       return;
     }
     setDiscount(coupon.amountOff);
@@ -48,7 +49,10 @@ export default function CheckoutScreen({ route, navigation }) {
         navigation.replace('PaymentFailed', { planId: plan.id, returnTo });
       }
     } catch (error) {
-      Alert.alert('Could not complete payment', error?.response?.data?.message || error.message);
+      setDialog({
+        title: 'Could not complete payment',
+        message: error?.response?.data?.message || error.message,
+      });
     } finally {
       setIsPaying(false);
     }
@@ -109,6 +113,40 @@ export default function CheckoutScreen({ route, navigation }) {
           <Text style={styles.payButtonText}>{isPaying ? 'Processing...' : 'Proceed to Pay'}</Text>
         </Pressable>
       </View>
+
+      <Modal
+        visible={Boolean(dialog)}
+        transparent
+        animationType="fade"
+        statusBarTranslucent
+        onRequestClose={() => setDialog(null)}
+      >
+        <View style={styles.modalOverlay}>
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            onPress={() => setDialog(null)}
+            accessibilityRole="button"
+            accessibilityLabel="Dismiss dialog"
+          />
+          <View
+            style={[styles.dialog, { maxWidth: Math.min(maxWidth - 48, 420) }]}
+            accessibilityViewIsModal
+          >
+            <View style={styles.dialogIcon}>
+              <Ionicons name="alert-circle-outline" size={26} color={colors.homeOrange} />
+            </View>
+            <Text style={styles.dialogTitle}>{dialog?.title}</Text>
+            <Text style={styles.dialogMessage}>{dialog?.message}</Text>
+            <Pressable
+              style={styles.dialogButton}
+              onPress={() => setDialog(null)}
+              accessibilityRole="button"
+            >
+              <Text style={styles.dialogButtonText}>Got it</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -164,5 +202,53 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   payButtonText: { color: '#fff', fontWeight: '700', fontSize: 16 },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 32,
+  },
+  dialog: {
+    width: '100%',
+    borderRadius: 28,
+    backgroundColor: colors.card,
+    alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 28,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.18,
+    shadowRadius: 20,
+    elevation: 10,
+  },
+  dialogIcon: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: colors.homeOrangeBg,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 14,
+  },
+  dialogTitle: { fontSize: 20, fontWeight: '700', color: colors.textDark, textAlign: 'center' },
+  dialogMessage: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: colors.textLabel,
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  dialogButton: {
+    minHeight: 48,
+    width: '100%',
+    borderRadius: 24,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 24,
+  },
+  dialogButtonText: { color: '#fff', fontWeight: '700', fontSize: 16 },
   emptyText: { textAlign: 'center', marginTop: 60, color: colors.textLabel },
 });

@@ -27,13 +27,23 @@ npm start
 
 This starts the API on http://localhost:4000. Leave it running.
 
-Razorpay checkout is wired in **test mode only**. Copy `backend/.env.example`
-to `backend/.env` and add a rotated Razorpay test key pair there. The backend
-loads `.env` at startup; never put the secret in the frontend or commit `.env`.
+Razorpay checkout is wired in **test mode only**. Create `backend/.env` and add
+a rotated Razorpay test key pair there. The backend loads `.env` at startup;
+never put the secret in the frontend or commit `.env`.
 Live keys are deliberately rejected while purchase entitlements are stored only
 in memory and disappear when the backend restarts. Before enabling live charges,
-move users, orders, and entitlements to durable storage and verify your store's
+move payment orders and entitlements to durable storage and verify your store's
 rules for external billing of digital lessons.
+
+User profiles are stored in Supabase. Set `SUPABASE_DATABASE_URL` in
+`backend/.env` using the project's direct PostgreSQL connection string. Keep the
+database password on the backend only; never add it to the mobile app or commit
+it. URL-encode special characters in the password. Run
+`backend/supabase/schema.sql` in the Supabase SQL Editor to create the
+`public.users` table before signing in. The table stores the verified
+phone/dial code, name, email, occupation/type, language, and timestamps. Phone
+plus dial code is unique; email is not unique. WhatsApp OTP delivery remains
+separate from this database connection.
 
 ### Payment flow
 

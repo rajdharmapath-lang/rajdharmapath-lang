@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { usersById } = require('../db/db');
+const userRepository = require('../db/user.repository');
 
 // Dev-only secret — replace with a real secret from an environment variable
 // before this is ever deployed anywhere.
@@ -9,7 +9,7 @@ function issueToken(userId) {
   return jwt.sign({ userId }, JWT_SECRET, { expiresIn: '30d' });
 }
 
-function requireAuth(req, res, next) {
+async function requireAuth(req, res, next) {
   const header = req.headers.authorization || '';
   const token = header.startsWith('Bearer ') ? header.slice(7) : null;
   if (!token) {
@@ -17,12 +17,16 @@ function requireAuth(req, res, next) {
   }
   try {
     const payload = jwt.verify(token, JWT_SECRET);
-    if (!usersById.has(payload.userId)) {
+    const user = await userRepository.getUserById(payload.userId);
+    if (!user) {
       return res.status(401).json({ message: 'Account no longer exists' });
     }
     req.userId = payload.userId;
     next();
-  } catch (e) {
+  } catch (error) {
+    if (error.name !== 'JsonWebTokenError' && error.name !== 'TokenExpiredError') {
+      return res.status(503).json({ message: 'Could not validate your account with the database.' });
+    }
     return res.status(401).json({ message: 'Invalid or expired token' });
   }
 }

@@ -1,4 +1,4 @@
-const { usersByPhoneKey, phoneKey, createUser, tokensToUserId } = require('../db/db');
+const userRepository = require('../db/user.repository');
 const { generateOtp, verifyOtp } = require('../services/otp.service');
 const { issueToken } = require('../middleware/auth.middleware');
 
@@ -11,7 +11,7 @@ function sendOtp(req, res) {
   res.json({ success: true });
 }
 
-function verifyOtpHandler(req, res) {
+async function verifyOtpHandler(req, res) {
   const { phone, dialCode, code } = req.body;
   if (!phone || !dialCode || !code) {
     return res.status(400).json({ message: 'phone, dialCode and code are required' });
@@ -22,19 +22,22 @@ function verifyOtpHandler(req, res) {
     return res.status(400).json({ message: 'Invalid or expired code' });
   }
 
-  let user = usersByPhoneKey.get(phoneKey(dialCode, phone));
-  const isNewUser = !user;
-  if (!user) {
-    user = createUser(dialCode, phone);
+  let user;
+  let isNewUser;
+  try {
+    const result = await userRepository.getOrCreateUserByPhone(dialCode, phone);
+    user = result.user;
+    isNewUser = result.created || !user.name || !user.email || !user.occupation;
+  } catch (error) {
+    return res.status(503).json({ message: 'Could not load your account from the database.' });
   }
 
   const token = issueToken(user.id);
-  tokensToUserId.set(token, user.id);
 
   res.json({
     token,
     isNewUser,
-    user: isNewUser ? null : user, // existing users go straight to Home with their profile
+    user: isNewUser ? null : user,
   });
 }
 

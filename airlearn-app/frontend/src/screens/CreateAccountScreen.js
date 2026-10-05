@@ -25,10 +25,13 @@ export default function CreateAccountScreen({ navigation }) {
   const { createAccount } = useAuth();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [emailTouched, setEmailTouched] = useState(false);
   const [occupation, setOccupation] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
+  const showEmailError = emailTouched && !emailValid;
+  const emailError = email.trim() ? 'Enter a valid email address.' : 'Email is required.';
   const isValid = name.trim().length > 1 && emailValid && !!occupation;
 
   const handleCreate = async () => {
@@ -75,17 +78,22 @@ export default function CreateAccountScreen({ navigation }) {
               />
             </View>
 
-            <View style={styles.fieldRow}>
-              <Ionicons name="mail-outline" size={20} color={colors.textLabel} style={styles.icon} />
-              <TextInput
-                style={styles.input}
-                placeholder="Email Address"
-                placeholderTextColor={colors.textPlaceholder}
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
-                autoCapitalize="none"
-              />
+            <View style={styles.emailField}>
+              <View style={[styles.fieldRow, showEmailError && styles.fieldRowInvalid]}>
+                <Ionicons name="mail-outline" size={20} color={showEmailError ? colors.failRed : colors.textLabel} style={styles.icon} />
+                <TextInput
+                  style={styles.input}
+                  placeholder="Email Address"
+                  placeholderTextColor={colors.textPlaceholder}
+                  value={email}
+                  onChangeText={setEmail}
+                  onBlur={() => setEmailTouched(true)}
+                  keyboardType="email-address"
+                  autoCapitalize="none"
+                  autoComplete="email"
+                />
+              </View>
+              {showEmailError && <Text style={styles.emailError}>{emailError}</Text>}
             </View>
 
             <Dropdown
@@ -117,6 +125,7 @@ const styles = StyleSheet.create({
   title: { ...typography.h2, color: colors.accentRed, textAlign: 'center', marginBottom: 6 },
   subtitle: { ...typography.body, color: colors.textDark, textAlign: 'center', marginBottom: 40 },
   form: { gap: 16 },
+  emailField: { gap: 6 },
   fieldRow: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -126,6 +135,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     backgroundColor: colors.card,
   },
+  fieldRowInvalid: { borderColor: colors.failRed },
   icon: { marginRight: 10 },
   input: { flex: 1, paddingVertical: 16, fontSize: 16, color: colors.textDark },
+  emailError: { color: colors.failRed, fontSize: 13, marginLeft: 16 },
 });
