@@ -76,18 +76,18 @@ a custom Android/iOS development client (or release build) after installing the
 native package. Store releases may require Google Play Billing or Apple In-App
 Purchase unless your app is approved for an external-payment program.
 
-The Notes download is served from `Downloads/RD chinese workbook.pdf` in the
-backend user's home directory by default. Keep this large PDF out of Git. To
-use a different local path, set `LEARNING_PDF_PATH` before starting the backend:
+The Notes screen downloads its PDF through the authenticated
+`/api/user/learning-pdf` backend endpoint. To serve a file from Supabase
+Storage, set `SUPABASE_URL`, `SUPABASE_STORAGE_BUCKET`, and
+`SUPABASE_STORAGE_OBJECT_PATH` in `backend/.env`. The object path is relative to
+the bucket and can include folders. For a private bucket, keep
+`SUPABASE_STORAGE_PUBLIC=false` and set `SUPABASE_SERVICE_ROLE_KEY` on the
+backend only. For a public bucket, set `SUPABASE_STORAGE_PUBLIC=true`; no service
+role key is needed. Never put a service role key in the frontend or commit it.
 
-```powershell
-$env:LEARNING_PDF_PATH = 'D:\private-files\RD chinese workbook.pdf'
-npm start
-```
-
-For deployment, place the PDF in external storage or a mounted volume and set
-`LEARNING_PDF_PATH` to that location on the backend host. The mobile app
-downloads it through the authenticated `/api/user/learning-pdf` endpoint.
+When Storage settings are absent, the backend falls back to
+`LEARNING_PDF_PATH` or `Downloads/RD chinese workbook.pdf` in its user's home
+directory. Keep local PDFs out of Git.
 
 There's no real SMS/WhatsApp OTP provider wired up yet. When you request an
 OTP, the actual 6-digit code is printed in this terminal window, e.g.:

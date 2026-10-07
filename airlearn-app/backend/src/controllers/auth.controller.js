@@ -29,6 +29,7 @@ async function verifyOtpHandler(req, res) {
     user = result.user;
     isNewUser = result.created || !user.name || !user.email || !user.occupation;
   } catch (error) {
+    console.error('OTP account database lookup failed:', error);
     return res.status(503).json({ message: 'Could not load your account from the database.' });
   }
 

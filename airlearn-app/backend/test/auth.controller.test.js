@@ -44,3 +44,39 @@ test('verifyOtp stores the verified phone identity through the user repository',
     mock.restoreAll();
   }
 });
+
+test('verifyOtp returns a service error when the database lookup fails', async () => {
+  const databaseError = new Error('database unavailable');
+  databaseError.code = 'ECONNREFUSED';
+  const lookupStub = mock.method(userRepository, 'getOrCreateUserByPhone', async () => {
+    throw databaseError;
+  });
+  const logStub = mock.method(console, 'error', () => {});
+  let statusCode;
+  let responseBody;
+
+  try {
+    await verifyOtp(
+      { body: { phone: '5550100', dialCode: '+1', code: '123456' } },
+      {
+        status(code) {
+          statusCode = code;
+          return this;
+        },
+        json(body) {
+          responseBody = body;
+        },
+      }
+    );
+
+    assert.equal(lookupStub.mock.calls.length, 1);
+    assert.equal(statusCode, 503);
+    assert.deepEqual(responseBody, { message: 'Could not load your account from the database.' });
+    assert.deepEqual(logStub.mock.calls[0].arguments, [
+      'OTP account database lookup failed:',
+      databaseError,
+    ]);
+  } finally {
+    mock.restoreAll();
+  }
+});

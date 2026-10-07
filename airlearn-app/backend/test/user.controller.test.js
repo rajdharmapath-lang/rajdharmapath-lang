@@ -147,3 +147,67 @@ test('downloadLearningPdf sends the supplied learning PDF with its filename', ()
   assert.equal(sentFile, testPdfPath);
   assert.equal(sentName, 'RD chinese workbook.pdf');
 });
+
+test('downloadLearningPdf fetches the configured Supabase Storage object', async () => {
+  const environmentKeys = [
+    'SUPABASE_URL',
+    'SUPABASE_STORAGE_BUCKET',
+    'SUPABASE_STORAGE_OBJECT_PATH',
+    'SUPABASE_STORAGE_PUBLIC',
+    'SUPABASE_SERVICE_ROLE_KEY',
+  ];
+  const previousEnvironment = Object.fromEntries(
+    environmentKeys.map((key) => [key, process.env[key]])
+  );
+  const previousFetch = global.fetch;
+  const pdfContents = Buffer.from('storage pdf');
+  let responseStatus;
+  let responseBody;
+  const responseHeaders = {};
+
+  process.env.SUPABASE_URL = 'https://project.example';
+  process.env.SUPABASE_STORAGE_BUCKET = 'course-notes';
+  process.env.SUPABASE_STORAGE_OBJECT_PATH = 'foundation/RD chinese workbook.pdf';
+  process.env.SUPABASE_STORAGE_PUBLIC = 'false';
+  process.env.SUPABASE_SERVICE_ROLE_KEY = 'test-service-role-key';
+  global.fetch = async (url, options) => {
+    assert.equal(
+      url.href,
+      'https://project.example/storage/v1/object/authenticated/course-notes/foundation/RD%20chinese%20workbook.pdf'
+    );
+    assert.equal(options.headers.apikey, 'test-service-role-key');
+    assert.equal(options.headers.authorization, 'Bearer test-service-role-key');
+    return {
+      ok: true,
+      async arrayBuffer() {
+        return pdfContents;
+      },
+    };
+  };
+
+  try {
+    await downloadLearningPdf({}, {
+      setHeader(name, value) {
+        responseHeaders[name] = value;
+      },
+      status(code) {
+        responseStatus = code;
+        return this;
+      },
+      send(body) {
+        responseBody = body;
+      },
+    });
+
+    assert.equal(responseStatus, 200);
+    assert.deepEqual(responseBody, pdfContents);
+    assert.equal(responseHeaders['Content-Type'], 'application/pdf');
+    assert.equal(responseHeaders['Content-Disposition'], 'attachment; filename="RD chinese workbook.pdf"');
+  } finally {
+    for (const key of environmentKeys) {
+      if (previousEnvironment[key] === undefined) delete process.env[key];
+      else process.env[key] = previousEnvironment[key];
+    }
+    global.fetch = previousFetch;
+  }
+});
