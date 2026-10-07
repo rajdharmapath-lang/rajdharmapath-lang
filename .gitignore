@@ -41,9 +41,8 @@ node_modules/
 # Logs
 *.log
 
-# User secrets and environment files
+# User secrets
 secrets.json
-.env
 
 # Ignore local tooling
 *.vsconfig

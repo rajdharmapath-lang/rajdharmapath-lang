@@ -69,7 +69,7 @@ export default function QuizListScreen({ route, navigation }) {
           <Pressable onPress={() => navigation.goBack()} hitSlop={12}>
             <Ionicons name="chevron-back" size={26} color={colors.border} />
           </Pressable>
-          <Text style={styles.title}>Practice Path</Text>
+          <Text style={styles.title}>Practice</Text>
           <View style={{ width: 26 }} />
         </View>
         <Text style={styles.batchTitle}>{batch?.name || 'Batch'}</Text>

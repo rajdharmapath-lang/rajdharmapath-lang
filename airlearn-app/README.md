@@ -77,10 +77,13 @@ native package. Store releases may require Google Play Billing or Apple In-App
 Purchase unless your app is approved for an external-payment program.
 
 The Notes screen downloads its PDF through the authenticated
-`/api/user/learning-pdf` backend endpoint. To serve a file from Supabase
-Storage, set `SUPABASE_URL`, `SUPABASE_STORAGE_BUCKET`, and
-`SUPABASE_STORAGE_OBJECT_PATH` in `backend/.env`. The object path is relative to
-the bucket and can include folders. For a private bucket, keep
+`/api/user/learning-pdf` backend endpoint. Set `SUPABASE_STORAGE_URL`,
+`SUPABASE_STORAGE_BUCKET`, `SUPABASE_STORAGE_OBJECT_PATH`, and
+`SUPABASE_STORAGE_PUBLIC` in `backend/.env`. The object path is relative to the
+bucket and can include folders. `SUPABASE_URL` is also accepted as a fallback
+for `SUPABASE_STORAGE_URL`. To use a complete Storage object URL instead, set
+`SUPABASE_STORAGE_OBJECT_URL`; it takes precedence over the bucket/path settings.
+For a private bucket, keep
 `SUPABASE_STORAGE_PUBLIC=false` and set `SUPABASE_SERVICE_ROLE_KEY` on the
 backend only. For a public bucket, set `SUPABASE_STORAGE_PUBLIC=true`; no service
 role key is needed. Never put a service role key in the frontend or commit it.
@@ -114,6 +117,11 @@ npx expo start
 Scan the QR code with Expo Go (iOS/Android), or press i / a for a
 simulator/emulator.
 
+Speech Practice uses native speech recognition and requires a custom
+development build; it is not available in stock Expo Go. After changing the
+speech-recognition native dependency or permissions, rebuild with
+`npx expo run:android` or `npx expo run:ios`.
+
 Important - the backend URL: frontend/src/api/client.js points at
 localhost:4000 for iOS and 10.0.2.2:4000 for the Android emulator
 automatically. If you're testing on a physical device, change API_BASE_URL
@@ -138,9 +146,9 @@ account -> language -> learning preference).
   backend. Live checkout remains disabled until entitlements use persistent
   storage and the applicable app-store billing rules are satisfied.
 - Azure pronunciation/speech APIs aren't connected. Word audio uses
-  on-device text-to-speech; pronunciation scoring returns realistic
-  simulated numbers. Integration points are commented in services/audio.js
-  and services/pronunciation.js.
+  on-device text-to-speech; microphone practice uses the device speech
+  recognition service for transcription, while pronunciation scoring still
+  returns simulated numbers. Pronunciation assessment integration is pending.
 - Most content is a working template, not a full course. Only the
   Foundation batch's "Greetings" vocabulary category and one sample quiz
   have real questions - everything else has correct structure/names but

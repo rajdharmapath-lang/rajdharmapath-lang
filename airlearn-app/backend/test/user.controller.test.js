@@ -151,6 +151,8 @@ test('downloadLearningPdf sends the supplied learning PDF with its filename', ()
 test('downloadLearningPdf fetches the configured Supabase Storage object', async () => {
   const environmentKeys = [
     'SUPABASE_URL',
+    'SUPABASE_STORAGE_URL',
+    'SUPABASE_STORAGE_OBJECT_URL',
     'SUPABASE_STORAGE_BUCKET',
     'SUPABASE_STORAGE_OBJECT_PATH',
     'SUPABASE_STORAGE_PUBLIC',
@@ -165,7 +167,8 @@ test('downloadLearningPdf fetches the configured Supabase Storage object', async
   let responseBody;
   const responseHeaders = {};
 
-  process.env.SUPABASE_URL = 'https://project.example';
+  process.env.SUPABASE_URL = 'https://legacy-project.example';
+  process.env.SUPABASE_STORAGE_URL = 'https://project.example';
   process.env.SUPABASE_STORAGE_BUCKET = 'course-notes';
   process.env.SUPABASE_STORAGE_OBJECT_PATH = 'foundation/RD chinese workbook.pdf';
   process.env.SUPABASE_STORAGE_PUBLIC = 'false';
@@ -203,6 +206,62 @@ test('downloadLearningPdf fetches the configured Supabase Storage object', async
     assert.deepEqual(responseBody, pdfContents);
     assert.equal(responseHeaders['Content-Type'], 'application/pdf');
     assert.equal(responseHeaders['Content-Disposition'], 'attachment; filename="RD chinese workbook.pdf"');
+  } finally {
+    for (const key of environmentKeys) {
+      if (previousEnvironment[key] === undefined) delete process.env[key];
+      else process.env[key] = previousEnvironment[key];
+    }
+    global.fetch = previousFetch;
+  }
+});
+
+test('downloadLearningPdf fetches the configured Supabase object URL directly', async () => {
+  const environmentKeys = [
+    'SUPABASE_STORAGE_OBJECT_URL',
+    'SUPABASE_STORAGE_BUCKET',
+    'SUPABASE_STORAGE_OBJECT_PATH',
+    'SUPABASE_STORAGE_PUBLIC',
+    'SUPABASE_SERVICE_ROLE_KEY',
+  ];
+  const previousEnvironment = Object.fromEntries(
+    environmentKeys.map((key) => [key, process.env[key]])
+  );
+  const previousFetch = global.fetch;
+  const objectUrl =
+    'https://tfniorcovtstaswpakfn.supabase.co/storage/v1/object/public/Rajdharma_app_pdf/Work%20book.pdf';
+  let responseStatus;
+  let responseBody;
+
+  process.env.SUPABASE_STORAGE_OBJECT_URL = objectUrl;
+  delete process.env.SUPABASE_STORAGE_BUCKET;
+  delete process.env.SUPABASE_STORAGE_OBJECT_PATH;
+  delete process.env.SUPABASE_STORAGE_PUBLIC;
+  delete process.env.SUPABASE_SERVICE_ROLE_KEY;
+  global.fetch = async (url, options) => {
+    assert.equal(url.href, objectUrl);
+    assert.deepEqual(options.headers, {});
+    return {
+      ok: true,
+      async arrayBuffer() {
+        return Buffer.from('storage pdf');
+      },
+    };
+  };
+
+  try {
+    await downloadLearningPdf({}, {
+      setHeader() {},
+      status(code) {
+        responseStatus = code;
+        return this;
+      },
+      send(body) {
+        responseBody = body;
+      },
+    });
+
+    assert.equal(responseStatus, 200);
+    assert.deepEqual(responseBody, Buffer.from('storage pdf'));
   } finally {
     for (const key of environmentKeys) {
       if (previousEnvironment[key] === undefined) delete process.env[key];

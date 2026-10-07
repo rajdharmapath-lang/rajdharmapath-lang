@@ -67,7 +67,7 @@ export default function LearningPdfScreen({ navigation }) {
         });
         if (download.status < 200 || download.status >= 300) {
           if (download.status === 404) {
-            throw new Error('The Notes download route was not found (404). Restart the backend and try again.');
+            throw new Error('The Notes download route or PDF was not found (404).');
           }
           if (download.status === 401) {
             throw new Error('Your session has expired. Sign in again, then retry the download.');
@@ -81,7 +81,14 @@ export default function LearningPdfScreen({ navigation }) {
             file.fileName,
             'application/pdf'
           );
-          await FileSystem.copyAsync({ from: download.uri, to: destination });
+          const pdfContents = await FileSystem.readAsStringAsync(download.uri, {
+            encoding: FileSystem.EncodingType.Base64,
+          });
+          await FileSystem.StorageAccessFramework.writeAsStringAsync(
+            destination,
+            pdfContents,
+            { encoding: FileSystem.EncodingType.Base64 }
+          );
           await FileSystem.deleteAsync(download.uri, { idempotent: true });
         } else {
           downloadedFiles.push(download.uri);

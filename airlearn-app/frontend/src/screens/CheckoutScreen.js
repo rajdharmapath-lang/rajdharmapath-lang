@@ -41,8 +41,13 @@ export default function CheckoutScreen({ route, navigation }) {
         planId: plan.id,
         couponCode: discount > 0 ? couponInput.trim().toUpperCase() : undefined,
       });
-      if (result.cancelled) return;
-      if (result.success) {
+      if (result.cancelled) {
+        navigation.replace('PaymentFailed', {
+          planId: plan.id,
+          returnTo,
+          reason: 'Payment was cancelled.',
+        });
+      } else if (result.success) {
         grantBatchAccess(plan.batchId, plan, result.entitlement);
         navigation.replace('PaymentSuccess', { planId: plan.id, returnTo });
       } else {

@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, Pressable, StyleSheet, Alert, Animated } from 'react-native';
-import { Audio } from 'expo-av';
+import { View, Text, TextInput, Pressable, StyleSheet, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import { useAuth } from '../context/AuthContext';
 import { assessPronunciation } from '../services/pronunciation';
+import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
 
 export default function SpeechPracticeScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
@@ -18,16 +18,16 @@ export default function SpeechPracticeScreen({ route, navigation }) {
   const words = route?.params?.words?.length ? route.params.words : [];
   const [index, setIndex] = useState(0);
   const [results, setResults] = useState({}); // { [index]: { pronunciation, fluency, tone } }
-  const [isRecording, setIsRecording] = useState(false);
   const [isScoring, setIsScoring] = useState(false);
-  const recordingRef = useRef(null);
+  const [practiceMessage, setPracticeMessage] = useState('');
+  const { transcript, setTranscript, isRecognizing, error, start, stop } = useSpeechRecognition();
   const pulse = useRef(new Animated.Value(1)).current;
 
   const word = words[index];
   const translation = language === 'tamil' ? word?.ta : word?.en;
 
   useEffect(() => {
-    if (isRecording) {
+    if (isRecognizing) {
       Animated.loop(
         Animated.sequence([
           Animated.timing(pulse, { toValue: 1.15, duration: 500, useNativeDriver: true }),
@@ -38,39 +38,25 @@ export default function SpeechPracticeScreen({ route, navigation }) {
       pulse.stopAnimation();
       pulse.setValue(1);
     }
-  }, [isRecording]);
+  }, [isRecognizing]);
 
-  const startRecording = async () => {
-    try {
-      const { status } = await Audio.requestPermissionsAsync();
-      if (status !== 'granted') {
-        Alert.alert('Microphone permission needed', 'Enable microphone access to practice speaking.');
-        return;
-      }
-      await Audio.setAudioModeAsync({ allowsRecordingIOS: true, playsInSilentModeIOS: true });
-      const { recording } = await Audio.Recording.createAsync(
-        Audio.RecordingOptionsPresets.HIGH_QUALITY
-      );
-      recordingRef.current = recording;
-      setIsRecording(true);
-    } catch (err) {
-      Alert.alert('Could not start recording', err.message);
-    }
+  const startRecording = () => {
+    setPracticeMessage('');
+    start('zh-CN').catch(() => {});
   };
 
   const stopRecordingAndScore = async () => {
-    if (!recordingRef.current) return;
-    setIsRecording(false);
-    setIsScoring(true);
     try {
-      await recordingRef.current.stopAndUnloadAsync();
-      const uri = recordingRef.current.getURI();
-      recordingRef.current = null;
-
-      const score = await assessPronunciation(uri, word);
+      const attempt = await stop();
+      if (!attempt.transcript) {
+        setPracticeMessage('No speech was recognized. Hold the microphone and try again.');
+        return;
+      }
+      setIsScoring(true);
+      const score = await assessPronunciation(attempt.uri, word);
       setResults((prev) => ({ ...prev, [index]: score }));
     } catch (err) {
-      Alert.alert('Could not score your attempt', err.message);
+      setPracticeMessage(err.message || 'Could not process your speech. Please try again.');
     } finally {
       setIsScoring(false);
     }
@@ -122,18 +108,31 @@ export default function SpeechPracticeScreen({ route, navigation }) {
         <View style={styles.micSection}>
           <Animated.View style={{ transform: [{ scale: pulse }] }}>
             <Pressable
-              style={[styles.micCircle, isRecording && styles.micCircleRecording]}
+              style={[styles.micCircle, isRecognizing && styles.micCircleRecording]}
               onPressIn={startRecording}
               onPressOut={stopRecordingAndScore}
               disabled={isScoring}
             >
-              <Ionicons name="mic" size={32} color={isRecording ? colors.homeOrangeLight : '#fff'} />
+              <Ionicons name="mic" size={32} color={isRecognizing ? colors.homeOrangeLight : '#fff'} />
             </Pressable>
           </Animated.View>
           <Text style={styles.micLabel}>
-            {isScoring ? 'Scoring...' : isRecording ? 'Listening...' : 'Hold and Speak'}
+            {isScoring ? 'Scoring...' : isRecognizing ? 'Listening...' : 'Hold and Speak'}
           </Text>
-          {results[index] && !isRecording && !isScoring && (
+          <TextInput
+            style={styles.transcriptInput}
+            value={transcript}
+            onChangeText={setTranscript}
+            placeholder="Your recognized speech will appear here"
+            placeholderTextColor={colors.textLabel}
+            multiline
+            textAlignVertical="top"
+            accessibilityLabel="Recognized speech"
+          />
+          {!!(practiceMessage || error) && (
+            <Text style={styles.errorText}>{practiceMessage || error}</Text>
+          )}
+          {results[index] && !isRecognizing && !isScoring && (
             <Text style={styles.scoreHint}>
               Last attempt: {Math.round((results[index].pronunciation + results[index].fluency + results[index].tone) / 3)}%
             </Text>
@@ -175,7 +174,7 @@ const styles = StyleSheet.create({
   hanzi: { fontSize: 42, color: colors.textDark, marginBottom: 16 },
   pinyin: { fontSize: 22, color: colors.textDark, marginBottom: 8 },
   translation: { fontSize: 20, color: colors.textDark },
-  micSection: { alignItems: 'center', marginBottom: 50 },
+  micSection: { alignItems: 'center', marginBottom: 24 },
   micCircle: {
     width: 110,
     height: 110,
@@ -191,6 +190,21 @@ const styles = StyleSheet.create({
     borderColor: colors.homeOrangeLight,
   },
   micLabel: { fontSize: 16, color: colors.textDark },
+  transcriptInput: {
+    width: '100%',
+    minHeight: 76,
+    maxHeight: 112,
+    borderWidth: 1,
+    borderColor: colors.borderLight,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    marginTop: 16,
+    color: colors.textDark,
+    backgroundColor: colors.card,
+    fontSize: 15,
+  },
+  errorText: { color: colors.failRed, textAlign: 'center', fontSize: 13, marginTop: 8 },
   scoreHint: { fontSize: 13, color: colors.textLabel, marginTop: 8 },
   controlsRow: { flexDirection: 'row', justifyContent: 'space-around' },
   controlItem: { alignItems: 'center', gap: 4 },

@@ -80,24 +80,33 @@ async function deleteAccount(req, res) {
 }
 
 async function downloadLearningPdf(req, res) {
+  const storageObjectUrl = process.env.SUPABASE_STORAGE_OBJECT_URL;
   const storageBucket = process.env.SUPABASE_STORAGE_BUCKET;
   const storageObjectPath = process.env.SUPABASE_STORAGE_OBJECT_PATH;
 
-  if (storageBucket || storageObjectPath) {
-    const supabaseUrl = process.env.SUPABASE_URL;
+  if (storageObjectUrl || storageBucket || storageObjectPath) {
+    const supabaseUrl = process.env.SUPABASE_STORAGE_URL || process.env.SUPABASE_URL;
     const isPublicBucket = process.env.SUPABASE_STORAGE_PUBLIC === 'true';
     const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-    if (!storageBucket || !storageObjectPath || !supabaseUrl || (!isPublicBucket && !serviceRoleKey)) {
+    if (
+      !storageObjectUrl &&
+      (!storageBucket || !storageObjectPath || !supabaseUrl || (!isPublicBucket && !serviceRoleKey))
+    ) {
       return res.status(503).json({ message: 'The learning PDF storage is not configured.' });
     }
 
-    const accessType = isPublicBucket ? 'public' : 'authenticated';
-    const encodedObjectPath = storageObjectPath.split('/').map(encodeURIComponent).join('/');
-    const objectUrl = new URL(
-      `/storage/v1/object/${accessType}/${encodeURIComponent(storageBucket)}/${encodedObjectPath}`,
-      supabaseUrl
-    );
-    const headers = isPublicBucket
+    let objectUrl;
+    if (storageObjectUrl) {
+      objectUrl = new URL(storageObjectUrl);
+    } else {
+      const accessType = isPublicBucket ? 'public' : 'authenticated';
+      const encodedObjectPath = storageObjectPath.split('/').map(encodeURIComponent).join('/');
+      objectUrl = new URL(
+        `/storage/v1/object/${accessType}/${encodeURIComponent(storageBucket)}/${encodedObjectPath}`,
+        supabaseUrl
+      );
+    }
+    const headers = storageObjectUrl || isPublicBucket
       ? {}
       : { apikey: serviceRoleKey, authorization: `Bearer ${serviceRoleKey}` };
 

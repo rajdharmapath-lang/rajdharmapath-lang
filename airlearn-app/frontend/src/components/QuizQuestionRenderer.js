@@ -1,6 +1,5 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { Audio } from 'expo-av';
+import React, { useEffect, useMemo, useState } from 'react';
+import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import QuizOption from './QuizOption';
@@ -9,6 +8,7 @@ import { findWordById } from '../data/vocabulary';
 import { playWordAudio } from '../services/audio';
 import { assessPronunciation } from '../services/pronunciation';
 import { shuffleArray } from '../utils/shuffle';
+import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
 
 const ADVANCE_DELAY = 900;
 const SPEECH_PASS_THRESHOLD = 60;
@@ -22,9 +22,16 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
   const [sentencePairResult, setSentencePairResult] = useState(null);
 
   // --- speech state ----------------------------------------------------------
-  const [isRecording, setIsRecording] = useState(false);
   const [isScoring, setIsScoring] = useState(false);
-  const recordingRef = useRef(null);
+  const [speechError, setSpeechError] = useState('');
+  const {
+    transcript,
+    setTranscript,
+    isRecognizing,
+    error: recognitionError,
+    start,
+    stop,
+  } = useSpeechRecognition();
 
   const isMcq =
     question.type === 'vocabulary' ||
@@ -94,38 +101,29 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
     setTimeout(() => setIsPlaying(false), 1200);
   };
 
-  const startRecording = async () => {
+  const startRecording = () => {
     onAnswerPending?.(true);
-    try {
-      const { status } = await Audio.requestPermissionsAsync();
-      if (status !== 'granted') {
-        onAnswerPending?.(false);
-        return;
-      }
-      await Audio.setAudioModeAsync({ allowsRecordingIOS: true, playsInSilentModeIOS: true });
-      const { recording } = await Audio.Recording.createAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
-      recordingRef.current = recording;
-      setIsRecording(true);
-    } catch (e) {
-      // Permission or hardware issue — fail silently into idle state; the
-      // question simply stays unanswered until the user tries again.
+    setSpeechError('');
+    start('zh-CN').catch(() => {
       onAnswerPending?.(false);
-    }
+    });
   };
 
   const stopRecordingAndScore = async () => {
-    if (!recordingRef.current) return;
-    setIsRecording(false);
-    setIsScoring(true);
     try {
-      await recordingRef.current.stopAndUnloadAsync();
-      const uri = recordingRef.current.getURI();
-      recordingRef.current = null;
-      const score = await assessPronunciation(uri, word);
+      const attempt = await stop();
+      if (!attempt.transcript) {
+        setSpeechError('No speech was recognized. Hold the microphone and try again.');
+        onAnswerPending?.(false);
+        return;
+      }
+      setIsScoring(true);
+      const score = await assessPronunciation(attempt.uri, word);
       const avg = (score.pronunciation + score.fluency + score.tone) / 3;
       queueAnswer(avg >= SPEECH_PASS_THRESHOLD);
     } catch (e) {
-      queueAnswer(false);
+      setSpeechError(e.message || 'Could not process your speech. Please try again.');
+      onAnswerPending?.(false);
     } finally {
       setIsScoring(false);
     }
@@ -314,16 +312,29 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
       <View style={styles.centered}>
         <Text style={styles.speechPinyin}>{word?.pinyin}</Text>
         <Pressable
-          style={[styles.micCircle, isRecording && styles.micCircleRecording]}
+          style={[styles.micCircle, isRecognizing && styles.micCircleRecording]}
           onPressIn={startRecording}
           onPressOut={stopRecordingAndScore}
           disabled={isScoring}
         >
-          <Ionicons name="mic" size={32} color={isRecording ? colors.homeOrangeLight : '#fff'} />
+          <Ionicons name="mic" size={32} color={isRecognizing ? colors.homeOrangeLight : '#fff'} />
         </Pressable>
         <Text style={styles.micLabel}>
-          {isScoring ? 'Scoring...' : isRecording ? 'Listening...' : 'Hold and Speak'}
+          {isScoring ? 'Scoring...' : isRecognizing ? 'Listening...' : 'Hold and Speak'}
         </Text>
+        <TextInput
+          style={styles.transcriptInput}
+          value={transcript}
+          onChangeText={setTranscript}
+          placeholder="Your recognized speech will appear here"
+          placeholderTextColor={colors.textLabel}
+          multiline
+          textAlignVertical="top"
+          accessibilityLabel="Recognized speech"
+        />
+        {!!(speechError || recognitionError) && (
+          <Text style={styles.speechError}>{speechError || recognitionError}</Text>
+        )}
       </View>
     );
   }
@@ -484,6 +495,21 @@ const styles = StyleSheet.create({
     borderColor: colors.homeOrangeLight,
   },
   micLabel: { fontSize: 16, color: colors.textDark },
+  transcriptInput: {
+    width: '100%',
+    minHeight: 76,
+    maxHeight: 112,
+    borderWidth: 1,
+    borderColor: colors.borderLight,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    marginTop: 16,
+    color: colors.textDark,
+    backgroundColor: colors.card,
+    fontSize: 15,
+  },
+  speechError: { color: colors.failRed, textAlign: 'center', fontSize: 13, marginTop: 8 },
   strokeBox: {
     borderWidth: 1.5,
     borderColor: colors.strokeAccent,

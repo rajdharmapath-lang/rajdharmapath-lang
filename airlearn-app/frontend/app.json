@@ -37,7 +37,15 @@
     "plugins": [
       "expo-font",
       "expo-asset",
-      "expo-dev-client"
+      "expo-dev-client",
+      [
+        "expo-speech-recognition",
+        {
+          "microphonePermission": "Allow Raj Dharma Learn to use the microphone for speech practice.",
+          "speechRecognitionPermission": "Allow Raj Dharma Learn to transcribe your speech during practice."
+        }
+      ],
+      "./plugins/withAndroid12SplashIcon"
     ],
     "extra": {
       "eas": {
