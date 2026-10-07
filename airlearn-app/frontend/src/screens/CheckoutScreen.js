@@ -43,10 +43,15 @@ export default function CheckoutScreen({ route, navigation }) {
       });
       if (result.cancelled) return;
       if (result.success) {
-        grantBatchAccess(plan.batchId, plan, result.entitlement.purchasedAt);
+        grantBatchAccess(plan.batchId, plan, result.entitlement);
         navigation.replace('PaymentSuccess', { planId: plan.id, returnTo });
       } else {
-        navigation.replace('PaymentFailed', { planId: plan.id, returnTo });
+        navigation.replace('PaymentFailed', {
+          planId: plan.id,
+          returnTo,
+          reason: result.reason,
+          errorCode: result.errorCode,
+        });
       }
     } catch (error) {
       setDialog({

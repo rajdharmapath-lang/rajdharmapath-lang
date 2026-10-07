@@ -1,46 +1,56 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const ENTITLEMENTS_KEY = 'purchasedBatches';
+import { paymentApi } from '../api/client';
+import { useAuth } from './AuthContext';
 
 const PaymentContext = createContext(null);
 
 export function PaymentProvider({ children }) {
-  // Shape: { [batchId]: { tier: 'videos' | 'videos_live', planId, purchasedAt } }
+  // Shape: { [batchId]: { tier, planId, purchasedAt, validUntil } }
+  const { user } = useAuth();
   const [purchasedBatches, setPurchasedBatches] = useState({});
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    let active = true;
+    setPurchasedBatches({});
+    setLoaded(false);
+
     (async () => {
-      try {
-        const raw = await AsyncStorage.getItem(ENTITLEMENTS_KEY);
-        if (raw) setPurchasedBatches(JSON.parse(raw));
-      } catch (e) {
-        // no persisted entitlements yet — start fresh
-      } finally {
+      if (!user?.id) {
         setLoaded(true);
+        return;
+      }
+
+      try {
+        const { data } = await paymentApi.getEntitlements();
+        if (active) setPurchasedBatches(data.purchasedBatches || {});
+      } catch (error) {
+        if (active) setPurchasedBatches({});
+      } finally {
+        if (active) setLoaded(true);
       }
     })();
-  }, []);
+    return () => {
+      active = false;
+    };
+  }, [user?.id]);
 
-  const grantBatchAccess = useCallback((batchId, plan, purchasedAt = Date.now()) => {
+  const grantBatchAccess = useCallback((batchId, plan, entitlement = {}) => {
     setPurchasedBatches((prev) => {
-      const next = {
+      return {
         ...prev,
-        [batchId]: { tier: plan.tier, planId: plan.id, purchasedAt },
+        [batchId]: {
+          tier: plan.tier,
+          planId: plan.id,
+          purchasedAt: entitlement.purchasedAt || Date.now(),
+          validUntil: entitlement.validUntil || null,
+        },
       };
-      AsyncStorage.setItem(ENTITLEMENTS_KEY, JSON.stringify(next)).catch(() => {});
-      // TODO once backend exists: this should really be driven by a server-side
-      // entitlements check (after Razorpay payment verification), not just local
-      // storage — a user could otherwise "unlock" content by clearing app data
-      // the other way, or lose access if they reinstall. Fine for development.
-      return next;
     });
   }, []);
 
   const clearPurchasedBatches = useCallback(async () => {
     setPurchasedBatches({});
-    await AsyncStorage.removeItem(ENTITLEMENTS_KEY).catch(() => {});
   }, []);
 
   const hasAnyBatchAccess = useCallback(

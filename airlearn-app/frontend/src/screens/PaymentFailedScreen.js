@@ -10,7 +10,7 @@ import BottomNav from '../components/BottomNav';
 export default function PaymentFailedScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
-  const { planId, returnTo } = route?.params || {};
+  const { planId, returnTo, reason, errorCode } = route?.params || {};
 
   const handleTryAgain = () => {
     // Per your instructions: retry goes back to Checkout (payment_2) with the
@@ -32,6 +32,10 @@ export default function PaymentFailedScreen({ route, navigation }) {
         </View>
 
         <Text style={styles.bigText}>Payment failed</Text>
+        <Text style={styles.reasonText}>
+          {reason || 'Razorpay checkout could not be completed.'}
+          {errorCode !== undefined ? ` (code ${errorCode})` : ''}
+        </Text>
 
         <Pressable style={styles.retryButton} onPress={handleTryAgain}>
           <Text style={styles.retryButtonText}>Try Again</Text>
@@ -64,7 +68,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 30,
   },
-  bigText: { fontSize: 26, fontWeight: '700', color: colors.failRed, marginBottom: 50 },
+  bigText: { fontSize: 26, fontWeight: '700', color: colors.failRed, marginBottom: 12 },
+  reasonText: {
+    fontSize: 14,
+    lineHeight: 20,
+    color: colors.textLabel,
+    textAlign: 'center',
+    marginBottom: 36,
+  },
   retryButton: {
     backgroundColor: colors.purchaseAccent,
     borderRadius: 30,

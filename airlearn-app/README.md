@@ -27,16 +27,15 @@ npm start
 
 This starts the API on http://localhost:4000. Leave it running.
 
-Razorpay checkout is wired in **test mode only**. Create `backend/.env` and add
-a rotated Razorpay test key pair there. The backend loads `.env` at startup;
-never put the secret in the frontend or commit `.env`.
-Live keys are deliberately rejected while purchase entitlements are stored only
-in memory and disappear when the backend restarts. Before enabling live charges,
-move payment orders and entitlements to durable storage and verify your store's
-rules for external billing of digital lessons.
+Razorpay credentials are read only by the backend from `backend/.env`. Use test
+keys for development. Live keys require the explicit server-side setting
+`RAZORPAY_ALLOW_LIVE=true`; leave it unset until test-mode checkout, capture
+verification, durable entitlement storage, reconciliation, and applicable
+app-store billing rules have been reviewed. Never put Razorpay secrets in the
+frontend or commit `.env`.
 
 User profiles are stored in Supabase. Set `SUPABASE_DATABASE_URL` in
-`backend/.env` using the project's direct PostgreSQL connection string. Keep the
+`backend/.env` using the project's Session Pooler URI. Keep the
 database password on the backend only; never add it to the mobile app or commit
 it. URL-encode special characters in the password. Run
 `backend/supabase/schema.sql` in the Supabase SQL Editor to create the
@@ -52,23 +51,25 @@ The app's payment flow is intentionally simple and local-first:
 1. The user selects a plan in the mobile app, optionally with the `WELCOME500`
 coupon code. The frontend sends `planId` and `couponCode` to
 `POST /api/payments/create-order`.
-2. The backend validates the plan and coupon, checks that the Razorpay keys are
-test keys, and creates a Razorpay order for the discounted amount.
+2. The backend validates the plan and coupon, enforces the live-key opt-in,
+creates a Razorpay order, and stores its user, plan, amount, and status in
+`public.payment_orders`.
 3. The API responds with the Razorpay `keyId`, `orderId`, `amount`, `currency`,
 and the selected `planId`/`batchId`.
 4. The frontend launches the Razorpay checkout. When the user successfully pays,
 frontend submits the Razorpay callback payload with
 `razorpay_order_id`, `razorpay_payment_id`, and `razorpay_signature`.
-5. The backend verifies the HMAC signature, fetches the payment details from
-Razorpay, confirms the order, amount, currency, and captured status, and then
-stores the entitlement for that batch in memory.
-6. Subsequent calls to the user/profile endpoints read the purchased batches and
-unlock the corresponding lessons or live access.
+5. The backend verifies the HMAC signature, fetches payment details from
+Razorpay, confirms the order, amount, currency, and captured status, then
+atomically stores the captured transaction in `public.payment_transactions`
+and the batch entitlement in `public.user_entitlements`.
+6. The app fetches authenticated `/api/payments/entitlements`; those server-side
+records determine which lessons and live access are unlocked.
 
-This is a safe local test flow, not a production billing setup. Until entitlements
-are persisted in a real database and the app store policy is reviewed, the backend
-continues to reject live keys and the app should only be tested with Razorpay test
-credentials.
+Repeated verification of the same captured payment is idempotent. Payment
+records are retained when an account is deleted; they are not linked by a
+cascading user foreign key. The payment tables have RLS enabled and client roles
+revoked; only the server-side database connection can access them.
 
 The Razorpay native checkout does not run inside stock Expo Go. Build and install
 a custom Android/iOS development client (or release build) after installing the

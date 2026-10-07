@@ -5,8 +5,6 @@ const userRepository = require('../db/user.repository');
 const {
   phoneKey,
   otpsByPhoneKey,
-  purchasedBatchesByUserId,
-  razorpayOrdersById,
 } = require('../db/db');
 
 const LEARNING_PDF_PATH = path.resolve(
@@ -77,11 +75,6 @@ async function deleteAccount(req, res) {
   }
   const key = phoneKey(user.dialCode, user.phone);
   otpsByPhoneKey.delete(key);
-  purchasedBatchesByUserId.delete(user.id);
-
-  for (const [orderId, order] of razorpayOrdersById) {
-    if (order.userId === user.id) razorpayOrdersById.delete(orderId);
-  }
 
   return res.json({ success: true });
 }

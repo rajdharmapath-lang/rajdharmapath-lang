@@ -28,8 +28,6 @@ test('deleteAccount removes the database user and invalidates existing tokens', 
     return user;
   });
   db.otpsByPhoneKey.set(key, { code: '123456', expiresAt: Date.now() + 60000 });
-  db.purchasedBatchesByUserId.set(user.id, { foundation: { planId: 'foundation_videos' } });
-  db.razorpayOrdersById.set('order_test_delete', { userId: user.id });
 
   try {
     let deleteResponse;
@@ -47,8 +45,6 @@ test('deleteAccount removes the database user and invalidates existing tokens', 
 
     assert.deepEqual(deleteResponse, { success: true });
     assert.equal(db.otpsByPhoneKey.has(key), false);
-    assert.equal(db.purchasedBatchesByUserId.has(user.id), false);
-    assert.equal(db.razorpayOrdersById.has('order_test_delete'), false);
 
     let authStatus;
     let nextCalled = false;

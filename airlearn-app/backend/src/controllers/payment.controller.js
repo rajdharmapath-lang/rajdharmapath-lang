@@ -1,6 +1,6 @@
 const crypto = require('crypto');
-const Razorpay = require('razorpay');
-const { razorpayOrdersById, purchasedBatchesByUserId } = require('../db/db');
+const paymentRepository = require('../db/payment.repository');
+const razorpayClient = require('../services/razorpay.client');
 
 const PLANS = {
   foundation_videos: { batchId: 'foundation', tier: 'videos', price: 999 },
@@ -17,13 +17,16 @@ function getRazorpayConfig() {
   if (!keyId || !keySecret) {
     throw new Error('Razorpay is not configured. Set server-side test credentials first.');
   }
-  if (!keyId.startsWith('rzp_test_')) {
-    throw new Error('Live Razorpay checkout is disabled until payment entitlements use persistent storage.');
+  if (!keyId.startsWith('rzp_test_') && !keyId.startsWith('rzp_live_')) {
+    throw new Error('Razorpay key ID must be a test or live key.');
+  }
+  if (keyId.startsWith('rzp_live_') && process.env.RAZORPAY_ALLOW_LIVE !== 'true') {
+    throw new Error('Live Razorpay checkout is disabled. Set RAZORPAY_ALLOW_LIVE=true after end-to-end testing.');
   }
   return {
     keyId,
     keySecret,
-    client: new Razorpay({ key_id: keyId, key_secret: keySecret }),
+    client: razorpayClient.createClient(keyId, keySecret),
   };
 }
 
@@ -41,11 +44,15 @@ async function createOrder(req, res) {
   const plan = PLANS[req.body.planId];
   if (!plan) return res.status(400).json({ message: 'Invalid plan.' });
 
-  const couponCode = req.body.couponCode?.trim().toUpperCase();
+  const couponCode = typeof req.body.couponCode === 'string'
+    ? req.body.couponCode.trim().toUpperCase() || null
+    : null;
   if (couponCode && couponCode !== 'WELCOME500') {
     return res.status(400).json({ message: 'Invalid coupon code.' });
   }
   const amountRupees = Math.max(plan.price - (couponCode ? 500 : 0), 1);
+  const originalAmount = plan.price * 100;
+  const discountAmount = (plan.price - amountRupees) * 100;
 
   try {
     const { client, keyId } = getRazorpayConfig();
@@ -56,14 +63,17 @@ async function createOrder(req, res) {
       notes: { userId: req.userId, planId: req.body.planId, batchId: plan.batchId },
     });
 
-    razorpayOrdersById.set(order.id, {
+    await paymentRepository.createPaymentOrder({
+      razorpayOrderId: order.id,
       userId: req.userId,
       planId: req.body.planId,
       batchId: plan.batchId,
       tier: plan.tier,
       amount: order.amount,
       currency: order.currency,
-      verifiedPaymentId: null,
+      couponCode,
+      originalAmount,
+      discountAmount,
     });
 
     return res.json({
@@ -81,15 +91,33 @@ async function createOrder(req, res) {
 
 async function verifyPayment(req, res) {
   const { razorpay_order_id: orderId, razorpay_payment_id: paymentId, razorpay_signature: signature } = req.body;
-  const order = razorpayOrdersById.get(orderId);
-  if (!order || order.userId !== req.userId) {
+  let order;
+  try {
+    order = await paymentRepository.getPaymentOrder(orderId, req.userId);
+  } catch (error) {
+    return res.status(503).json({ message: 'Could not load the payment order from the database.' });
+  }
+  if (!order) {
     return res.status(404).json({ message: 'Payment order not found.' });
   }
 
-  if (order.verifiedPaymentId === paymentId) {
-    return res.json({ success: true, batchId: order.batchId, planId: order.planId });
+  if (order.status === 'captured') {
+    if (order.razorpayPaymentId !== paymentId) {
+      return res.status(409).json({ message: 'This order has already been verified.' });
+    }
+    try {
+      const entitlements = await paymentRepository.getUserEntitlements(req.userId);
+      return res.json({
+        success: true,
+        batchId: order.batchId,
+        planId: order.planId,
+        entitlement: entitlements[order.batchId],
+      });
+    } catch (error) {
+      return res.status(503).json({ message: 'Payment was verified, but entitlements could not be loaded.' });
+    }
   }
-  if (order.verifiedPaymentId) {
+  if (order.status !== 'created') {
     return res.status(409).json({ message: 'This order has already been verified.' });
   }
 
@@ -105,8 +133,9 @@ async function verifyPayment(req, res) {
     return res.status(400).json({ message: 'Payment signature verification failed.' });
   }
 
+  let payment;
   try {
-    const payment = await razorpay.payments.fetch(paymentId);
+    payment = await razorpay.payments.fetch(paymentId);
     if (
       payment.order_id !== orderId ||
       payment.amount !== order.amount ||
@@ -115,27 +144,40 @@ async function verifyPayment(req, res) {
     ) {
       return res.status(400).json({ message: 'Payment is not captured for this order.' });
     }
-
-    const entitlement = {
-      planId: order.planId,
-      tier: order.tier,
-      purchasedAt: Date.now(),
-    };
-    const userEntitlements = purchasedBatchesByUserId.get(req.userId) || {};
-    purchasedBatchesByUserId.set(req.userId, {
-      ...userEntitlements,
-      [order.batchId]: entitlement,
-    });
-    order.verifiedPaymentId = paymentId;
-
-    return res.json({ success: true, batchId: order.batchId, planId: order.planId, entitlement });
   } catch (error) {
     return res.status(502).json({ message: 'Could not verify payment with Razorpay. Please retry verification.' });
   }
+
+  try {
+    const result = await paymentRepository.recordCapturedPayment({
+      razorpayOrderId: orderId,
+      userId: req.userId,
+      payment,
+    });
+    if (result.outcome === 'not_found') {
+      return res.status(404).json({ message: 'Payment order not found.' });
+    }
+    if (result.outcome === 'conflict') {
+      return res.status(409).json({ message: 'This order has already been verified.' });
+    }
+    return res.json({
+      success: true,
+      batchId: order.batchId,
+      planId: order.planId,
+      entitlement: result.entitlement,
+    });
+  } catch (error) {
+    return res.status(503).json({ message: 'Payment was captured, but it could not be saved. Retry verification.' });
+  }
 }
 
-function getEntitlements(req, res) {
-  res.json({ purchasedBatches: purchasedBatchesByUserId.get(req.userId) || {} });
+async function getEntitlements(req, res) {
+  try {
+    const purchasedBatches = await paymentRepository.getUserEntitlements(req.userId);
+    return res.json({ purchasedBatches });
+  } catch (error) {
+    return res.status(503).json({ message: 'Could not load payment entitlements from the database.' });
+  }
 }
 
 module.exports = { createOrder, verifyPayment, getEntitlements, isValidSignature };

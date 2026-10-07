@@ -47,9 +47,14 @@ export async function processPayment({ planId, couponCode }) {
     });
   } catch (error) {
     const cancelled = error?.code === 0 || error?.code === 'payment_cancelled';
+    console.error('[payment] Razorpay checkout failed', {
+      code: error?.code,
+      message: error?.message || error?.description || String(error),
+    });
     return {
       success: false,
       cancelled,
+      errorCode: error?.code,
       reason: error?.description || error?.message || 'Payment was not completed.',
     };
   }

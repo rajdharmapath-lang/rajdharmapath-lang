@@ -10,8 +10,6 @@ import SettingsRow from '../components/SettingsRow';
 import { useAuth } from '../context/AuthContext';
 import { usePayment } from '../context/PaymentContext';
 
-const PLAN_DURATION_DAYS = 90; // matches every plan's "3 months" in data/plans.js
-
 function formatDate(ms) {
   return new Date(ms).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 }
@@ -32,10 +30,10 @@ export default function SettingsScreen({ navigation }) {
   const [loggingOut, setLoggingOut] = useState(false);
 
   const validTill = useMemo(() => {
-    const entries = Object.values(purchasedBatches);
-    if (!entries.length) return null;
-    const latestPurchase = Math.max(...entries.map((b) => b.purchasedAt));
-    return formatDate(latestPurchase + PLAN_DURATION_DAYS * 24 * 60 * 60 * 1000);
+    const dates = Object.values(purchasedBatches)
+      .map((entitlement) => entitlement.validUntil)
+      .filter(Number.isFinite);
+    return dates.length ? formatDate(Math.max(...dates)) : null;
   }, [purchasedBatches]);
 
   const handleLogout = () => {
@@ -95,7 +93,9 @@ export default function SettingsScreen({ navigation }) {
                   />
                   <Text style={styles.planTitle}>Prime Member</Text>
                 </View>
-                <Text style={styles.planSubtitle}>Valid till {validTill}</Text>
+                <Text style={styles.planSubtitle}>
+                  {validTill ? `Valid till ${validTill}` : 'Validity date unavailable'}
+                </Text>
               </View>
             </View>
           ) : (

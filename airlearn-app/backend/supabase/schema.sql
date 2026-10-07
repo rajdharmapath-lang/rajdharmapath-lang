@@ -56,3 +56,66 @@ where dial_code is null
 alter table public.user_deletion_audit enable row level security;
 revoke all on table public.user_deletion_audit from anon, authenticated;
 grant all on table public.user_deletion_audit to service_role;
+
+create table if not exists public.payment_orders (
+  id uuid primary key default gen_random_uuid(),
+  razorpay_order_id text not null unique,
+  user_id uuid not null,
+  plan_id text not null,
+  batch_id text not null,
+  tier text not null,
+  amount bigint not null check (amount > 0),
+  currency text not null,
+  coupon_code text,
+  original_amount bigint not null,
+  discount_amount bigint not null default 0,
+  status text not null default 'created' check (status in ('created', 'captured')),
+  razorpay_payment_id text unique,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table if not exists public.payment_transactions (
+  id uuid primary key default gen_random_uuid(),
+  payment_order_id uuid not null references public.payment_orders(id),
+  user_id uuid not null,
+  razorpay_payment_id text not null unique,
+  amount bigint not null check (amount > 0),
+  currency text not null,
+  status text not null check (status = 'captured'),
+  method text,
+  razorpay_created_at timestamptz,
+  captured_at timestamptz not null default now(),
+  created_at timestamptz not null default now()
+);
+
+create table if not exists public.user_entitlements (
+  user_id uuid not null,
+  batch_id text not null,
+  plan_id text not null,
+  tier text not null,
+  payment_order_id uuid not null references public.payment_orders(id),
+  payment_transaction_id uuid not null references public.payment_transactions(id),
+  purchased_at timestamptz not null default now(),
+  valid_until timestamptz not null,
+  primary key (user_id, batch_id)
+);
+
+alter table public.user_entitlements add column if not exists valid_until timestamptz;
+update public.user_entitlements
+set valid_until = purchased_at + interval '3 months'
+where valid_until is null;
+alter table public.user_entitlements alter column valid_until set not null;
+
+create index if not exists payment_orders_user_created_idx
+  on public.payment_orders (user_id, created_at desc);
+create index if not exists payment_transactions_user_created_idx
+  on public.payment_transactions (user_id, created_at desc);
+create index if not exists user_entitlements_user_idx
+  on public.user_entitlements (user_id);
+
+alter table public.payment_orders enable row level security;
+alter table public.payment_transactions enable row level security;
+alter table public.user_entitlements enable row level security;
+revoke all on table public.payment_orders, public.payment_transactions, public.user_entitlements from anon, authenticated;
+grant all on table public.payment_orders, public.payment_transactions, public.user_entitlements to service_role;
