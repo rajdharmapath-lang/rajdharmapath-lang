@@ -27,14 +27,19 @@ export function AuthProvider({ children }) {
   }, []);
 
   const sendOtp = useCallback(async (phone, dialCode) => {
-    await authApi.sendOtp(phone, dialCode);
-    setPendingPhone({ phone, dialCode });
+    const res = await authApi.sendOtp(phone, dialCode);
+    setPendingPhone({ phone, dialCode, reqId: res.data.reqId });
   }, []);
 
   const verifyOtp = useCallback(
     async (code) => {
       if (!pendingPhone) throw new Error('No phone number pending verification');
-      const res = await authApi.verifyOtp(pendingPhone.phone, pendingPhone.dialCode, code);
+      const res = await authApi.verifyOtp(
+        pendingPhone.phone,
+        pendingPhone.dialCode,
+        code,
+        pendingPhone.reqId
+      );
       const { token, isNewUser, user: verifiedUser } = res.data;
       await AsyncStorage.setItem('authToken', token);
       setUser(verifiedUser || null);

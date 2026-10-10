@@ -9,8 +9,6 @@ import BottomNav from '../components/BottomNav';
 import VocabularyWordRow from '../components/VocabularyWordRow';
 import { getCategoryById } from '../data/vocabulary';
 import { useAuth } from '../context/AuthContext';
-import { usePayment } from '../context/PaymentContext';
-import { useAccessGate } from '../utils/paywall';
 import { pickRandom } from '../utils/shuffle';
 
 const WORDS_PER_SESSION = 5;
@@ -19,16 +17,11 @@ export default function SpeechWordListScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const { user } = useAuth();
-  const { hasAnyBatchAccess } = usePayment();
   const language = user?.language === 'tamil' ? 'tamil' : 'english';
 
   const categoryId = route?.params?.categoryId || 'greetings';
   const category = getCategoryById(categoryId);
   const hasWords = !!category?.words?.length;
-
-  // Same gate as the Categories list and Vocabulary's word list — entering
-  // this screen at all requires having purchased at least one batch.
-  useAccessGate(navigation, route, hasAnyBatchAccess());
 
   const handleStartPractice = () => {
     if (!hasWords) return;

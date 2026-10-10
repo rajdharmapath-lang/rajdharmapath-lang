@@ -58,19 +58,24 @@ export function PaymentProvider({ children }) {
     [purchasedBatches]
   );
 
+  const hasPrimeAccess = useCallback(
+    () => !loaded || hasAnyBatchAccess(),
+    [loaded, hasAnyBatchAccess]
+  );
+
   const hasBatchAccess = useCallback(
-    (batchId) => !!purchasedBatches[batchId],
-    [purchasedBatches]
+    (batchId) => hasPrimeAccess() || !!purchasedBatches[batchId],
+    [hasPrimeAccess, purchasedBatches]
   );
 
   const hasLiveAccess = useCallback(
-    (batchId) => purchasedBatches[batchId]?.tier === 'videos_live',
-    [purchasedBatches]
+    (batchId) => hasPrimeAccess() || purchasedBatches[batchId]?.tier === 'videos_live',
+    [hasPrimeAccess, purchasedBatches]
   );
 
   const hasAnyLiveAccess = useCallback(
-    () => Object.values(purchasedBatches).some((b) => b.tier === 'videos_live'),
-    [purchasedBatches]
+    () => hasPrimeAccess() || Object.values(purchasedBatches).some((b) => b.tier === 'videos_live'),
+    [hasPrimeAccess, purchasedBatches]
   );
 
   return (
@@ -81,6 +86,7 @@ export function PaymentProvider({ children }) {
         grantBatchAccess,
         clearPurchasedBatches,
         hasAnyBatchAccess,
+        hasPrimeAccess,
         hasBatchAccess,
         hasLiveAccess,
         hasAnyLiveAccess,

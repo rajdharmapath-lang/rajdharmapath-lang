@@ -1,0 +1,8948 @@
+[
+  {
+    "id": 1,
+    "character": "的",
+    "pinyin": "de",
+    "pinyinNumbered": "de0",
+    "english": "of; ~'s (possessive particle)",
+    "meanings": [
+      "of; ~'s (possessive particle)",
+      "(used after an attribute when it modifies a noun)",
+      "(used at the end of a declarative sentence for emphasis)",
+      "(used after a noun, verb or adjective to form a nominal expression, as in 皮革的[pi2 ge2 de5] \"one made of leather\" or 跑堂兒的|跑堂儿的[pao3 tang2 r5 de5] \"a waiter (literally, one who runs back and forth in a restaurant)\" or 新的[xin1 de5] \"new one\")",
+      "also pr. [di4] or [di5] in poetry and songs"
+    ],
+    "tamil": "உடைய (உடைமையைக் குறிக்கும் இடைச்சொல்)",
+    "tamilMeanings": [
+      "உடைய (உடைமையைக் குறிக்கும் இடைச்சொல்)"
+    ]
+  },
+  {
+    "id": 2,
+    "character": "一",
+    "pinyin": "yī",
+    "pinyinNumbered": "yi1",
+    "english": "one",
+    "meanings": [
+      "one",
+      "single",
+      "a (article)",
+      "as soon as",
+      "entire; whole; all; throughout"
+    ],
+    "tamil": "ஒன்று",
+    "tamilMeanings": [
+      "ஒன்று"
+    ]
+  },
+  {
+    "id": 3,
+    "character": "是",
+    "pinyin": "shì",
+    "pinyinNumbered": "shi4",
+    "english": "to be (followed by substantives only)",
+    "meanings": [
+      "to be (followed by substantives only)",
+      "correct; right; true",
+      "(respectful acknowledgement of a command) very well",
+      "(adverb for emphatic assertion)"
+    ],
+    "tamil": "இரு; ஆகும்",
+    "tamilMeanings": [
+      "இரு",
+      "ஆகும்"
+    ]
+  },
+  {
+    "id": 4,
+    "character": "不",
+    "pinyin": "bù",
+    "pinyinNumbered": "bu4",
+    "english": "no; not so",
+    "meanings": [
+      "no; not so",
+      "(bound form) not; un-"
+    ],
+    "tamil": "இல்லை; அல்ல",
+    "tamilMeanings": [
+      "இல்லை",
+      "அல்ல"
+    ]
+  },
+  {
+    "id": 5,
+    "character": "了",
+    "pinyin": "le",
+    "pinyinNumbered": "le5",
+    "english": "(completed action marker)",
+    "meanings": [
+      "(completed action marker)",
+      "(modal particle indicating change of state, situation now)",
+      "(modal particle intensifying preceding clause)"
+    ],
+    "tamil": "முடிந்த செயலைக் குறிக்கும் துணைச்சொல்",
+    "tamilMeanings": [
+      "முடிந்த செயலைக் குறிக்கும் துணைச்சொல்"
+    ]
+  },
+  {
+    "id": 6,
+    "character": "人",
+    "pinyin": "rén",
+    "pinyinNumbered": "ren2",
+    "english": "person; people",
+    "meanings": [
+      "person; people",
+      "CL:個|个[ge4],位[wei4]"
+    ],
+    "tamil": "மனிதன்; மக்கள்",
+    "tamilMeanings": [
+      "மனிதன்",
+      "மக்கள்"
+    ]
+  },
+  {
+    "id": 7,
+    "character": "在",
+    "pinyin": "zài",
+    "pinyinNumbered": "zai4",
+    "english": "to exist; to be alive",
+    "meanings": [
+      "to exist; to be alive",
+      "(of sb or sth) to be (located) at",
+      "(used before a verb to indicate an action in progress)"
+    ],
+    "tamil": "இல்; இருக்கிறது",
+    "tamilMeanings": [
+      "இல்",
+      "இருக்கிறது"
+    ]
+  },
+  {
+    "id": 8,
+    "character": "有",
+    "pinyin": "yǒu",
+    "pinyinNumbered": "you3",
+    "english": "to have; there is",
+    "meanings": [
+      "to have; there is",
+      "(bound form) having; with; -ful; -ed; -al (as in 有意[you3 yi4] intentional)"
+    ],
+    "tamil": "உண்டு; வைத்திருக்கிறது",
+    "tamilMeanings": [
+      "உண்டு",
+      "வைத்திருக்கிறது"
+    ]
+  },
+  {
+    "id": 9,
+    "character": "我",
+    "pinyin": "wǒ",
+    "pinyinNumbered": "wo3",
+    "english": "I; me; my",
+    "meanings": [
+      "I; me; my"
+    ],
+    "tamil": "நான்; எனது",
+    "tamilMeanings": [
+      "நான்",
+      "எனது"
+    ]
+  },
+  {
+    "id": 10,
+    "character": "他",
+    "pinyin": "tā",
+    "pinyinNumbered": "ta1",
+    "english": "(third-person singular) (since the early 20th century, usu. male) he; him; his",
+    "meanings": [
+      "(third-person singular) (since the early 20th century, usu. male) he; him; his",
+      "(bound form) other; another; some other (as in 他日[ta1 ri4] and 他人[ta1 ren2])"
+    ],
+    "tamil": "அவன்; அவர்",
+    "tamilMeanings": [
+      "அவன்",
+      "அவர்"
+    ]
+  },
+  {
+    "id": 11,
+    "character": "这",
+    "pinyin": "zhè",
+    "pinyinNumbered": "zhe4",
+    "english": "(pronoun) this; these",
+    "meanings": [
+      "(pronoun) this; these",
+      "(bound form) this; the (followed by a noun)",
+      "(bound form) this; these (followed by a classifier) (in this sense, commonly pr. [zhei4], esp. in Beijing)"
+    ],
+    "tamil": "இது; இந்த",
+    "tamilMeanings": [
+      "இது",
+      "இந்த"
+    ]
+  },
+  {
+    "id": 12,
+    "character": "为",
+    "pinyin": "wèi",
+    "pinyinNumbered": "wei4",
+    "english": "because of",
+    "meanings": [
+      "because of",
+      "for",
+      "to"
+    ],
+    "tamil": "காரணமாக; பொருட்டு",
+    "tamilMeanings": [
+      "காரணமாக",
+      "பொருட்டு"
+    ]
+  },
+  {
+    "id": 13,
+    "character": "之",
+    "pinyin": "zhī",
+    "pinyinNumbered": "zhi1",
+    "english": "(possessive particle, literary equivalent of 的[de5])",
+    "meanings": [
+      "(possessive particle, literary equivalent of 的[de5])",
+      "him",
+      "her",
+      "it"
+    ],
+    "tamil": "இன் (இலக்கிய உடைமை இடைச்சொல்)",
+    "tamilMeanings": [
+      "இன் (இலக்கிய உடைமை இடைச்சொல்)"
+    ]
+  },
+  {
+    "id": 14,
+    "character": "大",
+    "pinyin": "dà",
+    "pinyinNumbered": "da4",
+    "english": "big; large; great",
+    "meanings": [
+      "big; large; great",
+      "older (than another person)",
+      "eldest (as in 大姐[da4 jie3])",
+      "greatly; freely; fully",
+      "(dialect) father"
+    ],
+    "tamil": "பெரிய",
+    "tamilMeanings": [
+      "பெரிய"
+    ]
+  },
+  {
+    "id": 15,
+    "character": "来",
+    "pinyin": "lái",
+    "pinyinNumbered": "lai2",
+    "english": "to come",
+    "meanings": [
+      "to come",
+      "(used as a substitute for a more specific verb)",
+      "hither (directional complement for motion toward the speaker, as in 回來|回来[hui2 lai5])",
+      "ever since (as in 自古以來|自古以来[zi4 gu3 yi3 lai2])",
+      "for the past (amount of time)"
+    ],
+    "tamil": "வா",
+    "tamilMeanings": [
+      "வா"
+    ]
+  },
+  {
+    "id": 16,
+    "character": "以",
+    "pinyin": "yǐ",
+    "pinyinNumbered": "yi3",
+    "english": "to use",
+    "meanings": [
+      "to use",
+      "by means of",
+      "according to",
+      "in order to",
+      "because of"
+    ],
+    "tamil": "கொண்டு; பயன்படுத்தி",
+    "tamilMeanings": [
+      "கொண்டு",
+      "பயன்படுத்தி"
+    ]
+  },
+  {
+    "id": 17,
+    "character": "个",
+    "pinyin": "gè",
+    "pinyinNumbered": "ge4",
+    "english": "(classifier used before a noun that has no specific classifier)",
+    "meanings": [
+      "(classifier used before a noun that has no specific classifier)",
+      "(bound form) individual"
+    ],
+    "tamil": "ஒரு (பொது அளவுச்சொல்)",
+    "tamilMeanings": [
+      "ஒரு (பொது அளவுச்சொல்)"
+    ]
+  },
+  {
+    "id": 18,
+    "character": "中",
+    "pinyin": "zhōng",
+    "pinyinNumbered": "zhong1",
+    "english": "within; among; in",
+    "meanings": [
+      "within; among; in",
+      "middle; center",
+      "while (doing sth); during",
+      "(dialect) OK; all right"
+    ],
+    "tamil": "நடு; உள்ளே",
+    "tamilMeanings": [
+      "நடு",
+      "உள்ளே"
+    ]
+  },
+  {
+    "id": 19,
+    "character": "上",
+    "pinyin": "shàng",
+    "pinyinNumbered": "shang4",
+    "english": "(bound form) up; upper; above; previous",
+    "meanings": [
+      "(bound form) up; upper; above; previous",
+      "first (of multiple parts)",
+      "to climb; to get onto; to go up",
+      "to attend (class or university)",
+      "(directional complement) up"
+    ],
+    "tamil": "மேல்; முந்தைய",
+    "tamilMeanings": [
+      "மேல்",
+      "முந்தைய"
+    ]
+  },
+  {
+    "id": 20,
+    "character": "们",
+    "pinyin": "men",
+    "pinyinNumbered": "men0",
+    "english": "plural marker for pronouns, and nouns referring to individuals",
+    "meanings": [
+      "plural marker for pronouns, and nouns referring to individuals"
+    ],
+    "tamil": "பன்மை இடைச்சொல்",
+    "tamilMeanings": [
+      "பன்மை இடைச்சொல்"
+    ]
+  },
+  {
+    "id": 21,
+    "character": "到",
+    "pinyin": "dào",
+    "pinyinNumbered": "dao4",
+    "english": "to reach; to arrive",
+    "meanings": [
+      "to reach; to arrive",
+      "to leave for; to go to",
+      "to (a place); until (a time); up to (a point)",
+      "(verb complement indicating arriving at a place or reaching a point)",
+      "considerate; thoughtful; thorough"
+    ],
+    "tamil": "சென்றடை; வந்தடை",
+    "tamilMeanings": [
+      "சென்றடை",
+      "வந்தடை"
+    ]
+  },
+  {
+    "id": 22,
+    "character": "说",
+    "pinyin": "shuō",
+    "pinyinNumbered": "shuo1",
+    "english": "to speak; to talk; to say",
+    "meanings": [
+      "to speak; to talk; to say",
+      "to explain; to comment",
+      "to scold; to tell off",
+      "(bound form) theory; doctrine"
+    ],
+    "tamil": "பேசு; சொல்",
+    "tamilMeanings": [
+      "பேசு",
+      "சொல்"
+    ]
+  },
+  {
+    "id": 23,
+    "character": "国",
+    "pinyin": "guó",
+    "pinyinNumbered": "guo2",
+    "english": "country; nation; state",
+    "meanings": [
+      "country; nation; state",
+      "(bound form) national"
+    ],
+    "tamil": "நாடு",
+    "tamilMeanings": [
+      "நாடு"
+    ]
+  },
+  {
+    "id": 24,
+    "character": "和",
+    "pinyin": "hé",
+    "pinyinNumbered": "he2",
+    "english": "(joining two nouns) and; together with; with (Taiwan pr. [han4])",
+    "meanings": [
+      "(joining two nouns) and; together with; with (Taiwan pr. [han4])",
+      "(math.) sum",
+      "to make peace",
+      "(sports) to draw; to tie",
+      "(bound form) harmonious"
+    ],
+    "tamil": "மற்றும்; உடன்",
+    "tamilMeanings": [
+      "மற்றும்",
+      "உடன்"
+    ]
+  },
+  {
+    "id": 25,
+    "character": "地",
+    "pinyin": "dì",
+    "pinyinNumbered": "di4",
+    "english": "earth",
+    "meanings": [
+      "earth",
+      "ground",
+      "field",
+      "place",
+      "land"
+    ],
+    "tamil": "நிலம்; பூமி",
+    "tamilMeanings": [
+      "நிலம்",
+      "பூமி"
+    ]
+  },
+  {
+    "id": 26,
+    "character": "也",
+    "pinyin": "yě",
+    "pinyinNumbered": "ye3",
+    "english": "also; too; as well; (not ...) either",
+    "meanings": [
+      "also; too; as well; (not ...) either",
+      "(used after a verbal or nominal expression X to indicate that X is an extreme or unexpected case) even (X)",
+      "(literary) particle having functions similar to 啊[a5]"
+    ],
+    "tamil": "மேலும்; கூட",
+    "tamilMeanings": [
+      "மேலும்",
+      "கூட"
+    ]
+  },
+  {
+    "id": 27,
+    "character": "子",
+    "pinyin": "zǐ",
+    "pinyinNumbered": "zi3",
+    "english": "son",
+    "meanings": [
+      "son",
+      "child",
+      "seed",
+      "egg",
+      "small thing"
+    ],
+    "tamil": "மகன்; குழந்தை",
+    "tamilMeanings": [
+      "மகன்",
+      "குழந்தை"
+    ]
+  },
+  {
+    "id": 28,
+    "character": "时",
+    "pinyin": "shí",
+    "pinyinNumbered": "shi2",
+    "english": "o'clock",
+    "meanings": [
+      "o'clock",
+      "time",
+      "when",
+      "hour",
+      "season"
+    ],
+    "tamil": "நேரம்; மணி",
+    "tamilMeanings": [
+      "நேரம்",
+      "மணி"
+    ]
+  },
+  {
+    "id": 29,
+    "character": "道",
+    "pinyin": "dào",
+    "pinyinNumbered": "dao4",
+    "english": "road; path (CL:條|条[tiao2],股[gu3])",
+    "meanings": [
+      "road; path (CL:條|条[tiao2],股[gu3])",
+      "(bound form) way; reason; principle",
+      "(bound form) a skill; an art; a specialization",
+      "(Daoism) the Way; the Dao",
+      "to say (introducing a direct quotation, as in a novel)"
+    ],
+    "tamil": "சாலை; வழி",
+    "tamilMeanings": [
+      "சாலை",
+      "வழி"
+    ]
+  },
+  {
+    "id": 30,
+    "character": "出",
+    "pinyin": "chū",
+    "pinyinNumbered": "chu1",
+    "english": "to go out; to come out",
+    "meanings": [
+      "to go out; to come out",
+      "to arise; to occur",
+      "to produce; to yield",
+      "to go beyond; to exceed",
+      "(used after a verb to indicate an outward direction or a positive result)"
+    ],
+    "tamil": "வெளியே செல்; வெளிவா",
+    "tamilMeanings": [
+      "வெளியே செல்",
+      "வெளிவா"
+    ]
+  },
+  {
+    "id": 31,
+    "character": "而",
+    "pinyin": "ér",
+    "pinyinNumbered": "er2",
+    "english": "and",
+    "meanings": [
+      "and",
+      "as well as",
+      "and so",
+      "but (not)",
+      "yet (not)"
+    ],
+    "tamil": "மற்றும்; ஆனால்",
+    "tamilMeanings": [
+      "மற்றும்",
+      "ஆனால்"
+    ]
+  },
+  {
+    "id": 32,
+    "character": "要",
+    "pinyin": "yào",
+    "pinyinNumbered": "yao4",
+    "english": "to want; to need; to ask for",
+    "meanings": [
+      "to want; to need; to ask for",
+      "will; shall; about to",
+      "need to; should",
+      "if (same as 要是[yao4 shi5])",
+      "(bound form) important"
+    ],
+    "tamil": "வேண்டும்; தேவை",
+    "tamilMeanings": [
+      "வேண்டும்",
+      "தேவை"
+    ]
+  },
+  {
+    "id": 33,
+    "character": "于",
+    "pinyin": "yú",
+    "pinyinNumbered": "yu2",
+    "english": "(of time or place) in; at; on",
+    "meanings": [
+      "(of time or place) in; at; on",
+      "(indicating any indirect relation) to; toward; vis-à-vis; with regard to; for",
+      "(indicating a source) from; out of",
+      "(used in comparison) than",
+      "(used in the passive voice) by"
+    ],
+    "tamil": "இல்; இடத்தில் (இலக்கியம்)",
+    "tamilMeanings": [
+      "இல்",
+      "இடத்தில் (இலக்கியம்)"
+    ]
+  },
+  {
+    "id": 34,
+    "character": "就",
+    "pinyin": "jiù",
+    "pinyinNumbered": "jiu4",
+    "english": "(after a suppositional clause) in that case; then",
+    "meanings": [
+      "(after a suppositional clause) in that case; then",
+      "(after a clause of action) as soon as; immediately after",
+      "(same as 就是[jiu4 shi4]) merely; nothing else but; simply; just; precisely; exactly",
+      "only; as little as",
+      "as much as; as many as"
+    ],
+    "tamil": "உடனே; அப்படியானால்",
+    "tamilMeanings": [
+      "உடனே",
+      "அப்படியானால்"
+    ]
+  },
+  {
+    "id": 35,
+    "character": "下",
+    "pinyin": "xià",
+    "pinyinNumbered": "xia4",
+    "english": "down",
+    "meanings": [
+      "down",
+      "downwards",
+      "below",
+      "lower",
+      "later"
+    ],
+    "tamil": "கீழ்; இறங்கு",
+    "tamilMeanings": [
+      "கீழ்",
+      "இறங்கு"
+    ]
+  },
+  {
+    "id": 36,
+    "character": "得",
+    "pinyin": "dé",
+    "pinyinNumbered": "de2",
+    "english": "to obtain",
+    "meanings": [
+      "to obtain",
+      "to get",
+      "to gain",
+      "to catch (a disease)",
+      "proper"
+    ],
+    "tamil": "பெறு",
+    "tamilMeanings": [
+      "பெறு"
+    ]
+  },
+  {
+    "id": 37,
+    "character": "可",
+    "pinyin": "kě",
+    "pinyinNumbered": "ke3",
+    "english": "(prefix) can; may; able to; -able",
+    "meanings": [
+      "(prefix) can; may; able to; -able",
+      "to approve; to permit",
+      "to suit",
+      "(particle used for emphasis) certainly; very",
+      "but; however"
+    ],
+    "tamil": "முடியும்; இயலும்",
+    "tamilMeanings": [
+      "முடியும்",
+      "இயலும்"
+    ]
+  },
+  {
+    "id": 38,
+    "character": "你",
+    "pinyin": "nǐ",
+    "pinyinNumbered": "ni3",
+    "english": "you (informal, as opposed to courteous 您[nin2])",
+    "meanings": [
+      "you (informal, as opposed to courteous 您[nin2])"
+    ],
+    "tamil": "நீ",
+    "tamilMeanings": [
+      "நீ"
+    ]
+  },
+  {
+    "id": 39,
+    "character": "年",
+    "pinyin": "nián",
+    "pinyinNumbered": "nian2",
+    "english": "year",
+    "meanings": [
+      "year",
+      "CL:個|个[ge4]"
+    ],
+    "tamil": "ஆண்டு",
+    "tamilMeanings": [
+      "ஆண்டு"
+    ]
+  },
+  {
+    "id": 40,
+    "character": "生",
+    "pinyin": "shēng",
+    "pinyinNumbered": "sheng1",
+    "english": "to be born",
+    "meanings": [
+      "to be born",
+      "to give birth",
+      "life",
+      "to grow",
+      "raw"
+    ],
+    "tamil": "பிற; வாழ்",
+    "tamilMeanings": [
+      "பிற",
+      "வாழ்"
+    ]
+  },
+  {
+    "id": 41,
+    "character": "自",
+    "pinyin": "zì",
+    "pinyinNumbered": "zi4",
+    "english": "(bound form) self; oneself",
+    "meanings": [
+      "(bound form) self; oneself",
+      "from; since",
+      "naturally; as a matter of course"
+    ],
+    "tamil": "தன்; சுயம்",
+    "tamilMeanings": [
+      "தன்",
+      "சுயம்"
+    ]
+  },
+  {
+    "id": 42,
+    "character": "会",
+    "pinyin": "huì",
+    "pinyinNumbered": "hui4",
+    "english": "can; to have the skill; to know how to",
+    "meanings": [
+      "can; to have the skill; to know how to",
+      "to be likely to; to be sure to",
+      "to meet; to get together",
+      "meeting; gathering",
+      "(suffix) union; group; association"
+    ],
+    "tamil": "தெரியும்; கூடும்",
+    "tamilMeanings": [
+      "தெரியும்",
+      "கூடும்"
+    ]
+  },
+  {
+    "id": 43,
+    "character": "那",
+    "pinyin": "nà",
+    "pinyinNumbered": "na4",
+    "english": "(specifier) that; the; those (colloquial pr. [nei4])",
+    "meanings": [
+      "(specifier) that; the; those (colloquial pr. [nei4])",
+      "(pronoun) that (referring to persons, things or situations)",
+      "then (in that case)"
+    ],
+    "tamil": "அது; அந்த",
+    "tamilMeanings": [
+      "அது",
+      "அந்த"
+    ]
+  },
+  {
+    "id": 44,
+    "character": "后",
+    "pinyin": "hòu",
+    "pinyinNumbered": "hou4",
+    "english": "back",
+    "meanings": [
+      "back",
+      "behind",
+      "rear",
+      "afterwards",
+      "after"
+    ],
+    "tamil": "பின்; பிறகு",
+    "tamilMeanings": [
+      "பின்",
+      "பிறகு"
+    ]
+  },
+  {
+    "id": 45,
+    "character": "能",
+    "pinyin": "néng",
+    "pinyinNumbered": "neng2",
+    "english": "can",
+    "meanings": [
+      "can",
+      "to be able to",
+      "might possibly",
+      "ability",
+      "(physics) energy"
+    ],
+    "tamil": "முடியும்; திறன்",
+    "tamilMeanings": [
+      "முடியும்",
+      "திறன்"
+    ]
+  },
+  {
+    "id": 46,
+    "character": "对",
+    "pinyin": "duì",
+    "pinyinNumbered": "dui4",
+    "english": "right; correct",
+    "meanings": [
+      "right; correct",
+      "towards; at; for",
+      "concerning; regarding",
+      "to treat (sb a certain way)",
+      "to face"
+    ],
+    "tamil": "சரி; நோக்கி",
+    "tamilMeanings": [
+      "சரி",
+      "நோக்கி"
+    ]
+  },
+  {
+    "id": 47,
+    "character": "着",
+    "pinyin": "zhe",
+    "pinyinNumbered": "zhe0",
+    "english": "aspect particle indicating action in progress or ongoing state",
+    "meanings": [
+      "aspect particle indicating action in progress or ongoing state"
+    ],
+    "tamil": "நடப்புச் செயலைக் குறிக்கும் துணைச்சொல்",
+    "tamilMeanings": [
+      "நடப்புச் செயலைக் குறிக்கும் துணைச்சொல்"
+    ]
+  },
+  {
+    "id": 48,
+    "character": "事",
+    "pinyin": "shì",
+    "pinyinNumbered": "shi4",
+    "english": "matter",
+    "meanings": [
+      "matter",
+      "thing",
+      "item",
+      "work",
+      "affair"
+    ],
+    "tamil": "விஷயம்; காரியம்",
+    "tamilMeanings": [
+      "விஷயம்",
+      "காரியம்"
+    ]
+  },
+  {
+    "id": 49,
+    "character": "其",
+    "pinyin": "qí",
+    "pinyinNumbered": "qi2",
+    "english": "his",
+    "meanings": [
+      "his",
+      "her",
+      "its",
+      "their",
+      "that"
+    ],
+    "tamil": "அவனது; அதன்; அவர்களது",
+    "tamilMeanings": [
+      "அவனது",
+      "அதன்",
+      "அவர்களது"
+    ]
+  },
+  {
+    "id": 50,
+    "character": "里",
+    "pinyin": "lǐ",
+    "pinyinNumbered": "li3",
+    "english": "lining",
+    "meanings": [
+      "lining",
+      "interior",
+      "inside",
+      "internal"
+    ],
+    "tamil": "உள்ளே; உட்புறம்",
+    "tamilMeanings": [
+      "உள்ளே",
+      "உட்புறம்"
+    ]
+  },
+  {
+    "id": 51,
+    "character": "所",
+    "pinyin": "suǒ",
+    "pinyinNumbered": "suo3",
+    "english": "actually",
+    "meanings": [
+      "actually",
+      "place",
+      "that which",
+      "particle introducing a relative clause or passive",
+      "CL:個|个[ge4]"
+    ],
+    "tamil": "இடம்; பெயர்ச்சொல்லாக்கும் இடைச்சொல்",
+    "tamilMeanings": [
+      "இடம்",
+      "பெயர்ச்சொல்லாக்கும் இடைச்சொல்"
+    ]
+  },
+  {
+    "id": 52,
+    "character": "去",
+    "pinyin": "qù",
+    "pinyinNumbered": "qu4",
+    "english": "to go",
+    "meanings": [
+      "to go",
+      "to go to (a place)",
+      "(of a time etc) last",
+      "just passed",
+      "to send"
+    ],
+    "tamil": "போ",
+    "tamilMeanings": [
+      "போ"
+    ]
+  },
+  {
+    "id": 53,
+    "character": "行",
+    "pinyin": "xíng",
+    "pinyinNumbered": "xing2",
+    "english": "(bound form) to walk; to go; to travel",
+    "meanings": [
+      "(bound form) to walk; to go; to travel",
+      "(literary) trip; journey; visit",
+      "(bound form) temporary; makeshift",
+      "(bound form) current; in circulation",
+      "(bound form) to do; to perform"
+    ],
+    "tamil": "நட; செல்; சரி",
+    "tamilMeanings": [
+      "நட",
+      "செல்",
+      "சரி"
+    ]
+  },
+  {
+    "id": 54,
+    "character": "过",
+    "pinyin": "guò",
+    "pinyinNumbered": "guo4",
+    "english": "to cross",
+    "meanings": [
+      "to cross",
+      "to go over",
+      "to pass (time)",
+      "to celebrate (a holiday)",
+      "to live"
+    ],
+    "tamil": "கடந்து செல்; கழி",
+    "tamilMeanings": [
+      "கடந்து செல்",
+      "கழி"
+    ]
+  },
+  {
+    "id": 55,
+    "character": "家",
+    "pinyin": "jiā",
+    "pinyinNumbered": "jia1",
+    "english": "home",
+    "meanings": [
+      "home",
+      "family",
+      "(polite) my (sister, uncle etc)",
+      "refers to the philosophical schools of pre-Han China",
+      "noun suffix for a specialist in some activity, such as a musician or revolutionary, corresponding to English -ist, -er, -ary or -ian"
+    ],
+    "tamil": "வீடு; குடும்பம்",
+    "tamilMeanings": [
+      "வீடு",
+      "குடும்பம்"
+    ]
+  },
+  {
+    "id": 56,
+    "character": "十",
+    "pinyin": "shí",
+    "pinyinNumbered": "shi2",
+    "english": "ten",
+    "meanings": [
+      "ten",
+      "10"
+    ],
+    "tamil": "பத்து",
+    "tamilMeanings": [
+      "பத்து"
+    ]
+  },
+  {
+    "id": 57,
+    "character": "用",
+    "pinyin": "yòng",
+    "pinyinNumbered": "yong4",
+    "english": "to use; to make use of; to employ",
+    "meanings": [
+      "to use; to make use of; to employ",
+      "(coverb) with; using",
+      "to need; to have to (usu. used in the negative or in questions)",
+      "usefulness; utility",
+      "(bound form) expense; outlay"
+    ],
+    "tamil": "பயன்படுத்து",
+    "tamilMeanings": [
+      "பயன்படுத்து"
+    ]
+  },
+  {
+    "id": 58,
+    "character": "发",
+    "pinyin": "fā",
+    "pinyinNumbered": "fa1",
+    "english": "to send out",
+    "meanings": [
+      "to send out",
+      "to show (one's feeling)",
+      "to issue",
+      "to develop",
+      "to make a bundle of money"
+    ],
+    "tamil": "அனுப்பு; வெளிப்படுத்து",
+    "tamilMeanings": [
+      "அனுப்பு",
+      "வெளிப்படுத்து"
+    ]
+  },
+  {
+    "id": 59,
+    "character": "天",
+    "pinyin": "tiān",
+    "pinyinNumbered": "tian1",
+    "english": "day",
+    "meanings": [
+      "day",
+      "sky",
+      "heaven"
+    ],
+    "tamil": "வானம்; நாள்",
+    "tamilMeanings": [
+      "வானம்",
+      "நாள்"
+    ]
+  },
+  {
+    "id": 60,
+    "character": "如",
+    "pinyin": "rú",
+    "pinyinNumbered": "ru2",
+    "english": "as",
+    "meanings": [
+      "as",
+      "as if",
+      "such as"
+    ],
+    "tamil": "போல்; போன்ற",
+    "tamilMeanings": [
+      "போல்",
+      "போன்ற"
+    ]
+  },
+  {
+    "id": 61,
+    "character": "然",
+    "pinyin": "rán",
+    "pinyinNumbered": "ran2",
+    "english": "correct",
+    "meanings": [
+      "correct",
+      "right",
+      "so",
+      "thus",
+      "like this"
+    ],
+    "tamil": "அப்படி; ஆம்",
+    "tamilMeanings": [
+      "அப்படி",
+      "ஆம்"
+    ]
+  },
+  {
+    "id": 62,
+    "character": "作",
+    "pinyin": "zuò",
+    "pinyinNumbered": "zuo4",
+    "english": "to do; to engage in",
+    "meanings": [
+      "to do; to engage in",
+      "to write; to compose",
+      "to pretend; to feign",
+      "to regard as; to consider to be",
+      "to be; to act the part of"
+    ],
+    "tamil": "செய்; இயற்று",
+    "tamilMeanings": [
+      "செய்",
+      "இயற்று"
+    ]
+  },
+  {
+    "id": 63,
+    "character": "方",
+    "pinyin": "fāng",
+    "pinyinNumbered": "fang1",
+    "english": "square",
+    "meanings": [
+      "square",
+      "power or involution (math.)",
+      "upright",
+      "honest",
+      "fair and square"
+    ],
+    "tamil": "சதுரம்; திசை; முறை",
+    "tamilMeanings": [
+      "சதுரம்",
+      "திசை",
+      "முறை"
+    ]
+  },
+  {
+    "id": 64,
+    "character": "成",
+    "pinyin": "chéng",
+    "pinyinNumbered": "cheng2",
+    "english": "to succeed",
+    "meanings": [
+      "to succeed",
+      "to finish",
+      "to complete",
+      "to accomplish",
+      "to become"
+    ],
+    "tamil": "ஆகு; நிறைவேற்று",
+    "tamilMeanings": [
+      "ஆகு",
+      "நிறைவேற்று"
+    ]
+  },
+  {
+    "id": 65,
+    "character": "者",
+    "pinyin": "zhě",
+    "pinyinNumbered": "zhe3",
+    "english": "(after a verb or adjective) one who (is) ...",
+    "meanings": [
+      "(after a verb or adjective) one who (is) ...",
+      "(after a noun) person involved in ...",
+      "-er",
+      "-ist",
+      "(used after a number or 後|后[hou4] or 前[qian2] to refer to sth mentioned previously)"
+    ],
+    "tamil": "ஆள் (செய்பவர்)",
+    "tamilMeanings": [
+      "ஆள் (செய்பவர்)"
+    ]
+  },
+  {
+    "id": 66,
+    "character": "多",
+    "pinyin": "duō",
+    "pinyinNumbered": "duo1",
+    "english": "many; much; more; a lot of",
+    "meanings": [
+      "many; much; more; a lot of",
+      "too many; in excess",
+      "(after a numeral) ... odd",
+      "how (to what extent) (Taiwan pr. [duo2])",
+      "(bound form) multi-; poly-"
+    ],
+    "tamil": "அதிகம்; பல",
+    "tamilMeanings": [
+      "அதிகம்",
+      "பல"
+    ]
+  },
+  {
+    "id": 67,
+    "character": "日",
+    "pinyin": "rì",
+    "pinyinNumbered": "ri4",
+    "english": "sun",
+    "meanings": [
+      "sun",
+      "day",
+      "date, day of the month"
+    ],
+    "tamil": "சூரியன்; நாள்",
+    "tamilMeanings": [
+      "சூரியன்",
+      "நாள்"
+    ]
+  },
+  {
+    "id": 68,
+    "character": "都",
+    "pinyin": "dōu",
+    "pinyinNumbered": "dou1",
+    "english": "all; both; entirely",
+    "meanings": [
+      "all; both; entirely",
+      "(used for emphasis) even",
+      "already",
+      "(not) at all"
+    ],
+    "tamil": "எல்லாம்; அனைத்தும்",
+    "tamilMeanings": [
+      "எல்லாம்",
+      "அனைத்தும்"
+    ]
+  },
+  {
+    "id": 69,
+    "character": "三",
+    "pinyin": "sān",
+    "pinyinNumbered": "san1",
+    "english": "three",
+    "meanings": [
+      "three",
+      "3"
+    ],
+    "tamil": "மூன்று",
+    "tamilMeanings": [
+      "மூன்று"
+    ]
+  },
+  {
+    "id": 70,
+    "character": "小",
+    "pinyin": "xiǎo",
+    "pinyinNumbered": "xiao3",
+    "english": "small",
+    "meanings": [
+      "small",
+      "tiny",
+      "few",
+      "young"
+    ],
+    "tamil": "சிறிய",
+    "tamilMeanings": [
+      "சிறிய"
+    ]
+  },
+  {
+    "id": 71,
+    "character": "军",
+    "pinyin": "jūn",
+    "pinyinNumbered": "jun1",
+    "english": "(bound form) army",
+    "meanings": [
+      "(bound form) army",
+      "military"
+    ],
+    "tamil": "இராணுவம்",
+    "tamilMeanings": [
+      "இராணுவம்"
+    ]
+  },
+  {
+    "id": 72,
+    "character": "二",
+    "pinyin": "èr",
+    "pinyinNumbered": "er4",
+    "english": "two",
+    "meanings": [
+      "two",
+      "2",
+      "(Beijing dialect) stupid"
+    ],
+    "tamil": "இரண்டு",
+    "tamilMeanings": [
+      "இரண்டு"
+    ]
+  },
+  {
+    "id": 73,
+    "character": "无",
+    "pinyin": "wú",
+    "pinyinNumbered": "wu2",
+    "english": "not to have",
+    "meanings": [
+      "not to have",
+      "no",
+      "none",
+      "not",
+      "to lack"
+    ],
+    "tamil": "இல்லை; இன்றி",
+    "tamilMeanings": [
+      "இல்லை",
+      "இன்றி"
+    ]
+  },
+  {
+    "id": 74,
+    "character": "同",
+    "pinyin": "tóng",
+    "pinyinNumbered": "tong2",
+    "english": "like",
+    "meanings": [
+      "like",
+      "same",
+      "similar",
+      "together",
+      "alike"
+    ],
+    "tamil": "ஒன்றாக; ஒரே",
+    "tamilMeanings": [
+      "ஒன்றாக",
+      "ஒரே"
+    ]
+  },
+  {
+    "id": 75,
+    "character": "么",
+    "pinyin": "me",
+    "pinyinNumbered": "me0",
+    "english": "suffix, used to form interrogative 什麼|什么[shen2 me5], what?, indefinite 這麼|这么[zhe4 me5] thus, etc",
+    "meanings": [
+      "suffix, used to form interrogative 什麼|什么[shen2 me5], what?, indefinite 這麼|这么[zhe4 me5] thus, etc"
+    ],
+    "tamil": "கேள்விச் சொற்களில் வரும் இறுதி எழுத்து",
+    "tamilMeanings": [
+      "கேள்விச் சொற்களில் வரும் இறுதி எழுத்து"
+    ]
+  },
+  {
+    "id": 76,
+    "character": "经",
+    "pinyin": "jīng",
+    "pinyinNumbered": "jing1",
+    "english": "classics",
+    "meanings": [
+      "classics",
+      "sacred book",
+      "scripture",
+      "to pass through",
+      "to undergo"
+    ],
+    "tamil": "கடந்து செல்; நூல்; அனுபவி",
+    "tamilMeanings": [
+      "கடந்து செல்",
+      "நூல்",
+      "அனுபவி"
+    ]
+  },
+  {
+    "id": 77,
+    "character": "法",
+    "pinyin": "fǎ",
+    "pinyinNumbered": "fa3",
+    "english": "law",
+    "meanings": [
+      "law",
+      "method",
+      "way",
+      "to emulate",
+      "(Buddhism) dharma"
+    ],
+    "tamil": "சட்டம்; முறை",
+    "tamilMeanings": [
+      "சட்டம்",
+      "முறை"
+    ]
+  },
+  {
+    "id": 78,
+    "character": "当",
+    "pinyin": "dāng",
+    "pinyinNumbered": "dang1",
+    "english": "to be",
+    "meanings": [
+      "to be",
+      "to act as",
+      "manage",
+      "withstand",
+      "when"
+    ],
+    "tamil": "ஆக; அந்த நேரத்தில்",
+    "tamilMeanings": [
+      "ஆக",
+      "அந்த நேரத்தில்"
+    ]
+  },
+  {
+    "id": 79,
+    "character": "起",
+    "pinyin": "qǐ",
+    "pinyinNumbered": "qi3",
+    "english": "to rise",
+    "meanings": [
+      "to rise",
+      "to raise",
+      "to get up",
+      "to set out",
+      "to start"
+    ],
+    "tamil": "எழு; தொடங்கு",
+    "tamilMeanings": [
+      "எழு",
+      "தொடங்கு"
+    ]
+  },
+  {
+    "id": 80,
+    "character": "与",
+    "pinyin": "yǔ",
+    "pinyinNumbered": "yu3",
+    "english": "and",
+    "meanings": [
+      "and",
+      "to give",
+      "together with"
+    ],
+    "tamil": "மற்றும்; உடன்",
+    "tamilMeanings": [
+      "மற்றும்",
+      "உடன்"
+    ]
+  },
+  {
+    "id": 81,
+    "character": "好",
+    "pinyin": "hǎo",
+    "pinyinNumbered": "hao3",
+    "english": "good",
+    "meanings": [
+      "good",
+      "appropriate; proper",
+      "all right!",
+      "(before a verb) easy to",
+      "(before a verb) good to"
+    ],
+    "tamil": "நல்ல",
+    "tamilMeanings": [
+      "நல்ல"
+    ]
+  },
+  {
+    "id": 82,
+    "character": "看",
+    "pinyin": "kàn",
+    "pinyinNumbered": "kan4",
+    "english": "to see; to look at",
+    "meanings": [
+      "to see; to look at",
+      "to read",
+      "to watch",
+      "to visit; to call on",
+      "to consider; to regard as"
+    ],
+    "tamil": "பார்",
+    "tamilMeanings": [
+      "பார்"
+    ]
+  },
+  {
+    "id": 83,
+    "character": "学",
+    "pinyin": "xué",
+    "pinyinNumbered": "xue2",
+    "english": "to learn",
+    "meanings": [
+      "to learn",
+      "to study",
+      "to imitate",
+      "science",
+      "-ology"
+    ],
+    "tamil": "கற்றுக்கொள்; படி",
+    "tamilMeanings": [
+      "கற்றுக்கொள்",
+      "படி"
+    ]
+  },
+  {
+    "id": 84,
+    "character": "进",
+    "pinyin": "jìn",
+    "pinyinNumbered": "jin4",
+    "english": "to go forward",
+    "meanings": [
+      "to go forward",
+      "to advance",
+      "to go in",
+      "to enter",
+      "to put in"
+    ],
+    "tamil": "உள்ளே செல்; முன்னேறு",
+    "tamilMeanings": [
+      "உள்ளே செல்",
+      "முன்னேறு"
+    ]
+  },
+  {
+    "id": 85,
+    "character": "种",
+    "pinyin": "zhǒng",
+    "pinyinNumbered": "zhong3",
+    "english": "seed",
+    "meanings": [
+      "seed",
+      "species",
+      "kind",
+      "type"
+    ],
+    "tamil": "விதை; வகை",
+    "tamilMeanings": [
+      "விதை",
+      "வகை"
+    ]
+  },
+  {
+    "id": 86,
+    "character": "将",
+    "pinyin": "jiāng",
+    "pinyinNumbered": "jiang1",
+    "english": "will",
+    "meanings": [
+      "will",
+      "shall",
+      "to use",
+      "to take",
+      "to checkmate"
+    ],
+    "tamil": "விரைவில் (எதிர்காலம்); கொண்டு",
+    "tamilMeanings": [
+      "விரைவில் (எதிர்காலம்)",
+      "கொண்டு"
+    ]
+  },
+  {
+    "id": 87,
+    "character": "还",
+    "pinyin": "hái",
+    "pinyinNumbered": "hai2",
+    "english": "still",
+    "meanings": [
+      "still",
+      "still in progress",
+      "still more",
+      "yet",
+      "even more"
+    ],
+    "tamil": "இன்னும்; திருப்பிக்கொடு",
+    "tamilMeanings": [
+      "இன்னும்",
+      "திருப்பிக்கொடு"
+    ]
+  },
+  {
+    "id": 88,
+    "character": "分",
+    "pinyin": "fēn",
+    "pinyinNumbered": "fen1",
+    "english": "to divide; to separate",
+    "meanings": [
+      "to divide; to separate",
+      "to distribute; to allocate",
+      "to distinguish (good and bad)",
+      "(bound form) branch of (an organization); sub- (as in 分局[fen1 ju2])",
+      "fraction"
+    ],
+    "tamil": "பிரி; பங்கு; நிமிடம்",
+    "tamilMeanings": [
+      "பிரி",
+      "பங்கு",
+      "நிமிடம்"
+    ]
+  },
+  {
+    "id": 89,
+    "character": "此",
+    "pinyin": "cǐ",
+    "pinyinNumbered": "ci3",
+    "english": "this; these",
+    "meanings": [
+      "this; these"
+    ],
+    "tamil": "இது; இந்த",
+    "tamilMeanings": [
+      "இது",
+      "இந்த"
+    ]
+  },
+  {
+    "id": 90,
+    "character": "心",
+    "pinyin": "xīn",
+    "pinyinNumbered": "xin1",
+    "english": "heart",
+    "meanings": [
+      "heart",
+      "mind",
+      "intention",
+      "center",
+      "core"
+    ],
+    "tamil": "இதயம்; மனம்",
+    "tamilMeanings": [
+      "இதயம்",
+      "மனம்"
+    ]
+  },
+  {
+    "id": 91,
+    "character": "前",
+    "pinyin": "qián",
+    "pinyinNumbered": "qian2",
+    "english": "front",
+    "meanings": [
+      "front",
+      "forward",
+      "ahead",
+      "first",
+      "top (followed by a number)"
+    ],
+    "tamil": "முன்; முந்தைய",
+    "tamilMeanings": [
+      "முன்",
+      "முந்தைய"
+    ]
+  },
+  {
+    "id": 92,
+    "character": "面",
+    "pinyin": "miàn",
+    "pinyinNumbered": "mian4",
+    "english": "face",
+    "meanings": [
+      "face",
+      "side",
+      "surface",
+      "aspect",
+      "top"
+    ],
+    "tamil": "முகம்; பக்கம்",
+    "tamilMeanings": [
+      "முகம்",
+      "பக்கம்"
+    ]
+  },
+  {
+    "id": 93,
+    "character": "又",
+    "pinyin": "yòu",
+    "pinyinNumbered": "you4",
+    "english": "(once) again",
+    "meanings": [
+      "(once) again",
+      "also",
+      "both... and...",
+      "and yet",
+      "(used for emphasis) anyway"
+    ],
+    "tamil": "மீண்டும்; மேலும்",
+    "tamilMeanings": [
+      "மீண்டும்",
+      "மேலும்"
+    ]
+  },
+  {
+    "id": 94,
+    "character": "定",
+    "pinyin": "dìng",
+    "pinyinNumbered": "ding4",
+    "english": "to fix; to set; to make definite",
+    "meanings": [
+      "to fix; to set; to make definite",
+      "to subscribe to (a newspaper etc); to book (tickets etc); to order (goods etc)",
+      "to congeal; to coagulate",
+      "(literary) definitely"
+    ],
+    "tamil": "முடிவுசெய்; நிலையான",
+    "tamilMeanings": [
+      "முடிவுசெய்",
+      "நிலையான"
+    ]
+  },
+  {
+    "id": 95,
+    "character": "见",
+    "pinyin": "jiàn",
+    "pinyinNumbered": "jian4",
+    "english": "to see",
+    "meanings": [
+      "to see",
+      "to meet",
+      "to appear (to be sth)",
+      "to interview",
+      "opinion"
+    ],
+    "tamil": "காண்; சந்தி",
+    "tamilMeanings": [
+      "காண்",
+      "சந்தி"
+    ]
+  },
+  {
+    "id": 96,
+    "character": "只",
+    "pinyin": "zhī",
+    "pinyinNumbered": "zhi1",
+    "english": "grain that has begun to ripen",
+    "meanings": [
+      "grain that has begun to ripen"
+    ],
+    "tamil": "மட்டும்; விலங்குகளுக்கான அளவுச்சொல்",
+    "tamilMeanings": [
+      "மட்டும்",
+      "விலங்குகளுக்கான அளவுச்சொல்"
+    ]
+  },
+  {
+    "id": 97,
+    "character": "主",
+    "pinyin": "zhǔ",
+    "pinyinNumbered": "zhu3",
+    "english": "owner",
+    "meanings": [
+      "owner",
+      "master",
+      "host",
+      "individual or party concerned",
+      "God"
+    ],
+    "tamil": "உரிமையாளர்; தலைவர்",
+    "tamilMeanings": [
+      "உரிமையாளர்",
+      "தலைவர்"
+    ]
+  },
+  {
+    "id": 98,
+    "character": "没",
+    "pinyin": "méi",
+    "pinyinNumbered": "mei2",
+    "english": "(negative prefix for verbs) have not; not",
+    "meanings": [
+      "(negative prefix for verbs) have not; not"
+    ],
+    "tamil": "இல்லை (இல்லாமை)",
+    "tamilMeanings": [
+      "இல்லை (இல்லாமை)"
+    ]
+  },
+  {
+    "id": 99,
+    "character": "公",
+    "pinyin": "gōng",
+    "pinyinNumbered": "gong1",
+    "english": "public",
+    "meanings": [
+      "public",
+      "collectively owned",
+      "common",
+      "international (e.g. high seas, metric system, calendar)",
+      "make public"
+    ],
+    "tamil": "பொது; ஆண்",
+    "tamilMeanings": [
+      "பொது",
+      "ஆண்"
+    ]
+  },
+  {
+    "id": 100,
+    "character": "从",
+    "pinyin": "cóng",
+    "pinyinNumbered": "cong2",
+    "english": "from; through; via",
+    "meanings": [
+      "from; through; via",
+      "(bound form) to follow",
+      "(bound form) to obey",
+      "(bound form) to engage in (an activity)",
+      "(used before a negative) ever"
+    ],
+    "tamil": "இருந்து",
+    "tamilMeanings": [
+      "இருந்து"
+    ]
+  },
+  {
+    "id": 101,
+    "character": "问",
+    "pinyin": "wèn",
+    "pinyinNumbered": "wen4",
+    "english": "to ask; to inquire",
+    "meanings": [
+      "to ask; to inquire"
+    ],
+    "tamil": "கேள்",
+    "tamilMeanings": [
+      "கேள்"
+    ]
+  },
+  {
+    "id": 102,
+    "character": "明",
+    "pinyin": "míng",
+    "pinyinNumbered": "ming2",
+    "english": "bright",
+    "meanings": [
+      "bright",
+      "opposite: dark 暗[an4]",
+      "(of meaning) clear",
+      "to understand",
+      "next"
+    ],
+    "tamil": "ஒளிரும்; தெளிவான",
+    "tamilMeanings": [
+      "ஒளிரும்",
+      "தெளிவான"
+    ]
+  },
+  {
+    "id": 103,
+    "character": "等",
+    "pinyin": "děng",
+    "pinyinNumbered": "deng3",
+    "english": "to wait for; to await",
+    "meanings": [
+      "to wait for; to await",
+      "by the time; when; till",
+      "and so on; etc.; et al.",
+      "(bound form) class; rank; grade",
+      "(bound form) equal to; same as"
+    ],
+    "tamil": "காத்திரு; போன்றவை",
+    "tamilMeanings": [
+      "காத்திரு",
+      "போன்றவை"
+    ]
+  },
+  {
+    "id": 104,
+    "character": "四",
+    "pinyin": "sì",
+    "pinyinNumbered": "si4",
+    "english": "four",
+    "meanings": [
+      "four",
+      "4"
+    ],
+    "tamil": "நான்கு",
+    "tamilMeanings": [
+      "நான்கு"
+    ]
+  },
+  {
+    "id": 105,
+    "character": "情",
+    "pinyin": "qíng",
+    "pinyinNumbered": "qing2",
+    "english": "(bound form) feelings; emotion; sentiment; passion",
+    "meanings": [
+      "(bound form) feelings; emotion; sentiment; passion",
+      "(bound form) situation; condition"
+    ],
+    "tamil": "உணர்வு; அன்பு",
+    "tamilMeanings": [
+      "உணர்வு",
+      "அன்பு"
+    ]
+  },
+  {
+    "id": 106,
+    "character": "高",
+    "pinyin": "gāo",
+    "pinyinNumbered": "gao1",
+    "english": "high",
+    "meanings": [
+      "high",
+      "tall",
+      "above average",
+      "loud",
+      "your (honorific)"
+    ],
+    "tamil": "உயர்ந்த",
+    "tamilMeanings": [
+      "உயர்ந்த"
+    ]
+  },
+  {
+    "id": 107,
+    "character": "全",
+    "pinyin": "quán",
+    "pinyinNumbered": "quan2",
+    "english": "all",
+    "meanings": [
+      "all",
+      "whole",
+      "entire",
+      "every",
+      "complete"
+    ],
+    "tamil": "முழு; அனைத்தும்",
+    "tamilMeanings": [
+      "முழு",
+      "அனைத்தும்"
+    ]
+  },
+  {
+    "id": 108,
+    "character": "长",
+    "pinyin": "cháng",
+    "pinyinNumbered": "chang2",
+    "english": "long",
+    "meanings": [
+      "long",
+      "(bound form) length",
+      "(bound form) strong point; forte",
+      "(bound form) to be good at",
+      "(literary) surplus; spare (Taiwan pr. [zhang4])"
+    ],
+    "tamil": "நீளமான",
+    "tamilMeanings": [
+      "நீளமான"
+    ]
+  },
+  {
+    "id": 109,
+    "character": "五",
+    "pinyin": "wǔ",
+    "pinyinNumbered": "wu3",
+    "english": "five",
+    "meanings": [
+      "five",
+      "5"
+    ],
+    "tamil": "ஐந்து",
+    "tamilMeanings": [
+      "ஐந்து"
+    ]
+  },
+  {
+    "id": 110,
+    "character": "体",
+    "pinyin": "tǐ",
+    "pinyinNumbered": "ti3",
+    "english": "body",
+    "meanings": [
+      "body",
+      "form",
+      "style",
+      "system",
+      "substance"
+    ],
+    "tamil": "உடல்",
+    "tamilMeanings": [
+      "உடல்"
+    ]
+  },
+  {
+    "id": 111,
+    "character": "内",
+    "pinyin": "nèi",
+    "pinyinNumbered": "nei4",
+    "english": "inside",
+    "meanings": [
+      "inside",
+      "inner",
+      "internal",
+      "within",
+      "interior"
+    ],
+    "tamil": "உள்; உட்புறம்",
+    "tamilMeanings": [
+      "உள்",
+      "உட்புறம்"
+    ]
+  },
+  {
+    "id": 112,
+    "character": "外",
+    "pinyin": "wài",
+    "pinyinNumbered": "wai4",
+    "english": "outside",
+    "meanings": [
+      "outside",
+      "in addition",
+      "foreign",
+      "external"
+    ],
+    "tamil": "வெளி; வெளியே",
+    "tamilMeanings": [
+      "வெளி",
+      "வெளியே"
+    ]
+  },
+  {
+    "id": 113,
+    "character": "加",
+    "pinyin": "jiā",
+    "pinyinNumbered": "jia1",
+    "english": "to add",
+    "meanings": [
+      "to add",
+      "(math.) plus",
+      "to increase; to augment",
+      "(used before a disyllabic verb, often after an adverb like 不[bu4], 大[da4], 稍[shao1] etc, to indicate that the action applies to sth previously mentioned, as in 稍加改良[shao1 jia1 gai3 liang2] \"make some minor improvements to (it)\")"
+    ],
+    "tamil": "கூட்டு; சேர்",
+    "tamilMeanings": [
+      "கூட்டு",
+      "சேர்"
+    ]
+  },
+  {
+    "id": 114,
+    "character": "老",
+    "pinyin": "lǎo",
+    "pinyinNumbered": "lao3",
+    "english": "prefix used before the surname of a person or a numeral indicating the order of birth of the children in a family or to indicate affection or familiarity",
+    "meanings": [
+      "prefix used before the surname of a person or a numeral indicating the order of birth of the children in a family or to indicate affection or familiarity",
+      "old (of people)",
+      "venerable (person)",
+      "experienced",
+      "of long standing"
+    ],
+    "tamil": "முதிய; பழைய",
+    "tamilMeanings": [
+      "முதிய",
+      "பழைய"
+    ]
+  },
+  {
+    "id": 115,
+    "character": "头",
+    "pinyin": "tóu",
+    "pinyinNumbered": "tou2",
+    "english": "head",
+    "meanings": [
+      "head",
+      "hair style",
+      "the top",
+      "end",
+      "beginning or end"
+    ],
+    "tamil": "தலை",
+    "tamilMeanings": [
+      "தலை"
+    ]
+  },
+  {
+    "id": 116,
+    "character": "本",
+    "pinyin": "běn",
+    "pinyinNumbered": "ben3",
+    "english": "(bound form) root; stem",
+    "meanings": [
+      "(bound form) root; stem",
+      "(bound form) origin; source",
+      "(bound form) one's own; this",
+      "(bound form) this; the current (year etc)",
+      "(bound form) original"
+    ],
+    "tamil": "மூலம்; புத்தக அளவுச்சொல்; அடிப்படை",
+    "tamilMeanings": [
+      "மூலம்",
+      "புத்தக அளவுச்சொல்",
+      "அடிப்படை"
+    ]
+  },
+  {
+    "id": 117,
+    "character": "应",
+    "pinyin": "yìng",
+    "pinyinNumbered": "ying4",
+    "english": "to answer",
+    "meanings": [
+      "to answer",
+      "to respond",
+      "to comply with",
+      "to deal or cope with"
+    ],
+    "tamil": "வேண்டும்; பதிலளி",
+    "tamilMeanings": [
+      "வேண்டும்",
+      "பதிலளி"
+    ]
+  },
+  {
+    "id": 118,
+    "character": "间",
+    "pinyin": "jiān",
+    "pinyinNumbered": "jian1",
+    "english": "between",
+    "meanings": [
+      "between",
+      "among",
+      "within a definite time or space",
+      "room",
+      "section of a room or lateral space between two pairs of pillars"
+    ],
+    "tamil": "இடையே; அறை",
+    "tamilMeanings": [
+      "இடையே",
+      "அறை"
+    ]
+  },
+  {
+    "id": 119,
+    "character": "常",
+    "pinyin": "cháng",
+    "pinyinNumbered": "chang2",
+    "english": "always",
+    "meanings": [
+      "always",
+      "ever",
+      "often",
+      "frequently",
+      "common"
+    ],
+    "tamil": "எப்போதும்; அடிக்கடி",
+    "tamilMeanings": [
+      "எப்போதும்",
+      "அடிக்கடி"
+    ]
+  },
+  {
+    "id": 120,
+    "character": "几",
+    "pinyin": "jǐ",
+    "pinyinNumbered": "ji3",
+    "english": "how much",
+    "meanings": [
+      "how much",
+      "how many",
+      "several",
+      "a few"
+    ],
+    "tamil": "எத்தனை; சில",
+    "tamilMeanings": [
+      "எத்தனை",
+      "சில"
+    ]
+  },
+  {
+    "id": 121,
+    "character": "吧",
+    "pinyin": "ba",
+    "pinyinNumbered": "ba0",
+    "english": "(modal particle indicating suggestion or surmise)",
+    "meanings": [
+      "(modal particle indicating suggestion or surmise)",
+      "...right?",
+      "...OK?",
+      "...I presume."
+    ],
+    "tamil": "பரிந்துரையைக் குறிக்கும் துணைச்சொல்",
+    "tamilMeanings": [
+      "பரிந்துரையைக் குறிக்கும் துணைச்சொல்"
+    ]
+  },
+  {
+    "id": 122,
+    "character": "正",
+    "pinyin": "zhèng",
+    "pinyinNumbered": "zheng4",
+    "english": "straight",
+    "meanings": [
+      "straight",
+      "upright",
+      "proper",
+      "main",
+      "principal"
+    ],
+    "tamil": "சரியான; நேரான",
+    "tamilMeanings": [
+      "சரியான",
+      "நேரான"
+    ]
+  },
+  {
+    "id": 123,
+    "character": "实",
+    "pinyin": "shí",
+    "pinyinNumbered": "shi2",
+    "english": "real",
+    "meanings": [
+      "real",
+      "true",
+      "honest",
+      "really",
+      "solid"
+    ],
+    "tamil": "உண்மையான; மெய்",
+    "tamilMeanings": [
+      "உண்மையான",
+      "மெய்"
+    ]
+  },
+  {
+    "id": 124,
+    "character": "回",
+    "pinyin": "huí",
+    "pinyinNumbered": "hui2",
+    "english": "to circle",
+    "meanings": [
+      "to circle",
+      "to go back",
+      "to turn around",
+      "to answer",
+      "to return"
+    ],
+    "tamil": "திரும்பு; மீளு",
+    "tamilMeanings": [
+      "திரும்பு",
+      "மீளு"
+    ]
+  },
+  {
+    "id": 125,
+    "character": "位",
+    "pinyin": "wèi",
+    "pinyinNumbered": "wei4",
+    "english": "position",
+    "meanings": [
+      "position",
+      "location",
+      "place",
+      "seat",
+      "(physics) potential"
+    ],
+    "tamil": "இடம்; நிலை; மரியாதை அளவுச்சொல்",
+    "tamilMeanings": [
+      "இடம்",
+      "நிலை",
+      "மரியாதை அளவுச்சொல்"
+    ]
+  },
+  {
+    "id": 126,
+    "character": "次",
+    "pinyin": "cì",
+    "pinyinNumbered": "ci4",
+    "english": "next in sequence",
+    "meanings": [
+      "next in sequence",
+      "second",
+      "the second (day, time etc)",
+      "secondary",
+      "vice-"
+    ],
+    "tamil": "முறை; அடுத்த",
+    "tamilMeanings": [
+      "முறை",
+      "அடுத்த"
+    ]
+  },
+  {
+    "id": 127,
+    "character": "很",
+    "pinyin": "hěn",
+    "pinyinNumbered": "hen3",
+    "english": "very; quite",
+    "meanings": [
+      "very; quite",
+      "(also, often used before an adjective without intensifying its meaning, i.e. as a meaningless syntactic element)"
+    ],
+    "tamil": "மிக",
+    "tamilMeanings": [
+      "மிக"
+    ]
+  },
+  {
+    "id": 128,
+    "character": "第",
+    "pinyin": "dì",
+    "pinyinNumbered": "di4",
+    "english": "(prefix indicating ordinal number, as in 第六[di4 liu4] \"sixth\")",
+    "meanings": [
+      "(prefix indicating ordinal number, as in 第六[di4 liu4] \"sixth\")",
+      "(literary) grades in which successful candidates in the imperial examinations were placed",
+      "(old) residence of a high official",
+      "(literary) but; however",
+      "(literary) only; just"
+    ],
+    "tamil": "வரிசை எண்ணைக் குறிக்கும் முன்னொட்டு",
+    "tamilMeanings": [
+      "வரிசை எண்ணைக் குறிக்கும் முன்னொட்டு"
+    ]
+  },
+  {
+    "id": 129,
+    "character": "名",
+    "pinyin": "míng",
+    "pinyinNumbered": "ming2",
+    "english": "name",
+    "meanings": [
+      "name",
+      "noun (part of speech)",
+      "place (e.g. among winners)",
+      "famous"
+    ],
+    "tamil": "பெயர்",
+    "tamilMeanings": [
+      "பெயர்"
+    ]
+  },
+  {
+    "id": 130,
+    "character": "解",
+    "pinyin": "jiě",
+    "pinyinNumbered": "jie3",
+    "english": "to divide",
+    "meanings": [
+      "to divide",
+      "to break up",
+      "to split",
+      "to separate",
+      "to dissolve"
+    ],
+    "tamil": "விளக்கு; அவிழ்",
+    "tamilMeanings": [
+      "விளக்கு",
+      "அவிழ்"
+    ]
+  },
+  {
+    "id": 131,
+    "character": "水",
+    "pinyin": "shuǐ",
+    "pinyinNumbered": "shui3",
+    "english": "water",
+    "meanings": [
+      "water",
+      "(after a name) ... River",
+      "to swim (used mostly in 會水|会水[hui4 shui3] and 水性[shui3 xing4])",
+      "(coll.) lacking in substance; shoddy",
+      "(bound form) additional cost; extra income"
+    ],
+    "tamil": "தண்ணீர்",
+    "tamilMeanings": [
+      "தண்ணீர்"
+    ]
+  },
+  {
+    "id": 132,
+    "character": "太",
+    "pinyin": "tài",
+    "pinyinNumbered": "tai4",
+    "english": "highest",
+    "meanings": [
+      "highest",
+      "greatest",
+      "too (much)",
+      "very",
+      "extremely"
+    ],
+    "tamil": "மிகவும்; அதிகமான",
+    "tamilMeanings": [
+      "மிகவும்",
+      "அதிகமான"
+    ]
+  },
+  {
+    "id": 133,
+    "character": "真",
+    "pinyin": "zhēn",
+    "pinyinNumbered": "zhen1",
+    "english": "really",
+    "meanings": [
+      "really",
+      "truly",
+      "indeed",
+      "real",
+      "true"
+    ],
+    "tamil": "உண்மையான; மெய்யாகவே",
+    "tamilMeanings": [
+      "உண்மையான",
+      "மெய்யாகவே"
+    ]
+  },
+  {
+    "id": 134,
+    "character": "话",
+    "pinyin": "huà",
+    "pinyinNumbered": "hua4",
+    "english": "dialect",
+    "meanings": [
+      "dialect",
+      "language",
+      "spoken words",
+      "speech",
+      "talk"
+    ],
+    "tamil": "சொல்; பேச்சு",
+    "tamilMeanings": [
+      "சொல்",
+      "பேச்சு"
+    ]
+  },
+  {
+    "id": 135,
+    "character": "给",
+    "pinyin": "gěi",
+    "pinyinNumbered": "gei3",
+    "english": "to",
+    "meanings": [
+      "to",
+      "for",
+      "for the benefit of",
+      "to give",
+      "to allow"
+    ],
+    "tamil": "கொடு",
+    "tamilMeanings": [
+      "கொடு"
+    ]
+  },
+  {
+    "id": 136,
+    "character": "女",
+    "pinyin": "nǚ",
+    "pinyinNumbered": "nü3",
+    "english": "female",
+    "meanings": [
+      "female",
+      "woman",
+      "daughter"
+    ],
+    "tamil": "பெண்",
+    "tamilMeanings": [
+      "பெண்"
+    ]
+  },
+  {
+    "id": 137,
+    "character": "并",
+    "pinyin": "bìng",
+    "pinyinNumbered": "bing4",
+    "english": "and",
+    "meanings": [
+      "and",
+      "furthermore",
+      "also",
+      "together with",
+      "(not) at all"
+    ],
+    "tamil": "மேலும்; இணைந்து",
+    "tamilMeanings": [
+      "மேலும்",
+      "இணைந்து"
+    ]
+  },
+  {
+    "id": 138,
+    "character": "手",
+    "pinyin": "shǒu",
+    "pinyinNumbered": "shou3",
+    "english": "hand",
+    "meanings": [
+      "hand",
+      "(formal) to hold",
+      "person engaged in certain types of work",
+      "person skilled in certain types of work",
+      "personal(ly)"
+    ],
+    "tamil": "கை",
+    "tamilMeanings": [
+      "கை"
+    ]
+  },
+  {
+    "id": 139,
+    "character": "便",
+    "pinyin": "biàn",
+    "pinyinNumbered": "bian4",
+    "english": "plain",
+    "meanings": [
+      "plain",
+      "informal",
+      "suitable",
+      "convenient",
+      "opportune"
+    ],
+    "tamil": "வசதியான; எளிதான",
+    "tamilMeanings": [
+      "வசதியான",
+      "எளிதான"
+    ]
+  },
+  {
+    "id": 140,
+    "character": "反",
+    "pinyin": "fǎn",
+    "pinyinNumbered": "fan3",
+    "english": "contrary",
+    "meanings": [
+      "contrary",
+      "in reverse",
+      "inside out or upside down",
+      "to reverse",
+      "to return"
+    ],
+    "tamil": "எதிர்; திருப்பு",
+    "tamilMeanings": [
+      "எதிர்",
+      "திருப்பு"
+    ]
+  },
+  {
+    "id": 141,
+    "character": "先",
+    "pinyin": "xiān",
+    "pinyinNumbered": "xian1",
+    "english": "beforehand; first; earlier",
+    "meanings": [
+      "beforehand; first; earlier",
+      "at first; originally",
+      "for the time being; for now",
+      "(prefix) my late (in referring to deceased relatives older than oneself)"
+    ],
+    "tamil": "முதலில்; முன்",
+    "tamilMeanings": [
+      "முதலில்",
+      "முன்"
+    ]
+  },
+  {
+    "id": 142,
+    "character": "相",
+    "pinyin": "xiāng",
+    "pinyinNumbered": "xiang1",
+    "english": "each other",
+    "meanings": [
+      "each other",
+      "one another",
+      "mutually",
+      "fret on the neck of a pipa 琵琶[pi2 pa5] (a fret on the soundboard is called a 品[pin3])"
+    ],
+    "tamil": "ஒருவருக்கொருவர்",
+    "tamilMeanings": [
+      "ஒருவருக்கொருவர்"
+    ]
+  },
+  {
+    "id": 143,
+    "character": "力",
+    "pinyin": "lì",
+    "pinyinNumbered": "li4",
+    "english": "power",
+    "meanings": [
+      "power",
+      "force",
+      "strength",
+      "ability",
+      "strenuously"
+    ],
+    "tamil": "வலிமை; சக்தி",
+    "tamilMeanings": [
+      "வலிமை",
+      "சக்தி"
+    ]
+  },
+  {
+    "id": 144,
+    "character": "动",
+    "pinyin": "dòng",
+    "pinyinNumbered": "dong4",
+    "english": "(of sth) to move",
+    "meanings": [
+      "(of sth) to move",
+      "to set in movement",
+      "to displace",
+      "to touch",
+      "to make use of"
+    ],
+    "tamil": "நகர்; இயங்கு",
+    "tamilMeanings": [
+      "நகர்",
+      "இயங்கு"
+    ]
+  },
+  {
+    "id": 145,
+    "character": "点",
+    "pinyin": "diǎn",
+    "pinyinNumbered": "dian3",
+    "english": "to touch briefly; to tap",
+    "meanings": [
+      "to touch briefly; to tap",
+      "to mark with a dot; to check off (on a list)",
+      "to order (food etc); to select",
+      "to mention; to bring up (a topic or person)",
+      "to hint at; to imply"
+    ],
+    "tamil": "புள்ளி; சிறிதளவு",
+    "tamilMeanings": [
+      "புள்ளி",
+      "சிறிதளவு"
+    ]
+  },
+  {
+    "id": 146,
+    "character": "已",
+    "pinyin": "yǐ",
+    "pinyinNumbered": "yi3",
+    "english": "already",
+    "meanings": [
+      "already",
+      "to stop",
+      "then",
+      "afterwards"
+    ],
+    "tamil": "ஏற்கனவே",
+    "tamilMeanings": [
+      "ஏற்கனவே"
+    ]
+  },
+  {
+    "id": 147,
+    "character": "部",
+    "pinyin": "bù",
+    "pinyinNumbered": "bu4",
+    "english": "ministry",
+    "meanings": [
+      "ministry",
+      "department",
+      "section",
+      "part",
+      "division"
+    ],
+    "tamil": "பகுதி; துறை",
+    "tamilMeanings": [
+      "பகுதி",
+      "துறை"
+    ]
+  },
+  {
+    "id": 148,
+    "character": "度",
+    "pinyin": "dù",
+    "pinyinNumbered": "du4",
+    "english": "to pass",
+    "meanings": [
+      "to pass",
+      "to spend (time)",
+      "measure",
+      "limit",
+      "extent"
+    ],
+    "tamil": "அளவு; கழி",
+    "tamilMeanings": [
+      "அளவு",
+      "கழி"
+    ]
+  },
+  {
+    "id": 149,
+    "character": "由",
+    "pinyin": "yóu",
+    "pinyinNumbered": "you2",
+    "english": "to follow",
+    "meanings": [
+      "to follow",
+      "from",
+      "because of; due to",
+      "by; via; through",
+      "(before a noun and a verb) it is for ... to ..."
+    ],
+    "tamil": "மூலம்; காரணமாக",
+    "tamilMeanings": [
+      "மூலம்",
+      "காரணமாக"
+    ]
+  },
+  {
+    "id": 150,
+    "character": "打",
+    "pinyin": "dǎ",
+    "pinyinNumbered": "da3",
+    "english": "a semantically light, transitive verb that is combined with various grammatical objects to form compound verbs and verb-object phrases with a diverse range of meanings (e.g. 打傘|打伞[da3 san3] \"to hold an umbrella\", 打電話|打电话[da3 dian4 hua4] \"to make a phone call\", 打針|打针[da3 zhen1] \"to get an injection\", 打手套[da3 shou3 tao4] \"to knit gloves\", 打氣|打气[da3 qi4] \"to inflate\")",
+    "meanings": [
+      "a semantically light, transitive verb that is combined with various grammatical objects to form compound verbs and verb-object phrases with a diverse range of meanings (e.g. 打傘|打伞[da3 san3] \"to hold an umbrella\", 打電話|打电话[da3 dian4 hua4] \"to make a phone call\", 打針|打针[da3 zhen1] \"to get an injection\", 打手套[da3 shou3 tao4] \"to knit gloves\", 打氣|打气[da3 qi4] \"to inflate\")",
+      "to hit; to strike",
+      "to fight",
+      "(coll.) from; since (as in 打那以後|打那以后[da3 na4 yi3 hou4] \"since then\")"
+    ],
+    "tamil": "அடி; விளையாடு",
+    "tamilMeanings": [
+      "அடி",
+      "விளையாடு"
+    ]
+  },
+  {
+    "id": 151,
+    "character": "书",
+    "pinyin": "shū",
+    "pinyinNumbered": "shu1",
+    "english": "book",
+    "meanings": [
+      "book",
+      "letter",
+      "document",
+      "CL:本[ben3],冊|册[ce4],部[bu4]",
+      "to write"
+    ],
+    "tamil": "புத்தகம்",
+    "tamilMeanings": [
+      "புத்தகம்"
+    ]
+  },
+  {
+    "id": 152,
+    "character": "最",
+    "pinyin": "zuì",
+    "pinyinNumbered": "zui4",
+    "english": "(before an adjective or verb) to the highest degree; (the) most ...; -est",
+    "meanings": [
+      "(before an adjective or verb) to the highest degree; (the) most ...; -est",
+      "(after 之[zhi1]) best or most extreme example (e.g. 世界之最[shi4 jie4 zhi1 zui4] \"the greatest in the world\")"
+    ],
+    "tamil": "மிகவும் (உயர்நிலை)",
+    "tamilMeanings": [
+      "மிகவும் (உயர்நிலை)"
+    ]
+  },
+  {
+    "id": 153,
+    "character": "新",
+    "pinyin": "xīn",
+    "pinyinNumbered": "xin1",
+    "english": "new",
+    "meanings": [
+      "new",
+      "newly",
+      "meso- (chemistry)"
+    ],
+    "tamil": "புதிய",
+    "tamilMeanings": [
+      "புதிய"
+    ]
+  },
+  {
+    "id": 154,
+    "character": "现",
+    "pinyin": "xiàn",
+    "pinyinNumbered": "xian4",
+    "english": "to appear",
+    "meanings": [
+      "to appear",
+      "present",
+      "now",
+      "existing",
+      "current"
+    ],
+    "tamil": "தற்போது; தோன்று",
+    "tamilMeanings": [
+      "தற்போது",
+      "தோன்று"
+    ]
+  },
+  {
+    "id": 155,
+    "character": "走",
+    "pinyin": "zǒu",
+    "pinyinNumbered": "zou3",
+    "english": "to walk",
+    "meanings": [
+      "to walk",
+      "to go",
+      "to run",
+      "to move (of vehicle)",
+      "to visit"
+    ],
+    "tamil": "நட",
+    "tamilMeanings": [
+      "நட"
+    ]
+  },
+  {
+    "id": 156,
+    "character": "月",
+    "pinyin": "yuè",
+    "pinyinNumbered": "yue4",
+    "english": "moon",
+    "meanings": [
+      "moon",
+      "month",
+      "monthly",
+      "CL:個|个[ge4],輪|轮[lun2]"
+    ],
+    "tamil": "நிலவு; மாதம்",
+    "tamilMeanings": [
+      "நிலவு",
+      "மாதம்"
+    ]
+  },
+  {
+    "id": 157,
+    "character": "表",
+    "pinyin": "biǎo",
+    "pinyinNumbered": "biao3",
+    "english": "exterior surface",
+    "meanings": [
+      "exterior surface",
+      "family relationship via females",
+      "to show (one's opinion)",
+      "a model",
+      "a table (listing information)"
+    ],
+    "tamil": "அட்டவணை; வெளிப்படுத்து; கடிகாரம்",
+    "tamilMeanings": [
+      "அட்டவணை",
+      "வெளிப்படுத்து",
+      "கடிகாரம்"
+    ]
+  },
+  {
+    "id": 158,
+    "character": "场",
+    "pinyin": "chǎng",
+    "pinyinNumbered": "chang3",
+    "english": "large place used for a specific purpose",
+    "meanings": [
+      "large place used for a specific purpose",
+      "stage",
+      "scene (of a play)"
+    ],
+    "tamil": "களம்; இடம்",
+    "tamilMeanings": [
+      "களம்",
+      "இடம்"
+    ]
+  },
+  {
+    "id": 159,
+    "character": "它",
+    "pinyin": "tā",
+    "pinyinNumbered": "ta1",
+    "english": "it (pronoun for an animal)",
+    "meanings": [
+      "it (pronoun for an animal)"
+    ],
+    "tamil": "அது (உயிரற்றவை; விலங்கு)",
+    "tamilMeanings": [
+      "அது (உயிரற்றவை",
+      "விலங்கு)"
+    ]
+  },
+  {
+    "id": 160,
+    "character": "开",
+    "pinyin": "kāi",
+    "pinyinNumbered": "kai1",
+    "english": "to open (transitive or intransitive)",
+    "meanings": [
+      "to open (transitive or intransitive)",
+      "(of ships, vehicles, troops etc) to start",
+      "to turn on; to put in operation; to operate; to run",
+      "to boil",
+      "to write out (a prescription, check, invoice etc)"
+    ],
+    "tamil": "திற; தொடங்கு",
+    "tamilMeanings": [
+      "திற",
+      "தொடங்கு"
+    ]
+  },
+  {
+    "id": 161,
+    "character": "万",
+    "pinyin": "wàn",
+    "pinyinNumbered": "wan4",
+    "english": "ten thousand",
+    "meanings": [
+      "ten thousand",
+      "a great number"
+    ],
+    "tamil": "பத்தாயிரம்",
+    "tamilMeanings": [
+      "பத்தாயிரம்"
+    ]
+  },
+  {
+    "id": 162,
+    "character": "安",
+    "pinyin": "ān",
+    "pinyinNumbered": "an1",
+    "english": "(bound form) calm; peaceful",
+    "meanings": [
+      "(bound form) calm; peaceful",
+      "to calm; to set at ease",
+      "safe; secure; in good health",
+      "content; satisfied (as in 安於|安于[an1 yu2])",
+      "to place (sb) in a suitable position (job)"
+    ],
+    "tamil": "அமைதியான; பாதுகாப்பான",
+    "tamilMeanings": [
+      "அமைதியான",
+      "பாதுகாப்பான"
+    ]
+  },
+  {
+    "id": 163,
+    "character": "少",
+    "pinyin": "shǎo",
+    "pinyinNumbered": "shao3",
+    "english": "few",
+    "meanings": [
+      "few",
+      "less",
+      "to lack",
+      "to be missing",
+      "to stop (doing sth)"
+    ],
+    "tamil": "குறைவான; சில",
+    "tamilMeanings": [
+      "குறைவான",
+      "சில"
+    ]
+  },
+  {
+    "id": 164,
+    "character": "报",
+    "pinyin": "bào",
+    "pinyinNumbered": "bao4",
+    "english": "to report; to inform; to announce",
+    "meanings": [
+      "to report; to inform; to announce",
+      "to respond; to reply",
+      "to sign up for; to register for (abbr. for 報名|报名[bao4 ming2])",
+      "to reward; to recompense",
+      "to take revenge; to retaliate"
+    ],
+    "tamil": "அறிவி; செய்தித்தாள்",
+    "tamilMeanings": [
+      "அறிவி",
+      "செய்தித்தாள்"
+    ]
+  },
+  {
+    "id": 165,
+    "character": "才",
+    "pinyin": "cái",
+    "pinyinNumbered": "cai2",
+    "english": "ability; talent",
+    "meanings": [
+      "ability; talent",
+      "sb of a certain type",
+      "a capable individual",
+      "then and only then",
+      "just now"
+    ],
+    "tamil": "திறமை; அப்போதுதான்",
+    "tamilMeanings": [
+      "திறமை",
+      "அப்போதுதான்"
+    ]
+  },
+  {
+    "id": 166,
+    "character": "结",
+    "pinyin": "jié",
+    "pinyinNumbered": "jie2",
+    "english": "knot",
+    "meanings": [
+      "knot",
+      "sturdy",
+      "bond",
+      "to tie",
+      "to bind"
+    ],
+    "tamil": "முடிச்சு; முடி",
+    "tamilMeanings": [
+      "முடிச்சு",
+      "முடி"
+    ]
+  },
+  {
+    "id": 167,
+    "character": "受",
+    "pinyin": "shòu",
+    "pinyinNumbered": "shou4",
+    "english": "to receive",
+    "meanings": [
+      "to receive",
+      "to accept",
+      "to suffer",
+      "subjected to",
+      "to bear"
+    ],
+    "tamil": "பெறு; தாங்கு",
+    "tamilMeanings": [
+      "பெறு",
+      "தாங்கு"
+    ]
+  },
+  {
+    "id": 168,
+    "character": "目",
+    "pinyin": "mù",
+    "pinyinNumbered": "mu4",
+    "english": "eye",
+    "meanings": [
+      "eye",
+      "(literary) to look; to regard",
+      "eye (of a net); mesh",
+      "mesh size; grit size (abbr. for 目數|目数[mu4 shu4])",
+      "item; section"
+    ],
+    "tamil": "கண்",
+    "tamilMeanings": [
+      "கண்"
+    ]
+  },
+  {
+    "id": 169,
+    "character": "量",
+    "pinyin": "liáng",
+    "pinyinNumbered": "liang2",
+    "english": "to measure",
+    "meanings": [
+      "to measure"
+    ],
+    "tamil": "அளவிடு; அளவு",
+    "tamilMeanings": [
+      "அளவிடு",
+      "அளவு"
+    ]
+  },
+  {
+    "id": 170,
+    "character": "再",
+    "pinyin": "zài",
+    "pinyinNumbered": "zai4",
+    "english": "again; once more; re-",
+    "meanings": [
+      "again; once more; re-",
+      "further; beyond this point of time",
+      "(before an adjective) more",
+      "then (after sth, and not until then)",
+      "no matter how ... (followed by an adjective or verb, and then (usually) 也[ye3] or 都[dou1] for emphasis)"
+    ],
+    "tamil": "மீண்டும்",
+    "tamilMeanings": [
+      "மீண்டும்"
+    ]
+  },
+  {
+    "id": 171,
+    "character": "感",
+    "pinyin": "gǎn",
+    "pinyinNumbered": "gan3",
+    "english": "to feel",
+    "meanings": [
+      "to feel",
+      "to move",
+      "to touch",
+      "to affect",
+      "feeling"
+    ],
+    "tamil": "உணர்",
+    "tamilMeanings": [
+      "உணர்"
+    ]
+  },
+  {
+    "id": 172,
+    "character": "建",
+    "pinyin": "jiàn",
+    "pinyinNumbered": "jian4",
+    "english": "to establish",
+    "meanings": [
+      "to establish",
+      "to found",
+      "to set up",
+      "to build",
+      "to construct"
+    ],
+    "tamil": "கட்டு; நிறுவு",
+    "tamilMeanings": [
+      "கட்டு",
+      "நிறுவு"
+    ]
+  },
+  {
+    "id": 173,
+    "character": "务",
+    "pinyin": "wù",
+    "pinyinNumbered": "wu4",
+    "english": "affair",
+    "meanings": [
+      "affair",
+      "business",
+      "matter",
+      "to be engaged in",
+      "to attend to"
+    ],
+    "tamil": "பணி; கடமை",
+    "tamilMeanings": [
+      "பணி",
+      "கடமை"
+    ]
+  },
+  {
+    "id": 174,
+    "character": "做",
+    "pinyin": "zuò",
+    "pinyinNumbered": "zuo4",
+    "english": "to make; to produce",
+    "meanings": [
+      "to make; to produce",
+      "to write; to compose",
+      "to do; to engage in; to hold (a party etc)",
+      "(of a person) to be (an intermediary, a good student etc); to become (husband and wife, friends etc)",
+      "(of a thing) to serve as; to be used for"
+    ],
+    "tamil": "செய்",
+    "tamilMeanings": [
+      "செய்"
+    ]
+  },
+  {
+    "id": 175,
+    "character": "接",
+    "pinyin": "jiē",
+    "pinyinNumbered": "jie1",
+    "english": "to receive",
+    "meanings": [
+      "to receive",
+      "to answer (the phone)",
+      "to meet or welcome sb",
+      "to connect",
+      "to catch"
+    ],
+    "tamil": "ஏற்றுக்கொள்; இணை",
+    "tamilMeanings": [
+      "ஏற்றுக்கொள்",
+      "இணை"
+    ]
+  },
+  {
+    "id": 176,
+    "character": "必",
+    "pinyin": "bì",
+    "pinyinNumbered": "bi4",
+    "english": "certainly",
+    "meanings": [
+      "certainly",
+      "must",
+      "will",
+      "necessarily"
+    ],
+    "tamil": "கட்டாயம்",
+    "tamilMeanings": [
+      "கட்டாயம்"
+    ]
+  },
+  {
+    "id": 177,
+    "character": "件",
+    "pinyin": "jiàn",
+    "pinyinNumbered": "jian4",
+    "english": "item",
+    "meanings": [
+      "item",
+      "component"
+    ],
+    "tamil": "பொருள்/விஷயங்களுக்கான அளவுச்சொல்",
+    "tamilMeanings": [
+      "பொருள்/விஷயங்களுக்கான அளவுச்சொல்"
+    ]
+  },
+  {
+    "id": 178,
+    "character": "计",
+    "pinyin": "jì",
+    "pinyinNumbered": "ji4",
+    "english": "to calculate",
+    "meanings": [
+      "to calculate",
+      "to compute",
+      "to count",
+      "to regard as important",
+      "to plan"
+    ],
+    "tamil": "கணக்கிடு; திட்டம்",
+    "tamilMeanings": [
+      "கணக்கிடு",
+      "திட்டம்"
+    ]
+  },
+  {
+    "id": 179,
+    "character": "管",
+    "pinyin": "guǎn",
+    "pinyinNumbered": "guan3",
+    "english": "to take care (of)",
+    "meanings": [
+      "to take care (of)",
+      "to control",
+      "to manage",
+      "to be in charge of",
+      "to look after"
+    ],
+    "tamil": "நிர்வகி; குழாய்",
+    "tamilMeanings": [
+      "நிர்வகி",
+      "குழாய்"
+    ]
+  },
+  {
+    "id": 180,
+    "character": "期",
+    "pinyin": "qī",
+    "pinyinNumbered": "qi1",
+    "english": "a period of time",
+    "meanings": [
+      "a period of time",
+      "phase",
+      "stage",
+      "time",
+      "term"
+    ],
+    "tamil": "காலம்; தவணை",
+    "tamilMeanings": [
+      "காலம்",
+      "தவணை"
+    ]
+  },
+  {
+    "id": 181,
+    "character": "市",
+    "pinyin": "shì",
+    "pinyinNumbered": "shi4",
+    "english": "market",
+    "meanings": [
+      "market",
+      "city",
+      "municipality (administrative unit)",
+      "(literary) to trade; to buy and sell goods"
+    ],
+    "tamil": "நகரம்; சந்தை",
+    "tamilMeanings": [
+      "நகரம்",
+      "சந்தை"
+    ]
+  },
+  {
+    "id": 182,
+    "character": "直",
+    "pinyin": "zhí",
+    "pinyinNumbered": "zhi2",
+    "english": "straight",
+    "meanings": [
+      "straight",
+      "to straighten",
+      "fair and reasonable",
+      "frank",
+      "straightforward"
+    ],
+    "tamil": "நேரான; நேராக",
+    "tamilMeanings": [
+      "நேரான",
+      "நேராக"
+    ]
+  },
+  {
+    "id": 183,
+    "character": "德",
+    "pinyin": "dé",
+    "pinyinNumbered": "de2",
+    "english": "virtue",
+    "meanings": [
+      "virtue",
+      "goodness",
+      "morality",
+      "ethics",
+      "kindness"
+    ],
+    "tamil": "நற்குணம்; அறம்",
+    "tamilMeanings": [
+      "நற்குணம்",
+      "அறம்"
+    ]
+  },
+  {
+    "id": 184,
+    "character": "资",
+    "pinyin": "zī",
+    "pinyinNumbered": "zi1",
+    "english": "resources",
+    "meanings": [
+      "resources",
+      "capital",
+      "to provide",
+      "to supply",
+      "to support"
+    ],
+    "tamil": "வளம்; நிதி",
+    "tamilMeanings": [
+      "வளம்",
+      "நிதி"
+    ]
+  },
+  {
+    "id": 185,
+    "character": "命",
+    "pinyin": "mìng",
+    "pinyinNumbered": "ming4",
+    "english": "life",
+    "meanings": [
+      "life",
+      "fate",
+      "order or command",
+      "to assign a name, title etc"
+    ],
+    "tamil": "உயிர்; விதி",
+    "tamilMeanings": [
+      "உயிர்",
+      "விதி"
+    ]
+  },
+  {
+    "id": 186,
+    "character": "山",
+    "pinyin": "shān",
+    "pinyinNumbered": "shan1",
+    "english": "mountain; hill (CL:座[zuo4])",
+    "meanings": [
+      "mountain; hill (CL:座[zuo4])",
+      "(coll.) small bundle of straw for silkworms to spin cocoons on"
+    ],
+    "tamil": "மலை",
+    "tamilMeanings": [
+      "மலை"
+    ]
+  },
+  {
+    "id": 187,
+    "character": "金",
+    "pinyin": "jīn",
+    "pinyinNumbered": "jin1",
+    "english": "gold",
+    "meanings": [
+      "gold",
+      "chemical element Au",
+      "generic term for lustrous and ductile metals",
+      "money",
+      "golden"
+    ],
+    "tamil": "தங்கம்; பணம்",
+    "tamilMeanings": [
+      "தங்கம்",
+      "பணம்"
+    ]
+  },
+  {
+    "id": 188,
+    "character": "指",
+    "pinyin": "zhǐ",
+    "pinyinNumbered": "zhi3",
+    "english": "finger",
+    "meanings": [
+      "finger",
+      "to point at or to",
+      "to indicate or refer to",
+      "to depend on",
+      "to count on"
+    ],
+    "tamil": "விரல்; சுட்டு",
+    "tamilMeanings": [
+      "விரல்",
+      "சுட்டு"
+    ]
+  },
+  {
+    "id": 189,
+    "character": "克",
+    "pinyin": "kè",
+    "pinyinNumbered": "ke4",
+    "english": "to be able to",
+    "meanings": [
+      "to be able to",
+      "to subdue",
+      "to restrain",
+      "to overcome",
+      "gram"
+    ],
+    "tamil": "கிராம்; வெல்",
+    "tamilMeanings": [
+      "கிராம்",
+      "வெல்"
+    ]
+  },
+  {
+    "id": 190,
+    "character": "许",
+    "pinyin": "xǔ",
+    "pinyinNumbered": "xu3",
+    "english": "to allow",
+    "meanings": [
+      "to allow",
+      "to permit",
+      "to promise",
+      "to praise",
+      "somewhat"
+    ],
+    "tamil": "அனுமதி; ஒருவேளை",
+    "tamilMeanings": [
+      "அனுமதி",
+      "ஒருவேளை"
+    ]
+  },
+  {
+    "id": 191,
+    "character": "统",
+    "pinyin": "tǒng",
+    "pinyinNumbered": "tong3",
+    "english": "to gather",
+    "meanings": [
+      "to gather",
+      "to unite",
+      "to unify",
+      "whole"
+    ],
+    "tamil": "ஒன்றிணை; ஆளு",
+    "tamilMeanings": [
+      "ஒன்றிணை",
+      "ஆளு"
+    ]
+  },
+  {
+    "id": 192,
+    "character": "区",
+    "pinyin": "qū",
+    "pinyinNumbered": "qu1",
+    "english": "area",
+    "meanings": [
+      "area",
+      "region",
+      "district",
+      "small",
+      "distinguish"
+    ],
+    "tamil": "பகுதி; மண்டலம்",
+    "tamilMeanings": [
+      "பகுதி",
+      "மண்டலம்"
+    ]
+  },
+  {
+    "id": 193,
+    "character": "保",
+    "pinyin": "bǎo",
+    "pinyinNumbered": "bao3",
+    "english": "to defend; to protect; to keep",
+    "meanings": [
+      "to defend; to protect; to keep",
+      "to guarantee; to ensure",
+      "(old) civil administration unit in the baojia 保甲[bao3 jia3] system"
+    ],
+    "tamil": "காப்பாற்று; பாதுகாப்பு",
+    "tamilMeanings": [
+      "காப்பாற்று",
+      "பாதுகாப்பு"
+    ]
+  },
+  {
+    "id": 194,
+    "character": "至",
+    "pinyin": "zhì",
+    "pinyinNumbered": "zhi4",
+    "english": "to arrive",
+    "meanings": [
+      "to arrive",
+      "most",
+      "to",
+      "until"
+    ],
+    "tamil": "வரை; அடை",
+    "tamilMeanings": [
+      "வரை",
+      "அடை"
+    ]
+  },
+  {
+    "id": 195,
+    "character": "队",
+    "pinyin": "duì",
+    "pinyinNumbered": "dui4",
+    "english": "squadron",
+    "meanings": [
+      "squadron",
+      "team",
+      "group",
+      "CL:個|个[ge4]"
+    ],
+    "tamil": "குழு; அணி",
+    "tamilMeanings": [
+      "குழு",
+      "அணி"
+    ]
+  },
+  {
+    "id": 196,
+    "character": "形",
+    "pinyin": "xíng",
+    "pinyinNumbered": "xing2",
+    "english": "to appear",
+    "meanings": [
+      "to appear",
+      "to look",
+      "form",
+      "shape"
+    ],
+    "tamil": "வடிவம்",
+    "tamilMeanings": [
+      "வடிவம்"
+    ]
+  },
+  {
+    "id": 197,
+    "character": "社",
+    "pinyin": "shè",
+    "pinyinNumbered": "she4",
+    "english": "(bound form) society; organization; agency",
+    "meanings": [
+      "(bound form) society; organization; agency",
+      "(old) god of the land"
+    ],
+    "tamil": "சமூகம்; அமைப்பு",
+    "tamilMeanings": [
+      "சமூகம்",
+      "அமைப்பு"
+    ]
+  },
+  {
+    "id": 198,
+    "character": "空",
+    "pinyin": "kōng",
+    "pinyinNumbered": "kong1",
+    "english": "empty",
+    "meanings": [
+      "empty",
+      "air",
+      "sky",
+      "in vain"
+    ],
+    "tamil": "வெற்று; வானம்",
+    "tamilMeanings": [
+      "வெற்று",
+      "வானம்"
+    ]
+  },
+  {
+    "id": 199,
+    "character": "决",
+    "pinyin": "jué",
+    "pinyinNumbered": "jue2",
+    "english": "to decide",
+    "meanings": [
+      "to decide",
+      "to determine",
+      "to execute (sb)",
+      "(of a dam etc) to breach or burst",
+      "definitely"
+    ],
+    "tamil": "தீர்மானி",
+    "tamilMeanings": [
+      "தீர்மானி"
+    ]
+  },
+  {
+    "id": 200,
+    "character": "治",
+    "pinyin": "zhì",
+    "pinyinNumbered": "zhi4",
+    "english": "to rule",
+    "meanings": [
+      "to rule",
+      "to govern",
+      "to manage",
+      "to control",
+      "to harness (a river)"
+    ],
+    "tamil": "ஆளு; சிகிச்சையளி",
+    "tamilMeanings": [
+      "ஆளு",
+      "சிகிச்சையளி"
+    ]
+  },
+  {
+    "id": 201,
+    "character": "展",
+    "pinyin": "zhǎn",
+    "pinyinNumbered": "zhan3",
+    "english": "to spread out",
+    "meanings": [
+      "to spread out",
+      "to open up",
+      "to exhibit",
+      "to put into effect",
+      "to postpone"
+    ],
+    "tamil": "விரி; காட்சிப்படுத்து",
+    "tamilMeanings": [
+      "விரி",
+      "காட்சிப்படுத்து"
+    ]
+  },
+  {
+    "id": 202,
+    "character": "马",
+    "pinyin": "mǎ",
+    "pinyinNumbered": "ma3",
+    "english": "horse",
+    "meanings": [
+      "horse",
+      "CL:匹[pi3]",
+      "horse or cavalry piece in Chinese chess",
+      "knight in Western chess"
+    ],
+    "tamil": "குதிரை",
+    "tamilMeanings": [
+      "குதிரை"
+    ]
+  },
+  {
+    "id": 203,
+    "character": "科",
+    "pinyin": "kē",
+    "pinyinNumbered": "ke1",
+    "english": "branch of study",
+    "meanings": [
+      "branch of study",
+      "administrative section",
+      "division",
+      "field",
+      "branch"
+    ],
+    "tamil": "துறை; பாடப்பிரிவு",
+    "tamilMeanings": [
+      "துறை",
+      "பாடப்பிரிவு"
+    ]
+  },
+  {
+    "id": 204,
+    "character": "司",
+    "pinyin": "sī",
+    "pinyinNumbered": "si1",
+    "english": "to take charge of",
+    "meanings": [
+      "to take charge of",
+      "to manage",
+      "department (under a ministry)"
+    ],
+    "tamil": "நிர்வகி; அலுவலகம்",
+    "tamilMeanings": [
+      "நிர்வகி",
+      "அலுவலகம்"
+    ]
+  },
+  {
+    "id": 205,
+    "character": "基",
+    "pinyin": "jī",
+    "pinyinNumbered": "ji1",
+    "english": "(bound form) base; foundation",
+    "meanings": [
+      "(bound form) base; foundation",
+      "(bound form) radical (chemistry)",
+      "(bound form) gay (loanword from English into Cantonese, Jyutping: gei1, followed by orthographic borrowing from Cantonese)"
+    ],
+    "tamil": "அடிப்படை; அஸ்திவாரம்",
+    "tamilMeanings": [
+      "அடிப்படை",
+      "அஸ்திவாரம்"
+    ]
+  },
+  {
+    "id": 206,
+    "character": "眼",
+    "pinyin": "yǎn",
+    "pinyinNumbered": "yan3",
+    "english": "eye (CL:隻|只[zhi1],雙|双[shuang1])",
+    "meanings": [
+      "eye (CL:隻|只[zhi1],雙|双[shuang1])",
+      "(often used with 一[yi1]) a look; a glance",
+      "small hole",
+      "(bound form) salient point"
+    ],
+    "tamil": "கண்",
+    "tamilMeanings": [
+      "கண்"
+    ]
+  },
+  {
+    "id": 207,
+    "character": "非",
+    "pinyin": "fēi",
+    "pinyinNumbered": "fei1",
+    "english": "to not be; not",
+    "meanings": [
+      "to not be; not",
+      "wrong; incorrect",
+      "non-; un-; in-; de-",
+      "to reproach; to blame",
+      "(coll.) to insist on; simply must"
+    ],
+    "tamil": "அல்ல; தவறான",
+    "tamilMeanings": [
+      "அல்ல",
+      "தவறான"
+    ]
+  },
+  {
+    "id": 208,
+    "character": "则",
+    "pinyin": "zé",
+    "pinyinNumbered": "ze2",
+    "english": "(literary) (conjunction used to express contrast with a previous clause) but; then",
+    "meanings": [
+      "(literary) (conjunction used to express contrast with a previous clause) but; then",
+      "(bound form) standard; norm",
+      "(bound form) principle",
+      "(literary) to imitate; to follow"
+    ],
+    "tamil": "அப்படியானால்; விதி",
+    "tamilMeanings": [
+      "அப்படியானால்",
+      "விதி"
+    ]
+  },
+  {
+    "id": 209,
+    "character": "听",
+    "pinyin": "tīng",
+    "pinyinNumbered": "ting1",
+    "english": "to listen to; to hear",
+    "meanings": [
+      "to listen to; to hear",
+      "to heed; to obey",
+      "a can (loanword from English \"tin\")",
+      "to let be; to allow (Taiwan pr. [ting4])",
+      "(literary) to administer; to deal with (Taiwan pr. [ting4])"
+    ],
+    "tamil": "கேள்",
+    "tamilMeanings": [
+      "கேள்"
+    ]
+  },
+  {
+    "id": 210,
+    "character": "白",
+    "pinyin": "bái",
+    "pinyinNumbered": "bai2",
+    "english": "white",
+    "meanings": [
+      "white",
+      "snowy",
+      "pure",
+      "bright",
+      "empty"
+    ],
+    "tamil": "வெள்ளை",
+    "tamilMeanings": [
+      "வெள்ளை"
+    ]
+  },
+  {
+    "id": 211,
+    "character": "却",
+    "pinyin": "què",
+    "pinyinNumbered": "que4",
+    "english": "but",
+    "meanings": [
+      "but",
+      "yet",
+      "however",
+      "while",
+      "to go back"
+    ],
+    "tamil": "ஆனால்; ஆயினும்",
+    "tamilMeanings": [
+      "ஆனால்",
+      "ஆயினும்"
+    ]
+  },
+  {
+    "id": 212,
+    "character": "界",
+    "pinyin": "jiè",
+    "pinyinNumbered": "jie4",
+    "english": "(bound form) boundary; border",
+    "meanings": [
+      "(bound form) boundary; border",
+      "(bound form) realm"
+    ],
+    "tamil": "எல்லை; உலகம்",
+    "tamilMeanings": [
+      "எல்லை",
+      "உலகம்"
+    ]
+  },
+  {
+    "id": 213,
+    "character": "达",
+    "pinyin": "dá",
+    "pinyinNumbered": "da2",
+    "english": "to attain",
+    "meanings": [
+      "to attain",
+      "to reach",
+      "to amount to",
+      "to communicate",
+      "eminent"
+    ],
+    "tamil": "அடை; எட்டு",
+    "tamilMeanings": [
+      "அடை",
+      "எட்டு"
+    ]
+  },
+  {
+    "id": 214,
+    "character": "光",
+    "pinyin": "guāng",
+    "pinyinNumbered": "guang1",
+    "english": "light; ray (CL:道[dao4])",
+    "meanings": [
+      "light; ray (CL:道[dao4])",
+      "bright; shiny",
+      "only; merely",
+      "used up; finished",
+      "to leave (a part of the body) uncovered"
+    ],
+    "tamil": "ஒளி",
+    "tamilMeanings": [
+      "ஒளி"
+    ]
+  },
+  {
+    "id": 215,
+    "character": "放",
+    "pinyin": "fàng",
+    "pinyinNumbered": "fang4",
+    "english": "to put",
+    "meanings": [
+      "to put",
+      "to place",
+      "to release",
+      "to free",
+      "to let go"
+    ],
+    "tamil": "வை; விடு",
+    "tamilMeanings": [
+      "வை",
+      "விடு"
+    ]
+  },
+  {
+    "id": 216,
+    "character": "强",
+    "pinyin": "qiáng",
+    "pinyinNumbered": "qiang2",
+    "english": "strong",
+    "meanings": [
+      "strong",
+      "powerful",
+      "better",
+      "slightly more than",
+      "vigorous"
+    ],
+    "tamil": "வலிமையான",
+    "tamilMeanings": [
+      "வலிமையான"
+    ]
+  },
+  {
+    "id": 217,
+    "character": "即",
+    "pinyin": "jí",
+    "pinyinNumbered": "ji2",
+    "english": "namely",
+    "meanings": [
+      "namely",
+      "that is",
+      "i.e.",
+      "prompt",
+      "at once"
+    ],
+    "tamil": "அதாவது; உடனே",
+    "tamilMeanings": [
+      "அதாவது",
+      "உடனே"
+    ]
+  },
+  {
+    "id": 218,
+    "character": "像",
+    "pinyin": "xiàng",
+    "pinyinNumbered": "xiang4",
+    "english": "to resemble",
+    "meanings": [
+      "to resemble",
+      "to be like",
+      "to look as if",
+      "such as",
+      "appearance"
+    ],
+    "tamil": "ஒத்திரு; உருவம்",
+    "tamilMeanings": [
+      "ஒத்திரு",
+      "உருவம்"
+    ]
+  },
+  {
+    "id": 219,
+    "character": "难",
+    "pinyin": "nán",
+    "pinyinNumbered": "nan2",
+    "english": "difficult (to...)",
+    "meanings": [
+      "difficult (to...)",
+      "problem",
+      "difficulty",
+      "difficult",
+      "not good"
+    ],
+    "tamil": "கடினமான",
+    "tamilMeanings": [
+      "கடினமான"
+    ]
+  },
+  {
+    "id": 220,
+    "character": "且",
+    "pinyin": "qiě",
+    "pinyinNumbered": "qie3",
+    "english": "and",
+    "meanings": [
+      "and",
+      "moreover",
+      "yet",
+      "for the time being",
+      "to be about to"
+    ],
+    "tamil": "மேலும்; தற்காலிகமாக",
+    "tamilMeanings": [
+      "மேலும்",
+      "தற்காலிகமாக"
+    ]
+  },
+  {
+    "id": 221,
+    "character": "权",
+    "pinyin": "quán",
+    "pinyinNumbered": "quan2",
+    "english": "authority",
+    "meanings": [
+      "authority",
+      "power",
+      "right",
+      "(literary) to weigh",
+      "expedient"
+    ],
+    "tamil": "அதிகாரம்; உரிமை",
+    "tamilMeanings": [
+      "அதிகாரம்",
+      "உரிமை"
+    ]
+  },
+  {
+    "id": 222,
+    "character": "思",
+    "pinyin": "sī",
+    "pinyinNumbered": "si1",
+    "english": "to think",
+    "meanings": [
+      "to think",
+      "to consider"
+    ],
+    "tamil": "சிந்தி",
+    "tamilMeanings": [
+      "சிந்தி"
+    ]
+  },
+  {
+    "id": 223,
+    "character": "王",
+    "pinyin": "wáng",
+    "pinyinNumbered": "wang2",
+    "english": "king or monarch",
+    "meanings": [
+      "king or monarch",
+      "best or strongest of its type",
+      "grand",
+      "great"
+    ],
+    "tamil": "அரசன்",
+    "tamilMeanings": [
+      "அரசன்"
+    ]
+  },
+  {
+    "id": 224,
+    "character": "象",
+    "pinyin": "xiàng",
+    "pinyinNumbered": "xiang4",
+    "english": "elephant",
+    "meanings": [
+      "elephant",
+      "CL:隻|只[zhi1]",
+      "shape",
+      "form",
+      "appearance"
+    ],
+    "tamil": "யானை; தோற்றம்",
+    "tamilMeanings": [
+      "யானை",
+      "தோற்றம்"
+    ]
+  },
+  {
+    "id": 225,
+    "character": "完",
+    "pinyin": "wán",
+    "pinyinNumbered": "wan2",
+    "english": "to finish",
+    "meanings": [
+      "to finish",
+      "to be over",
+      "whole",
+      "complete",
+      "entire"
+    ],
+    "tamil": "முடி; முழுமை",
+    "tamilMeanings": [
+      "முடி",
+      "முழுமை"
+    ]
+  },
+  {
+    "id": 226,
+    "character": "设",
+    "pinyin": "shè",
+    "pinyinNumbered": "she4",
+    "english": "to set up; to put in place",
+    "meanings": [
+      "to set up; to put in place",
+      "(math.) given; suppose; if"
+    ],
+    "tamil": "நிறுவு; அமை",
+    "tamilMeanings": [
+      "நிறுவு",
+      "அமை"
+    ]
+  },
+  {
+    "id": 227,
+    "character": "式",
+    "pinyin": "shì",
+    "pinyinNumbered": "shi4",
+    "english": "type",
+    "meanings": [
+      "type",
+      "form",
+      "pattern",
+      "style"
+    ],
+    "tamil": "முறை; வடிவம்",
+    "tamilMeanings": [
+      "முறை",
+      "வடிவம்"
+    ]
+  },
+  {
+    "id": 228,
+    "character": "色",
+    "pinyin": "sè",
+    "pinyinNumbered": "se4",
+    "english": "color",
+    "meanings": [
+      "color",
+      "CL:種|种[zhong3]",
+      "look",
+      "appearance",
+      "sex"
+    ],
+    "tamil": "நிறம்",
+    "tamilMeanings": [
+      "நிறம்"
+    ]
+  },
+  {
+    "id": 229,
+    "character": "路",
+    "pinyin": "lù",
+    "pinyinNumbered": "lu4",
+    "english": "road (CL:條|条[tiao2])",
+    "meanings": [
+      "road (CL:條|条[tiao2])",
+      "journey",
+      "route",
+      "line (bus etc)",
+      "sort; kind"
+    ],
+    "tamil": "சாலை; பாதை",
+    "tamilMeanings": [
+      "சாலை",
+      "பாதை"
+    ]
+  },
+  {
+    "id": 230,
+    "character": "记",
+    "pinyin": "jì",
+    "pinyinNumbered": "ji4",
+    "english": "to record",
+    "meanings": [
+      "to record",
+      "to note",
+      "to memorize",
+      "to remember",
+      "mark"
+    ],
+    "tamil": "நினைவில்கொள்; பதிவுசெய்",
+    "tamilMeanings": [
+      "நினைவில்கொள்",
+      "பதிவுசெய்"
+    ]
+  },
+  {
+    "id": 231,
+    "character": "南",
+    "pinyin": "nán",
+    "pinyinNumbered": "nan2",
+    "english": "south",
+    "meanings": [
+      "south"
+    ],
+    "tamil": "தெற்கு",
+    "tamilMeanings": [
+      "தெற்கு"
+    ]
+  },
+  {
+    "id": 232,
+    "character": "品",
+    "pinyin": "pǐn",
+    "pinyinNumbered": "pin3",
+    "english": "(bound form) article; commodity; product; goods",
+    "meanings": [
+      "(bound form) article; commodity; product; goods",
+      "(bound form) grade; rank",
+      "kind; type; variety",
+      "character; disposition; nature; temperament",
+      "to taste sth; to sample"
+    ],
+    "tamil": "பொருள்; தரம்",
+    "tamilMeanings": [
+      "பொருள்",
+      "தரம்"
+    ]
+  },
+  {
+    "id": 233,
+    "character": "住",
+    "pinyin": "zhù",
+    "pinyinNumbered": "zhu4",
+    "english": "to live",
+    "meanings": [
+      "to live",
+      "to dwell",
+      "to stay",
+      "to reside",
+      "to stop"
+    ],
+    "tamil": "வசி; தங்கு",
+    "tamilMeanings": [
+      "வசி",
+      "தங்கு"
+    ]
+  },
+  {
+    "id": 234,
+    "character": "告",
+    "pinyin": "gào",
+    "pinyinNumbered": "gao4",
+    "english": "(bound form) to say; to tell",
+    "meanings": [
+      "(bound form) to say; to tell",
+      "to announce; to report",
+      "to denounce",
+      "to file a lawsuit; to sue"
+    ],
+    "tamil": "சொல்; அறிவி",
+    "tamilMeanings": [
+      "சொல்",
+      "அறிவி"
+    ]
+  },
+  {
+    "id": 235,
+    "character": "类",
+    "pinyin": "lèi",
+    "pinyinNumbered": "lei4",
+    "english": "kind; type; class; category",
+    "meanings": [
+      "kind; type; class; category",
+      "(classifier) kind; type",
+      "(bound form) to resemble; to be similar to"
+    ],
+    "tamil": "வகை",
+    "tamilMeanings": [
+      "வகை"
+    ]
+  },
+  {
+    "id": 236,
+    "character": "求",
+    "pinyin": "qiú",
+    "pinyinNumbered": "qiu2",
+    "english": "to seek",
+    "meanings": [
+      "to seek",
+      "to look for",
+      "to request",
+      "to demand",
+      "to beseech"
+    ],
+    "tamil": "கேள்; தேடு",
+    "tamilMeanings": [
+      "கேள்",
+      "தேடு"
+    ]
+  },
+  {
+    "id": 237,
+    "character": "据",
+    "pinyin": "jù",
+    "pinyinNumbered": "ju4",
+    "english": "according to",
+    "meanings": [
+      "according to",
+      "to act in accordance with",
+      "to depend on",
+      "to seize",
+      "to occupy"
+    ],
+    "tamil": "படி; ஆதாரம்",
+    "tamilMeanings": [
+      "படி",
+      "ஆதாரம்"
+    ]
+  },
+  {
+    "id": 238,
+    "character": "程",
+    "pinyin": "chéng",
+    "pinyinNumbered": "cheng2",
+    "english": "rule",
+    "meanings": [
+      "rule",
+      "order",
+      "regulations",
+      "formula",
+      "journey"
+    ],
+    "tamil": "தூரம்; செயல்முறை",
+    "tamilMeanings": [
+      "தூரம்",
+      "செயல்முறை"
+    ]
+  },
+  {
+    "id": 239,
+    "character": "北",
+    "pinyin": "běi",
+    "pinyinNumbered": "bei3",
+    "english": "north",
+    "meanings": [
+      "north",
+      "(classical) to be defeated"
+    ],
+    "tamil": "வடக்கு",
+    "tamilMeanings": [
+      "வடக்கு"
+    ]
+  },
+  {
+    "id": 240,
+    "character": "边",
+    "pinyin": "biān",
+    "pinyinNumbered": "bian1",
+    "english": "side",
+    "meanings": [
+      "side",
+      "edge",
+      "margin",
+      "border",
+      "boundary"
+    ],
+    "tamil": "பக்கம்; விளிம்பு",
+    "tamilMeanings": [
+      "பக்கம்",
+      "விளிம்பு"
+    ]
+  },
+  {
+    "id": 241,
+    "character": "死",
+    "pinyin": "sǐ",
+    "pinyinNumbered": "si3",
+    "english": "to die",
+    "meanings": [
+      "to die",
+      "impassable",
+      "uncrossable",
+      "inflexible",
+      "rigid"
+    ],
+    "tamil": "இற; மரணம்",
+    "tamilMeanings": [
+      "இற",
+      "மரணம்"
+    ]
+  },
+  {
+    "id": 242,
+    "character": "张",
+    "pinyin": "zhāng",
+    "pinyinNumbered": "zhang1",
+    "english": "to open up",
+    "meanings": [
+      "to open up",
+      "to spread",
+      "sheet of paper"
+    ],
+    "tamil": "விரி; தாள்/மேசைக்கான அளவுச்சொல்",
+    "tamilMeanings": [
+      "விரி",
+      "தாள்/மேசைக்கான அளவுச்சொல்"
+    ]
+  },
+  {
+    "id": 243,
+    "character": "该",
+    "pinyin": "gāi",
+    "pinyinNumbered": "gai1",
+    "english": "should",
+    "meanings": [
+      "should",
+      "ought to",
+      "probably",
+      "must be",
+      "to deserve"
+    ],
+    "tamil": "வேண்டும்; அந்த",
+    "tamilMeanings": [
+      "வேண்டும்",
+      "அந்த"
+    ]
+  },
+  {
+    "id": 244,
+    "character": "交",
+    "pinyin": "jiāo",
+    "pinyinNumbered": "jiao1",
+    "english": "to hand over; to deliver; to pay (money); to turn over",
+    "meanings": [
+      "to hand over; to deliver; to pay (money); to turn over",
+      "to make friends",
+      "(of lines) to intersect"
+    ],
+    "tamil": "ஒப்படை; பழகு",
+    "tamilMeanings": [
+      "ஒப்படை",
+      "பழகு"
+    ]
+  },
+  {
+    "id": 245,
+    "character": "规",
+    "pinyin": "guī",
+    "pinyinNumbered": "gui1",
+    "english": "compass",
+    "meanings": [
+      "compass",
+      "a rule",
+      "regulation",
+      "to admonish",
+      "to plan"
+    ],
+    "tamil": "விதி; ஒழுங்கு",
+    "tamilMeanings": [
+      "விதி",
+      "ஒழுங்கு"
+    ]
+  },
+  {
+    "id": 246,
+    "character": "取",
+    "pinyin": "qǔ",
+    "pinyinNumbered": "qu3",
+    "english": "to take",
+    "meanings": [
+      "to take",
+      "to get",
+      "to choose",
+      "to fetch"
+    ],
+    "tamil": "எடு; பெறு",
+    "tamilMeanings": [
+      "எடு",
+      "பெறு"
+    ]
+  },
+  {
+    "id": 247,
+    "character": "拉",
+    "pinyin": "lā",
+    "pinyinNumbered": "la1",
+    "english": "to pull",
+    "meanings": [
+      "to pull",
+      "to play (a bowed instrument)",
+      "to drag",
+      "to draw",
+      "to chat"
+    ],
+    "tamil": "இழு",
+    "tamilMeanings": [
+      "இழு"
+    ]
+  },
+  {
+    "id": 248,
+    "character": "格",
+    "pinyin": "gé",
+    "pinyinNumbered": "ge2",
+    "english": "square",
+    "meanings": [
+      "square",
+      "frame",
+      "rule",
+      "(legal) case",
+      "style"
+    ],
+    "tamil": "கட்டம்; தரம்",
+    "tamilMeanings": [
+      "கட்டம்",
+      "தரம்"
+    ]
+  },
+  {
+    "id": 249,
+    "character": "望",
+    "pinyin": "wàng",
+    "pinyinNumbered": "wang4",
+    "english": "full moon",
+    "meanings": [
+      "full moon",
+      "to hope",
+      "to expect",
+      "to visit",
+      "to gaze (into the distance)"
+    ],
+    "tamil": "நோக்கு; நம்பிக்கை",
+    "tamilMeanings": [
+      "நோக்கு",
+      "நம்பிக்கை"
+    ]
+  },
+  {
+    "id": 250,
+    "character": "觉",
+    "pinyin": "jué",
+    "pinyinNumbered": "jue2",
+    "english": "to feel",
+    "meanings": [
+      "to feel",
+      "to find that",
+      "thinking",
+      "awake",
+      "aware"
+    ],
+    "tamil": "உணர்; தூக்கம்",
+    "tamilMeanings": [
+      "உணர்",
+      "தூக்கம்"
+    ]
+  },
+  {
+    "id": 251,
+    "character": "术",
+    "pinyin": "shù",
+    "pinyinNumbered": "shu4",
+    "english": "method",
+    "meanings": [
+      "method",
+      "technique"
+    ],
+    "tamil": "கலை; நுட்பம்",
+    "tamilMeanings": [
+      "கலை",
+      "நுட்பம்"
+    ]
+  },
+  {
+    "id": 252,
+    "character": "领",
+    "pinyin": "lǐng",
+    "pinyinNumbered": "ling3",
+    "english": "neck",
+    "meanings": [
+      "neck",
+      "collar",
+      "to lead",
+      "to receive"
+    ],
+    "tamil": "கழுத்துப்பட்டை; வழிநடத்து",
+    "tamilMeanings": [
+      "கழுத்துப்பட்டை",
+      "வழிநடத்து"
+    ]
+  },
+  {
+    "id": 253,
+    "character": "共",
+    "pinyin": "gòng",
+    "pinyinNumbered": "gong4",
+    "english": "common",
+    "meanings": [
+      "common",
+      "general",
+      "to share",
+      "together",
+      "total"
+    ],
+    "tamil": "மொத்தம்; பொதுவான",
+    "tamilMeanings": [
+      "மொத்தம்",
+      "பொதுவான"
+    ]
+  },
+  {
+    "id": 254,
+    "character": "确",
+    "pinyin": "què",
+    "pinyinNumbered": "que4",
+    "english": "authenticated",
+    "meanings": [
+      "authenticated",
+      "solid",
+      "firm",
+      "real",
+      "true"
+    ],
+    "tamil": "உறுதியான; உண்மையில்",
+    "tamilMeanings": [
+      "உறுதியான",
+      "உண்மையில்"
+    ]
+  },
+  {
+    "id": 255,
+    "character": "传",
+    "pinyin": "chuán",
+    "pinyinNumbered": "chuan2",
+    "english": "to pass on",
+    "meanings": [
+      "to pass on",
+      "to spread",
+      "to transmit",
+      "to infect",
+      "to transfer"
+    ],
+    "tamil": "கடத்து; பரப்பு",
+    "tamilMeanings": [
+      "கடத்து",
+      "பரப்பு"
+    ]
+  },
+  {
+    "id": 256,
+    "character": "师",
+    "pinyin": "shī",
+    "pinyinNumbered": "shi1",
+    "english": "teacher",
+    "meanings": [
+      "teacher",
+      "master",
+      "expert",
+      "model",
+      "army division"
+    ],
+    "tamil": "ஆசிரியர்; குரு",
+    "tamilMeanings": [
+      "ஆசிரியர்",
+      "குரு"
+    ]
+  },
+  {
+    "id": 257,
+    "character": "观",
+    "pinyin": "guān",
+    "pinyinNumbered": "guan1",
+    "english": "to look at",
+    "meanings": [
+      "to look at",
+      "to watch",
+      "to observe",
+      "to behold",
+      "to advise"
+    ],
+    "tamil": "பார்; கவனி",
+    "tamilMeanings": [
+      "பார்",
+      "கவனி"
+    ]
+  },
+  {
+    "id": 258,
+    "character": "清",
+    "pinyin": "qīng",
+    "pinyinNumbered": "qing1",
+    "english": "(of water etc) clear; clean",
+    "meanings": [
+      "(of water etc) clear; clean",
+      "quiet; still",
+      "pure; uncorrupted",
+      "clear; distinct",
+      "to clear; to settle (accounts)"
+    ],
+    "tamil": "தெளிவான; தூய்மையான",
+    "tamilMeanings": [
+      "தெளிவான",
+      "தூய்மையான"
+    ]
+  },
+  {
+    "id": 259,
+    "character": "今",
+    "pinyin": "jīn",
+    "pinyinNumbered": "jin1",
+    "english": "now",
+    "meanings": [
+      "now",
+      "the present time",
+      "current",
+      "contemporary",
+      "this (day, year etc)"
+    ],
+    "tamil": "இன்று; இப்போது",
+    "tamilMeanings": [
+      "இன்று",
+      "இப்போது"
+    ]
+  },
+  {
+    "id": 260,
+    "character": "切",
+    "pinyin": "qiè",
+    "pinyinNumbered": "qie4",
+    "english": "definitely; absolutely (not)",
+    "meanings": [
+      "definitely; absolutely (not)",
+      "(scoffing or dismissive interjection) Yeah, right.; Tut!",
+      "to grind",
+      "(bound form) close to",
+      "(bound form) eager"
+    ],
+    "tamil": "வெட்டு; நெருக்கமான",
+    "tamilMeanings": [
+      "வெட்டு",
+      "நெருக்கமான"
+    ]
+  },
+  {
+    "id": 261,
+    "character": "院",
+    "pinyin": "yuàn",
+    "pinyinNumbered": "yuan4",
+    "english": "courtyard",
+    "meanings": [
+      "courtyard",
+      "institution",
+      "CL:個|个[ge4]"
+    ],
+    "tamil": "முற்றம்; நிறுவனம்",
+    "tamilMeanings": [
+      "முற்றம்",
+      "நிறுவனம்"
+    ]
+  },
+  {
+    "id": 262,
+    "character": "让",
+    "pinyin": "ràng",
+    "pinyinNumbered": "rang4",
+    "english": "to yield",
+    "meanings": [
+      "to yield",
+      "to permit",
+      "to let sb do sth",
+      "to have sb do sth",
+      "to make sb (feel sad etc)"
+    ],
+    "tamil": "அனுமதி; விட்டுக்கொடு",
+    "tamilMeanings": [
+      "அனுமதி",
+      "விட்டுக்கொடு"
+    ]
+  },
+  {
+    "id": 263,
+    "character": "识",
+    "pinyin": "shí",
+    "pinyinNumbered": "shi2",
+    "english": "to know",
+    "meanings": [
+      "to know",
+      "knowledge"
+    ],
+    "tamil": "அறி; அறிவு",
+    "tamilMeanings": [
+      "அறி",
+      "அறிவு"
+    ]
+  },
+  {
+    "id": 264,
+    "character": "候",
+    "pinyin": "hòu",
+    "pinyinNumbered": "hou4",
+    "english": "to wait",
+    "meanings": [
+      "to wait",
+      "to inquire after",
+      "to watch",
+      "season",
+      "climate"
+    ],
+    "tamil": "காத்திரு; நேரம்",
+    "tamilMeanings": [
+      "காத்திரு",
+      "நேரம்"
+    ]
+  },
+  {
+    "id": 265,
+    "character": "带",
+    "pinyin": "dài",
+    "pinyinNumbered": "dai4",
+    "english": "band",
+    "meanings": [
+      "band",
+      "belt",
+      "girdle",
+      "ribbon",
+      "tire"
+    ],
+    "tamil": "கொண்டுசெல்; பட்டி",
+    "tamilMeanings": [
+      "கொண்டுசெல்",
+      "பட்டி"
+    ]
+  },
+  {
+    "id": 266,
+    "character": "导",
+    "pinyin": "dǎo",
+    "pinyinNumbered": "dao3",
+    "english": "to transmit",
+    "meanings": [
+      "to transmit",
+      "to lead",
+      "to guide",
+      "to conduct",
+      "to direct"
+    ],
+    "tamil": "வழிநடத்து",
+    "tamilMeanings": [
+      "வழிநடத்து"
+    ]
+  },
+  {
+    "id": 267,
+    "character": "争",
+    "pinyin": "zhēng",
+    "pinyinNumbered": "zheng1",
+    "english": "to strive for",
+    "meanings": [
+      "to strive for",
+      "to vie for",
+      "to argue or debate",
+      "deficient or lacking (dialect)",
+      "how or what (literary)"
+    ],
+    "tamil": "போட்டியிடு; சண்டையிடு",
+    "tamilMeanings": [
+      "போட்டியிடு",
+      "சண்டையிடு"
+    ]
+  },
+  {
+    "id": 268,
+    "character": "运",
+    "pinyin": "yùn",
+    "pinyinNumbered": "yun4",
+    "english": "to move",
+    "meanings": [
+      "to move",
+      "to transport",
+      "to use",
+      "to apply",
+      "fortune"
+    ],
+    "tamil": "நகர்த்து; அதிர்ஷ்டம்",
+    "tamilMeanings": [
+      "நகர்த்து",
+      "அதிர்ஷ்டம்"
+    ]
+  },
+  {
+    "id": 269,
+    "character": "笑",
+    "pinyin": "xiào",
+    "pinyinNumbered": "xiao4",
+    "english": "to laugh; to smile",
+    "meanings": [
+      "to laugh; to smile",
+      "to laugh at"
+    ],
+    "tamil": "சிரி",
+    "tamilMeanings": [
+      "சிரி"
+    ]
+  },
+  {
+    "id": 270,
+    "character": "飞",
+    "pinyin": "fēi",
+    "pinyinNumbered": "fei1",
+    "english": "to fly",
+    "meanings": [
+      "to fly"
+    ],
+    "tamil": "பற",
+    "tamilMeanings": [
+      "பற"
+    ]
+  },
+  {
+    "id": 271,
+    "character": "风",
+    "pinyin": "fēng",
+    "pinyinNumbered": "feng1",
+    "english": "wind",
+    "meanings": [
+      "wind",
+      "news",
+      "style",
+      "custom",
+      "manner"
+    ],
+    "tamil": "காற்று",
+    "tamilMeanings": [
+      "காற்று"
+    ]
+  },
+  {
+    "id": 272,
+    "character": "步",
+    "pinyin": "bù",
+    "pinyinNumbered": "bu4",
+    "english": "a step",
+    "meanings": [
+      "a step",
+      "a pace",
+      "walk",
+      "march",
+      "stages in a process"
+    ],
+    "tamil": "அடி; படி",
+    "tamilMeanings": [
+      "அடி",
+      "படி"
+    ]
+  },
+  {
+    "id": 273,
+    "character": "改",
+    "pinyin": "gǎi",
+    "pinyinNumbered": "gai3",
+    "english": "to change",
+    "meanings": [
+      "to change",
+      "to alter",
+      "to transform",
+      "to correct"
+    ],
+    "tamil": "மாற்று",
+    "tamilMeanings": [
+      "மாற்று"
+    ]
+  },
+  {
+    "id": 274,
+    "character": "收",
+    "pinyin": "shōu",
+    "pinyinNumbered": "shou1",
+    "english": "to receive",
+    "meanings": [
+      "to receive",
+      "to accept",
+      "to collect",
+      "to put away",
+      "to restrain"
+    ],
+    "tamil": "பெறு; சேகரி",
+    "tamilMeanings": [
+      "பெறு",
+      "சேகரி"
+    ]
+  },
+  {
+    "id": 275,
+    "character": "根",
+    "pinyin": "gēn",
+    "pinyinNumbered": "gen1",
+    "english": "root",
+    "meanings": [
+      "root",
+      "basis",
+      "CL:條|条[tiao2]",
+      "radical (chemistry)"
+    ],
+    "tamil": "வேர்",
+    "tamilMeanings": [
+      "வேர்"
+    ]
+  },
+  {
+    "id": 276,
+    "character": "干",
+    "pinyin": "gān",
+    "pinyinNumbered": "gan1",
+    "english": "dry",
+    "meanings": [
+      "dry",
+      "dried food",
+      "empty; hollow",
+      "taken in to nominal kinship; adoptive; foster",
+      "futile; in vain"
+    ],
+    "tamil": "உலர்ந்த; செய்",
+    "tamilMeanings": [
+      "உலர்ந்த",
+      "செய்"
+    ]
+  },
+  {
+    "id": 277,
+    "character": "造",
+    "pinyin": "zào",
+    "pinyinNumbered": "zao4",
+    "english": "to make",
+    "meanings": [
+      "to make",
+      "to build",
+      "to manufacture",
+      "to invent",
+      "to fabricate"
+    ],
+    "tamil": "உருவாக்கு",
+    "tamilMeanings": [
+      "உருவாக்கு"
+    ]
+  },
+  {
+    "id": 278,
+    "character": "言",
+    "pinyin": "yán",
+    "pinyinNumbered": "yan2",
+    "english": "words",
+    "meanings": [
+      "words",
+      "speech",
+      "to say",
+      "to talk"
+    ],
+    "tamil": "சொல்; பேச்சு",
+    "tamilMeanings": [
+      "சொல்",
+      "பேச்சு"
+    ]
+  },
+  {
+    "id": 279,
+    "character": "联",
+    "pinyin": "lián",
+    "pinyinNumbered": "lian2",
+    "english": "(bound form) to ally oneself with; to unite; to combine; to join",
+    "meanings": [
+      "(bound form) to ally oneself with; to unite; to combine; to join",
+      "(bound form) (poetry) antithetical couplet"
+    ],
+    "tamil": "இணை; ஒன்றுசேர்",
+    "tamilMeanings": [
+      "இணை",
+      "ஒன்றுசேர்"
+    ]
+  },
+  {
+    "id": 280,
+    "character": "持",
+    "pinyin": "chí",
+    "pinyinNumbered": "chi2",
+    "english": "to hold",
+    "meanings": [
+      "to hold",
+      "to grasp",
+      "to support",
+      "to maintain",
+      "to persevere"
+    ],
+    "tamil": "பிடி; தொடர்ந்து",
+    "tamilMeanings": [
+      "பிடி",
+      "தொடர்ந்து"
+    ]
+  },
+  {
+    "id": 281,
+    "character": "组",
+    "pinyin": "zǔ",
+    "pinyinNumbered": "zu3",
+    "english": "to form",
+    "meanings": [
+      "to form",
+      "to organize",
+      "group",
+      "team"
+    ],
+    "tamil": "குழு; அமை",
+    "tamilMeanings": [
+      "குழு",
+      "அமை"
+    ]
+  },
+  {
+    "id": 282,
+    "character": "每",
+    "pinyin": "měi",
+    "pinyinNumbered": "mei3",
+    "english": "each",
+    "meanings": [
+      "each",
+      "every"
+    ],
+    "tamil": "ஒவ்வொரு",
+    "tamilMeanings": [
+      "ஒவ்வொரு"
+    ]
+  },
+  {
+    "id": 283,
+    "character": "济",
+    "pinyin": "jì",
+    "pinyinNumbered": "ji4",
+    "english": "to cross a river",
+    "meanings": [
+      "to cross a river",
+      "to aid or relieve",
+      "to be of help"
+    ],
+    "tamil": "உதவு; பொருளாதாரம்",
+    "tamilMeanings": [
+      "உதவு",
+      "பொருளாதாரம்"
+    ]
+  },
+  {
+    "id": 284,
+    "character": "车",
+    "pinyin": "chē",
+    "pinyinNumbered": "che1",
+    "english": "car",
+    "meanings": [
+      "car",
+      "vehicle",
+      "CL:輛|辆[liang4]",
+      "machine",
+      "to shape with a lathe"
+    ],
+    "tamil": "வாகனம்; கார்",
+    "tamilMeanings": [
+      "வாகனம்",
+      "கார்"
+    ]
+  },
+  {
+    "id": 285,
+    "character": "亲",
+    "pinyin": "qīn",
+    "pinyinNumbered": "qin1",
+    "english": "parent",
+    "meanings": [
+      "parent",
+      "one's own (flesh and blood)",
+      "relative",
+      "related",
+      "marriage"
+    ],
+    "tamil": "பெற்றோர்; உறவினர்; நெருக்கமான",
+    "tamilMeanings": [
+      "பெற்றோர்",
+      "உறவினர்",
+      "நெருக்கமான"
+    ]
+  },
+  {
+    "id": 286,
+    "character": "极",
+    "pinyin": "jí",
+    "pinyinNumbered": "ji2",
+    "english": "extremely",
+    "meanings": [
+      "extremely",
+      "pole (geography, physics)",
+      "utmost",
+      "top"
+    ],
+    "tamil": "மிகவும்; உச்சம்",
+    "tamilMeanings": [
+      "மிகவும்",
+      "உச்சம்"
+    ]
+  },
+  {
+    "id": 287,
+    "character": "林",
+    "pinyin": "lín",
+    "pinyinNumbered": "lin2",
+    "english": "(bound form) woods; forest",
+    "meanings": [
+      "(bound form) woods; forest",
+      "(bound form) circle(s) (i.e. specific group of people)",
+      "(bound form) a collection (of similar things)"
+    ],
+    "tamil": "காடு; தோப்பு",
+    "tamilMeanings": [
+      "காடு",
+      "தோப்பு"
+    ]
+  },
+  {
+    "id": 288,
+    "character": "服",
+    "pinyin": "fú",
+    "pinyinNumbered": "fu2",
+    "english": "clothes",
+    "meanings": [
+      "clothes",
+      "dress",
+      "garment",
+      "to serve (in the military, a prison sentence etc)",
+      "to obey"
+    ],
+    "tamil": "உடை; சேவை செய்",
+    "tamilMeanings": [
+      "உடை",
+      "சேவை செய்"
+    ]
+  },
+  {
+    "id": 289,
+    "character": "快",
+    "pinyin": "kuài",
+    "pinyinNumbered": "kuai4",
+    "english": "rapid",
+    "meanings": [
+      "rapid",
+      "quick",
+      "speed",
+      "rate",
+      "soon"
+    ],
+    "tamil": "வேகமான; விரைவான",
+    "tamilMeanings": [
+      "வேகமான",
+      "விரைவான"
+    ]
+  },
+  {
+    "id": 290,
+    "character": "办",
+    "pinyin": "bàn",
+    "pinyinNumbered": "ban4",
+    "english": "to take care of (a matter); to deal with (a task, procedure etc); to organize (an event)",
+    "meanings": [
+      "to take care of (a matter); to deal with (a task, procedure etc); to organize (an event)",
+      "to establish; to set up; to manage; to run (an enterprise)",
+      "(law) to handle; to investigate; to prosecute (a case or suspect)",
+      "(bound form) office (as in 招辦|招办[zhao1 ban4], admissions office) (abbr. for 辦公室|办公室[ban4 gong1 shi4])"
+    ],
+    "tamil": "செய்; கையாளு",
+    "tamilMeanings": [
+      "செய்",
+      "கையாளு"
+    ]
+  },
+  {
+    "id": 291,
+    "character": "议",
+    "pinyin": "yì",
+    "pinyinNumbered": "yi4",
+    "english": "to comment on",
+    "meanings": [
+      "to comment on",
+      "to discuss",
+      "to suggest"
+    ],
+    "tamil": "விவாதி; ஆலோசனை",
+    "tamilMeanings": [
+      "விவாதி",
+      "ஆலோசனை"
+    ]
+  },
+  {
+    "id": 292,
+    "character": "往",
+    "pinyin": "wǎng",
+    "pinyinNumbered": "wang3",
+    "english": "to go (in a direction)",
+    "meanings": [
+      "to go (in a direction)",
+      "to",
+      "towards",
+      "(of a train) bound for",
+      "past"
+    ],
+    "tamil": "நோக்கிச் செல்; கடந்த",
+    "tamilMeanings": [
+      "நோக்கிச் செல்",
+      "கடந்த"
+    ]
+  },
+  {
+    "id": 293,
+    "character": "元",
+    "pinyin": "yuán",
+    "pinyinNumbered": "yuan2",
+    "english": "currency unit (esp. Chinese yuan)",
+    "meanings": [
+      "currency unit (esp. Chinese yuan)",
+      "(bound form) first; original; primary",
+      "(bound form) basic; fundamental",
+      "(bound form) constituent; part",
+      "(prefix) meta-"
+    ],
+    "tamil": "யுவான் (சீன நாணயம்); முதல்",
+    "tamilMeanings": [
+      "யுவான் (சீன நாணயம்)",
+      "முதல்"
+    ]
+  },
+  {
+    "id": 294,
+    "character": "英",
+    "pinyin": "yīng",
+    "pinyinNumbered": "ying1",
+    "english": "hero",
+    "meanings": [
+      "hero",
+      "outstanding",
+      "excellent",
+      "(literary) flower",
+      "blossom"
+    ],
+    "tamil": "வீரன்; சிறந்த",
+    "tamilMeanings": [
+      "வீரன்",
+      "சிறந்த"
+    ]
+  },
+  {
+    "id": 295,
+    "character": "士",
+    "pinyin": "shì",
+    "pinyinNumbered": "shi4",
+    "english": "member of the senior ministerial class (old)",
+    "meanings": [
+      "member of the senior ministerial class (old)",
+      "scholar (old)",
+      "bachelor",
+      "honorific",
+      "soldier"
+    ],
+    "tamil": "வீரர்; அறிஞர்",
+    "tamilMeanings": [
+      "வீரர்",
+      "அறிஞர்"
+    ]
+  },
+  {
+    "id": 296,
+    "character": "证",
+    "pinyin": "zhèng",
+    "pinyinNumbered": "zheng4",
+    "english": "certificate",
+    "meanings": [
+      "certificate",
+      "proof",
+      "to prove",
+      "to demonstrate",
+      "to confirm"
+    ],
+    "tamil": "சான்று; சான்றிதழ்",
+    "tamilMeanings": [
+      "சான்று",
+      "சான்றிதழ்"
+    ]
+  },
+  {
+    "id": 297,
+    "character": "近",
+    "pinyin": "jìn",
+    "pinyinNumbered": "jin4",
+    "english": "near",
+    "meanings": [
+      "near",
+      "close to",
+      "approximately"
+    ],
+    "tamil": "அருகில்",
+    "tamilMeanings": [
+      "அருகில்"
+    ]
+  },
+  {
+    "id": 298,
+    "character": "失",
+    "pinyin": "shī",
+    "pinyinNumbered": "shi1",
+    "english": "to lose",
+    "meanings": [
+      "to lose",
+      "to miss",
+      "to fail"
+    ],
+    "tamil": "இழ; தோற்று",
+    "tamilMeanings": [
+      "இழ",
+      "தோற்று"
+    ]
+  },
+  {
+    "id": 299,
+    "character": "转",
+    "pinyin": "zhuǎn",
+    "pinyinNumbered": "zhuan3",
+    "english": "to turn",
+    "meanings": [
+      "to turn",
+      "to change direction",
+      "to transfer",
+      "to forward (mail)",
+      "(Internet) to share (sb else's content)"
+    ],
+    "tamil": "திரும்பு; மாற்று",
+    "tamilMeanings": [
+      "திரும்பு",
+      "மாற்று"
+    ]
+  },
+  {
+    "id": 300,
+    "character": "夫",
+    "pinyin": "fū",
+    "pinyinNumbered": "fu1",
+    "english": "husband",
+    "meanings": [
+      "husband",
+      "man",
+      "manual worker",
+      "conscripted laborer (old)"
+    ],
+    "tamil": "கணவன்",
+    "tamilMeanings": [
+      "கணவன்"
+    ]
+  },
+  {
+    "id": 301,
+    "character": "令",
+    "pinyin": "lìng",
+    "pinyinNumbered": "ling4",
+    "english": "to order",
+    "meanings": [
+      "to order",
+      "to command",
+      "an order",
+      "warrant",
+      "writ"
+    ],
+    "tamil": "கட்டளை; செய்யச்செய்",
+    "tamilMeanings": [
+      "கட்டளை",
+      "செய்யச்செய்"
+    ]
+  },
+  {
+    "id": 302,
+    "character": "准",
+    "pinyin": "zhǔn",
+    "pinyinNumbered": "zhun3",
+    "english": "accurate",
+    "meanings": [
+      "accurate",
+      "standard",
+      "definitely",
+      "certainly",
+      "about to become (bride, son-in-law etc)"
+    ],
+    "tamil": "அனுமதி; துல்லியமான",
+    "tamilMeanings": [
+      "அனுமதி",
+      "துல்லியமான"
+    ]
+  },
+  {
+    "id": 303,
+    "character": "布",
+    "pinyin": "bù",
+    "pinyinNumbered": "bu4",
+    "english": "cloth",
+    "meanings": [
+      "cloth",
+      "to declare",
+      "to announce",
+      "to spread",
+      "to make known"
+    ],
+    "tamil": "துணி",
+    "tamilMeanings": [
+      "துணி"
+    ]
+  },
+  {
+    "id": 304,
+    "character": "始",
+    "pinyin": "shǐ",
+    "pinyinNumbered": "shi3",
+    "english": "to begin",
+    "meanings": [
+      "to begin",
+      "to start",
+      "then",
+      "only then"
+    ],
+    "tamil": "தொடங்கு",
+    "tamilMeanings": [
+      "தொடங்கு"
+    ]
+  },
+  {
+    "id": 305,
+    "character": "怎",
+    "pinyin": "zěn",
+    "pinyinNumbered": "zen3",
+    "english": "how",
+    "meanings": [
+      "how"
+    ],
+    "tamil": "எப்படி",
+    "tamilMeanings": [
+      "எப்படி"
+    ]
+  },
+  {
+    "id": 306,
+    "character": "呢",
+    "pinyin": "ne",
+    "pinyinNumbered": "ne0",
+    "english": "particle indicating that a previously asked question is to be applied to the preceding word (\"What about ...?\", \"And ...?\")",
+    "meanings": [
+      "particle indicating that a previously asked question is to be applied to the preceding word (\"What about ...?\", \"And ...?\")",
+      "particle for inquiring about location (\"Where is ...?\")",
+      "particle signaling a pause, to emphasize the preceding words and allow the listener time to take them on board (\"ok?\", \"are you with me?\")",
+      "(at the end of a declarative sentence) particle indicating continuation of a state or action",
+      "particle indicating strong affirmation"
+    ],
+    "tamil": "கேள்வி/தொடர்ச்சியைக் குறிக்கும் துணைச்சொல்",
+    "tamilMeanings": [
+      "கேள்வி/தொடர்ச்சியைக் குறிக்கும் துணைச்சொல்"
+    ]
+  },
+  {
+    "id": 307,
+    "character": "存",
+    "pinyin": "cún",
+    "pinyinNumbered": "cun2",
+    "english": "to exist",
+    "meanings": [
+      "to exist",
+      "to deposit",
+      "to store",
+      "to keep",
+      "to survive"
+    ],
+    "tamil": "சேமி; இரு",
+    "tamilMeanings": [
+      "சேமி",
+      "இரு"
+    ]
+  },
+  {
+    "id": 308,
+    "character": "未",
+    "pinyin": "wèi",
+    "pinyinNumbered": "wei4",
+    "english": "not yet",
+    "meanings": [
+      "not yet",
+      "did not",
+      "have not",
+      "not",
+      "8th earthly branch: 1-3 p.m., 6th solar month (7th July-6th August), year of the Sheep"
+    ],
+    "tamil": "இன்னும் இல்லை",
+    "tamilMeanings": [
+      "இன்னும் இல்லை"
+    ]
+  },
+  {
+    "id": 309,
+    "character": "远",
+    "pinyin": "yuǎn",
+    "pinyinNumbered": "yuan3",
+    "english": "far",
+    "meanings": [
+      "far",
+      "distant",
+      "remote",
+      "(intensifier in a comparison) by far",
+      "much (lower etc)"
+    ],
+    "tamil": "தூரமான",
+    "tamilMeanings": [
+      "தூரமான"
+    ]
+  },
+  {
+    "id": 310,
+    "character": "叫",
+    "pinyin": "jiào",
+    "pinyinNumbered": "jiao4",
+    "english": "to shout",
+    "meanings": [
+      "to shout",
+      "to call",
+      "to order",
+      "to ask",
+      "to be called"
+    ],
+    "tamil": "அழை; கூப்பிடு",
+    "tamilMeanings": [
+      "அழை",
+      "கூப்பிடு"
+    ]
+  },
+  {
+    "id": 311,
+    "character": "台",
+    "pinyin": "tái",
+    "pinyinNumbered": "tai2",
+    "english": "platform",
+    "meanings": [
+      "platform",
+      "stage",
+      "terrace",
+      "stand",
+      "support"
+    ],
+    "tamil": "மேடை; மேசை",
+    "tamilMeanings": [
+      "மேடை",
+      "மேசை"
+    ]
+  },
+  {
+    "id": 312,
+    "character": "单",
+    "pinyin": "dān",
+    "pinyinNumbered": "dan1",
+    "english": "bill",
+    "meanings": [
+      "bill",
+      "list",
+      "form",
+      "single",
+      "only"
+    ],
+    "tamil": "ஒற்றை; பட்டியல்",
+    "tamilMeanings": [
+      "ஒற்றை",
+      "பட்டியல்"
+    ]
+  },
+  {
+    "id": 313,
+    "character": "影",
+    "pinyin": "yǐng",
+    "pinyinNumbered": "ying3",
+    "english": "picture",
+    "meanings": [
+      "picture",
+      "image",
+      "film",
+      "movie",
+      "photograph"
+    ],
+    "tamil": "நிழல்; படம்",
+    "tamilMeanings": [
+      "நிழல்",
+      "படம்"
+    ]
+  },
+  {
+    "id": 314,
+    "character": "具",
+    "pinyin": "jù",
+    "pinyinNumbered": "ju4",
+    "english": "tool",
+    "meanings": [
+      "tool",
+      "device",
+      "utensil",
+      "equipment",
+      "instrument"
+    ],
+    "tamil": "கருவி; உபகரணம்",
+    "tamilMeanings": [
+      "கருவி",
+      "உபகரணம்"
+    ]
+  },
+  {
+    "id": 315,
+    "character": "罗",
+    "pinyin": "luó",
+    "pinyinNumbered": "luo2",
+    "english": "gauze",
+    "meanings": [
+      "gauze",
+      "to collect",
+      "to gather",
+      "to catch",
+      "to sift"
+    ],
+    "tamil": "வலை; ஒலிபெயர்ப்பு எழுத்து",
+    "tamilMeanings": [
+      "வலை",
+      "ஒலிபெயர்ப்பு எழுத்து"
+    ]
+  },
+  {
+    "id": 316,
+    "character": "字",
+    "pinyin": "zì",
+    "pinyinNumbered": "zi4",
+    "english": "letter",
+    "meanings": [
+      "letter",
+      "symbol",
+      "character",
+      "word",
+      "CL:個|个[ge4]"
+    ],
+    "tamil": "எழுத்து; சீன எழுத்துரு",
+    "tamilMeanings": [
+      "எழுத்து",
+      "சீன எழுத்துரு"
+    ]
+  },
+  {
+    "id": 317,
+    "character": "爱",
+    "pinyin": "ài",
+    "pinyinNumbered": "ai4",
+    "english": "to love; to be fond of; to like",
+    "meanings": [
+      "to love; to be fond of; to like",
+      "affection",
+      "to be inclined (to do sth); to tend to (happen)"
+    ],
+    "tamil": "அன்பு; விரும்பு",
+    "tamilMeanings": [
+      "அன்பு",
+      "விரும்பு"
+    ]
+  },
+  {
+    "id": 318,
+    "character": "击",
+    "pinyin": "jī",
+    "pinyinNumbered": "ji1",
+    "english": "to hit",
+    "meanings": [
+      "to hit",
+      "to strike",
+      "to break"
+    ],
+    "tamil": "அடி; தாக்கு",
+    "tamilMeanings": [
+      "அடி",
+      "தாக்கு"
+    ]
+  },
+  {
+    "id": 319,
+    "character": "流",
+    "pinyin": "liú",
+    "pinyinNumbered": "liu2",
+    "english": "to flow",
+    "meanings": [
+      "to flow",
+      "to disseminate",
+      "to circulate or spread",
+      "to move or drift",
+      "to degenerate"
+    ],
+    "tamil": "ஓடு; பாய்",
+    "tamilMeanings": [
+      "ஓடு",
+      "பாய்"
+    ]
+  },
+  {
+    "id": 320,
+    "character": "备",
+    "pinyin": "bèi",
+    "pinyinNumbered": "bei4",
+    "english": "(bound form) to prepare; to equip",
+    "meanings": [
+      "(bound form) to prepare; to equip",
+      "(literary) fully; completely"
+    ],
+    "tamil": "தயார்செய்",
+    "tamilMeanings": [
+      "தயார்செய்"
+    ]
+  },
+  {
+    "id": 321,
+    "character": "兵",
+    "pinyin": "bīng",
+    "pinyinNumbered": "bing1",
+    "english": "soldiers",
+    "meanings": [
+      "soldiers",
+      "a force",
+      "an army",
+      "weapons",
+      "arms"
+    ],
+    "tamil": "படைவீரர்",
+    "tamilMeanings": [
+      "படைவீரர்"
+    ]
+  },
+  {
+    "id": 322,
+    "character": "连",
+    "pinyin": "lián",
+    "pinyinNumbered": "lian2",
+    "english": "to link",
+    "meanings": [
+      "to link",
+      "to join",
+      "to connect",
+      "continuously",
+      "in succession"
+    ],
+    "tamil": "இணை; கூட",
+    "tamilMeanings": [
+      "இணை",
+      "கூட"
+    ]
+  },
+  {
+    "id": 323,
+    "character": "调",
+    "pinyin": "tiáo",
+    "pinyinNumbered": "tiao2",
+    "english": "to harmonize",
+    "meanings": [
+      "to harmonize",
+      "to reconcile",
+      "to blend",
+      "to suit well",
+      "to adjust"
+    ],
+    "tamil": "சரிசெய்; மாற்று",
+    "tamilMeanings": [
+      "சரிசெய்",
+      "மாற்று"
+    ]
+  },
+  {
+    "id": 324,
+    "character": "深",
+    "pinyin": "shēn",
+    "pinyinNumbered": "shen1",
+    "english": "deep (lit. and fig.)",
+    "meanings": [
+      "deep (lit. and fig.)"
+    ],
+    "tamil": "ஆழமான",
+    "tamilMeanings": [
+      "ஆழமான"
+    ]
+  },
+  {
+    "id": 325,
+    "character": "商",
+    "pinyin": "shāng",
+    "pinyinNumbered": "shang1",
+    "english": "commerce",
+    "meanings": [
+      "commerce",
+      "merchant",
+      "dealer",
+      "to consult",
+      "2nd note in pentatonic scale"
+    ],
+    "tamil": "வணிகம்",
+    "tamilMeanings": [
+      "வணிகம்"
+    ]
+  },
+  {
+    "id": 326,
+    "character": "算",
+    "pinyin": "suàn",
+    "pinyinNumbered": "suan4",
+    "english": "to regard as",
+    "meanings": [
+      "to regard as",
+      "to figure",
+      "to calculate",
+      "to compute"
+    ],
+    "tamil": "கணக்கிடு; கருது",
+    "tamilMeanings": [
+      "கணக்கிடு",
+      "கருது"
+    ]
+  },
+  {
+    "id": 327,
+    "character": "质",
+    "pinyin": "zhì",
+    "pinyinNumbered": "zhi4",
+    "english": "character",
+    "meanings": [
+      "character",
+      "nature",
+      "quality",
+      "plain",
+      "to pawn"
+    ],
+    "tamil": "தரம்; பண்பு",
+    "tamilMeanings": [
+      "தரம்",
+      "பண்பு"
+    ]
+  },
+  {
+    "id": 328,
+    "character": "团",
+    "pinyin": "tuán",
+    "pinyinNumbered": "tuan2",
+    "english": "round",
+    "meanings": [
+      "round",
+      "lump",
+      "ball",
+      "to roll into a ball",
+      "to gather"
+    ],
+    "tamil": "குழு; உருண்டை",
+    "tamilMeanings": [
+      "குழு",
+      "உருண்டை"
+    ]
+  },
+  {
+    "id": 329,
+    "character": "集",
+    "pinyin": "jí",
+    "pinyinNumbered": "ji2",
+    "english": "to gather",
+    "meanings": [
+      "to gather",
+      "to collect",
+      "collected works"
+    ],
+    "tamil": "கூடு; சேகரி",
+    "tamilMeanings": [
+      "கூடு",
+      "சேகரி"
+    ]
+  },
+  {
+    "id": 330,
+    "character": "百",
+    "pinyin": "bǎi",
+    "pinyinNumbered": "bai3",
+    "english": "hundred",
+    "meanings": [
+      "hundred",
+      "numerous",
+      "all kinds of"
+    ],
+    "tamil": "நூறு",
+    "tamilMeanings": [
+      "நூறு"
+    ]
+  },
+  {
+    "id": 331,
+    "character": "需",
+    "pinyin": "xū",
+    "pinyinNumbered": "xu1",
+    "english": "to require",
+    "meanings": [
+      "to require",
+      "to need",
+      "to want",
+      "necessity",
+      "need"
+    ],
+    "tamil": "தேவை",
+    "tamilMeanings": [
+      "தேவை"
+    ]
+  },
+  {
+    "id": 332,
+    "character": "价",
+    "pinyin": "jià",
+    "pinyinNumbered": "jia4",
+    "english": "price",
+    "meanings": [
+      "price",
+      "value",
+      "(chemistry) valence"
+    ],
+    "tamil": "விலை",
+    "tamilMeanings": [
+      "விலை"
+    ]
+  },
+  {
+    "id": 333,
+    "character": "花",
+    "pinyin": "huā",
+    "pinyinNumbered": "hua1",
+    "english": "flower",
+    "meanings": [
+      "flower",
+      "blossom",
+      "CL:朵[duo3],支[zhi1],束[shu4],把[ba3],盆[pen2],簇[cu4]",
+      "fancy pattern",
+      "florid"
+    ],
+    "tamil": "பூ; செலவழி",
+    "tamilMeanings": [
+      "பூ",
+      "செலவழி"
+    ]
+  },
+  {
+    "id": 334,
+    "character": "党",
+    "pinyin": "dǎng",
+    "pinyinNumbered": "dang3",
+    "english": "party",
+    "meanings": [
+      "party",
+      "association",
+      "club",
+      "society",
+      "CL:個|个[ge4]"
+    ],
+    "tamil": "கட்சி",
+    "tamilMeanings": [
+      "கட்சி"
+    ]
+  },
+  {
+    "id": 335,
+    "character": "华",
+    "pinyin": "huá",
+    "pinyinNumbered": "hua2",
+    "english": "magnificent",
+    "meanings": [
+      "magnificent",
+      "splendid",
+      "flowery"
+    ],
+    "tamil": "சீனம்; சிறப்பான",
+    "tamilMeanings": [
+      "சீனம்",
+      "சிறப்பான"
+    ]
+  },
+  {
+    "id": 336,
+    "character": "城",
+    "pinyin": "chéng",
+    "pinyinNumbered": "cheng2",
+    "english": "city walls",
+    "meanings": [
+      "city walls",
+      "city",
+      "town",
+      "CL:座[zuo4],道[dao4],個|个[ge4]"
+    ],
+    "tamil": "நகரம்; கோட்டை",
+    "tamilMeanings": [
+      "நகரம்",
+      "கோட்டை"
+    ]
+  },
+  {
+    "id": 337,
+    "character": "石",
+    "pinyin": "shí",
+    "pinyinNumbered": "shi2",
+    "english": "rock",
+    "meanings": [
+      "rock",
+      "stone",
+      "stone inscription",
+      "one of the eight categories of ancient musical instruments 八音[ba1 yin1]"
+    ],
+    "tamil": "கல்",
+    "tamilMeanings": [
+      "கல்"
+    ]
+  },
+  {
+    "id": 338,
+    "character": "级",
+    "pinyin": "jí",
+    "pinyinNumbered": "ji2",
+    "english": "level",
+    "meanings": [
+      "level",
+      "grade",
+      "rank",
+      "step (of stairs)",
+      "CL:個|个[ge4]"
+    ],
+    "tamil": "நிலை; தரம்",
+    "tamilMeanings": [
+      "நிலை",
+      "தரம்"
+    ]
+  },
+  {
+    "id": 339,
+    "character": "整",
+    "pinyin": "zhěng",
+    "pinyinNumbered": "zheng3",
+    "english": "(bound form) whole; complete; entire; (before a measure word) whole; (before or after number + measure word) exactly",
+    "meanings": [
+      "(bound form) whole; complete; entire; (before a measure word) whole; (before or after number + measure word) exactly",
+      "(bound form) in good order; tidy; neat",
+      "(bound form) to put in order; to straighten",
+      "(bound form) to repair; to mend; to renovate",
+      "(coll.) to fix sb; to give sb a hard time; to mess with sb"
+    ],
+    "tamil": "முழுமையான; ஒழுங்குபடுத்து",
+    "tamilMeanings": [
+      "முழுமையான",
+      "ஒழுங்குபடுத்து"
+    ]
+  },
+  {
+    "id": 340,
+    "character": "府",
+    "pinyin": "fǔ",
+    "pinyinNumbered": "fu3",
+    "english": "seat of government",
+    "meanings": [
+      "seat of government",
+      "government repository (archive)",
+      "official residence",
+      "mansion",
+      "presidential palace"
+    ],
+    "tamil": "அரசு அலுவலகம்; மாளிகை",
+    "tamilMeanings": [
+      "அரசு அலுவலகம்",
+      "மாளிகை"
+    ]
+  },
+  {
+    "id": 341,
+    "character": "离",
+    "pinyin": "lí",
+    "pinyinNumbered": "li2",
+    "english": "to leave",
+    "meanings": [
+      "to leave",
+      "to part from",
+      "to be away from",
+      "(in giving distances) from",
+      "without (sth)"
+    ],
+    "tamil": "விலகு; பிரி",
+    "tamilMeanings": [
+      "விலகு",
+      "பிரி"
+    ]
+  },
+  {
+    "id": 342,
+    "character": "况",
+    "pinyin": "kuàng",
+    "pinyinNumbered": "kuang4",
+    "english": "moreover",
+    "meanings": [
+      "moreover",
+      "situation"
+    ],
+    "tamil": "நிலைமை; மேலும்",
+    "tamilMeanings": [
+      "நிலைமை",
+      "மேலும்"
+    ]
+  },
+  {
+    "id": 343,
+    "character": "亚",
+    "pinyin": "yà",
+    "pinyinNumbered": "ya4",
+    "english": "second",
+    "meanings": [
+      "second",
+      "next to",
+      "inferior",
+      "sub-"
+    ],
+    "tamil": "ஆசியா (亚洲); இரண்டாம் நிலை",
+    "tamilMeanings": [
+      "ஆசியா (亚洲)",
+      "இரண்டாம் நிலை"
+    ]
+  },
+  {
+    "id": 344,
+    "character": "请",
+    "pinyin": "qǐng",
+    "pinyinNumbered": "qing3",
+    "english": "to ask",
+    "meanings": [
+      "to ask",
+      "to invite",
+      "please (do sth)",
+      "to treat (to a meal etc)",
+      "to request"
+    ],
+    "tamil": "தயவுசெய்து; அழை",
+    "tamilMeanings": [
+      "தயவுசெய்து",
+      "அழை"
+    ]
+  },
+  {
+    "id": 345,
+    "character": "技",
+    "pinyin": "jì",
+    "pinyinNumbered": "ji4",
+    "english": "skill",
+    "meanings": [
+      "skill"
+    ],
+    "tamil": "திறன்",
+    "tamilMeanings": [
+      "திறன்"
+    ]
+  },
+  {
+    "id": 346,
+    "character": "际",
+    "pinyin": "jì",
+    "pinyinNumbered": "ji4",
+    "english": "border",
+    "meanings": [
+      "border",
+      "edge",
+      "boundary",
+      "interval",
+      "between"
+    ],
+    "tamil": "இடையே; எல்லை",
+    "tamilMeanings": [
+      "இடையே",
+      "எல்லை"
+    ]
+  },
+  {
+    "id": 347,
+    "character": "约",
+    "pinyin": "yuē",
+    "pinyinNumbered": "yue1",
+    "english": "to make an appointment",
+    "meanings": [
+      "to make an appointment",
+      "to invite",
+      "approximately",
+      "pact",
+      "treaty"
+    ],
+    "tamil": "ஏறக்குறைய; ஒப்பந்தம்",
+    "tamilMeanings": [
+      "ஏறக்குறைய",
+      "ஒப்பந்தம்"
+    ]
+  },
+  {
+    "id": 348,
+    "character": "示",
+    "pinyin": "shì",
+    "pinyinNumbered": "shi4",
+    "english": "to show",
+    "meanings": [
+      "to show",
+      "to reveal"
+    ],
+    "tamil": "காட்டு",
+    "tamilMeanings": [
+      "காட்டு"
+    ]
+  },
+  {
+    "id": 349,
+    "character": "复",
+    "pinyin": "fù",
+    "pinyinNumbered": "fu4",
+    "english": "to go and return",
+    "meanings": [
+      "to go and return",
+      "to return",
+      "to resume",
+      "to return to a normal or original state",
+      "to repeat"
+    ],
+    "tamil": "மீண்டும்; திரும்பு",
+    "tamilMeanings": [
+      "மீண்டும்",
+      "திரும்பு"
+    ]
+  },
+  {
+    "id": 350,
+    "character": "病",
+    "pinyin": "bìng",
+    "pinyinNumbered": "bing4",
+    "english": "illness",
+    "meanings": [
+      "illness",
+      "CL:場|场[chang2]",
+      "disease",
+      "to fall ill",
+      "defect"
+    ],
+    "tamil": "நோய்",
+    "tamilMeanings": [
+      "நோய்"
+    ]
+  },
+  {
+    "id": 351,
+    "character": "息",
+    "pinyin": "xī",
+    "pinyinNumbered": "xi1",
+    "english": "breath",
+    "meanings": [
+      "breath",
+      "news",
+      "interest (on an investment or loan)",
+      "to cease",
+      "to stop"
+    ],
+    "tamil": "மூச்சு; ஓய்வு",
+    "tamilMeanings": [
+      "மூச்சு",
+      "ஓய்வு"
+    ]
+  },
+  {
+    "id": 352,
+    "character": "究",
+    "pinyin": "jiū",
+    "pinyinNumbered": "jiu1",
+    "english": "after all",
+    "meanings": [
+      "after all",
+      "to investigate",
+      "to study carefully"
+    ],
+    "tamil": "ஆராய்",
+    "tamilMeanings": [
+      "ஆராய்"
+    ]
+  },
+  {
+    "id": 353,
+    "character": "线",
+    "pinyin": "xiàn",
+    "pinyinNumbered": "xian4",
+    "english": "thread",
+    "meanings": [
+      "thread",
+      "string",
+      "wire",
+      "line",
+      "CL:條|条[tiao2],股[gu3],根[gen1]"
+    ],
+    "tamil": "நூல்; கோடு",
+    "tamilMeanings": [
+      "நூல்",
+      "கோடு"
+    ]
+  },
+  {
+    "id": 354,
+    "character": "似",
+    "pinyin": "sì",
+    "pinyinNumbered": "si4",
+    "english": "to seem",
+    "meanings": [
+      "to seem",
+      "to appear",
+      "to resemble",
+      "similar",
+      "-like"
+    ],
+    "tamil": "போன்ற; ஒத்த",
+    "tamilMeanings": [
+      "போன்ற",
+      "ஒத்த"
+    ]
+  },
+  {
+    "id": 355,
+    "character": "官",
+    "pinyin": "guān",
+    "pinyinNumbered": "guan1",
+    "english": "government official",
+    "meanings": [
+      "government official",
+      "governmental",
+      "official",
+      "public",
+      "organ of the body"
+    ],
+    "tamil": "அதிகாரி",
+    "tamilMeanings": [
+      "அதிகாரி"
+    ]
+  },
+  {
+    "id": 356,
+    "character": "火",
+    "pinyin": "huǒ",
+    "pinyinNumbered": "huo3",
+    "english": "fire",
+    "meanings": [
+      "fire",
+      "urgent",
+      "ammunition",
+      "fiery or flaming",
+      "internal heat (Chinese medicine)"
+    ],
+    "tamil": "நெருப்பு",
+    "tamilMeanings": [
+      "நெருப்பு"
+    ]
+  },
+  {
+    "id": 357,
+    "character": "断",
+    "pinyin": "duàn",
+    "pinyinNumbered": "duan4",
+    "english": "to break",
+    "meanings": [
+      "to break",
+      "to snap",
+      "to cut off",
+      "to give up or abstain from sth",
+      "to judge"
+    ],
+    "tamil": "உடை; துண்டி",
+    "tamilMeanings": [
+      "உடை",
+      "துண்டி"
+    ]
+  },
+  {
+    "id": 358,
+    "character": "精",
+    "pinyin": "jīng",
+    "pinyinNumbered": "jing1",
+    "english": "essence",
+    "meanings": [
+      "essence",
+      "extract",
+      "vitality",
+      "energy",
+      "semen"
+    ],
+    "tamil": "நுட்பமான; சாரம்",
+    "tamilMeanings": [
+      "நுட்பமான",
+      "சாரம்"
+    ]
+  },
+  {
+    "id": 359,
+    "character": "满",
+    "pinyin": "mǎn",
+    "pinyinNumbered": "man3",
+    "english": "to fill",
+    "meanings": [
+      "to fill",
+      "full",
+      "filled",
+      "packed",
+      "fully"
+    ],
+    "tamil": "நிறைந்த",
+    "tamilMeanings": [
+      "நிறைந்த"
+    ]
+  },
+  {
+    "id": 360,
+    "character": "支",
+    "pinyin": "zhī",
+    "pinyinNumbered": "zhi1",
+    "english": "to support",
+    "meanings": [
+      "to support",
+      "to sustain",
+      "to erect",
+      "to raise",
+      "branch"
+    ],
+    "tamil": "ஆதரி; கிளை",
+    "tamilMeanings": [
+      "ஆதரி",
+      "கிளை"
+    ]
+  },
+  {
+    "id": 361,
+    "character": "视",
+    "pinyin": "shì",
+    "pinyinNumbered": "shi4",
+    "english": "(literary, or bound form) to look at",
+    "meanings": [
+      "(literary, or bound form) to look at"
+    ],
+    "tamil": "பார்; பார்வை",
+    "tamilMeanings": [
+      "பார்",
+      "பார்வை"
+    ]
+  },
+  {
+    "id": 362,
+    "character": "消",
+    "pinyin": "xiāo",
+    "pinyinNumbered": "xiao1",
+    "english": "to diminish; to subside",
+    "meanings": [
+      "to diminish; to subside",
+      "to consume; to reduce",
+      "to idle away (the time)",
+      "(after 不[bu4] or 只[zhi3] or 何[he2] etc) to need; to require; to take"
+    ],
+    "tamil": "மறை; குறை",
+    "tamilMeanings": [
+      "மறை",
+      "குறை"
+    ]
+  },
+  {
+    "id": 363,
+    "character": "越",
+    "pinyin": "yuè",
+    "pinyinNumbered": "yue4",
+    "english": "to exceed",
+    "meanings": [
+      "to exceed",
+      "to climb over",
+      "to surpass",
+      "the more... the more"
+    ],
+    "tamil": "கடந்து செல்; மேலும் மேலும்",
+    "tamilMeanings": [
+      "கடந்து செல்",
+      "மேலும் மேலும்"
+    ]
+  },
+  {
+    "id": 364,
+    "character": "器",
+    "pinyin": "qì",
+    "pinyinNumbered": "qi4",
+    "english": "device",
+    "meanings": [
+      "device",
+      "tool",
+      "utensil",
+      "CL:臺|台[tai2]"
+    ],
+    "tamil": "கருவி; பாத்திரம்",
+    "tamilMeanings": [
+      "கருவி",
+      "பாத்திரம்"
+    ]
+  },
+  {
+    "id": 365,
+    "character": "容",
+    "pinyin": "róng",
+    "pinyinNumbered": "rong2",
+    "english": "to hold",
+    "meanings": [
+      "to hold",
+      "to contain",
+      "to allow",
+      "to tolerate",
+      "appearance"
+    ],
+    "tamil": "உள்ளடக்கு; அனுமதி",
+    "tamilMeanings": [
+      "உள்ளடக்கு",
+      "அனுமதி"
+    ]
+  },
+  {
+    "id": 366,
+    "character": "照",
+    "pinyin": "zhào",
+    "pinyinNumbered": "zhao4",
+    "english": "according to",
+    "meanings": [
+      "according to",
+      "in accordance with",
+      "to shine",
+      "to illuminate",
+      "to reflect"
+    ],
+    "tamil": "ஒளிர்; புகைப்படம்",
+    "tamilMeanings": [
+      "ஒளிர்",
+      "புகைப்படம்"
+    ]
+  },
+  {
+    "id": 367,
+    "character": "须",
+    "pinyin": "xū",
+    "pinyinNumbered": "xu1",
+    "english": "beard",
+    "meanings": [
+      "beard",
+      "mustache",
+      "feeler (of an insect etc)",
+      "tassel"
+    ],
+    "tamil": "வேண்டும்; கட்டாயம்",
+    "tamilMeanings": [
+      "வேண்டும்",
+      "கட்டாயம்"
+    ]
+  },
+  {
+    "id": 368,
+    "character": "九",
+    "pinyin": "jiǔ",
+    "pinyinNumbered": "jiu3",
+    "english": "nine",
+    "meanings": [
+      "nine",
+      "9"
+    ],
+    "tamil": "ஒன்பது",
+    "tamilMeanings": [
+      "ஒன்பது"
+    ]
+  },
+  {
+    "id": 369,
+    "character": "增",
+    "pinyin": "zēng",
+    "pinyinNumbered": "zeng1",
+    "english": "(bound form) to increase; to augment; to add to",
+    "meanings": [
+      "(bound form) to increase; to augment; to add to"
+    ],
+    "tamil": "அதிகரி",
+    "tamilMeanings": [
+      "அதிகரி"
+    ]
+  },
+  {
+    "id": 370,
+    "character": "研",
+    "pinyin": "yán",
+    "pinyinNumbered": "yan2",
+    "english": "to grind",
+    "meanings": [
+      "to grind",
+      "study",
+      "research"
+    ],
+    "tamil": "ஆராய்; அரை",
+    "tamilMeanings": [
+      "ஆராய்",
+      "அரை"
+    ]
+  },
+  {
+    "id": 371,
+    "character": "写",
+    "pinyin": "xiě",
+    "pinyinNumbered": "xie3",
+    "english": "to write",
+    "meanings": [
+      "to write"
+    ],
+    "tamil": "எழுது",
+    "tamilMeanings": [
+      "எழுது"
+    ]
+  },
+  {
+    "id": 372,
+    "character": "称",
+    "pinyin": "chēng",
+    "pinyinNumbered": "cheng1",
+    "english": "to weigh",
+    "meanings": [
+      "to weigh",
+      "to state",
+      "to name",
+      "name",
+      "appellation"
+    ],
+    "tamil": "அழை; எடைபோடு",
+    "tamilMeanings": [
+      "அழை",
+      "எடைபோடு"
+    ]
+  },
+  {
+    "id": 373,
+    "character": "企",
+    "pinyin": "qǐ",
+    "pinyinNumbered": "qi3",
+    "english": "(bound form) to stand on tiptoe and look; to anticipate; to look forward to",
+    "meanings": [
+      "(bound form) to stand on tiptoe and look; to anticipate; to look forward to"
+    ],
+    "tamil": "எதிர்பார்; முயற்சி",
+    "tamilMeanings": [
+      "எதிர்பார்",
+      "முயற்சி"
+    ]
+  },
+  {
+    "id": 374,
+    "character": "八",
+    "pinyin": "bā",
+    "pinyinNumbered": "ba1",
+    "english": "eight",
+    "meanings": [
+      "eight"
+    ],
+    "tamil": "எட்டு",
+    "tamilMeanings": [
+      "எட்டு"
+    ]
+  },
+  {
+    "id": 375,
+    "character": "功",
+    "pinyin": "gōng",
+    "pinyinNumbered": "gong1",
+    "english": "meritorious deed or service",
+    "meanings": [
+      "meritorious deed or service",
+      "achievement",
+      "result",
+      "service",
+      "accomplishment"
+    ],
+    "tamil": "சாதனை; பலன்",
+    "tamilMeanings": [
+      "சாதனை",
+      "பலன்"
+    ]
+  },
+  {
+    "id": 376,
+    "character": "吗",
+    "pinyin": "ma",
+    "pinyinNumbered": "ma0",
+    "english": "(question particle for \"yes-no\" questions)",
+    "meanings": [
+      "(question particle for \"yes-no\" questions)"
+    ],
+    "tamil": "ஆம்/இல்லை கேள்வியைக் குறிக்கும் துணைச்சொல்",
+    "tamilMeanings": [
+      "ஆம்/இல்லை கேள்வியைக் குறிக்கும் துணைச்சொல்"
+    ]
+  },
+  {
+    "id": 377,
+    "character": "包",
+    "pinyin": "bāo",
+    "pinyinNumbered": "bao1",
+    "english": "to cover",
+    "meanings": [
+      "to cover",
+      "to wrap",
+      "to hold",
+      "to include",
+      "to take charge of"
+    ],
+    "tamil": "பை; சுற்று",
+    "tamilMeanings": [
+      "பை",
+      "சுற்று"
+    ]
+  },
+  {
+    "id": 378,
+    "character": "片",
+    "pinyin": "piàn",
+    "pinyinNumbered": "pian4",
+    "english": "thin piece",
+    "meanings": [
+      "thin piece",
+      "flake",
+      "a slice",
+      "film",
+      "TV play"
+    ],
+    "tamil": "துண்டு; தகடு",
+    "tamilMeanings": [
+      "துண்டு",
+      "தகடு"
+    ]
+  },
+  {
+    "id": 379,
+    "character": "史",
+    "pinyin": "shǐ",
+    "pinyinNumbered": "shi3",
+    "english": "history",
+    "meanings": [
+      "history",
+      "annals",
+      "title of an official historian in ancient China"
+    ],
+    "tamil": "வரலாறு",
+    "tamilMeanings": [
+      "வரலாறு"
+    ]
+  },
+  {
+    "id": 380,
+    "character": "委",
+    "pinyin": "wěi",
+    "pinyinNumbered": "wei3",
+    "english": "to entrust",
+    "meanings": [
+      "to entrust",
+      "to cast aside",
+      "to shift (blame etc)",
+      "to accumulate",
+      "roundabout"
+    ],
+    "tamil": "ஒப்படை; குழு",
+    "tamilMeanings": [
+      "ஒப்படை",
+      "குழு"
+    ]
+  },
+  {
+    "id": 381,
+    "character": "乎",
+    "pinyin": "hū",
+    "pinyinNumbered": "hu1",
+    "english": "(classical particle similar to 於|于[yu2]) in",
+    "meanings": [
+      "(classical particle similar to 於|于[yu2]) in",
+      "at",
+      "from",
+      "because",
+      "than"
+    ],
+    "tamil": "கேள்வி/வியப்பைக் குறிக்கும் இலக்கியத் துணைச்சொல்",
+    "tamilMeanings": [
+      "கேள்வி/வியப்பைக் குறிக்கும் இலக்கியத் துணைச்சொல்"
+    ]
+  },
+  {
+    "id": 382,
+    "character": "查",
+    "pinyin": "chá",
+    "pinyinNumbered": "cha2",
+    "english": "to research",
+    "meanings": [
+      "to research",
+      "to check",
+      "to investigate",
+      "to examine",
+      "to refer to"
+    ],
+    "tamil": "சோதி; ஆராய்",
+    "tamilMeanings": [
+      "சோதி",
+      "ஆராய்"
+    ]
+  },
+  {
+    "id": 383,
+    "character": "轻",
+    "pinyin": "qīng",
+    "pinyinNumbered": "qing1",
+    "english": "light",
+    "meanings": [
+      "light",
+      "easy",
+      "gentle",
+      "soft",
+      "reckless"
+    ],
+    "tamil": "இலகுவான",
+    "tamilMeanings": [
+      "இலகுவான"
+    ]
+  },
+  {
+    "id": 384,
+    "character": "易",
+    "pinyin": "yì",
+    "pinyinNumbered": "yi4",
+    "english": "easy",
+    "meanings": [
+      "easy",
+      "amiable",
+      "to change",
+      "to exchange",
+      "prefix corresponding to the English adjective suffix \"-able\" or \"-ible\""
+    ],
+    "tamil": "எளிதான; மாற்று",
+    "tamilMeanings": [
+      "எளிதான",
+      "மாற்று"
+    ]
+  },
+  {
+    "id": 385,
+    "character": "早",
+    "pinyin": "zǎo",
+    "pinyinNumbered": "zao3",
+    "english": "early",
+    "meanings": [
+      "early",
+      "morning",
+      "Good morning!",
+      "long ago",
+      "prematurely"
+    ],
+    "tamil": "காலை; முன்கூட்டியே",
+    "tamilMeanings": [
+      "காலை",
+      "முன்கூட்டியே"
+    ]
+  },
+  {
+    "id": 386,
+    "character": "曾",
+    "pinyin": "céng",
+    "pinyinNumbered": "ceng2",
+    "english": "once",
+    "meanings": [
+      "once",
+      "already",
+      "ever (in the past)",
+      "former",
+      "previously"
+    ],
+    "tamil": "முன்பு (ஒருமுறை)",
+    "tamilMeanings": [
+      "முன்பு (ஒருமுறை)"
+    ]
+  },
+  {
+    "id": 387,
+    "character": "除",
+    "pinyin": "chú",
+    "pinyinNumbered": "chu2",
+    "english": "to get rid of",
+    "meanings": [
+      "to get rid of",
+      "to remove",
+      "to exclude",
+      "to eliminate",
+      "to wipe out"
+    ],
+    "tamil": "நீக்கு; தவிர",
+    "tamilMeanings": [
+      "நீக்கு",
+      "தவிர"
+    ]
+  },
+  {
+    "id": 388,
+    "character": "农",
+    "pinyin": "nóng",
+    "pinyinNumbered": "nong2",
+    "english": "(bound form) agriculture",
+    "meanings": [
+      "(bound form) agriculture"
+    ],
+    "tamil": "வேளாண்மை",
+    "tamilMeanings": [
+      "வேளாண்மை"
+    ]
+  },
+  {
+    "id": 389,
+    "character": "找",
+    "pinyin": "zhǎo",
+    "pinyinNumbered": "zhao3",
+    "english": "to try to find",
+    "meanings": [
+      "to try to find",
+      "to look for",
+      "to call on sb",
+      "to find",
+      "to seek"
+    ],
+    "tamil": "தேடு",
+    "tamilMeanings": [
+      "தேடு"
+    ]
+  },
+  {
+    "id": 390,
+    "character": "装",
+    "pinyin": "zhuāng",
+    "pinyinNumbered": "zhuang1",
+    "english": "adornment",
+    "meanings": [
+      "adornment",
+      "to adorn",
+      "dress",
+      "clothing",
+      "costume (of an actor in a play)"
+    ],
+    "tamil": "அணி; நிரப்பு",
+    "tamilMeanings": [
+      "அணி",
+      "நிரப்பு"
+    ]
+  },
+  {
+    "id": 391,
+    "character": "广",
+    "pinyin": "guǎng",
+    "pinyinNumbered": "guang3",
+    "english": "wide",
+    "meanings": [
+      "wide",
+      "numerous",
+      "to spread"
+    ],
+    "tamil": "பரந்த",
+    "tamilMeanings": [
+      "பரந்த"
+    ]
+  },
+  {
+    "id": 392,
+    "character": "显",
+    "pinyin": "xiǎn",
+    "pinyinNumbered": "xian3",
+    "english": "to make visible",
+    "meanings": [
+      "to make visible",
+      "to reveal",
+      "prominent",
+      "conspicuous",
+      "(prefix) phanero-"
+    ],
+    "tamil": "தெளிவாக்கு; காட்டு",
+    "tamilMeanings": [
+      "தெளிவாக்கு",
+      "காட்டு"
+    ]
+  },
+  {
+    "id": 393,
+    "character": "阿",
+    "pinyin": "ā",
+    "pinyinNumbered": "a1",
+    "english": "prefix used before monosyllabic names, kinship terms etc to indicate familiarity",
+    "meanings": [
+      "prefix used before monosyllabic names, kinship terms etc to indicate familiarity",
+      "also pr. [a4]"
+    ],
+    "tamil": "பெயர்/உறவுமுறைக்கு முன் வரும் முன்னொட்டு",
+    "tamilMeanings": [
+      "பெயர்/உறவுமுறைக்கு முன் வரும் முன்னொட்டு"
+    ]
+  },
+  {
+    "id": 394,
+    "character": "李",
+    "pinyin": "lǐ",
+    "pinyinNumbered": "li3",
+    "english": "plum",
+    "meanings": [
+      "plum"
+    ],
+    "tamil": "பிளம் பழம்; லீ (குடும்பப்பெயர்)",
+    "tamilMeanings": [
+      "பிளம் பழம்",
+      "லீ (குடும்பப்பெயர்)"
+    ]
+  },
+  {
+    "id": 395,
+    "character": "标",
+    "pinyin": "biāo",
+    "pinyinNumbered": "biao1",
+    "english": "mark",
+    "meanings": [
+      "mark",
+      "sign",
+      "label",
+      "to mark with a symbol, label, lettering etc",
+      "to bear (a brand name, registration number etc)"
+    ],
+    "tamil": "குறி; அடையாளம்",
+    "tamilMeanings": [
+      "குறி",
+      "அடையாளம்"
+    ]
+  },
+  {
+    "id": 396,
+    "character": "谈",
+    "pinyin": "tán",
+    "pinyinNumbered": "tan2",
+    "english": "to speak",
+    "meanings": [
+      "to speak",
+      "to talk",
+      "to converse",
+      "to chat",
+      "to discuss"
+    ],
+    "tamil": "பேசு; உரையாடு",
+    "tamilMeanings": [
+      "பேசு",
+      "உரையாடு"
+    ]
+  },
+  {
+    "id": 397,
+    "character": "吃",
+    "pinyin": "chī",
+    "pinyinNumbered": "chi1",
+    "english": "to eat; to consume",
+    "meanings": [
+      "to eat; to consume",
+      "to eat at (a cafeteria etc)",
+      "to eradicate; to destroy",
+      "to absorb",
+      "to suffer (shock, injury, defeat etc)"
+    ],
+    "tamil": "சாப்பிடு",
+    "tamilMeanings": [
+      "சாப்பிடு"
+    ]
+  },
+  {
+    "id": 398,
+    "character": "图",
+    "pinyin": "tú",
+    "pinyinNumbered": "tu2",
+    "english": "diagram",
+    "meanings": [
+      "diagram",
+      "picture",
+      "drawing",
+      "chart",
+      "map"
+    ],
+    "tamil": "படம்; வரைபடம்",
+    "tamilMeanings": [
+      "படம்",
+      "வரைபடம்"
+    ]
+  },
+  {
+    "id": 399,
+    "character": "念",
+    "pinyin": "niàn",
+    "pinyinNumbered": "nian4",
+    "english": "to read",
+    "meanings": [
+      "to read",
+      "to study (a subject)",
+      "to attend (a school)",
+      "to read aloud",
+      "to give (sb) a tongue-lashing (CL:頓|顿[dun4])"
+    ],
+    "tamil": "படி; நினை",
+    "tamilMeanings": [
+      "படி",
+      "நினை"
+    ]
+  },
+  {
+    "id": 400,
+    "character": "六",
+    "pinyin": "liù",
+    "pinyinNumbered": "liu4",
+    "english": "six",
+    "meanings": [
+      "six",
+      "6"
+    ],
+    "tamil": "ஆறு",
+    "tamilMeanings": [
+      "ஆறு"
+    ]
+  },
+  {
+    "id": 401,
+    "character": "引",
+    "pinyin": "yǐn",
+    "pinyinNumbered": "yin3",
+    "english": "to draw (e.g. a bow)",
+    "meanings": [
+      "to draw (e.g. a bow)",
+      "to pull",
+      "to stretch sth",
+      "to extend",
+      "to lengthen"
+    ],
+    "tamil": "இழு; வழிநடத்து",
+    "tamilMeanings": [
+      "இழு",
+      "வழிநடத்து"
+    ]
+  },
+  {
+    "id": 402,
+    "character": "历",
+    "pinyin": "lì",
+    "pinyinNumbered": "li4",
+    "english": "to experience",
+    "meanings": [
+      "to experience",
+      "to undergo",
+      "to pass through",
+      "all",
+      "each"
+    ],
+    "tamil": "அனுபவி; வரலாறு",
+    "tamilMeanings": [
+      "அனுபவி",
+      "வரலாறு"
+    ]
+  },
+  {
+    "id": 403,
+    "character": "首",
+    "pinyin": "shǒu",
+    "pinyinNumbered": "shou3",
+    "english": "head",
+    "meanings": [
+      "head",
+      "chief",
+      "first (occasion, thing etc)"
+    ],
+    "tamil": "தலை; முதல்",
+    "tamilMeanings": [
+      "தலை",
+      "முதல்"
+    ]
+  },
+  {
+    "id": 404,
+    "character": "医",
+    "pinyin": "yī",
+    "pinyinNumbered": "yi1",
+    "english": "medical",
+    "meanings": [
+      "medical",
+      "medicine",
+      "doctor",
+      "to cure",
+      "to treat"
+    ],
+    "tamil": "மருத்துவம்; மருத்துவர்",
+    "tamilMeanings": [
+      "மருத்துவம்",
+      "மருத்துவர்"
+    ]
+  },
+  {
+    "id": 405,
+    "character": "局",
+    "pinyin": "jú",
+    "pinyinNumbered": "ju2",
+    "english": "office",
+    "meanings": [
+      "office",
+      "situation"
+    ],
+    "tamil": "அலுவலகம்; துறை",
+    "tamilMeanings": [
+      "அலுவலகம்",
+      "துறை"
+    ]
+  },
+  {
+    "id": 406,
+    "character": "突",
+    "pinyin": "tū",
+    "pinyinNumbered": "tu1",
+    "english": "to dash",
+    "meanings": [
+      "to dash",
+      "to move forward quickly",
+      "to bulge",
+      "to protrude",
+      "to break through"
+    ],
+    "tamil": "திடீரென",
+    "tamilMeanings": [
+      "திடீரென"
+    ]
+  },
+  {
+    "id": 407,
+    "character": "专",
+    "pinyin": "zhuān",
+    "pinyinNumbered": "zhuan1",
+    "english": "for a particular person, occasion, purpose",
+    "meanings": [
+      "for a particular person, occasion, purpose",
+      "focused on one thing",
+      "special",
+      "expert",
+      "particular (to sth)"
+    ],
+    "tamil": "சிறப்பான; தனிப்பட்ட",
+    "tamilMeanings": [
+      "சிறப்பான",
+      "தனிப்பட்ட"
+    ]
+  },
+  {
+    "id": 408,
+    "character": "费",
+    "pinyin": "fèi",
+    "pinyinNumbered": "fei4",
+    "english": "to cost",
+    "meanings": [
+      "to cost",
+      "to spend",
+      "fee",
+      "wasteful",
+      "expenses"
+    ],
+    "tamil": "செலவு; கட்டணம்",
+    "tamilMeanings": [
+      "செலவு",
+      "கட்டணம்"
+    ]
+  },
+  {
+    "id": 409,
+    "character": "号",
+    "pinyin": "hào",
+    "pinyinNumbered": "hao4",
+    "english": "ordinal number",
+    "meanings": [
+      "ordinal number",
+      "day of a month",
+      "mark",
+      "sign",
+      "business establishment"
+    ],
+    "tamil": "எண்; அழை",
+    "tamilMeanings": [
+      "எண்",
+      "அழை"
+    ]
+  },
+  {
+    "id": 410,
+    "character": "尽",
+    "pinyin": "jìn",
+    "pinyinNumbered": "jin4",
+    "english": "to use up",
+    "meanings": [
+      "to use up",
+      "to exhaust",
+      "to end",
+      "to finish",
+      "to the utmost"
+    ],
+    "tamil": "முழுமையாக; தீர்ந்துபோ",
+    "tamilMeanings": [
+      "முழுமையாக",
+      "தீர்ந்துபோ"
+    ]
+  },
+  {
+    "id": 411,
+    "character": "另",
+    "pinyin": "lìng",
+    "pinyinNumbered": "ling4",
+    "english": "other",
+    "meanings": [
+      "other",
+      "another",
+      "separate",
+      "separately"
+    ],
+    "tamil": "மற்றொரு",
+    "tamilMeanings": [
+      "மற்றொரு"
+    ]
+  },
+  {
+    "id": 412,
+    "character": "周",
+    "pinyin": "zhōu",
+    "pinyinNumbered": "zhou1",
+    "english": "to make a circuit",
+    "meanings": [
+      "to make a circuit",
+      "to circle",
+      "circle",
+      "circumference",
+      "lap"
+    ],
+    "tamil": "வாரம்; சுற்று",
+    "tamilMeanings": [
+      "வாரம்",
+      "சுற்று"
+    ]
+  },
+  {
+    "id": 413,
+    "character": "较",
+    "pinyin": "jiào",
+    "pinyinNumbered": "jiao4",
+    "english": "(bound form) to compare",
+    "meanings": [
+      "(bound form) to compare",
+      "(literary) to dispute",
+      "compared to",
+      "(before an adjective) relatively; comparatively; rather",
+      "also pr. [jiao3]"
+    ],
+    "tamil": "ஒப்பிடு; ஒப்பீட்டளவில்",
+    "tamilMeanings": [
+      "ஒப்பிடு",
+      "ஒப்பீட்டளவில்"
+    ]
+  },
+  {
+    "id": 414,
+    "character": "注",
+    "pinyin": "zhù",
+    "pinyinNumbered": "zhu4",
+    "english": "to annotate; to provide explanatory notes on a written text",
+    "meanings": [
+      "to annotate; to provide explanatory notes on a written text",
+      "an annotation; an explanatory note",
+      "(bound form) to put on record; to register"
+    ],
+    "tamil": "கவனம்; குறிப்பு; ஊற்று",
+    "tamilMeanings": [
+      "கவனம்",
+      "குறிப்பு",
+      "ஊற்று"
+    ]
+  },
+  {
+    "id": 415,
+    "character": "语",
+    "pinyin": "yǔ",
+    "pinyinNumbered": "yu3",
+    "english": "dialect",
+    "meanings": [
+      "dialect",
+      "language",
+      "speech"
+    ],
+    "tamil": "மொழி",
+    "tamilMeanings": [
+      "மொழி"
+    ]
+  },
+  {
+    "id": 416,
+    "character": "仅",
+    "pinyin": "jǐn",
+    "pinyinNumbered": "jin3",
+    "english": "barely",
+    "meanings": [
+      "barely",
+      "only",
+      "merely"
+    ],
+    "tamil": "மட்டும்",
+    "tamilMeanings": [
+      "மட்டும்"
+    ]
+  },
+  {
+    "id": 417,
+    "character": "考",
+    "pinyin": "kǎo",
+    "pinyinNumbered": "kao3",
+    "english": "to check",
+    "meanings": [
+      "to check",
+      "to verify",
+      "to test",
+      "to examine",
+      "to take an exam"
+    ],
+    "tamil": "தேர்வு; ஆராய்",
+    "tamilMeanings": [
+      "தேர்வு",
+      "ஆராய்"
+    ]
+  },
+  {
+    "id": 418,
+    "character": "落",
+    "pinyin": "luò",
+    "pinyinNumbered": "luo4",
+    "english": "to fall or drop",
+    "meanings": [
+      "to fall or drop",
+      "(of the sun) to set",
+      "(of a tide) to go out",
+      "to lower",
+      "to decline or sink"
+    ],
+    "tamil": "விழு; இறங்கு",
+    "tamilMeanings": [
+      "விழு",
+      "இறங்கு"
+    ]
+  },
+  {
+    "id": 419,
+    "character": "青",
+    "pinyin": "qīng",
+    "pinyinNumbered": "qing1",
+    "english": "green",
+    "meanings": [
+      "green",
+      "blue",
+      "black",
+      "youth",
+      "young (of people)"
+    ],
+    "tamil": "நீலப்பச்சை; இளமை",
+    "tamilMeanings": [
+      "நீலப்பச்சை",
+      "இளமை"
+    ]
+  },
+  {
+    "id": 420,
+    "character": "随",
+    "pinyin": "suí",
+    "pinyinNumbered": "sui2",
+    "english": "to follow",
+    "meanings": [
+      "to follow",
+      "to comply with",
+      "varying according to...",
+      "to allow",
+      "subsequently"
+    ],
+    "tamil": "பின்தொடர்; எதுவானாலும்",
+    "tamilMeanings": [
+      "பின்தொடர்",
+      "எதுவானாலும்"
+    ]
+  },
+  {
+    "id": 421,
+    "character": "选",
+    "pinyin": "xuǎn",
+    "pinyinNumbered": "xuan3",
+    "english": "to choose",
+    "meanings": [
+      "to choose",
+      "to pick",
+      "to select",
+      "to elect"
+    ],
+    "tamil": "தேர்ந்தெடு",
+    "tamilMeanings": [
+      "தேர்ந்தெடு"
+    ]
+  },
+  {
+    "id": 422,
+    "character": "列",
+    "pinyin": "liè",
+    "pinyinNumbered": "lie4",
+    "english": "to arrange",
+    "meanings": [
+      "to arrange",
+      "to line up",
+      "file",
+      "series",
+      "(in data tables) column"
+    ],
+    "tamil": "வரிசை; பட்டியல்",
+    "tamilMeanings": [
+      "வரிசை",
+      "பட்டியல்"
+    ]
+  },
+  {
+    "id": 423,
+    "character": "武",
+    "pinyin": "wǔ",
+    "pinyinNumbered": "wu3",
+    "english": "martial",
+    "meanings": [
+      "martial",
+      "military"
+    ],
+    "tamil": "போர்; தற்காப்பு",
+    "tamilMeanings": [
+      "போர்",
+      "தற்காப்பு"
+    ]
+  },
+  {
+    "id": 424,
+    "character": "红",
+    "pinyin": "hóng",
+    "pinyinNumbered": "hong2",
+    "english": "red",
+    "meanings": [
+      "red",
+      "popular",
+      "revolutionary",
+      "bonus"
+    ],
+    "tamil": "சிவப்பு",
+    "tamilMeanings": [
+      "சிவப்பு"
+    ]
+  },
+  {
+    "id": 425,
+    "character": "响",
+    "pinyin": "xiǎng",
+    "pinyinNumbered": "xiang3",
+    "english": "echo",
+    "meanings": [
+      "echo",
+      "sound",
+      "noise",
+      "to make a sound",
+      "to sound"
+    ],
+    "tamil": "ஒலி; எதிரொலி",
+    "tamilMeanings": [
+      "ஒலி",
+      "எதிரொலி"
+    ]
+  },
+  {
+    "id": 426,
+    "character": "虽",
+    "pinyin": "suī",
+    "pinyinNumbered": "sui1",
+    "english": "although",
+    "meanings": [
+      "although",
+      "even though"
+    ],
+    "tamil": "எனினும்; ஆயினும்",
+    "tamilMeanings": [
+      "எனினும்",
+      "ஆயினும்"
+    ]
+  },
+  {
+    "id": 427,
+    "character": "推",
+    "pinyin": "tuī",
+    "pinyinNumbered": "tui1",
+    "english": "to push",
+    "meanings": [
+      "to push",
+      "to cut",
+      "to refuse",
+      "to reject",
+      "to decline"
+    ],
+    "tamil": "தள்ளு",
+    "tamilMeanings": [
+      "தள்ளு"
+    ]
+  },
+  {
+    "id": 428,
+    "character": "势",
+    "pinyin": "shì",
+    "pinyinNumbered": "shi4",
+    "english": "power",
+    "meanings": [
+      "power",
+      "influence",
+      "potential",
+      "momentum",
+      "tendency"
+    ],
+    "tamil": "நிலை; ஆற்றல்",
+    "tamilMeanings": [
+      "நிலை",
+      "ஆற்றல்"
+    ]
+  },
+  {
+    "id": 429,
+    "character": "参",
+    "pinyin": "cān",
+    "pinyinNumbered": "can1",
+    "english": "to take part in",
+    "meanings": [
+      "to take part in",
+      "to participate",
+      "to join",
+      "to attend",
+      "to counsel"
+    ],
+    "tamil": "பங்கேற்பு",
+    "tamilMeanings": [
+      "பங்கேற்பு"
+    ]
+  },
+  {
+    "id": 430,
+    "character": "希",
+    "pinyin": "xī",
+    "pinyinNumbered": "xi1",
+    "english": "to hope",
+    "meanings": [
+      "to hope",
+      "to admire"
+    ],
+    "tamil": "நம்பிக்கை; ஆசை",
+    "tamilMeanings": [
+      "நம்பிக்கை",
+      "ஆசை"
+    ]
+  },
+  {
+    "id": 431,
+    "character": "古",
+    "pinyin": "gǔ",
+    "pinyinNumbered": "gu3",
+    "english": "ancient",
+    "meanings": [
+      "ancient",
+      "old",
+      "paleo-"
+    ],
+    "tamil": "பழமையான",
+    "tamilMeanings": [
+      "பழமையான"
+    ]
+  },
+  {
+    "id": 432,
+    "character": "众",
+    "pinyin": "zhòng",
+    "pinyinNumbered": "zhong4",
+    "english": "(bound form) crowd; multitude",
+    "meanings": [
+      "(bound form) crowd; multitude",
+      "(bound form) many; numerous"
+    ],
+    "tamil": "கூட்டம்; பலர்",
+    "tamilMeanings": [
+      "கூட்டம்",
+      "பலர்"
+    ]
+  },
+  {
+    "id": 433,
+    "character": "构",
+    "pinyin": "gòu",
+    "pinyinNumbered": "gou4",
+    "english": "to construct",
+    "meanings": [
+      "to construct",
+      "to form",
+      "to make up",
+      "to compose",
+      "literary composition"
+    ],
+    "tamil": "அமை; கட்டமை",
+    "tamilMeanings": [
+      "அமை",
+      "கட்டமை"
+    ]
+  },
+  {
+    "id": 434,
+    "character": "房",
+    "pinyin": "fáng",
+    "pinyinNumbered": "fang2",
+    "english": "house",
+    "meanings": [
+      "house",
+      "room",
+      "CL:間|间[jian1]",
+      "branch of an extended family"
+    ],
+    "tamil": "வீடு; அறை",
+    "tamilMeanings": [
+      "வீடு",
+      "அறை"
+    ]
+  },
+  {
+    "id": 435,
+    "character": "半",
+    "pinyin": "bàn",
+    "pinyinNumbered": "ban4",
+    "english": "half",
+    "meanings": [
+      "half",
+      "semi-",
+      "incomplete",
+      "(after a number) and a half"
+    ],
+    "tamil": "பாதி",
+    "tamilMeanings": [
+      "பாதி"
+    ]
+  },
+  {
+    "id": 436,
+    "character": "节",
+    "pinyin": "jié",
+    "pinyinNumbered": "jie2",
+    "english": "joint; node",
+    "meanings": [
+      "joint; node",
+      "(bound form) section; segment",
+      "solar term (one of the 24 divisions of the year in the traditional Chinese calendar)",
+      "seasonal festival",
+      "(bound form) to economize; to save"
+    ],
+    "tamil": "பண்டிகை; பகுதி; மூட்டு",
+    "tamilMeanings": [
+      "பண்டிகை",
+      "பகுதி",
+      "மூட்டு"
+    ]
+  },
+  {
+    "id": 437,
+    "character": "土",
+    "pinyin": "tǔ",
+    "pinyinNumbered": "tu3",
+    "english": "earth",
+    "meanings": [
+      "earth",
+      "dust",
+      "clay",
+      "local",
+      "indigenous"
+    ],
+    "tamil": "மண்",
+    "tamilMeanings": [
+      "மண்"
+    ]
+  },
+  {
+    "id": 438,
+    "character": "投",
+    "pinyin": "tóu",
+    "pinyinNumbered": "tou2",
+    "english": "to throw (sth in a specific direction: ball, javelin, grenade etc)",
+    "meanings": [
+      "to throw (sth in a specific direction: ball, javelin, grenade etc)",
+      "to cast (a ballot)",
+      "to cast (a glance, a shadow etc)",
+      "to put in (money for investment, a coin to operate a slot machine)",
+      "to send (a letter, a manuscript etc)"
+    ],
+    "tamil": "எறி; முதலீடு செய்",
+    "tamilMeanings": [
+      "எறி",
+      "முதலீடு செய்"
+    ]
+  },
+  {
+    "id": 439,
+    "character": "某",
+    "pinyin": "mǒu",
+    "pinyinNumbered": "mou3",
+    "english": "some",
+    "meanings": [
+      "some",
+      "a certain",
+      "sb or sth indefinite",
+      "such-and-such"
+    ],
+    "tamil": "ஒரு (குறிப்பிடாத); சில",
+    "tamilMeanings": [
+      "ஒரு (குறிப்பிடாத)",
+      "சில"
+    ]
+  },
+  {
+    "id": 440,
+    "character": "案",
+    "pinyin": "àn",
+    "pinyinNumbered": "an4",
+    "english": "(legal) case",
+    "meanings": [
+      "(legal) case",
+      "incident",
+      "record",
+      "file",
+      "table"
+    ],
+    "tamil": "வழக்கு; மேசை",
+    "tamilMeanings": [
+      "வழக்கு",
+      "மேசை"
+    ]
+  },
+  {
+    "id": 441,
+    "character": "黑",
+    "pinyin": "hēi",
+    "pinyinNumbered": "hei1",
+    "english": "black",
+    "meanings": [
+      "black",
+      "dark",
+      "sinister",
+      "secret",
+      "shady"
+    ],
+    "tamil": "கருப்பு",
+    "tamilMeanings": [
+      "கருப்பு"
+    ]
+  },
+  {
+    "id": 442,
+    "character": "维",
+    "pinyin": "wéi",
+    "pinyinNumbered": "wei2",
+    "english": "to preserve",
+    "meanings": [
+      "to preserve",
+      "to maintain",
+      "to hold together",
+      "dimension",
+      "vitamin (abbr. for 維生素|维生素[wei2 sheng1 su4])"
+    ],
+    "tamil": "பேணு; இணை",
+    "tamilMeanings": [
+      "பேணு",
+      "இணை"
+    ]
+  },
+  {
+    "id": 443,
+    "character": "革",
+    "pinyin": "gé",
+    "pinyinNumbered": "ge2",
+    "english": "animal hide",
+    "meanings": [
+      "animal hide",
+      "leather",
+      "to reform",
+      "to remove",
+      "to expel (from office)"
+    ],
+    "tamil": "தோல்; சீர்திருத்தம்",
+    "tamilMeanings": [
+      "தோல்",
+      "சீர்திருத்தம்"
+    ]
+  },
+  {
+    "id": 444,
+    "character": "划",
+    "pinyin": "huà",
+    "pinyinNumbered": "hua4",
+    "english": "to delimit",
+    "meanings": [
+      "to delimit",
+      "to transfer",
+      "to assign",
+      "to plan",
+      "to draw (a line)"
+    ],
+    "tamil": "பிரி; கோடிடு",
+    "tamilMeanings": [
+      "பிரி",
+      "கோடிடு"
+    ]
+  },
+  {
+    "id": 445,
+    "character": "敌",
+    "pinyin": "dí",
+    "pinyinNumbered": "di2",
+    "english": "(bound form) enemy",
+    "meanings": [
+      "(bound form) enemy",
+      "(bound form) to be a match for; to rival",
+      "(bound form) to resist; to withstand"
+    ],
+    "tamil": "எதிரி",
+    "tamilMeanings": [
+      "எதிரி"
+    ]
+  },
+  {
+    "id": 446,
+    "character": "致",
+    "pinyin": "zhì",
+    "pinyinNumbered": "zhi4",
+    "english": "(literary) to send; to transmit; to convey",
+    "meanings": [
+      "(literary) to send; to transmit; to convey",
+      "(bound form) to cause; to lead to; consequently"
+    ],
+    "tamil": "வழங்கு; ஏற்படுத்து",
+    "tamilMeanings": [
+      "வழங்கு",
+      "ஏற்படுத்து"
+    ]
+  },
+  {
+    "id": 447,
+    "character": "陈",
+    "pinyin": "chén",
+    "pinyinNumbered": "chen2",
+    "english": "(bound form) to lay out; to exhibit; to display",
+    "meanings": [
+      "(bound form) to lay out; to exhibit; to display",
+      "(bound form) to narrate; to state; to explain; to tell",
+      "old; stale"
+    ],
+    "tamil": "காட்சிக்கு வை; பழைய; குடும்பப்பெயர்",
+    "tamilMeanings": [
+      "காட்சிக்கு வை",
+      "பழைய",
+      "குடும்பப்பெயர்"
+    ]
+  },
+  {
+    "id": 448,
+    "character": "律",
+    "pinyin": "lǜ",
+    "pinyinNumbered": "lü4",
+    "english": "law",
+    "meanings": [
+      "law"
+    ],
+    "tamil": "சட்டம்; ஒழுங்கு",
+    "tamilMeanings": [
+      "சட்டம்",
+      "ஒழுங்கு"
+    ]
+  },
+  {
+    "id": 449,
+    "character": "足",
+    "pinyin": "zú",
+    "pinyinNumbered": "zu2",
+    "english": "(bound form) foot; leg",
+    "meanings": [
+      "(bound form) foot; leg",
+      "sufficient; ample",
+      "as much as; fully"
+    ],
+    "tamil": "பாதம்; போதுமான",
+    "tamilMeanings": [
+      "பாதம்",
+      "போதுமான"
+    ]
+  },
+  {
+    "id": 450,
+    "character": "态",
+    "pinyin": "tài",
+    "pinyinNumbered": "tai4",
+    "english": "(bound form)",
+    "meanings": [
+      "(bound form)",
+      "appearance",
+      "shape",
+      "form",
+      "state"
+    ],
+    "tamil": "நிலை; மனப்பாங்கு",
+    "tamilMeanings": [
+      "நிலை",
+      "மனப்பாங்கு"
+    ]
+  },
+  {
+    "id": 451,
+    "character": "护",
+    "pinyin": "hù",
+    "pinyinNumbered": "hu4",
+    "english": "to protect",
+    "meanings": [
+      "to protect"
+    ],
+    "tamil": "பாதுகாக்க",
+    "tamilMeanings": [
+      "பாதுகாக்க"
+    ]
+  },
+  {
+    "id": 452,
+    "character": "七",
+    "pinyin": "qī",
+    "pinyinNumbered": "qi1",
+    "english": "seven",
+    "meanings": [
+      "seven",
+      "7"
+    ],
+    "tamil": "ஏழு",
+    "tamilMeanings": [
+      "ஏழு"
+    ]
+  },
+  {
+    "id": 453,
+    "character": "兴",
+    "pinyin": "xīng",
+    "pinyinNumbered": "xing1",
+    "english": "to rise",
+    "meanings": [
+      "to rise",
+      "to flourish",
+      "to become popular",
+      "to start",
+      "to encourage"
+    ],
+    "tamil": "எழுச்சி; மகிழ்ச்சி",
+    "tamilMeanings": [
+      "எழுச்சி",
+      "மகிழ்ச்சி"
+    ]
+  },
+  {
+    "id": 454,
+    "character": "派",
+    "pinyin": "pài",
+    "pinyinNumbered": "pai4",
+    "english": "(literary) tributary; branch of a river",
+    "meanings": [
+      "(literary) tributary; branch of a river",
+      "clique; school; group; faction",
+      "(bound form) style; manner",
+      "to send (a person or resource); to dispatch; to allocate (a resource or task); to appoint (sb)",
+      "(preceded by 一[yi1]) classifier used in characterizing a scene, atmosphere, demeanor, sound, remark etc"
+    ],
+    "tamil": "குழு; அனுப்பு",
+    "tamilMeanings": [
+      "குழு",
+      "அனுப்பு"
+    ]
+  },
+  {
+    "id": 455,
+    "character": "孩",
+    "pinyin": "hái",
+    "pinyinNumbered": "hai2",
+    "english": "(bound form) child",
+    "meanings": [
+      "(bound form) child"
+    ],
+    "tamil": "குழந்தை",
+    "tamilMeanings": [
+      "குழந்தை"
+    ]
+  },
+  {
+    "id": 456,
+    "character": "验",
+    "pinyin": "yàn",
+    "pinyinNumbered": "yan4",
+    "english": "to examine",
+    "meanings": [
+      "to examine",
+      "to test",
+      "to check"
+    ],
+    "tamil": "சோதி; சரிபார்",
+    "tamilMeanings": [
+      "சோதி",
+      "சரிபார்"
+    ]
+  },
+  {
+    "id": 457,
+    "character": "责",
+    "pinyin": "zé",
+    "pinyinNumbered": "ze2",
+    "english": "duty",
+    "meanings": [
+      "duty",
+      "responsibility",
+      "to reproach",
+      "to blame"
+    ],
+    "tamil": "பொறுப்பு; கடமை",
+    "tamilMeanings": [
+      "பொறுப்பு",
+      "கடமை"
+    ]
+  },
+  {
+    "id": 458,
+    "character": "营",
+    "pinyin": "yíng",
+    "pinyinNumbered": "ying2",
+    "english": "camp",
+    "meanings": [
+      "camp",
+      "barracks",
+      "battalion",
+      "to build",
+      "to operate"
+    ],
+    "tamil": "முகாம்; நடத்து",
+    "tamilMeanings": [
+      "முகாம்",
+      "நடத்து"
+    ]
+  },
+  {
+    "id": 459,
+    "character": "星",
+    "pinyin": "xīng",
+    "pinyinNumbered": "xing1",
+    "english": "star",
+    "meanings": [
+      "star",
+      "heavenly body",
+      "satellite",
+      "small amount"
+    ],
+    "tamil": "நட்சத்திரம்",
+    "tamilMeanings": [
+      "நட்சத்திரம்"
+    ]
+  },
+  {
+    "id": 460,
+    "character": "够",
+    "pinyin": "gòu",
+    "pinyinNumbered": "gou4",
+    "english": "enough (sufficient)",
+    "meanings": [
+      "enough (sufficient)",
+      "enough (too much)",
+      "(coll.) (before adj.) really",
+      "(coll.) to reach by stretching out"
+    ],
+    "tamil": "போதுமான",
+    "tamilMeanings": [
+      "போதுமான"
+    ]
+  },
+  {
+    "id": 461,
+    "character": "章",
+    "pinyin": "zhāng",
+    "pinyinNumbered": "zhang1",
+    "english": "chapter",
+    "meanings": [
+      "chapter",
+      "section",
+      "clause",
+      "movement (of symphony)",
+      "seal"
+    ],
+    "tamil": "அத்தியாயம்; முத்திரை",
+    "tamilMeanings": [
+      "அத்தியாயம்",
+      "முத்திரை"
+    ]
+  },
+  {
+    "id": 462,
+    "character": "音",
+    "pinyin": "yīn",
+    "pinyinNumbered": "yin1",
+    "english": "sound",
+    "meanings": [
+      "sound",
+      "noise",
+      "note (of musical scale)",
+      "tone",
+      "news"
+    ],
+    "tamil": "ஒலி",
+    "tamilMeanings": [
+      "ஒலி"
+    ]
+  },
+  {
+    "id": 463,
+    "character": "跟",
+    "pinyin": "gēn",
+    "pinyinNumbered": "gen1",
+    "english": "heel",
+    "meanings": [
+      "heel",
+      "to follow closely",
+      "to go with",
+      "(of a woman) to marry sb",
+      "with"
+    ],
+    "tamil": "பின்தொடர்; உடன்; குதிகால்",
+    "tamilMeanings": [
+      "பின்தொடர்",
+      "உடன்",
+      "குதிகால்"
+    ]
+  },
+  {
+    "id": 464,
+    "character": "志",
+    "pinyin": "zhì",
+    "pinyinNumbered": "zhi4",
+    "english": "sign",
+    "meanings": [
+      "sign",
+      "mark",
+      "to record",
+      "to write a footnote"
+    ],
+    "tamil": "ஆசை; இலட்சியம்",
+    "tamilMeanings": [
+      "ஆசை",
+      "இலட்சியம்"
+    ]
+  },
+  {
+    "id": 465,
+    "character": "底",
+    "pinyin": "dǐ",
+    "pinyinNumbered": "di3",
+    "english": "bottom; base",
+    "meanings": [
+      "bottom; base",
+      "background; foundation",
+      "copy (of a manuscript or receipt etc) kept as a record",
+      "(suffix) end of a year or month",
+      "(math.) radix; base (abbr. for 底數|底数[di3 shu4])"
+    ],
+    "tamil": "அடிப்பகுதி",
+    "tamilMeanings": [
+      "அடிப்பகுதி"
+    ]
+  },
+  {
+    "id": 466,
+    "character": "站",
+    "pinyin": "zhàn",
+    "pinyinNumbered": "zhan4",
+    "english": "station",
+    "meanings": [
+      "station",
+      "to stand",
+      "to halt",
+      "to stop",
+      "branch of a company or organization"
+    ],
+    "tamil": "நில்; நிலையம்",
+    "tamilMeanings": [
+      "நில்",
+      "நிலையம்"
+    ]
+  },
+  {
+    "id": 467,
+    "character": "严",
+    "pinyin": "yán",
+    "pinyinNumbered": "yan2",
+    "english": "tight (closely sealed)",
+    "meanings": [
+      "tight (closely sealed)",
+      "stern",
+      "strict",
+      "rigorous",
+      "severe"
+    ],
+    "tamil": "கடுமையான; இறுக்கமான",
+    "tamilMeanings": [
+      "கடுமையான",
+      "இறுக்கமான"
+    ]
+  },
+  {
+    "id": 468,
+    "character": "巴",
+    "pinyin": "bā",
+    "pinyinNumbered": "ba1",
+    "english": "to long for",
+    "meanings": [
+      "to long for",
+      "to wish",
+      "to cling to",
+      "to stick to",
+      "sth that sticks"
+    ],
+    "tamil": "ஆவலோடு காத்திரு; ஒட்டு",
+    "tamilMeanings": [
+      "ஆவலோடு காத்திரு",
+      "ஒட்டு"
+    ]
+  },
+  {
+    "id": 469,
+    "character": "例",
+    "pinyin": "lì",
+    "pinyinNumbered": "li4",
+    "english": "example",
+    "meanings": [
+      "example",
+      "precedent",
+      "rule",
+      "case",
+      "instance"
+    ],
+    "tamil": "உதாரணம்",
+    "tamilMeanings": [
+      "உதாரணம்"
+    ]
+  },
+  {
+    "id": 470,
+    "character": "防",
+    "pinyin": "fáng",
+    "pinyinNumbered": "fang2",
+    "english": "to protect",
+    "meanings": [
+      "to protect",
+      "to defend",
+      "to guard against",
+      "to prevent"
+    ],
+    "tamil": "தடு; காப்பு",
+    "tamilMeanings": [
+      "தடு",
+      "காப்பு"
+    ]
+  },
+  {
+    "id": 471,
+    "character": "族",
+    "pinyin": "zú",
+    "pinyinNumbered": "zu2",
+    "english": "race",
+    "meanings": [
+      "race",
+      "nationality",
+      "ethnicity",
+      "clan",
+      "by extension, social group (e.g. office workers 上班族)"
+    ],
+    "tamil": "இனம்; குலம்",
+    "tamilMeanings": [
+      "இனம்",
+      "குலம்"
+    ]
+  },
+  {
+    "id": 472,
+    "character": "供",
+    "pinyin": "gòng",
+    "pinyinNumbered": "gong4",
+    "english": "to lay (sacrificial offerings)",
+    "meanings": [
+      "to lay (sacrificial offerings)",
+      "(bound form) offerings",
+      "to confess (Taiwan pr. [gong1])",
+      "confession; statement (Taiwan pr. [gong1])"
+    ],
+    "tamil": "வழங்கு",
+    "tamilMeanings": [
+      "வழங்கு"
+    ]
+  },
+  {
+    "id": 473,
+    "character": "效",
+    "pinyin": "xiào",
+    "pinyinNumbered": "xiao4",
+    "english": "effect",
+    "meanings": [
+      "effect",
+      "efficacy",
+      "to imitate"
+    ],
+    "tamil": "பலன்; விளைவு",
+    "tamilMeanings": [
+      "பலன்",
+      "விளைவு"
+    ]
+  },
+  {
+    "id": 474,
+    "character": "续",
+    "pinyin": "xù",
+    "pinyinNumbered": "xu4",
+    "english": "to continue",
+    "meanings": [
+      "to continue",
+      "to replenish"
+    ],
+    "tamil": "தொடர்",
+    "tamilMeanings": [
+      "தொடர்"
+    ]
+  },
+  {
+    "id": 475,
+    "character": "施",
+    "pinyin": "shī",
+    "pinyinNumbered": "shi1",
+    "english": "(bound form) to put into effect (regulations etc)",
+    "meanings": [
+      "(bound form) to put into effect (regulations etc)",
+      "to distribute (alms etc)",
+      "to apply (fertilizer etc)"
+    ],
+    "tamil": "செயல்படுத்து; வழங்கு",
+    "tamilMeanings": [
+      "செயல்படுத்து",
+      "வழங்கு"
+    ]
+  },
+  {
+    "id": 476,
+    "character": "留",
+    "pinyin": "liú",
+    "pinyinNumbered": "liu2",
+    "english": "to leave (a message etc)",
+    "meanings": [
+      "to leave (a message etc)",
+      "to retain",
+      "to stay",
+      "to remain",
+      "to keep"
+    ],
+    "tamil": "தங்கு; விட்டுவை",
+    "tamilMeanings": [
+      "தங்கு",
+      "விட்டுவை"
+    ]
+  },
+  {
+    "id": 477,
+    "character": "讲",
+    "pinyin": "jiǎng",
+    "pinyinNumbered": "jiang3",
+    "english": "to speak",
+    "meanings": [
+      "to speak",
+      "to explain",
+      "to negotiate",
+      "to emphasize",
+      "to be particular about"
+    ],
+    "tamil": "பேசு; விளக்கு",
+    "tamilMeanings": [
+      "பேசு",
+      "விளக்கு"
+    ]
+  },
+  {
+    "id": 478,
+    "character": "型",
+    "pinyin": "xíng",
+    "pinyinNumbered": "xing2",
+    "english": "mold",
+    "meanings": [
+      "mold",
+      "type",
+      "style",
+      "model"
+    ],
+    "tamil": "மாதிரி; வகை",
+    "tamilMeanings": [
+      "மாதிரி",
+      "வகை"
+    ]
+  },
+  {
+    "id": 479,
+    "character": "料",
+    "pinyin": "liào",
+    "pinyinNumbered": "liao4",
+    "english": "material",
+    "meanings": [
+      "material",
+      "stuff",
+      "grain",
+      "feed",
+      "to expect"
+    ],
+    "tamil": "பொருள்; மூலப்பொருள்",
+    "tamilMeanings": [
+      "பொருள்",
+      "மூலப்பொருள்"
+    ]
+  },
+  {
+    "id": 480,
+    "character": "终",
+    "pinyin": "zhōng",
+    "pinyinNumbered": "zhong1",
+    "english": "end",
+    "meanings": [
+      "end",
+      "finish"
+    ],
+    "tamil": "முடிவு; இறுதி",
+    "tamilMeanings": [
+      "முடிவு",
+      "இறுதி"
+    ]
+  },
+  {
+    "id": 481,
+    "character": "答",
+    "pinyin": "dá",
+    "pinyinNumbered": "da2",
+    "english": "to answer",
+    "meanings": [
+      "to answer",
+      "to reply",
+      "to respond"
+    ],
+    "tamil": "பதிலளி",
+    "tamilMeanings": [
+      "பதிலளி"
+    ]
+  },
+  {
+    "id": 482,
+    "character": "紧",
+    "pinyin": "jǐn",
+    "pinyinNumbered": "jin3",
+    "english": "tight",
+    "meanings": [
+      "tight",
+      "strict",
+      "close at hand",
+      "near",
+      "urgent"
+    ],
+    "tamil": "இறுக்கமான; அவசரமான",
+    "tamilMeanings": [
+      "இறுக்கமான",
+      "அவசரமான"
+    ]
+  },
+  {
+    "id": 483,
+    "character": "黄",
+    "pinyin": "huáng",
+    "pinyinNumbered": "huang2",
+    "english": "yellow",
+    "meanings": [
+      "yellow",
+      "pornographic",
+      "to fall through"
+    ],
+    "tamil": "மஞ்சள்",
+    "tamilMeanings": [
+      "மஞ்சள்"
+    ]
+  },
+  {
+    "id": 484,
+    "character": "绝",
+    "pinyin": "jué",
+    "pinyinNumbered": "jue2",
+    "english": "to cut short",
+    "meanings": [
+      "to cut short",
+      "extinct",
+      "to disappear",
+      "to vanish",
+      "absolutely"
+    ],
+    "tamil": "முற்றிலும்; துண்டி",
+    "tamilMeanings": [
+      "முற்றிலும்",
+      "துண்டி"
+    ]
+  },
+  {
+    "id": 485,
+    "character": "奇",
+    "pinyin": "qí",
+    "pinyinNumbered": "qi2",
+    "english": "strange",
+    "meanings": [
+      "strange",
+      "odd",
+      "weird",
+      "wonderful",
+      "surprisingly"
+    ],
+    "tamil": "விசித்திரமான; அபூர்வமான",
+    "tamilMeanings": [
+      "விசித்திரமான",
+      "அபூர்வமான"
+    ]
+  },
+  {
+    "id": 486,
+    "character": "察",
+    "pinyin": "chá",
+    "pinyinNumbered": "cha2",
+    "english": "to examine",
+    "meanings": [
+      "to examine",
+      "to inquire",
+      "to observe",
+      "to inspect",
+      "to look into"
+    ],
+    "tamil": "கவனி; ஆராய்",
+    "tamilMeanings": [
+      "கவனி",
+      "ஆராய்"
+    ]
+  },
+  {
+    "id": 487,
+    "character": "母",
+    "pinyin": "mǔ",
+    "pinyinNumbered": "mu3",
+    "english": "mother",
+    "meanings": [
+      "mother",
+      "elderly female relative",
+      "origin",
+      "source",
+      "(of animals) female"
+    ],
+    "tamil": "தாய்",
+    "tamilMeanings": [
+      "தாய்"
+    ]
+  },
+  {
+    "id": 488,
+    "character": "京",
+    "pinyin": "jīng",
+    "pinyinNumbered": "jing1",
+    "english": "capital city of a country",
+    "meanings": [
+      "capital city of a country",
+      "big",
+      "algebraic term for a large number (old)",
+      "artificial mound (old)"
+    ],
+    "tamil": "தலைநகரம்",
+    "tamilMeanings": [
+      "தலைநகரம்"
+    ]
+  },
+  {
+    "id": 489,
+    "character": "段",
+    "pinyin": "duàn",
+    "pinyinNumbered": "duan4",
+    "english": "paragraph",
+    "meanings": [
+      "paragraph",
+      "section",
+      "segment",
+      "stage (of a process)"
+    ],
+    "tamil": "பகுதி; பத்தி",
+    "tamilMeanings": [
+      "பகுதி",
+      "பத்தி"
+    ]
+  },
+  {
+    "id": 490,
+    "character": "依",
+    "pinyin": "yī",
+    "pinyinNumbered": "yi1",
+    "english": "to depend on",
+    "meanings": [
+      "to depend on",
+      "to comply with or listen to sb",
+      "according to",
+      "in the light of"
+    ],
+    "tamil": "சார்ந்திரு; படி",
+    "tamilMeanings": [
+      "சார்ந்திரு",
+      "படி"
+    ]
+  },
+  {
+    "id": 491,
+    "character": "批",
+    "pinyin": "pī",
+    "pinyinNumbered": "pi1",
+    "english": "to ascertain",
+    "meanings": [
+      "to ascertain",
+      "to act on",
+      "to criticize",
+      "to pass on",
+      "tier (for the ranking of universities and colleges)"
+    ],
+    "tamil": "தொகுதி; மதிப்பிடு",
+    "tamilMeanings": [
+      "தொகுதி",
+      "மதிப்பிடு"
+    ]
+  },
+  {
+    "id": 492,
+    "character": "群",
+    "pinyin": "qún",
+    "pinyinNumbered": "qun2",
+    "english": "group",
+    "meanings": [
+      "group",
+      "crowd",
+      "flock, herd, pack etc"
+    ],
+    "tamil": "கூட்டம்; குழு",
+    "tamilMeanings": [
+      "கூட்டம்",
+      "குழு"
+    ]
+  },
+  {
+    "id": 493,
+    "character": "项",
+    "pinyin": "xiàng",
+    "pinyinNumbered": "xiang4",
+    "english": "back of neck",
+    "meanings": [
+      "back of neck",
+      "item",
+      "thing",
+      "term (in a mathematical formula)",
+      "sum (of money)"
+    ],
+    "tamil": "இனம்/பொருளுக்கான அளவுச்சொல்; கழுத்தின் பின்பகுதி",
+    "tamilMeanings": [
+      "இனம்/பொருளுக்கான அளவுச்சொல்",
+      "கழுத்தின் பின்பகுதி"
+    ]
+  },
+  {
+    "id": 494,
+    "character": "故",
+    "pinyin": "gù",
+    "pinyinNumbered": "gu4",
+    "english": "happening",
+    "meanings": [
+      "happening",
+      "instance",
+      "reason",
+      "cause",
+      "intentional"
+    ],
+    "tamil": "காரணம்; பழைய",
+    "tamilMeanings": [
+      "காரணம்",
+      "பழைய"
+    ]
+  },
+  {
+    "id": 495,
+    "character": "按",
+    "pinyin": "àn",
+    "pinyinNumbered": "an4",
+    "english": "to press",
+    "meanings": [
+      "to press",
+      "to push",
+      "to leave aside or shelve",
+      "to control",
+      "to restrain"
+    ],
+    "tamil": "அழுத்து; படி",
+    "tamilMeanings": [
+      "அழுத்து",
+      "படி"
+    ]
+  },
+  {
+    "id": 496,
+    "character": "河",
+    "pinyin": "hé",
+    "pinyinNumbered": "he2",
+    "english": "river (CL:條|条[tiao2],道[dao4])",
+    "meanings": [
+      "river (CL:條|条[tiao2],道[dao4])",
+      "(bound form) the Yellow River",
+      "(bound form) the Milky Way",
+      "(bound form) (on restaurant menus) rice noodles 河粉[he2 fen3]"
+    ],
+    "tamil": "ஆறு",
+    "tamilMeanings": [
+      "ஆறு"
+    ]
+  },
+  {
+    "id": 497,
+    "character": "米",
+    "pinyin": "mǐ",
+    "pinyinNumbered": "mi3",
+    "english": "uncooked rice",
+    "meanings": [
+      "uncooked rice",
+      "meter (unit of length)",
+      "(slang) Chinese yuan"
+    ],
+    "tamil": "அரிசி; மீட்டர்",
+    "tamilMeanings": [
+      "அரிசி",
+      "மீட்டர்"
+    ]
+  },
+  {
+    "id": 498,
+    "character": "围",
+    "pinyin": "wéi",
+    "pinyinNumbered": "wei2",
+    "english": "to encircle",
+    "meanings": [
+      "to encircle",
+      "to surround",
+      "all around",
+      "to wear by wrapping around (scarf, shawl)"
+    ],
+    "tamil": "சூழ்",
+    "tamilMeanings": [
+      "சூழ்"
+    ]
+  },
+  {
+    "id": 499,
+    "character": "江",
+    "pinyin": "jiāng",
+    "pinyinNumbered": "jiang1",
+    "english": "river",
+    "meanings": [
+      "river",
+      "CL:條|条[tiao2],道[dao4]"
+    ],
+    "tamil": "பெரிய ஆறு",
+    "tamilMeanings": [
+      "பெரிய ஆறு"
+    ]
+  },
+  {
+    "id": 500,
+    "character": "织",
+    "pinyin": "zhī",
+    "pinyinNumbered": "zhi1",
+    "english": "to weave",
+    "meanings": [
+      "to weave"
+    ],
+    "tamil": "நெய்",
+    "tamilMeanings": [
+      "நெய்"
+    ]
+  }
+]

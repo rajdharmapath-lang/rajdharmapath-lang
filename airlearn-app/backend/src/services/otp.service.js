@@ -1,34 +1,32 @@
-const { otpsByPhoneKey, phoneKey } = require('../db/db');
+const msg91Client = require('./msg91.client');
 
-const OTP_TTL_MS = 5 * 60 * 1000; // 5 minutes
+function normalizePhone(dialCode, phone) {
+  const countryDigits = String(dialCode || '').replace(/\D/g, '');
+  const phoneDigits = String(phone || '').replace(/\D/g, '');
+  const identifier = `${countryDigits}${phoneDigits}`;
 
-// Convenience code that always works during local development, so you don't
-// have to read server logs on every test run. REMOVE before this ever talks
-// to a real WhatsApp/SMS provider in production.
-const DEV_MASTER_OTP = '123456';
-
-function generateOtp(dialCode, phone) {
-  const code = String(Math.floor(100000 + Math.random() * 900000));
-  otpsByPhoneKey.set(phoneKey(dialCode, phone), {
-    code,
-    expiresAt: Date.now() + OTP_TTL_MS,
-  });
-
-  // TODO: replace this console.log with a real WhatsApp Business API / SMS
-  // provider call once that's set up (Raj Dharma already uses WhatsApp
-  // automation elsewhere, per the existing platform).
-  console.log(`[OTP] ${dialCode}${phone} -> ${code}  (or use dev master code ${DEV_MASTER_OTP})`);
-
-  return code;
+  if (!countryDigits || phoneDigits.length < 6 || identifier.length < 8 || identifier.length > 15) {
+    return null;
+  }
+  return identifier;
 }
 
-function verifyOtp(dialCode, phone, submittedCode) {
-  if (submittedCode === DEV_MASTER_OTP) return true;
+async function generateOtp(dialCode, phone) {
+  const identifier = normalizePhone(dialCode, phone);
+  if (!identifier) throw new Error('Invalid phone number');
 
-  const entry = otpsByPhoneKey.get(phoneKey(dialCode, phone));
-  if (!entry) return false;
-  if (Date.now() > entry.expiresAt) return false;
-  return entry.code === submittedCode;
+  return msg91Client.sendOtp(identifier);
 }
 
-module.exports = { generateOtp, verifyOtp, DEV_MASTER_OTP };
+async function verifyOtp(dialCode, phone, submittedCode, requestId) {
+  const identifier = normalizePhone(dialCode, phone);
+  if (!identifier || !requestId) return false;
+
+  const result = await msg91Client.verifyOtp(requestId, String(submittedCode));
+  if (!result.success) return false;
+
+  const verifiedIdentifier = await msg91Client.verifyAccessToken(result.accessToken);
+  return verifiedIdentifier.replace(/\D/g, '') === identifier;
+}
+
+module.exports = { generateOtp, verifyOtp, normalizePhone };

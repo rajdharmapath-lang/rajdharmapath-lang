@@ -6,8 +6,6 @@ import { colors } from '../theme/colors';
 import { useResponsive } from '../theme/responsive';
 import { batches } from '../data/courses';
 import { getQuiz } from '../data/quizzes';
-import { usePayment } from '../context/PaymentContext';
-import { redirectToPaywall } from '../utils/paywall';
 
 // Maps each real skill this quiz can contain to an icon. Note: your Quiz_3.svg
 // mockup lists "Listening" twice (once with a headphone icon, once with a mic
@@ -30,20 +28,12 @@ const CHECKLIST = [
 export default function QuizIntroScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
-  const { hasBatchAccess } = usePayment();
   const { batchId = 'foundation', quizId = 'quiz1' } = route?.params || {};
   const batch = batches.find((b) => b.id === batchId);
   const quiz = getQuiz(batchId, quizId);
   const hasQuestions = !!quiz?.questions?.length;
 
-  // Gated at the "Start Quiz" action, per your instructions — browsing the
-  // intro/checklist screen itself is fine unpurchased, same as Stroke's
-  // gate-on-start-practice rather than gate-on-entry.
   const handleStartQuiz = () => {
-    if (!hasBatchAccess(batchId)) {
-      redirectToPaywall(navigation, route, batchId);
-      return;
-    }
     navigation.navigate('QuizPlay', { batchId, quizId });
   };
 
@@ -63,6 +53,9 @@ export default function QuizIntroScreen({ route, navigation }) {
             {batch?.name || 'Batch'} {quiz?.name || 'Practice'}
           </Text>
           <Text style={styles.subtitle}>Ready to take on this Chinese challenge?</Text>
+          <Text style={styles.previewNote}>
+            Try the first question free. Prime members get full access to every module.
+          </Text>
 
           <Text style={styles.sectionTitle}>Skill Included</Text>
           <View style={styles.chipsRow}>
@@ -126,6 +119,7 @@ const styles = StyleSheet.create({
   eyebrow: { fontSize: 17, fontWeight: '700', color: colors.accentRedAlt },
   title: { fontSize: 26, fontWeight: '700', color: colors.accentRedAlt, textAlign: 'center', marginBottom: 10 },
   subtitle: { fontSize: 16, color: colors.textDark, textAlign: 'center', marginBottom: 32 },
+  previewNote: { fontSize: 13, color: colors.strokeAccent, textAlign: 'center', marginBottom: 20 },
   sectionTitle: { fontSize: 18, fontWeight: '700', color: colors.accentRedAlt, marginBottom: 12 },
   chipsRow: { flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 28 },
   chip: {

@@ -8,8 +8,10 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  Alert,
+  Modal,
+  Pressable,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
@@ -25,12 +27,16 @@ export default function PhoneEntryScreen({ navigation }) {
   const [country, setCountry] = useState(defaultCountry);
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
+  const [dialog, setDialog] = useState(null);
 
   const isValid = phone.trim().length >= 6 && phone.trim().length <= country.maxLength + 1;
 
   const handleGetStarted = async () => {
     if (!isValid) {
-      Alert.alert('Enter a valid phone number');
+      setDialog({
+        title: 'Invalid phone number',
+        message: 'Please enter a valid phone number to receive your verification code.',
+      });
       return;
     }
     setLoading(true);
@@ -38,7 +44,10 @@ export default function PhoneEntryScreen({ navigation }) {
       await sendOtp(phone.trim(), country.dialCode);
       navigation.navigate('OtpVerify');
     } catch (err) {
-      Alert.alert('Could not send OTP', err?.response?.data?.message || err.message);
+      setDialog({
+        title: 'Could not send OTP',
+        message: err?.response?.data?.message || err.message,
+      });
     } finally {
       setLoading(false);
     }
@@ -87,6 +96,40 @@ export default function PhoneEntryScreen({ navigation }) {
           </View>
         </View>
       </ScrollView>
+
+      <Modal
+        visible={Boolean(dialog)}
+        transparent
+        animationType="fade"
+        statusBarTranslucent
+        onRequestClose={() => setDialog(null)}
+      >
+        <View style={styles.modalOverlay}>
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            onPress={() => setDialog(null)}
+            accessibilityRole="button"
+            accessibilityLabel="Dismiss dialog"
+          />
+          <View
+            style={[styles.dialog, { maxWidth: Math.min(maxWidth - 48, 420) }]}
+            accessibilityViewIsModal
+          >
+            <View style={styles.dialogIcon}>
+              <Ionicons name="alert-circle-outline" size={26} color={colors.homeOrange} />
+            </View>
+            <Text style={styles.dialogTitle}>{dialog?.title}</Text>
+            <Text style={styles.dialogMessage}>{dialog?.message}</Text>
+            <Pressable
+              style={styles.dialogButton}
+              onPress={() => setDialog(null)}
+              accessibilityRole="button"
+            >
+              <Text style={styles.dialogButtonText}>Got it</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
     </KeyboardAvoidingView>
   );
 }
@@ -118,4 +161,52 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.textDark,
   },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.45)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 32,
+  },
+  dialog: {
+    width: '100%',
+    borderRadius: 28,
+    backgroundColor: colors.card,
+    alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 28,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.18,
+    shadowRadius: 20,
+    elevation: 10,
+  },
+  dialogIcon: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: colors.homeOrangeBg,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 14,
+  },
+  dialogTitle: { fontSize: 20, fontWeight: '700', color: colors.textDark, textAlign: 'center' },
+  dialogMessage: {
+    fontSize: 15,
+    lineHeight: 22,
+    color: colors.textLabel,
+    textAlign: 'center',
+    marginTop: 8,
+  },
+  dialogButton: {
+    minHeight: 48,
+    width: '100%',
+    borderRadius: 24,
+    backgroundColor: colors.primary,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 22,
+  },
+  dialogButtonText: { color: '#fff', fontSize: 15, fontWeight: '700' },
 });

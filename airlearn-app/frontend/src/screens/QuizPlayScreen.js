@@ -5,7 +5,7 @@ import { colors } from '../theme/colors';
 import { useResponsive } from '../theme/responsive';
 import { useAuth } from '../context/AuthContext';
 import { usePayment } from '../context/PaymentContext';
-import { useAccessGate } from '../utils/paywall';
+import { redirectToPaywall } from '../utils/paywall';
 import QuizProgressHeader from '../components/QuizProgressHeader';
 import QuizQuestionRenderer from '../components/QuizQuestionRenderer';
 import { getQuiz } from '../data/quizzes';
@@ -14,7 +14,7 @@ export default function QuizPlayScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const { user } = useAuth();
-  const { hasBatchAccess } = usePayment();
+  const { hasPrimeAccess } = usePayment();
   const language = user?.language === 'tamil' ? 'tamil' : 'english';
 
   const {
@@ -24,15 +24,10 @@ export default function QuizPlayScreen({ route, navigation }) {
   } = route?.params || {};
   const quiz = getQuiz(batchId, quizId);
   const questions = quiz?.questions || [];
-  const firstQuestionIndex = Math.min(
-    Math.max(startIndex, 0),
-    Math.max(questions.length - 1, 0)
-  );
+  const firstQuestionIndex = hasPrimeAccess()
+    ? Math.min(Math.max(startIndex, 0), Math.max(questions.length - 1, 0))
+    : 0;
   const questionsInRun = questions.length - firstQuestionIndex;
-
-  // Safety net in case this screen is ever reached without going through
-  // QuizIntroScreen's own gate (e.g. a deep link) — same batch-specific check.
-  useAccessGate(navigation, route, hasBatchAccess(batchId), batchId);
 
   const [index, setIndex] = useState(firstQuestionIndex);
   const [correctCount, setCorrectCount] = useState(0);
@@ -58,6 +53,10 @@ export default function QuizPlayScreen({ route, navigation }) {
   const handleAnswered = (isCorrect) => {
     const nextCorrectCount = correctCount + (isCorrect ? 1 : 0);
     const nextAnsweredCount = answeredCount + 1;
+    if (!hasPrimeAccess() && nextAnsweredCount >= 1) {
+      redirectToPaywall(navigation, route, batchId);
+      return;
+    }
     setCorrectCount(nextCorrectCount);
     setAnsweredCount(nextAnsweredCount);
 

@@ -8,20 +8,12 @@ import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
 import StaggeredSlideItem from '../components/StaggeredSlideItem';
 import { vocabularyCategories } from '../data/vocabulary';
-import { usePayment } from '../context/PaymentContext';
-import { useAccessGate } from '../utils/paywall';
 
 export default function VocabularyCategoryListScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
-  const { hasAnyBatchAccess } = usePayment();
   const mode = route?.params?.mode === 'speech' ? 'speech' : 'vocabulary';
   const destination = mode === 'speech' ? 'SpeechWordList' : 'FullVocabulary';
-
-  // Entering the categories screen (either mode) requires having purchased at
-  // least one batch — this is a general "any batch unlocks this" gate, unlike
-  // the batch-specific gates on Video/Quiz.
-  useAccessGate(navigation, route, hasAnyBatchAccess());
 
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>

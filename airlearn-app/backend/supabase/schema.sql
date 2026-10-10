@@ -101,6 +101,22 @@ create table if not exists public.user_entitlements (
   primary key (user_id, batch_id)
 );
 
+create table if not exists public.user_practice_previews (
+  user_id uuid not null,
+  module text not null,
+  preview_count integer not null default 1 check (preview_count between 1 and 3),
+  used_at timestamptz not null default now(),
+  primary key (user_id, module)
+);
+
+alter table public.user_practice_previews
+  add column if not exists preview_count integer not null default 1
+  check (preview_count between 1 and 3);
+
+alter table public.user_practice_previews enable row level security;
+revoke all on table public.user_practice_previews from anon, authenticated;
+grant all on table public.user_practice_previews to service_role;
+
 alter table public.user_entitlements add column if not exists valid_until timestamptz;
 update public.user_entitlements
 set valid_until = purchased_at + interval '3 months'

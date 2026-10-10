@@ -13,17 +13,18 @@ import { redirectToPaywall } from '../utils/paywall';
 export default function VideoListScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
-  const { hasBatchAccess } = usePayment();
+  const { hasPrimeAccess } = usePayment();
   const batchId = route?.params?.batchId || 'foundation';
   const batch = batches.find((b) => b.id === batchId);
   const lessons = lessonsByBatch[batchId] || [];
 
   const handleOpenLesson = (lesson) => {
-    if (!hasBatchAccess(batchId)) {
+    const isPreviewLesson = lessons[0]?.id === lesson.id;
+    if (!hasPrimeAccess() && !isPreviewLesson) {
       redirectToPaywall(navigation, route, batchId);
       return;
     }
-    if (lesson.locked) {
+    if (lesson.locked && !hasPrimeAccess()) {
       Alert.alert('Locked', 'Complete the previous lesson to unlock this one.');
       return;
     }
@@ -58,7 +59,7 @@ export default function VideoListScreen({ route, navigation }) {
                 <Text style={styles.rowSubtitle}>{item.subtitle}</Text>
               </View>
               <Ionicons
-                name={item.locked ? 'lock-closed-outline' : 'lock-open-outline'}
+                name={item.locked && !hasPrimeAccess() ? 'lock-closed-outline' : 'lock-open-outline'}
                 size={20}
                 color={colors.lockGray}
               />

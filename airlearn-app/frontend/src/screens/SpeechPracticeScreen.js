@@ -6,6 +6,8 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import { useAuth } from '../context/AuthContext';
+import { usePayment } from '../context/PaymentContext';
+import { redirectToPaywall } from '../utils/paywall';
 import { assessPronunciation } from '../services/pronunciation';
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
 
@@ -13,6 +15,7 @@ export default function SpeechPracticeScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const { user } = useAuth();
+  const { hasPrimeAccess } = usePayment();
   const language = user?.language === 'tamil' ? 'tamil' : 'english';
 
   const words = route?.params?.words?.length ? route.params.words : [];
@@ -71,6 +74,14 @@ export default function SpeechPracticeScreen({ route, navigation }) {
   };
 
   const handleNext = () => {
+    if (!hasPrimeAccess()) {
+      if (!results[index]) {
+        setPracticeMessage('Record and finish practicing this word before continuing.');
+        return;
+      }
+      redirectToPaywall(navigation, route);
+      return;
+    }
     if (index < words.length - 1) {
       setIndex(index + 1);
     } else {

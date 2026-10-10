@@ -10,16 +10,20 @@ const testPdfPath = path.join(testPdfDirectory, 'test-workbook.pdf');
 fs.writeFileSync(testPdfPath, 'test pdf');
 process.env.LEARNING_PDF_PATH = testPdfPath;
 
-const db = require('../src/db/db');
 const userRepository = require('../src/db/user.repository');
-const { createAccount, deleteAccount, downloadLearningPdf, setLanguage } = require('../src/controllers/user.controller');
+const {
+  claimStrokePreview,
+  createAccount,
+  deleteAccount,
+  downloadLearningPdf,
+  setLanguage,
+} = require('../src/controllers/user.controller');
 const { issueToken, requireAuth } = require('../src/middleware/auth.middleware');
 
 after(() => fs.rmSync(testPdfDirectory, { recursive: true, force: true }));
 
 test('deleteAccount removes the database user and invalidates existing tokens', async () => {
   const user = { id: 'user-test-1', dialCode: '+1', phone: '5550100' };
-  const key = db.phoneKey(user.dialCode, user.phone);
   const token = issueToken(user.id);
   let userExists = true;
   mock.method(userRepository, 'getUserById', async () => (userExists ? user : null));
@@ -27,8 +31,6 @@ test('deleteAccount removes the database user and invalidates existing tokens', 
     userExists = false;
     return user;
   });
-  db.otpsByPhoneKey.set(key, { code: '123456', expiresAt: Date.now() + 60000 });
-
   try {
     let deleteResponse;
     await deleteAccount(
@@ -44,7 +46,6 @@ test('deleteAccount removes the database user and invalidates existing tokens', 
     );
 
     assert.deepEqual(deleteResponse, { success: true });
-    assert.equal(db.otpsByPhoneKey.has(key), false);
 
     let authStatus;
     let nextCalled = false;
@@ -69,10 +70,8 @@ test('deleteAccount removes the database user and invalidates existing tokens', 
   }
 });
 
-test('deleteAccount keeps local state when the database audit fails', async () => {
+test('deleteAccount returns an error when the database audit fails', async () => {
   const user = { id: 'user-test-3', dialCode: '+1', phone: '5550102' };
-  const key = db.phoneKey(user.dialCode, user.phone);
-  db.otpsByPhoneKey.set(key, { code: '123456', expiresAt: Date.now() + 60000 });
   mock.method(userRepository, 'archiveAndDeleteUser', async () => {
     throw new Error('audit write failed');
   });
@@ -95,9 +94,7 @@ test('deleteAccount keeps local state when the database audit fails', async () =
 
     assert.equal(statusCode, 503);
     assert.deepEqual(responseBody, { message: 'Could not delete your account from the database.' });
-    assert.equal(db.otpsByPhoneKey.has(key), true);
   } finally {
-    db.otpsByPhoneKey.delete(key);
     mock.restoreAll();
   }
 });
@@ -127,6 +124,43 @@ test('createAccount and setLanguage persist user profile fields', async () => {
     ]);
     assert.equal(accountResponse.user.name, 'Test User');
     assert.equal(languageResponse.user.language, 'tamil');
+  } finally {
+    mock.restoreAll();
+  }
+});
+
+test('claimStrokePreview allows three free stroke attempts and Prime access', async () => {
+  const results = [
+    { hasPrimeAccess: false, previewClaimed: true, previewCount: 1 },
+    { hasPrimeAccess: false, previewClaimed: true, previewCount: 2 },
+    { hasPrimeAccess: false, previewClaimed: true, previewCount: 3 },
+    { hasPrimeAccess: false, previewClaimed: false, previewCount: null },
+    { hasPrimeAccess: true, previewClaimed: false, previewCount: null },
+  ];
+  const claimStub = mock.method(userRepository, 'claimStrokePreview', async () => results.shift());
+  const responses = [];
+  const response = {
+    json(body) {
+      responses.push(body);
+      return this;
+    },
+  };
+
+  try {
+    await claimStrokePreview({ userId: 'free-user' }, response);
+    await claimStrokePreview({ userId: 'free-user' }, response);
+    await claimStrokePreview({ userId: 'free-user' }, response);
+    await claimStrokePreview({ userId: 'free-user' }, response);
+    await claimStrokePreview({ userId: 'prime-user' }, response);
+
+    assert.deepEqual(responses, [
+      { hasPrimeAccess: false, previewClaimed: true, previewCount: 1 },
+      { hasPrimeAccess: false, previewClaimed: true, previewCount: 2 },
+      { hasPrimeAccess: false, previewClaimed: true, previewCount: 3 },
+      { hasPrimeAccess: false, previewClaimed: false, previewCount: null },
+      { hasPrimeAccess: true, previewClaimed: false, previewCount: null },
+    ]);
+    assert.equal(claimStub.mock.callCount(), 5);
   } finally {
     mock.restoreAll();
   }

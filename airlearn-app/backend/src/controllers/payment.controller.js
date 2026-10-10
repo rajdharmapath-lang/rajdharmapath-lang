@@ -12,13 +12,13 @@ const PLANS = {
 };
 
 function getRazorpayConfig() {
-  const keyId = process.env.RAZORPAY_KEY_ID;
-  const keySecret = process.env.RAZORPAY_KEY_SECRET;
+  const keyId = (process.env.RAZORPAY_KEY_ID || '').trim();
+  const keySecret = (process.env.RAZORPAY_KEY_SECRET || '').trim();
   if (!keyId || !keySecret) {
-    throw new Error('Razorpay is not configured. Set server-side test credentials first.');
+    throw new Error('Razorpay is not configured. Set server-side credentials first.');
   }
-  if (!keyId.startsWith('rzp_test_') && !keyId.startsWith('rzp_live_')) {
-    throw new Error('Razorpay key ID must be a test or live key.');
+  if (!/^rzp_(test|live)_[A-Za-z0-9]+$/.test(keyId)) {
+    throw new Error('Razorpay key ID is malformed. Copy only the complete Key ID (rzp_test_...); do not include the Key Secret or extra text.');
   }
   if (keyId.startsWith('rzp_live_') && process.env.RAZORPAY_ALLOW_LIVE !== 'true') {
     throw new Error('Live Razorpay checkout is disabled. Set RAZORPAY_ALLOW_LIVE=true after end-to-end testing.');
@@ -85,6 +85,11 @@ async function createOrder(req, res) {
       batchId: plan.batchId,
     });
   } catch (error) {
+    console.error('[payment] Razorpay order creation failed:', {
+      code: error.code || error.error?.code || 'UNKNOWN',
+      statusCode: error.statusCode || error.error?.statusCode,
+      description: error.error?.description || error.description || error.message,
+    });
     return res.status(503).json({ message: error.message || 'Could not create payment order.' });
   }
 }

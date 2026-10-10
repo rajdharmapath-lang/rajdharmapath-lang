@@ -9,23 +9,15 @@ import BottomNav from '../components/BottomNav';
 import VocabularyWordRow from '../components/VocabularyWordRow';
 import { getCategoryById } from '../data/vocabulary';
 import { useAuth } from '../context/AuthContext';
-import { usePayment } from '../context/PaymentContext';
-import { useAccessGate } from '../utils/paywall';
 
 export default function FullVocabularyScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const { user } = useAuth();
-  const { hasAnyBatchAccess } = usePayment();
   const language = user?.language === 'tamil' ? 'tamil' : 'english';
 
   const categoryId = route?.params?.categoryId || 'greetings';
   const category = getCategoryById(categoryId);
-
-  // Also gated here, not just on the Categories list screen — Vocabulary's main
-  // screen links straight into a category, bypassing the Categories list, so
-  // this closes that path too.
-  useAccessGate(navigation, route, hasAnyBatchAccess());
 
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>

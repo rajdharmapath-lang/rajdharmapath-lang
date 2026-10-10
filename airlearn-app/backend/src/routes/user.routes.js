@@ -5,6 +5,7 @@ const {
 	updateProfile,
 	setLanguage,
 	getMe,
+	claimStrokePreview,
 	deleteAccount,
 	downloadLearningPdf,
 } = require('../controllers/user.controller');
@@ -16,6 +17,7 @@ router.post('/create-account', createAccount);
 router.patch('/profile', updateProfile);
 router.post('/set-language', setLanguage);
 router.get('/me', getMe);
+router.post('/practice-previews/stroke/claim', claimStrokePreview);
 router.delete('/account', deleteAccount);
 router.get('/learning-pdf', downloadLearningPdf);
 

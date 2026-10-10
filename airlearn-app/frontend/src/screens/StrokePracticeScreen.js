@@ -5,12 +5,18 @@ import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
+import { useAuth } from '../context/AuthContext';
+import { usePayment } from '../context/PaymentContext';
+import { redirectToPaywall } from '../utils/paywall';
 import { ChineseStrokeWriter } from '../vendor/chinese-stroke-rn/src';
 import { getCharacterMeta } from '../data/characterMeta';
 
 export default function StrokePracticeScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth, width } = useResponsive();
+  const { user } = useAuth();
+  const { hasPrimeAccess } = usePayment();
+  const language = user?.language === 'tamil' ? 'tamil' : 'english';
   const characters = route?.params?.characters?.length ? route.params.characters : ['学'];
 
   const [index, setIndex] = useState(0);
@@ -19,7 +25,7 @@ export default function StrokePracticeScreen({ route, navigation }) {
 
   const writerRef = useRef(null);
   const character = characters[index];
-  const meta = getCharacterMeta(character);
+  const meta = getCharacterMeta(character, language);
   const canvasSize = Math.min(width - 80, 320);
 
   const currentResult = results[index] || { mistakes: 0, totalStrokes: 0, completed: false };
@@ -39,6 +45,14 @@ export default function StrokePracticeScreen({ route, navigation }) {
   };
 
   const handleNext = () => {
+    if (!hasPrimeAccess() && index === 0) {
+      if (!currentResult.completed) {
+        Alert.alert('Practice first', 'Complete this character before continuing.');
+        return;
+      }
+      redirectToPaywall(navigation, route);
+      return;
+    }
     if (index < characters.length - 1) {
       setIndex(index + 1);
     } else {
@@ -66,8 +80,8 @@ export default function StrokePracticeScreen({ route, navigation }) {
         <Text style={styles.title}>Stroke Writing</Text>
 
         <View style={styles.infoBar}>
-          <Text style={styles.infoHanzi}>{character}</Text>
-          <Text style={styles.infoCaption}>
+          <Text style={styles.infoHanzi} numberOfLines={1}>{character}</Text>
+          <Text style={styles.infoCaption} numberOfLines={3} ellipsizeMode="tail">
             {meta ? `${meta.pinyin} - ${meta.meaning}` : character}
           </Text>
         </View>
@@ -151,8 +165,16 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     marginBottom: 20,
   },
-  infoHanzi: { fontSize: 24, color: colors.textDark },
-  infoCaption: { fontSize: 15, color: colors.textDark, fontWeight: '500' },
+  infoHanzi: { fontSize: 24, color: colors.textDark, flexShrink: 0 },
+  infoCaption: {
+    flex: 1,
+    minWidth: 0,
+    flexShrink: 1,
+    fontSize: 15,
+    lineHeight: 20,
+    color: colors.textDark,
+    fontWeight: '500',
+  },
   practiceBox: {
     borderWidth: 1.5,
     borderColor: colors.strokeAccent,

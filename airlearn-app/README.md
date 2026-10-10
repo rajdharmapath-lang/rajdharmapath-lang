@@ -10,7 +10,7 @@ real running backend rather than mocked responses.
 ```
 airlearn-app/
   frontend/   Expo React Native app - all 32 screens, fully navigable
-  backend/    Node/Express API - auth + profile endpoints, in-memory storage
+  backend/    Node/Express API - auth, Supabase-backed profiles, and payments
 ```
 
 ## Running it locally
@@ -27,19 +27,20 @@ npm start
 
 This starts the API on http://localhost:4000. Leave it running.
 
-Razorpay credentials are read only by the backend from `backend/.env`. Use test
-keys for development. Live keys require the explicit server-side setting
-`RAZORPAY_ALLOW_LIVE=true`; leave it unset until test-mode checkout, capture
-verification, durable entitlement storage, reconciliation, and applicable
-app-store billing rules have been reviewed. Never put Razorpay secrets in the
-frontend or commit `.env`.
+Razorpay credentials are read only by the backend from `backend/.env`. This
+checkout uses the configured Razorpay mode: test keys create test orders, while
+live keys create real payment orders. Live keys require
+`RAZORPAY_ALLOW_LIVE=true` on the backend. Set that only after confirming live
+key/secret pairing, capture verification, durable entitlement storage,
+reconciliation, and applicable app-store billing requirements. Never put
+Razorpay secrets in the frontend or commit `.env`.
 
 User profiles are stored in Supabase. Set `SUPABASE_DATABASE_URL` in
 `backend/.env` using the project's Session Pooler URI. Keep the
 database password on the backend only; never add it to the mobile app or commit
 it. URL-encode special characters in the password. Run
 `backend/supabase/schema.sql` in the Supabase SQL Editor to create the
-`public.users` table before signing in. The table stores the verified
+`public.users` table before signing in and rerun it after schema updates. The table stores the verified
 phone/dial code, name, email, occupation/type, language, and timestamps. Phone
 plus dial code is unique; email is not unique. WhatsApp OTP delivery remains
 separate from this database connection.
@@ -64,7 +65,19 @@ Razorpay, confirms the order, amount, currency, and captured status, then
 atomically stores the captured transaction in `public.payment_transactions`
 and the batch entitlement in `public.user_entitlements`.
 6. The app fetches authenticated `/api/payments/entitlements`; those server-side
-records determine which lessons and live access are unlocked.
+records determine paid access.
+
+### Practice access
+
+Vocabulary is free. Users without a paid entitlement can preview the first
+video lesson, one quiz question, and one speech-practice word per attempt.
+Stroke practice allows three attempts per account; starting a fourth opens the
+paywall. Continuing past the other previews opens the paywall, and those
+previews reset when a new attempt starts.
+
+Any paid batch entitlement grants Prime access across all batches and modules,
+including lessons, quizzes, stroke practice, speech practice, and live access.
+Access is reflected after the app loads the user's server-side entitlements.
 
 Repeated verification of the same captured payment is idempotent. Payment
 records are retained when an account is deleted; they are not linked by a
@@ -92,16 +105,28 @@ When Storage settings are absent, the backend falls back to
 `LEARNING_PDF_PATH` or `Downloads/RD chinese workbook.pdf` in its user's home
 directory. Keep local PDFs out of Git.
 
-There's no real SMS/WhatsApp OTP provider wired up yet. When you request an
-OTP, the actual 6-digit code is printed in this terminal window, e.g.:
+### WhatsApp OTP
 
-```
-[OTP] +919876543210 -> 801644  (or use dev master code 123456)
+OTP delivery and verification use the MSG91 OTP Widget from the backend. Set
+these values in `backend/.env` for local development and in the backend hosting
+provider's secret environment settings for deployment:
+
+```env
+MSG91_AUTH_KEY=your_rotated_auth_key
+MSG91_TOKEN_AUTH=your_widget_token_auth
+MSG91_WIDGET_ID=your_widget_id
 ```
 
-For convenience while testing, the code 123456 always works, for any phone
-number. Remove DEV_MASTER_OTP in backend/src/services/otp.service.js before
-this goes anywhere near production.
+The OTP Widget requires its `Token Auth` value as well as its widget ID; obtain
+the token from the MSG91 widget settings. The Auth Key is used to validate the
+access token returned after successful OTP verification. Set WhatsApp as the
+widget's default delivery channel in MSG91, and complete WhatsApp Business
+onboarding, sender setup, and template approval there. The backend does not fall
+back to SMS, a printed code, or a fixed OTP when MSG91 is unavailable.
+
+The MSG91 Auth Key was shared in chat. Revoke/rotate it before using the
+integration, then store only the replacement in backend secrets. Never put
+MSG91 credentials in the frontend, commit them, or share them in chat.
 
 ### 2. Frontend
 

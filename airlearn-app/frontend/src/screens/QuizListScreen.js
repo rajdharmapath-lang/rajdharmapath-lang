@@ -9,6 +9,8 @@ import BottomNav from '../components/BottomNav';
 import StaggeredSlideItem from '../components/StaggeredSlideItem';
 import { batches } from '../data/courses';
 import { getQuizzesForBatch } from '../data/quizzes';
+import { usePayment } from '../context/PaymentContext';
+import { redirectToPaywall } from '../utils/paywall';
 
 const CHAPTERS = [
   { id: 1, title: 'First Conversations', subtitle: 'Words and meaning' },
@@ -40,6 +42,7 @@ const SKILL_ICONS = {
 export default function QuizListScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
+  const { loaded, hasPrimeAccess } = usePayment();
   const batchId = route?.params?.batchId || 'foundation';
   const batch = batches.find((b) => b.id === batchId);
   const quizzes = getQuizzesForBatch(batchId).filter((quiz) => quiz.questions?.length);
@@ -55,6 +58,14 @@ export default function QuizListScreen({ route, navigation }) {
       };
 
   const startQuestion = (questionIndex) => {
+    if (questionIndex > 0) {
+      if (!loaded) return;
+      if (!hasPrimeAccess()) {
+        redirectToPaywall(navigation, route, batchId);
+        return;
+      }
+    }
+
     navigation.navigate('QuizPlay', {
       batchId,
       quizId: quiz.id,
@@ -97,45 +108,58 @@ export default function QuizListScreen({ route, navigation }) {
 
                   <View style={styles.pathTrack}>
                     <View style={styles.pathLine} />
-                    {chapterQuestions.map(({ question, questionIndex }, index) => (
-                      <StaggeredSlideItem
-                        key={question.id}
-                        index={questionIndex}
-                        style={styles.pathEntry}
-                      >
-                        <Pressable
-                          style={styles.pathStep}
-                          onPress={() => startQuestion(questionIndex)}
-                          accessibilityRole="button"
-                          accessibilityLabel={`Practice step ${questionIndex + 1}: ${question.pathTitle}`}
+                    {chapterQuestions.map(({ question, questionIndex }) => {
+                      const locked = questionIndex > 0 && (!loaded || !hasPrimeAccess());
+                      return (
+                        <StaggeredSlideItem
+                          key={question.id}
+                          index={questionIndex}
+                          style={styles.pathEntry}
                         >
-                          <View
-                            style={[
-                              styles.pathNode,
-                              questionIndex === 0 && styles.pathNodeActive,
-                            ]}
+                          <Pressable
+                            style={[styles.pathStep, locked && styles.pathStepLocked]}
+                            onPress={() => startQuestion(questionIndex)}
+                            accessibilityRole="button"
+                            accessibilityLabel={`Practice step ${questionIndex + 1}: ${question.pathTitle}${locked ? ', Prime members only' : ''}`}
+                            accessibilityState={{ disabled: questionIndex > 0 && !loaded }}
                           >
-                            {questionIndex === 0 ? (
-                              <Ionicons name="play" size={17} color="#fff" />
-                            ) : (
-                              <Ionicons
-                                name={SKILL_ICONS[question.type] || 'ellipse'}
-                                size={17}
-                                color={colors.accentRedAlt}
-                              />
-                            )}
-                          </View>
-                          <View style={styles.pathStepText}>
-                            <View style={styles.pathTitleRow}>
-                              <Text style={styles.pathStepTitle}>{question.pathTitle}</Text>
-                              <Text style={styles.pathStepNumber}>{questionIndex + 1}/{quiz.questions.length}</Text>
+                            <View
+                              style={[
+                                styles.pathNode,
+                                questionIndex === 0 && styles.pathNodeActive,
+                                locked && styles.pathNodeLocked,
+                              ]}
+                            >
+                              {locked ? (
+                                <Ionicons name="lock-closed" size={16} color={colors.textLabel} />
+                              ) : questionIndex === 0 ? (
+                                <Ionicons name="play" size={17} color="#fff" />
+                              ) : (
+                                <Ionicons
+                                  name={SKILL_ICONS[question.type] || 'ellipse'}
+                                  size={17}
+                                  color={colors.accentRedAlt}
+                                />
+                              )}
                             </View>
-                            <Text style={styles.pathSkill}>{SKILL_LABELS[question.type]}</Text>
-                          </View>
-                          <Ionicons name="chevron-forward" size={18} color={colors.border} />
-                        </Pressable>
-                      </StaggeredSlideItem>
-                    ))}
+                            <View style={styles.pathStepText}>
+                              <View style={styles.pathTitleRow}>
+                                <Text style={[styles.pathStepTitle, locked && styles.pathStepTextLocked]}>
+                                  {question.pathTitle}
+                                </Text>
+                                <Text style={styles.pathStepNumber}>{questionIndex + 1}/{quiz.questions.length}</Text>
+                              </View>
+                              <Text style={styles.pathSkill}>{SKILL_LABELS[question.type]}</Text>
+                            </View>
+                            <Ionicons
+                              name={locked ? 'lock-closed-outline' : 'chevron-forward'}
+                              size={18}
+                              color={locked ? colors.textLabel : colors.border}
+                            />
+                          </Pressable>
+                        </StaggeredSlideItem>
+                      );
+                    })}
                   </View>
                 </View>
               );
@@ -194,6 +218,7 @@ const styles = StyleSheet.create({
   },
   pathEntry: { marginVertical: 3 },
   pathStep: { minHeight: 64, flexDirection: 'row', alignItems: 'center', paddingVertical: 7 },
+  pathStepLocked: { opacity: 0.72 },
   pathNode: {
     width: 44,
     height: 44,
@@ -210,9 +235,11 @@ const styles = StyleSheet.create({
     borderColor: colors.homeOrangeLight,
     borderWidth: 3,
   },
+  pathNodeLocked: { backgroundColor: colors.background, borderColor: colors.borderLight },
   pathStepText: { flex: 1 },
   pathTitleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   pathStepTitle: { flex: 1, fontSize: 15, fontWeight: '700', color: colors.textDark },
+  pathStepTextLocked: { color: colors.textLabel },
   pathStepNumber: { fontSize: 11, color: colors.textLabel, marginLeft: 8 },
   pathSkill: { fontSize: 10, fontWeight: '700', color: colors.textLabel, marginTop: 4 },
   emptyState: { alignItems: 'center', paddingHorizontal: 24, paddingVertical: 48 },

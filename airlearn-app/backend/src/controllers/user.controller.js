@@ -2,10 +2,6 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const userRepository = require('../db/user.repository');
-const {
-  phoneKey,
-  otpsByPhoneKey,
-} = require('../db/db');
 
 const LEARNING_PDF_PATH = path.resolve(
   process.env.LEARNING_PDF_PATH ||
@@ -65,6 +61,16 @@ async function getMe(req, res) {
   }
 }
 
+async function claimStrokePreview(req, res) {
+  try {
+    const result = await userRepository.claimStrokePreview(req.userId);
+    return res.json(result);
+  } catch (error) {
+    console.error('Could not claim stroke practice preview:', error);
+    return res.status(503).json({ message: 'Could not verify stroke practice access.' });
+  }
+}
+
 async function deleteAccount(req, res) {
   let user;
   try {
@@ -73,9 +79,6 @@ async function deleteAccount(req, res) {
   } catch (error) {
     return res.status(503).json({ message: 'Could not delete your account from the database.' });
   }
-  const key = phoneKey(user.dialCode, user.phone);
-  otpsByPhoneKey.delete(key);
-
   return res.json({ success: true });
 }
 
@@ -149,6 +152,7 @@ module.exports = {
   updateProfile,
   setLanguage,
   getMe,
+  claimStrokePreview,
   deleteAccount,
   downloadLearningPdf,
 };

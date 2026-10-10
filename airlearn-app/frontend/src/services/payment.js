@@ -1,29 +1,7 @@
-// --- Razorpay integration point ----------------------------------------------
-// Once you have a Razorpay key, replace the body of processPayment. Typical flow:
-//
-//   1. Call your backend to create an order: POST /api/payments/create-order
-//      { planId, amount } -> { orderId, razorpayKeyId, amount, currency }
-//   2. Open Razorpay checkout (react-native-razorpay):
-//        import RazorpayCheckout from 'react-native-razorpay';
-//        const result = await RazorpayCheckout.open({
-//          key: razorpayKeyId,
-//          order_id: orderId,
-//          amount,
-//          currency: 'INR',
-//          name: 'Raj Dharma',
-//        });
-//   3. Verify the payment signature on your backend: POST /api/payments/verify
-//      { orderId, paymentId, signature } -> { success: true/false }
-//   4. Resolve processPayment with that verified result.
-//
-// Keep the processPayment(order) call signature the same in the screens — only
-// this file needs to change when Razorpay is wired in.
-// ------------------------------------------------------------------------------
-
 /**
  * Processes a payment for a given order.
- * Currently simulates a Razorpay checkout + backend verification round-trip so
- * the Checkout → Success/Failed flow is fully testable before Razorpay is wired in.
+ * Creates a server-side Razorpay order, launches the native checkout, and asks
+ * the backend to verify the captured payment before reporting success.
  *
  * @param {{ planId: string, amount: number }} order
  * @returns {Promise<{ success: boolean, paymentId?: string, reason?: string }>}

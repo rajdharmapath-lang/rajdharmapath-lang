@@ -1,44 +1,48 @@
 import React, { useMemo, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, TextInput, Pressable, StyleSheet, FlatList } from 'react-native';
+import { View, Text, TextInput, Pressable, StyleSheet, FlatList, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
+import { useAuth } from '../context/AuthContext';
 import BottomNav from '../components/BottomNav';
 import { HSK500_CHARACTERS } from '../vendor/chinese-stroke-rn/src';
 import { getCharacterMeta } from '../data/characterMeta';
-import { usePayment } from '../context/PaymentContext';
+import { userApi } from '../api/client';
 import { redirectToPaywall } from '../utils/paywall';
 
 export default function CharacterSelectScreen({ navigation, route }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
-  const { hasAnyBatchAccess } = usePayment();
+  const { user } = useAuth();
+  const language = user?.language === 'tamil' ? 'tamil' : 'english';
   const [query, setQuery] = useState('');
   const [selectionMode, setSelectionMode] = useState(false);
   const [selected, setSelected] = useState([]); // array of characters, in the order picked
+  const [isStartingPractice, setIsStartingPractice] = useState(false);
 
   // Lead with characters we have captions for so the grid reads well; the rest of
   // HSK500 still works for practice, it just shows without a pinyin/meaning caption.
   const orderedCharacters = useMemo(() => {
-    const withMeta = HSK500_CHARACTERS.filter((c) => getCharacterMeta(c));
-    const withoutMeta = HSK500_CHARACTERS.filter((c) => !getCharacterMeta(c));
+    const withMeta = HSK500_CHARACTERS.filter((c) => getCharacterMeta(c, language));
+    const withoutMeta = HSK500_CHARACTERS.filter((c) => !getCharacterMeta(c, language));
     return [...withMeta, ...withoutMeta];
-  }, []);
+  }, [language]);
 
   const filtered = useMemo(() => {
     if (!query.trim()) return orderedCharacters;
     const q = query.trim().toLowerCase();
     return orderedCharacters.filter((c) => {
-      const meta = getCharacterMeta(c);
+      const meta = getCharacterMeta(c, language);
       return (
         c.includes(query.trim()) ||
         meta?.pinyin?.toLowerCase().includes(q) ||
-        meta?.meaning?.toLowerCase().includes(q)
+        meta?.englishMeaning?.toLowerCase().includes(q) ||
+        meta?.tamilMeaning?.toLowerCase().includes(q)
       );
     });
-  }, [query, orderedCharacters]);
+  }, [query, orderedCharacters, language]);
 
   const toggleSelect = (char) => {
     setSelected((prev) =>
@@ -53,15 +57,25 @@ export default function CharacterSelectScreen({ navigation, route }) {
     setSelectionMode((v) => !v);
   };
 
-  // Gated here rather than on screen entry — per your instructions, browsing
-  // and selecting characters is free; the paywall only appears once they
-  // actually try to start practicing.
-  const startPracticeWith = (characters) => {
-    if (!hasAnyBatchAccess()) {
-      redirectToPaywall(navigation, route, undefined);
-      return;
+  const startPracticeWith = async (characters) => {
+    if (isStartingPractice) return;
+
+    setIsStartingPractice(true);
+    try {
+      const { data } = await userApi.claimStrokePreview();
+      if (!data.hasPrimeAccess && !data.previewClaimed) {
+        redirectToPaywall(navigation, route);
+        return;
+      }
+      navigation.navigate('StrokePractice', { characters });
+    } catch (error) {
+      Alert.alert(
+        'Could not check access',
+        error.response?.data?.message || 'Please try again when your connection is available.'
+      );
+    } finally {
+      setIsStartingPractice(false);
     }
-    navigation.navigate('StrokePractice', { characters });
   };
 
   const handleCardPress = (char) => {
@@ -117,12 +131,13 @@ export default function CharacterSelectScreen({ navigation, route }) {
           contentContainerStyle={{ paddingBottom: 16 }}
           columnWrapperStyle={{ justifyContent: 'space-between' }}
           renderItem={({ item }) => {
-            const meta = getCharacterMeta(item);
+            const meta = getCharacterMeta(item, language);
             const isSelected = selected.includes(item);
             return (
               <Pressable
                 style={[styles.card, isSelected && styles.cardSelected]}
                 onPress={() => handleCardPress(item)}
+                disabled={isStartingPractice}
                 onLongPress={() => {
                   if (!selectionMode) setSelectionMode(true);
                   toggleSelect(item);
@@ -134,8 +149,12 @@ export default function CharacterSelectScreen({ navigation, route }) {
                   </View>
                 )}
                 <Text style={styles.hanzi}>{item}</Text>
-                <Text style={styles.pinyin}>{meta?.pinyin || ' '}</Text>
-                <Text style={styles.meaning}>{meta?.meaning || ' '}</Text>
+                <Text style={styles.pinyin} numberOfLines={1} adjustsFontSizeToFit>
+                  {meta?.pinyin || ' '}
+                </Text>
+                <Text style={styles.meaning} numberOfLines={2} ellipsizeMode="tail">
+                  {meta?.meaning || ' '}
+                </Text>
               </Pressable>
             );
           }}
@@ -143,7 +162,7 @@ export default function CharacterSelectScreen({ navigation, route }) {
 
         <Pressable
           style={[styles.startButton, selected.length === 0 && styles.startButtonDisabled]}
-          disabled={selected.length === 0}
+          disabled={selected.length === 0 || isStartingPractice}
           onPress={handleStartPractice}
         >
           <Text style={styles.startButtonText}>Start Practice</Text>
@@ -201,6 +220,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
+    paddingHorizontal: 5,
     marginBottom: 14,
     backgroundColor: colors.card,
   },
@@ -219,8 +239,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   hanzi: { fontSize: 30, color: colors.textDark, marginBottom: 4 },
-  pinyin: { fontSize: 13, color: colors.textLabel },
-  meaning: { fontSize: 12, color: colors.textLabel },
+  pinyin: { width: '100%', fontSize: 13, color: colors.textLabel, textAlign: 'center' },
+  meaning: {
+    width: '100%',
+    fontSize: 12,
+    lineHeight: 15,
+    color: colors.textLabel,
+    textAlign: 'center',
+    flexShrink: 1,
+  },
   startButton: {
     borderWidth: 1.5,
     borderColor: colors.strokeAccent,

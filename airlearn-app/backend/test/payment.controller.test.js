@@ -64,14 +64,18 @@ test('createOrder persists the Razorpay order before returning it to checkout', 
   const previousKeyId = process.env.RAZORPAY_KEY_ID;
   const previousSecret = process.env.RAZORPAY_KEY_SECRET;
   process.env.RAZORPAY_KEY_ID = 'rzp_test_unit';
-  process.env.RAZORPAY_KEY_SECRET = 'unit_secret';
+  process.env.RAZORPAY_KEY_SECRET = ' unit_secret ';
   const storedOrders = [];
   mock.method(paymentRepository, 'createPaymentOrder', async (order) => storedOrders.push(order));
-  mock.method(razorpayClient, 'createClient', () => ({
-    orders: {
-      create: async () => ({ id: 'order_db_123', amount: 49900, currency: 'INR' }),
-    },
-  }));
+  const clientCredentials = [];
+  mock.method(razorpayClient, 'createClient', (keyId, keySecret) => {
+    clientCredentials.push({ keyId, keySecret });
+    return {
+      orders: {
+        create: async () => ({ id: 'order_db_123', amount: 49900, currency: 'INR' }),
+      },
+    };
+  });
 
   let responseBody;
   let statusCode = 200;
@@ -98,6 +102,8 @@ test('createOrder persists the Razorpay order before returning it to checkout', 
 
   assert.equal(statusCode, 200);
   assert.equal(responseBody.orderId, 'order_db_123');
+  assert.equal(responseBody.keyId, 'rzp_test_unit');
+  assert.deepEqual(clientCredentials, [{ keyId: 'rzp_test_unit', keySecret: 'unit_secret' }]);
   assert.deepEqual(storedOrders, [{
     razorpayOrderId: 'order_db_123',
     userId: 'user-db-test',
@@ -254,7 +260,7 @@ test('getEntitlements returns records from the persistent repository', async () 
 test('createOrder refuses live keys without explicit server opt-in', async () => {
   const previousKeyId = process.env.RAZORPAY_KEY_ID;
   const previousSecret = process.env.RAZORPAY_KEY_SECRET;
-  process.env.RAZORPAY_KEY_ID = 'rzp_live_not_a_real_key';
+  process.env.RAZORPAY_KEY_ID = 'rzp_live_notarealkey';
   process.env.RAZORPAY_KEY_SECRET = 'not_a_real_secret';
 
   let statusCode;
@@ -281,6 +287,45 @@ test('createOrder refuses live keys without explicit server opt-in', async () =>
 
   assert.equal(statusCode, 503);
   assert.match(responseBody.message, /Live Razorpay checkout is disabled/);
+});
+
+test('createOrder rejects a malformed Razorpay test key ID before contacting Razorpay', async () => {
+  const previousKeyId = process.env.RAZORPAY_KEY_ID;
+  const previousSecret = process.env.RAZORPAY_KEY_SECRET;
+  process.env.RAZORPAY_KEY_ID = 'rzp_test_valid_rzp_test_extra';
+  process.env.RAZORPAY_KEY_SECRET = 'unit_secret';
+  const createClientStub = mock.method(razorpayClient, 'createClient', () => {
+    throw new Error('Razorpay must not be called with a malformed key ID');
+  });
+  const logStub = mock.method(console, 'error', () => {});
+  let statusCode;
+  let responseBody;
+
+  try {
+    await createOrder(
+      { userId: 'test-user', body: { planId: 'foundation_videos' } },
+      {
+        status(code) {
+          statusCode = code;
+          return this;
+        },
+        json(body) {
+          responseBody = body;
+        },
+      }
+    );
+
+    assert.equal(createClientStub.mock.calls.length, 0);
+    assert.equal(statusCode, 503);
+    assert.match(responseBody.message, /Razorpay key ID is malformed/);
+    assert.equal(logStub.mock.calls.length, 1);
+  } finally {
+    mock.restoreAll();
+    if (previousKeyId === undefined) delete process.env.RAZORPAY_KEY_ID;
+    else process.env.RAZORPAY_KEY_ID = previousKeyId;
+    if (previousSecret === undefined) delete process.env.RAZORPAY_KEY_SECRET;
+    else process.env.RAZORPAY_KEY_SECRET = previousSecret;
+  }
 });
 
 test('createOrder permits live credentials only with explicit server opt-in', async () => {

@@ -78,8 +78,8 @@ client.interceptors.request.use(async (config) => {
 
 export const authApi = {
   sendOtp: (phone, dialCode) => client.post('/auth/send-otp', { phone, dialCode }),
-  verifyOtp: (phone, dialCode, code) =>
-    client.post('/auth/verify-otp', { phone, dialCode, code }),
+  verifyOtp: (phone, dialCode, code, reqId) =>
+    client.post('/auth/verify-otp', { phone, dialCode, code, reqId }),
   resendOtp: (phone, dialCode) => client.post('/auth/send-otp', { phone, dialCode }),
 };
 
@@ -88,6 +88,7 @@ export const userApi = {
   updateProfile: (payload) => client.patch('/user/profile', payload),
   setLanguage: (language) => client.post('/user/set-language', { language }),
   getMe: () => client.get('/user/me'),
+  claimStrokePreview: () => client.post('/user/practice-previews/stroke/claim'),
   deleteAccount: () => client.delete('/user/account'),
 };
 

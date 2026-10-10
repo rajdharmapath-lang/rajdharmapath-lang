@@ -74,6 +74,40 @@ async function updateUser(userId, fields) {
   return toUser(rows[0]);
 }
 
+async function claimStrokePreview(userId) {
+  const { rows } = await getPool().query(
+    `WITH prime_access AS (
+       SELECT EXISTS (
+         SELECT 1
+         FROM public.user_entitlements
+         WHERE user_id = $1 AND valid_until > NOW()
+       ) AS has_prime_access
+     ),
+     claimed AS (
+       INSERT INTO public.user_practice_previews AS existing_preview
+         (user_id, module, preview_count)
+       SELECT $1, 'stroke', 1
+       FROM prime_access
+       WHERE NOT has_prime_access
+       ON CONFLICT (user_id, module) DO UPDATE
+       SET preview_count = existing_preview.preview_count + 1,
+           used_at = NOW()
+       WHERE existing_preview.preview_count < 3
+       RETURNING preview_count
+     )
+     SELECT has_prime_access,
+            EXISTS (SELECT 1 FROM claimed) AS preview_claimed,
+            (SELECT preview_count FROM claimed) AS preview_count
+     FROM prime_access`,
+    [userId]
+  );
+  return {
+    hasPrimeAccess: rows[0].has_prime_access,
+    previewClaimed: rows[0].preview_claimed,
+    previewCount: rows[0].preview_count,
+  };
+}
+
 async function archiveAndDeleteUser(userId) {
   const client = await getPool().connect();
   try {
@@ -122,5 +156,6 @@ module.exports = {
   getUserByPhone,
   getOrCreateUserByPhone,
   updateUser,
+  claimStrokePreview,
   archiveAndDeleteUser,
 };

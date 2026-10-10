@@ -5,6 +5,7 @@ This package contains exactly 500 unique Chinese characters and 500 matching loc
 ## Included
 
 - `data/`: 500 Make Me a Hanzi JSON stroke-data files
+- `frontend/src/data/characterMetadata.json`: app-level pinyin, English, and Tamil captions for the same 500 characters
 - `src/hanziWriterSource.ts`: Hanzi Writer 3.7.3 bundled locally
 - `src/offlineCharacterData.ts`: static Metro-compatible imports for all 500 JSON files
 - `src/hsk500.ts`: deterministic 500-character learning sequence
