@@ -13,6 +13,10 @@ airlearn-app/
   backend/    Node/Express API - auth, Supabase-backed profiles, and payments
 ```
 
+Privacy details and store-disclosure checks are in
+[`PRIVACY-POLICY.md`](./PRIVACY-POLICY.md) and
+[`STORE-PRIVACY-DISCLOSURES.md`](./STORE-PRIVACY-DISCLOSURES.md).
+
 ## Running it locally
 
 You need both running at the same time.
@@ -79,10 +83,13 @@ Any paid batch entitlement grants Prime access across all batches and modules,
 including lessons, quizzes, stroke practice, speech practice, and live access.
 Access is reflected after the app loads the user's server-side entitlements.
 
-Repeated verification of the same captured payment is idempotent. Payment
-records are retained when an account is deleted; they are not linked by a
-cascading user foreign key. The payment tables have RLS enabled and client roles
-revoked; only the server-side database connection can access them.
+Repeated verification of the same captured payment is idempotent. When an
+account is deleted, profile, entitlement, stroke-preview, and local learning
+data are removed. Payment records are retained for applicable legal and
+accounting requirements; uncompleted orders are deleted and retained captured
+records have their account identifiers replaced with random identifiers. The
+payment tables have RLS enabled and client roles revoked; only the server-side
+database connection can access them.
 
 The Razorpay native checkout does not run inside stock Expo Go. Build and install
 a custom Android/iOS development client (or release build) after installing the
