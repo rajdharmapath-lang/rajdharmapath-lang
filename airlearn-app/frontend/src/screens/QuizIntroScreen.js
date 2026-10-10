@@ -6,6 +6,7 @@ import { colors } from '../theme/colors';
 import { useResponsive } from '../theme/responsive';
 import { batches } from '../data/courses';
 import { getQuiz } from '../data/quizzes';
+import BottomNav from '../components/BottomNav';
 
 // Maps each real skill this quiz can contain to an icon. Note: your Quiz_3.svg
 // mockup lists "Listening" twice (once with a headphone icon, once with a mic
@@ -103,6 +104,16 @@ export default function QuizIntroScreen({ route, navigation }) {
           </Pressable>
         </View>
       </ScrollView>
+
+      <BottomNav
+        active="Home"
+        onNavigate={(key) => {
+          if (key === 'Home') navigation.navigate('Home');
+          if (key === 'Videos') navigation.navigate('BatchList');
+          if (key === 'Language') navigation.navigate('Vocabulary');
+          if (key === 'Profile') navigation.navigate('Settings');
+        }}
+      />
     </View>
   );
 }

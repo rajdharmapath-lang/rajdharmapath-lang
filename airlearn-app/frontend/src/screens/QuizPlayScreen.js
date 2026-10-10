@@ -9,6 +9,7 @@ import { redirectToPaywall } from '../utils/paywall';
 import QuizProgressHeader from '../components/QuizProgressHeader';
 import QuizQuestionRenderer from '../components/QuizQuestionRenderer';
 import { getQuiz } from '../data/quizzes';
+import BottomNav from '../components/BottomNav';
 
 export default function QuizPlayScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
@@ -76,6 +77,15 @@ export default function QuizPlayScreen({ route, navigation }) {
     return (
       <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
         <Text style={styles.emptyText}>This challenge has no questions yet.</Text>
+        <BottomNav
+          active="Home"
+          onNavigate={(key) => {
+            if (key === 'Home') navigation.navigate('Home');
+            if (key === 'Videos') navigation.navigate('BatchList');
+            if (key === 'Language') navigation.navigate('Vocabulary');
+            if (key === 'Profile') navigation.navigate('Settings');
+          }}
+        />
       </View>
     );
   }
@@ -100,6 +110,16 @@ export default function QuizPlayScreen({ route, navigation }) {
           onAnswerPending={setAnswerPending}
         />
       </View>
+
+      <BottomNav
+        active="Home"
+        onNavigate={(key) => {
+          if (key === 'Home') navigation.navigate('Home');
+          if (key === 'Videos') navigation.navigate('BatchList');
+          if (key === 'Language') navigation.navigate('Vocabulary');
+          if (key === 'Profile') navigation.navigate('Settings');
+        }}
+      />
     </View>
   );
 }

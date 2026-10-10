@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -6,8 +6,6 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
-
-const AUTO_CONTINUE_MS = 1800;
 
 export default function PaymentSuccessScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
@@ -22,16 +20,8 @@ export default function PaymentSuccessScreen({ route, navigation }) {
     }
   };
 
-  useEffect(() => {
-    // Your payment_3.svg mockup has no visible continue button, so this auto-
-    // advances after a short pause; the whole screen is also tappable in case
-    // someone doesn't want to wait.
-    const timer = setTimeout(handleContinue, AUTO_CONTINUE_MS);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <Pressable style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]} onPress={handleContinue}>
+    <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
         <View style={styles.header}>
           <Ionicons name="chevron-back" size={26} color={colors.border} onPress={() => navigation.goBack()} />
@@ -44,10 +34,22 @@ export default function PaymentSuccessScreen({ route, navigation }) {
         </View>
 
         <Text style={styles.bigText}>Payment Successful</Text>
+
+        <Pressable style={styles.continueButton} onPress={handleContinue}>
+          <Text style={styles.continueButtonText}>Continue</Text>
+        </Pressable>
       </View>
 
-      <BottomNav active="Home" onNavigate={() => {}} />
-    </Pressable>
+      <BottomNav
+        active="Home"
+        onNavigate={(key) => {
+          if (key === 'Home') navigation.navigate('Home');
+          if (key === 'Videos') navigation.navigate('BatchList');
+          if (key === 'Language') navigation.navigate('Vocabulary');
+          if (key === 'Profile') navigation.navigate('Settings');
+        }}
+      />
+    </View>
   );
 }
 
@@ -66,4 +68,12 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   bigText: { fontSize: 26, fontWeight: '700', color: colors.successGreen },
+  continueButton: {
+    backgroundColor: colors.successGreen,
+    borderRadius: 30,
+    paddingVertical: 14,
+    paddingHorizontal: 48,
+    marginTop: 30,
+  },
+  continueButtonText: { color: '#fff', fontWeight: '700', fontSize: 16 },
 });

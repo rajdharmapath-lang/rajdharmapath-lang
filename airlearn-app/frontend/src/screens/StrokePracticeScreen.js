@@ -10,6 +10,7 @@ import { usePayment } from '../context/PaymentContext';
 import { redirectToPaywall } from '../utils/paywall';
 import { ChineseStrokeWriter } from '../vendor/chinese-stroke-rn/src';
 import { getCharacterMeta } from '../data/characterMeta';
+import BottomNav from '../components/BottomNav';
 
 export default function StrokePracticeScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
@@ -138,6 +139,16 @@ export default function StrokePracticeScreen({ route, navigation }) {
           </Pressable>
         </View>
       </View>
+
+      <BottomNav
+        active="Home"
+        onNavigate={(key) => {
+          if (key === 'Home') navigation.navigate('Home');
+          if (key === 'Videos') navigation.navigate('BatchList');
+          if (key === 'Language') navigation.navigate('Vocabulary');
+          if (key === 'Profile') navigation.navigate('Settings');
+        }}
+      />
     </View>
   );
 }

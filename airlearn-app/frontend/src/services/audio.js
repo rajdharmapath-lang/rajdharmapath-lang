@@ -1,5 +1,6 @@
 import * as Speech from 'expo-speech';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Linking, Platform } from 'react-native';
 
 const VOICE_SPEED_KEY = 'pronunciationVoiceSpeed';
 const DEFAULT_VOICE_SPEED = 0.95;
@@ -59,21 +60,41 @@ export async function setVoiceSpeed(rate) {
 // ------------------------------------------------------------------------------
 
 /**
- * Plays pronunciation audio for a vocabulary word.
- * Currently uses on-device text-to-speech (works offline, no API key needed)
- * as a functional placeholder until Azure Speech is connected.
+ * Plays pronunciation audio using the device's installed Chinese
+ * text-to-speech voice.
  */
-export function playWordAudio(word) {
+export async function playWordAudio(word) {
   if (!word?.hanzi) return;
-  Speech.stop();
-  Speech.speak(word.hanzi, {
-    language: 'zh-CN',
-    pitch: 1,
-    rate: currentVoiceSpeed,
+
+  await Speech.stop();
+  await new Promise((resolve, reject) => {
+    Speech.speak(word.hanzi, {
+      // expo-speech's Android native module constructs Locale(language)
+      // directly, so "zh-CN" is parsed as one invalid language code there.
+      // Use the generic language code on Android and the regional tag on iOS.
+      language: Platform.OS === 'android' ? 'zh' : 'zh-CN',
+      pitch: 1,
+      rate: currentVoiceSpeed,
+      onDone: resolve,
+      onStopped: resolve,
+      onError: reject,
+    });
   });
+}
+
+export async function openChineseVoiceInstaller() {
+  if (Platform.OS !== 'android') {
+    throw new Error('Install a Chinese voice in your device’s speech or accessibility settings.');
+  }
+
+  try {
+    await Linking.sendIntent('android.speech.tts.engine.INSTALL_TTS_DATA');
+  } catch (installError) {
+    console.warn('Could not open Android TTS voice installer:', installError);
+    await Linking.sendIntent('android.settings.TTS_SETTINGS');
+  }
 }
 
 export function stopWordAudio() {
   Speech.stop();
 }
-

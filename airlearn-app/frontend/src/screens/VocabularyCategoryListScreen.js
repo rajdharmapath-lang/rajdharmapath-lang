@@ -38,7 +38,9 @@ export default function VocabularyCategoryListScreen({ route, navigation }) {
               >
                 <View>
                   <Text style={styles.rowTitle}>{item.name}</Text>
-                  <Text style={styles.rowSubtitle}>{item.declaredWordCount} Words</Text>
+                  <Text style={styles.rowSubtitle}>
+                    {item.declaredWordCount} {item.declaredWordCount === 1 ? 'Word' : 'Words'}
+                  </Text>
                 </View>
                 <Ionicons name="chevron-forward" size={20} color={colors.textDark} />
               </Pressable>

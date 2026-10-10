@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, Alert, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
-import { playWordAudio } from '../services/audio';
+import { openChineseVoiceInstaller, playWordAudio } from '../services/audio';
 import { useVocabulary } from '../context/VocabularyContext';
 import { useProgress } from '../context/ProgressContext';
 
@@ -17,10 +17,29 @@ export default function VocabularyWordRow({ word, language, onPress, stacked = f
   const favorited = isFavorite(word.id);
   const translation = language === 'tamil' ? word.ta : word.en;
 
-  const handlePlayAudio = () => {
+  const handlePlayAudio = async () => {
     recordRecentWord(word.id);
     recordWordLearned(word.id);
-    playWordAudio(word);
+    try {
+      await playWordAudio(word);
+    } catch (error) {
+      console.warn('Vocabulary pronunciation failed:', error);
+      const buttons = [{ text: 'Cancel', style: 'cancel' }];
+      if (Platform.OS === 'android') {
+        buttons.push({
+          text: 'Install Chinese voice',
+          onPress: () => openChineseVoiceInstaller().catch((installError) => {
+            console.warn('Could not open Chinese voice settings:', installError);
+            Alert.alert('Could not open settings', installError.message || 'Open Text-to-speech settings on your device.');
+          }),
+        });
+      }
+      Alert.alert(
+        'Could not play pronunciation',
+        error.message || 'Please try again.',
+        buttons
+      );
+    }
   };
 
   const handlePress = () => {

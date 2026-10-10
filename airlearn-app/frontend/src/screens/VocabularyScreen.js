@@ -12,9 +12,6 @@ import { vocabularyCategories, getAllWords, findWordById } from '../data/vocabul
 import { useVocabulary } from '../context/VocabularyContext';
 import { useAuth } from '../context/AuthContext';
 
-// Grid shows the first 7 categories + a "More..." tile, matching the mockup's 4x2 layout.
-const GRID_LIMIT = 7;
-
 export default function VocabularyScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
@@ -25,9 +22,6 @@ export default function VocabularyScreen({ navigation }) {
   // Falls back to 'english' if language hasn't been set yet (shouldn't normally happen
   // since LanguageChooseScreen runs before Home, but keeps this screen crash-safe).
   const language = user?.language === 'tamil' ? 'tamil' : 'english';
-
-  const gridCategories = vocabularyCategories.slice(0, GRID_LIMIT);
-  const hasMore = vocabularyCategories.length > GRID_LIMIT;
 
   const recentWords = useMemo(
     () => recentIds.map((id) => findWordById(id)).filter(Boolean),
@@ -82,7 +76,7 @@ export default function VocabularyScreen({ navigation }) {
             <>
               <Text style={styles.sectionTitle}>Categories</Text>
               <View style={styles.grid}>
-                {gridCategories.map((cat, index) => (
+                {vocabularyCategories.map((cat, index) => (
                   <StaggeredSlideItem
                     key={cat.id}
                     index={index}
@@ -90,23 +84,12 @@ export default function VocabularyScreen({ navigation }) {
                   >
                     <Pressable style={styles.categoryCard} onPress={() => openCategory(cat)}>
                       <Text style={styles.categoryName}>{cat.name}</Text>
-                      <Text style={styles.categoryCount}>{cat.declaredWordCount} Words</Text>
+                      <Text style={styles.categoryCount}>
+                        {cat.declaredWordCount} {cat.declaredWordCount === 1 ? 'Word' : 'Words'}
+                      </Text>
                     </Pressable>
                   </StaggeredSlideItem>
                 ))}
-                {hasMore && (
-                  <StaggeredSlideItem
-                    index={gridCategories.length}
-                    style={styles.categoryCardEntry}
-                  >
-                    <Pressable
-                      style={styles.categoryCard}
-                      onPress={() => navigation.navigate('VocabularyCategoryList')}
-                    >
-                      <Text style={styles.categoryName}>More...</Text>
-                    </Pressable>
-                  </StaggeredSlideItem>
-                )}
               </View>
 
               <Text style={styles.sectionTitle}>Recent Words</Text>

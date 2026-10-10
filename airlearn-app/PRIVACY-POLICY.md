@@ -2,7 +2,7 @@
 
 **Effective date:** October 10, 2026  
 **App:** Raj Dharma Learn for Android and iOS  
-**Website:** https://www.rajdharma.org/privacy&policy
+**Website:** https://rajdharma.org/privacy-policy.html
 
 Raj Dharma Learn is a language-learning app with Chinese vocabulary, writing,
 video lessons, speech practice, and quizzes. This policy explains what Raj

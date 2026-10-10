@@ -19,7 +19,7 @@ export default function SpeechWordListScreen({ route, navigation }) {
   const { user } = useAuth();
   const language = user?.language === 'tamil' ? 'tamil' : 'english';
 
-  const categoryId = route?.params?.categoryId || 'greetings';
+  const categoryId = route?.params?.categoryId || 'numbers';
   const category = getCategoryById(categoryId);
   const hasWords = !!category?.words?.length;
 

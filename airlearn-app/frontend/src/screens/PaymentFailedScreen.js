@@ -48,6 +48,7 @@ export default function PaymentFailedScreen({ route, navigation }) {
           if (key === 'Home') navigation.navigate('Home');
           if (key === 'Videos') navigation.navigate('BatchList');
           if (key === 'Language') navigation.navigate('Vocabulary');
+          if (key === 'Profile') navigation.navigate('Settings');
         }}
       />
     </View>

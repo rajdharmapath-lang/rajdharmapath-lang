@@ -15,6 +15,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { useResponsive } from '../theme/responsive';
 import { getAuthenticatedDownloadRequest } from '../api/client';
+import BottomNav from '../components/BottomNav';
 
 const PDF_FILE_NAME = 'RD chinese workbook.pdf';
 const NOTE_FILES = [
@@ -197,6 +198,16 @@ export default function LearningPdfScreen({ navigation }) {
           )}
         </View>
       </View>
+
+      <BottomNav
+        active="Videos"
+        onNavigate={(key) => {
+          if (key === 'Home') navigation.navigate('Home');
+          if (key === 'Videos') navigation.navigate('BatchList');
+          if (key === 'Language') navigation.navigate('Vocabulary');
+          if (key === 'Profile') navigation.navigate('Settings');
+        }}
+      />
     </View>
   );
 }

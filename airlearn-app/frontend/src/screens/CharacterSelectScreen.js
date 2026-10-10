@@ -174,6 +174,7 @@ export default function CharacterSelectScreen({ navigation, route }) {
         onNavigate={(key) => {
           if (key === 'Home') navigation.navigate('Home');
           if (key === 'Videos') navigation.navigate('BatchList');
+          if (key === 'Language') navigation.navigate('Vocabulary');
           if (key === 'Profile') navigation.navigate('Settings');
         }}
       />
@@ -239,7 +240,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   hanzi: { fontSize: 30, color: colors.textDark, marginBottom: 4 },
-  pinyin: { width: '100%', fontSize: 13, color: colors.textLabel, textAlign: 'center' },
+  pinyin: { width: '100%', fontSize: 13, color: colors.textLabel, textAlign: 'center', fontWeight: '700' },
   meaning: {
     width: '100%',
     fontSize: 12,

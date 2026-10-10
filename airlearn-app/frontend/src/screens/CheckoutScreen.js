@@ -8,6 +8,7 @@ import { useResponsive } from '../theme/responsive';
 import { getPlan, mockCoupons } from '../data/plans';
 import { processPayment } from '../services/payment';
 import { usePayment } from '../context/PaymentContext';
+import BottomNav from '../components/BottomNav';
 
 export default function CheckoutScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
@@ -72,6 +73,15 @@ export default function CheckoutScreen({ route, navigation }) {
     return (
       <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
         <Text style={styles.emptyText}>Plan not found.</Text>
+        <BottomNav
+          active="Home"
+          onNavigate={(key) => {
+            if (key === 'Home') navigation.navigate('Home');
+            if (key === 'Videos') navigation.navigate('BatchList');
+            if (key === 'Language') navigation.navigate('Vocabulary');
+            if (key === 'Profile') navigation.navigate('Settings');
+          }}
+        />
       </View>
     );
   }
@@ -157,6 +167,16 @@ export default function CheckoutScreen({ route, navigation }) {
           </View>
         </View>
       </Modal>
+
+      <BottomNav
+        active="Home"
+        onNavigate={(key) => {
+          if (key === 'Home') navigation.navigate('Home');
+          if (key === 'Videos') navigation.navigate('BatchList');
+          if (key === 'Language') navigation.navigate('Vocabulary');
+          if (key === 'Profile') navigation.navigate('Settings');
+        }}
+      />
     </View>
   );
 }

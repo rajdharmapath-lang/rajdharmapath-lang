@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { View, Text, TextInput, Pressable, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Pressable, StyleSheet, Alert, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import QuizOption from './QuizOption';
 import { ChineseStrokeWriter } from '../vendor/chinese-stroke-rn/src';
 import { findWordById } from '../data/vocabulary';
-import { playWordAudio } from '../services/audio';
+import { openChineseVoiceInstaller, playWordAudio } from '../services/audio';
 import { assessPronunciation } from '../services/pronunciation';
 import { shuffleArray } from '../utils/shuffle';
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
@@ -92,13 +92,30 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
     return optionWord.id === selectedId ? 'wrong' : 'idle';
   };
 
-  const handleToggleListen = () => {
+  const handleToggleListen = async () => {
     if (!word) return;
     setIsPlaying(true);
-    playWordAudio(word);
-    // expo-speech has no reliable finish callback wired here; assume a short
-    // utterance and flip the icon back after a beat so it reads as "playing".
-    setTimeout(() => setIsPlaying(false), 1200);
+    try {
+      await playWordAudio(word);
+    } catch (error) {
+      console.warn('Quiz pronunciation failed:', error);
+      const buttons = [{ text: 'Cancel', style: 'cancel' }];
+      if (Platform.OS === 'android') {
+        buttons.push({
+          text: 'Install Chinese voice',
+          onPress: () => openChineseVoiceInstaller().catch((installError) => {
+            console.warn('Could not open Chinese voice settings:', installError);
+            Alert.alert(
+              'Could not open settings',
+              installError.message || 'Open Text-to-speech settings on your device.'
+            );
+          }),
+        });
+      }
+      Alert.alert('Could not play pronunciation', error.message || 'Please try again.', buttons);
+    } finally {
+      setIsPlaying(false);
+    }
   };
 
   const startRecording = () => {

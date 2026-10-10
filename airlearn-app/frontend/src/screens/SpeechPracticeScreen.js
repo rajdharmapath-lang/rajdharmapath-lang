@@ -10,6 +10,7 @@ import { usePayment } from '../context/PaymentContext';
 import { redirectToPaywall } from '../utils/paywall';
 import { assessPronunciation } from '../services/pronunciation';
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition';
+import BottomNav from '../components/BottomNav';
 
 export default function SpeechPracticeScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
@@ -97,6 +98,15 @@ export default function SpeechPracticeScreen({ route, navigation }) {
     return (
       <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
         <Text style={styles.emptyText}>No words to practice.</Text>
+        <BottomNav
+          active="Language"
+          onNavigate={(key) => {
+            if (key === 'Home') navigation.navigate('Home');
+            if (key === 'Videos') navigation.navigate('BatchList');
+            if (key === 'Language') navigation.navigate('Vocabulary');
+            if (key === 'Profile') navigation.navigate('Settings');
+          }}
+        />
       </View>
     );
   }
@@ -166,6 +176,16 @@ export default function SpeechPracticeScreen({ route, navigation }) {
           </Pressable>
         </View>
       </View>
+
+      <BottomNav
+        active="Language"
+        onNavigate={(key) => {
+          if (key === 'Home') navigation.navigate('Home');
+          if (key === 'Videos') navigation.navigate('BatchList');
+          if (key === 'Language') navigation.navigate('Vocabulary');
+          if (key === 'Profile') navigation.navigate('Settings');
+        }}
+      />
     </View>
   );
 }

@@ -22,6 +22,7 @@ import { useAuth } from '../context/AuthContext';
 import { usePayment } from '../context/PaymentContext';
 import { useProgress } from '../context/ProgressContext';
 import { useVocabulary } from '../context/VocabularyContext';
+import BottomNav from '../components/BottomNav';
 
 export default function SettingsAccountScreen({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -237,6 +238,15 @@ export default function SettingsAccountScreen({ navigation }) {
           </View>
         </View>
       </Modal>
+      <BottomNav
+        active="Profile"
+        onNavigate={(key) => {
+          if (key === 'Home') navigation.navigate('Home');
+          if (key === 'Videos') navigation.navigate('BatchList');
+          if (key === 'Language') navigation.navigate('Vocabulary');
+          if (key === 'Profile') navigation.navigate('Settings');
+        }}
+      />
     </KeyboardAvoidingView>
   );
 }

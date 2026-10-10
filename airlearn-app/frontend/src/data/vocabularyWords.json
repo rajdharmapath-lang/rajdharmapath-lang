@@ -1,0 +1,3794 @@
+[
+    {
+        "id":  "numbers-001",
+        "categoryId":  "numbers",
+        "hanzi":  "一",
+        "pinyin":  "Yī",
+        "en":  "One",
+        "ta":  "ஒன்று"
+    },
+    {
+        "id":  "numbers-002",
+        "categoryId":  "numbers",
+        "hanzi":  "二",
+        "pinyin":  "Èr",
+        "en":  "Two",
+        "ta":  "இரண்டு"
+    },
+    {
+        "id":  "numbers-003",
+        "categoryId":  "numbers",
+        "hanzi":  "三",
+        "pinyin":  "Sān",
+        "en":  "Three",
+        "ta":  "மூன்று"
+    },
+    {
+        "id":  "numbers-004",
+        "categoryId":  "numbers",
+        "hanzi":  "四",
+        "pinyin":  "Sì",
+        "en":  "Four",
+        "ta":  "நான்கு"
+    },
+    {
+        "id":  "numbers-005",
+        "categoryId":  "numbers",
+        "hanzi":  "五",
+        "pinyin":  "Wǔ",
+        "en":  "Five",
+        "ta":  "ஐந்து"
+    },
+    {
+        "id":  "numbers-006",
+        "categoryId":  "numbers",
+        "hanzi":  "六",
+        "pinyin":  "Liù",
+        "en":  "Six",
+        "ta":  "ஆறு"
+    },
+    {
+        "id":  "numbers-007",
+        "categoryId":  "numbers",
+        "hanzi":  "七",
+        "pinyin":  "Qī",
+        "en":  "Seven",
+        "ta":  "ஏழு"
+    },
+    {
+        "id":  "numbers-008",
+        "categoryId":  "numbers",
+        "hanzi":  "八",
+        "pinyin":  "Bā",
+        "en":  "Eight",
+        "ta":  "எட்டு"
+    },
+    {
+        "id":  "numbers-009",
+        "categoryId":  "numbers",
+        "hanzi":  "九",
+        "pinyin":  "Jiǔ",
+        "en":  "Nine",
+        "ta":  "ஒன்பது"
+    },
+    {
+        "id":  "numbers-010",
+        "categoryId":  "numbers",
+        "hanzi":  "十",
+        "pinyin":  "Shí",
+        "en":  "Ten",
+        "ta":  "பத்து"
+    },
+    {
+        "id":  "numbers-011",
+        "categoryId":  "numbers",
+        "hanzi":  "十一",
+        "pinyin":  "Shí yī",
+        "en":  "Eleven",
+        "ta":  "பதினொன்று"
+    },
+    {
+        "id":  "numbers-012",
+        "categoryId":  "numbers",
+        "hanzi":  "十二",
+        "pinyin":  "Shí èr",
+        "en":  "Twelve",
+        "ta":  "பன்னிரண்டு"
+    },
+    {
+        "id":  "numbers-013",
+        "categoryId":  "numbers",
+        "hanzi":  "十三",
+        "pinyin":  "Shí sān",
+        "en":  "Thirteen",
+        "ta":  "பதின்மூன்று"
+    },
+    {
+        "id":  "numbers-014",
+        "categoryId":  "numbers",
+        "hanzi":  "十四",
+        "pinyin":  "Shí sì",
+        "en":  "Fourteen",
+        "ta":  "பதினான்கு"
+    },
+    {
+        "id":  "numbers-015",
+        "categoryId":  "numbers",
+        "hanzi":  "十五",
+        "pinyin":  "Shí wǔ",
+        "en":  "Fifteen",
+        "ta":  "பதினைந்து"
+    },
+    {
+        "id":  "numbers-016",
+        "categoryId":  "numbers",
+        "hanzi":  "十六",
+        "pinyin":  "Shí liù",
+        "en":  "Sixteen",
+        "ta":  "பதினாறு"
+    },
+    {
+        "id":  "numbers-017",
+        "categoryId":  "numbers",
+        "hanzi":  "十七",
+        "pinyin":  "Shí qī",
+        "en":  "Seventeen",
+        "ta":  "பதினேழு"
+    },
+    {
+        "id":  "numbers-018",
+        "categoryId":  "numbers",
+        "hanzi":  "十八",
+        "pinyin":  "Shí bā",
+        "en":  "Eighteen",
+        "ta":  "பதினெட்டு"
+    },
+    {
+        "id":  "numbers-019",
+        "categoryId":  "numbers",
+        "hanzi":  "十九",
+        "pinyin":  "Shí jiǔ",
+        "en":  "Nineteen",
+        "ta":  "பத்தொன்பது"
+    },
+    {
+        "id":  "numbers-020",
+        "categoryId":  "numbers",
+        "hanzi":  "二十",
+        "pinyin":  "Èr shí",
+        "en":  "Twenty",
+        "ta":  "இருபது"
+    },
+    {
+        "id":  "numbers-021",
+        "categoryId":  "numbers",
+        "hanzi":  "一百",
+        "pinyin":  "Yī bǎi",
+        "en":  "One hundred",
+        "ta":  "நூறு"
+    },
+    {
+        "id":  "numbers-022",
+        "categoryId":  "numbers",
+        "hanzi":  "二百",
+        "pinyin":  "Èr bǎi",
+        "en":  "Two hundred",
+        "ta":  "இருநூறு"
+    },
+    {
+        "id":  "numbers-023",
+        "categoryId":  "numbers",
+        "hanzi":  "三百",
+        "pinyin":  "Sān bǎi",
+        "en":  "Three hundred",
+        "ta":  "முந்நூறு"
+    },
+    {
+        "id":  "numbers-024",
+        "categoryId":  "numbers",
+        "hanzi":  "四百",
+        "pinyin":  "Sì bǎi",
+        "en":  "Four hundred",
+        "ta":  "நானூறு"
+    },
+    {
+        "id":  "numbers-025",
+        "categoryId":  "numbers",
+        "hanzi":  "五百",
+        "pinyin":  "Wǔ bǎi",
+        "en":  "Five hundred",
+        "ta":  "ஐந்நூறு"
+    },
+    {
+        "id":  "numbers-026",
+        "categoryId":  "numbers",
+        "hanzi":  "六百",
+        "pinyin":  "Liù bǎi",
+        "en":  "Six hundred",
+        "ta":  "அறுநூறு"
+    },
+    {
+        "id":  "numbers-027",
+        "categoryId":  "numbers",
+        "hanzi":  "七百",
+        "pinyin":  "Qī bǎi",
+        "en":  "Seven hundred",
+        "ta":  "எழுநூறு"
+    },
+    {
+        "id":  "numbers-028",
+        "categoryId":  "numbers",
+        "hanzi":  "八百",
+        "pinyin":  "Bā bǎi",
+        "en":  "Eight hundred",
+        "ta":  "எண்ணூறு"
+    },
+    {
+        "id":  "numbers-029",
+        "categoryId":  "numbers",
+        "hanzi":  "九百",
+        "pinyin":  "Jiǔ bǎi",
+        "en":  "Nine hundred",
+        "ta":  "தொள்ளாயிரம்"
+    },
+    {
+        "id":  "numbers-030",
+        "categoryId":  "numbers",
+        "hanzi":  "一千",
+        "pinyin":  "Yī qiān",
+        "en":  "One thousand",
+        "ta":  "ஆயிரம்"
+    },
+    {
+        "id":  "numbers-031",
+        "categoryId":  "numbers",
+        "hanzi":  "五千",
+        "pinyin":  "Wǔ qiān",
+        "en":  "Five thousand",
+        "ta":  "ஐந்தாயிரம்"
+    },
+    {
+        "id":  "numbers-032",
+        "categoryId":  "numbers",
+        "hanzi":  "六千",
+        "pinyin":  "Liù qiān",
+        "en":  "Six thousand",
+        "ta":  "ஆறாயிரம்"
+    },
+    {
+        "id":  "numbers-033",
+        "categoryId":  "numbers",
+        "hanzi":  "一万",
+        "pinyin":  "Yī wàn",
+        "en":  "Ten thousand",
+        "ta":  "பத்தாயிரம்"
+    },
+    {
+        "id":  "numbers-034",
+        "categoryId":  "numbers",
+        "hanzi":  "两万",
+        "pinyin":  "Liǎng wàn",
+        "en":  "Twenty thousand",
+        "ta":  "இருபதாயிரம்"
+    },
+    {
+        "id":  "numbers-035",
+        "categoryId":  "numbers",
+        "hanzi":  "三万",
+        "pinyin":  "Sān wàn",
+        "en":  "Thirty thousand",
+        "ta":  "முப்பதாயிரம்"
+    },
+    {
+        "id":  "numbers-036",
+        "categoryId":  "numbers",
+        "hanzi":  "四万",
+        "pinyin":  "Sì wàn",
+        "en":  "Forty thousand",
+        "ta":  "நாற்பதாயிரம்"
+    },
+    {
+        "id":  "numbers-037",
+        "categoryId":  "numbers",
+        "hanzi":  "五万",
+        "pinyin":  "Wǔ wàn",
+        "en":  "Fifty thousand",
+        "ta":  "ஐம்பதாயிரம்"
+    },
+    {
+        "id":  "numbers-038",
+        "categoryId":  "numbers",
+        "hanzi":  "六万",
+        "pinyin":  "Liù wàn",
+        "en":  "Sixty thousand",
+        "ta":  "அறுபதாயிரம்"
+    },
+    {
+        "id":  "numbers-039",
+        "categoryId":  "numbers",
+        "hanzi":  "七万",
+        "pinyin":  "Qī wàn",
+        "en":  "Seventy thousand",
+        "ta":  "எழுபதாயிரம்"
+    },
+    {
+        "id":  "numbers-040",
+        "categoryId":  "numbers",
+        "hanzi":  "八万",
+        "pinyin":  "Bā wàn",
+        "en":  "Eighty thousand",
+        "ta":  "எண்பதாயிரம்"
+    },
+    {
+        "id":  "numbers-041",
+        "categoryId":  "numbers",
+        "hanzi":  "九万",
+        "pinyin":  "Jiǔ wàn",
+        "en":  "Ninety thousand",
+        "ta":  "தொண்ணூறாயிரம்"
+    },
+    {
+        "id":  "numbers-042",
+        "categoryId":  "numbers",
+        "hanzi":  "十万",
+        "pinyin":  "Shí wàn",
+        "en":  "One lakh / One hundred thousand",
+        "ta":  "ஒரு லட்சம்"
+    },
+    {
+        "id":  "numbers-043",
+        "categoryId":  "numbers",
+        "hanzi":  "一百万",
+        "pinyin":  "Yī bǎi wàn",
+        "en":  "Ten lakh / One million",
+        "ta":  "பத்து லட்சம்"
+    },
+    {
+        "id":  "numbers-044",
+        "categoryId":  "numbers",
+        "hanzi":  "一千万",
+        "pinyin":  "Yī qiān wàn",
+        "en":  "One crore / Ten million",
+        "ta":  "ஒரு கோடி"
+    },
+    {
+        "id":  "numbers-045",
+        "categoryId":  "numbers",
+        "hanzi":  "一亿",
+        "pinyin":  "Yī yì",
+        "en":  "Ten crore / One hundred million",
+        "ta":  "பத்து கோடி"
+    },
+    {
+        "id":  "self-introduction-001",
+        "categoryId":  "self-introduction",
+        "hanzi":  "自我介绍",
+        "pinyin":  "Zìwǒ jièshào",
+        "en":  "Self-introduction",
+        "ta":  "சுய அறிமுகம்"
+    },
+    {
+        "id":  "self-introduction-002",
+        "categoryId":  "self-introduction",
+        "hanzi":  "名字",
+        "pinyin":  "Míngzi",
+        "en":  "Name",
+        "ta":  "பெயர்"
+    },
+    {
+        "id":  "self-introduction-003",
+        "categoryId":  "self-introduction",
+        "hanzi":  "姓",
+        "pinyin":  "Xìng",
+        "en":  "Surname / Family name",
+        "ta":  "குடும்பப் பெயர்"
+    },
+    {
+        "id":  "self-introduction-004",
+        "categoryId":  "self-introduction",
+        "hanzi":  "年龄",
+        "pinyin":  "Niánlíng",
+        "en":  "Age",
+        "ta":  "வயது"
+    },
+    {
+        "id":  "self-introduction-005",
+        "categoryId":  "self-introduction",
+        "hanzi":  "来自",
+        "pinyin":  "Láizì",
+        "en":  "Come from",
+        "ta":  "…இலிருந்து வருதல்"
+    },
+    {
+        "id":  "self-introduction-006",
+        "categoryId":  "self-introduction",
+        "hanzi":  "国家",
+        "pinyin":  "Guójiā",
+        "en":  "Country",
+        "ta":  "நாடு"
+    },
+    {
+        "id":  "self-introduction-007",
+        "categoryId":  "self-introduction",
+        "hanzi":  "城市",
+        "pinyin":  "Chéngshì",
+        "en":  "City",
+        "ta":  "நகரம்"
+    },
+    {
+        "id":  "self-introduction-008",
+        "categoryId":  "self-introduction",
+        "hanzi":  "家乡",
+        "pinyin":  "Jiāxiāng",
+        "en":  "Hometown",
+        "ta":  "சொந்த ஊர்"
+    },
+    {
+        "id":  "self-introduction-009",
+        "categoryId":  "self-introduction",
+        "hanzi":  "住",
+        "pinyin":  "Zhù",
+        "en":  "Live / Reside",
+        "ta":  "வசித்தல்"
+    },
+    {
+        "id":  "self-introduction-010",
+        "categoryId":  "self-introduction",
+        "hanzi":  "工作",
+        "pinyin":  "Gōngzuò",
+        "en":  "Work / Job",
+        "ta":  "வேலை"
+    },
+    {
+        "id":  "self-introduction-011",
+        "categoryId":  "self-introduction",
+        "hanzi":  "公司",
+        "pinyin":  "Gōngsī",
+        "en":  "Company",
+        "ta":  "நிறுவனம்"
+    },
+    {
+        "id":  "self-introduction-012",
+        "categoryId":  "self-introduction",
+        "hanzi":  "老师",
+        "pinyin":  "Lǎoshī",
+        "en":  "Teacher",
+        "ta":  "ஆசிரியர்"
+    },
+    {
+        "id":  "self-introduction-013",
+        "categoryId":  "self-introduction",
+        "hanzi":  "学生",
+        "pinyin":  "Xuésheng",
+        "en":  "Student",
+        "ta":  "மாணவர்"
+    },
+    {
+        "id":  "self-introduction-014",
+        "categoryId":  "self-introduction",
+        "hanzi":  "医生",
+        "pinyin":  "Yīshēng",
+        "en":  "Doctor",
+        "ta":  "மருத்துவர்"
+    },
+    {
+        "id":  "self-introduction-015",
+        "categoryId":  "self-introduction",
+        "hanzi":  "兴趣",
+        "pinyin":  "Xìngqù",
+        "en":  "Interest",
+        "ta":  "ஆர்வம்"
+    },
+    {
+        "id":  "self-introduction-016",
+        "categoryId":  "self-introduction",
+        "hanzi":  "爱好",
+        "pinyin":  "Àihào",
+        "en":  "Hobby",
+        "ta":  "பொழுதுபோக்கு"
+    },
+    {
+        "id":  "self-introduction-017",
+        "categoryId":  "self-introduction",
+        "hanzi":  "喜欢",
+        "pinyin":  "Xǐhuan",
+        "en":  "Like",
+        "ta":  "விரும்புதல்"
+    },
+    {
+        "id":  "self-introduction-018",
+        "categoryId":  "self-introduction",
+        "hanzi":  "学习",
+        "pinyin":  "Xuéxí",
+        "en":  "Study / Learn",
+        "ta":  "படித்தல் / கற்றல்"
+    },
+    {
+        "id":  "self-introduction-019",
+        "categoryId":  "self-introduction",
+        "hanzi":  "中文",
+        "pinyin":  "Zhōngwén",
+        "en":  "Chinese language",
+        "ta":  "சீன மொழி"
+    },
+    {
+        "id":  "self-introduction-020",
+        "categoryId":  "self-introduction",
+        "hanzi":  "英语",
+        "pinyin":  "Yīngyǔ",
+        "en":  "English language",
+        "ta":  "ஆங்கில மொழி"
+    },
+    {
+        "id":  "self-introduction-021",
+        "categoryId":  "self-introduction",
+        "hanzi":  "朋友",
+        "pinyin":  "Péngyou",
+        "en":  "Friend",
+        "ta":  "நண்பர்"
+    },
+    {
+        "id":  "self-introduction-022",
+        "categoryId":  "self-introduction",
+        "hanzi":  "很高兴",
+        "pinyin":  "Hěn gāoxìng",
+        "en":  "Very happy / Glad",
+        "ta":  "மிகவும் மகிழ்ச்சி"
+    },
+    {
+        "id":  "self-introduction-023",
+        "categoryId":  "self-introduction",
+        "hanzi":  "认识",
+        "pinyin":  "Rènshi",
+        "en":  "Know / Get to know",
+        "ta":  "அறிதல் / அறிமுகமாகுதல்"
+    },
+    {
+        "id":  "self-introduction-024",
+        "categoryId":  "self-introduction",
+        "hanzi":  "我叫……",
+        "pinyin":  "Wǒ jiào…",
+        "en":  "My name is…",
+        "ta":  "என் பெயர்…"
+    },
+    {
+        "id":  "family-001",
+        "categoryId":  "family",
+        "hanzi":  "爸爸",
+        "pinyin":  "Bàba",
+        "en":  "Father",
+        "ta":  "அப்பா"
+    },
+    {
+        "id":  "family-002",
+        "categoryId":  "family",
+        "hanzi":  "妈妈",
+        "pinyin":  "Māma",
+        "en":  "Mother",
+        "ta":  "அம்மா"
+    },
+    {
+        "id":  "family-003",
+        "categoryId":  "family",
+        "hanzi":  "姐姐",
+        "pinyin":  "Jiějie",
+        "en":  "Elder sister",
+        "ta":  "அக்கா"
+    },
+    {
+        "id":  "family-004",
+        "categoryId":  "family",
+        "hanzi":  "哥哥",
+        "pinyin":  "Gēge",
+        "en":  "Elder brother",
+        "ta":  "அண்ணன்"
+    },
+    {
+        "id":  "family-005",
+        "categoryId":  "family",
+        "hanzi":  "妹妹",
+        "pinyin":  "Mèimei",
+        "en":  "Younger sister",
+        "ta":  "தங்கை"
+    },
+    {
+        "id":  "family-006",
+        "categoryId":  "family",
+        "hanzi":  "弟弟",
+        "pinyin":  "Dìdi",
+        "en":  "Younger brother",
+        "ta":  "தம்பி"
+    },
+    {
+        "id":  "family-007",
+        "categoryId":  "family",
+        "hanzi":  "儿子",
+        "pinyin":  "Érzi",
+        "en":  "Son",
+        "ta":  "மகன்"
+    },
+    {
+        "id":  "family-008",
+        "categoryId":  "family",
+        "hanzi":  "女儿",
+        "pinyin":  "Nǚ’ér",
+        "en":  "Daughter",
+        "ta":  "மகள்"
+    },
+    {
+        "id":  "family-009",
+        "categoryId":  "family",
+        "hanzi":  "朋友",
+        "pinyin":  "Péngyou",
+        "en":  "Friend",
+        "ta":  "நண்பர்"
+    },
+    {
+        "id":  "family-010",
+        "categoryId":  "family",
+        "hanzi":  "夫妻",
+        "pinyin":  "Fūqī",
+        "en":  "Married couple",
+        "ta":  "கணவன் மனைவி / தம்பதியர்"
+    },
+    {
+        "id":  "family-011",
+        "categoryId":  "family",
+        "hanzi":  "祖父",
+        "pinyin":  "Zǔfù",
+        "en":  "Paternal grandfather",
+        "ta":  "அப்பாவின் அப்பா / தாத்தா"
+    },
+    {
+        "id":  "family-012",
+        "categoryId":  "family",
+        "hanzi":  "祖母",
+        "pinyin":  "Zǔmǔ",
+        "en":  "Paternal grandmother",
+        "ta":  "அப்பாவின் அம்மா / பாட்டி"
+    },
+    {
+        "id":  "family-013",
+        "categoryId":  "family",
+        "hanzi":  "叔叔",
+        "pinyin":  "Shūshu",
+        "en":  "Father’s younger brother",
+        "ta":  "சித்தப்பா"
+    },
+    {
+        "id":  "family-014",
+        "categoryId":  "family",
+        "hanzi":  "姑姑",
+        "pinyin":  "Gūgu",
+        "en":  "Father’s sister",
+        "ta":  "அத்தை"
+    },
+    {
+        "id":  "family-015",
+        "categoryId":  "family",
+        "hanzi":  "舅舅",
+        "pinyin":  "Jiùjiu",
+        "en":  "Mother’s brother",
+        "ta":  "தாய்மாமா"
+    },
+    {
+        "id":  "family-016",
+        "categoryId":  "family",
+        "hanzi":  "姨妈",
+        "pinyin":  "Yímā",
+        "en":  "Mother’s sister",
+        "ta":  "அம்மாவின் சகோதரி — பெரியம்மா / சித்தி"
+    },
+    {
+        "id":  "vegetable-001",
+        "categoryId":  "vegetable",
+        "hanzi":  "菜市场",
+        "pinyin":  "Cài shìchǎng",
+        "en":  "Vegetable market",
+        "ta":  "காய்கறிச் சந்தை"
+    },
+    {
+        "id":  "vegetable-002",
+        "categoryId":  "vegetable",
+        "hanzi":  "蔬菜店",
+        "pinyin":  "Shūcài diàn",
+        "en":  "Vegetable shop",
+        "ta":  "காய்கறிக் கடை"
+    },
+    {
+        "id":  "vegetable-003",
+        "categoryId":  "vegetable",
+        "hanzi":  "蔬菜",
+        "pinyin":  "Shūcài",
+        "en":  "Vegetables",
+        "ta":  "காய்கறிகள்"
+    },
+    {
+        "id":  "vegetable-004",
+        "categoryId":  "vegetable",
+        "hanzi":  "水果",
+        "pinyin":  "Shuǐguǒ",
+        "en":  "Fruit",
+        "ta":  "பழங்கள்"
+    },
+    {
+        "id":  "vegetable-005",
+        "categoryId":  "vegetable",
+        "hanzi":  "西红柿",
+        "pinyin":  "Xīhóngshì",
+        "en":  "Tomato",
+        "ta":  "தக்காளி"
+    },
+    {
+        "id":  "vegetable-006",
+        "categoryId":  "vegetable",
+        "hanzi":  "土豆",
+        "pinyin":  "Tǔdou",
+        "en":  "Potato",
+        "ta":  "உருளைக்கிழங்கு"
+    },
+    {
+        "id":  "vegetable-007",
+        "categoryId":  "vegetable",
+        "hanzi":  "洋葱",
+        "pinyin":  "Yángcōng",
+        "en":  "Onion",
+        "ta":  "வெங்காயம்"
+    },
+    {
+        "id":  "vegetable-008",
+        "categoryId":  "vegetable",
+        "hanzi":  "胡萝卜",
+        "pinyin":  "Húluóbo",
+        "en":  "Carrot",
+        "ta":  "கேரட்"
+    },
+    {
+        "id":  "vegetable-009",
+        "categoryId":  "vegetable",
+        "hanzi":  "白菜",
+        "pinyin":  "Báicài",
+        "en":  "Chinese cabbage",
+        "ta":  "சீன முட்டைக்கோஸ்"
+    },
+    {
+        "id":  "vegetable-010",
+        "categoryId":  "vegetable",
+        "hanzi":  "卷心菜",
+        "pinyin":  "Juǎnxīncài",
+        "en":  "Cabbage",
+        "ta":  "முட்டைக்கோஸ்"
+    },
+    {
+        "id":  "vegetable-011",
+        "categoryId":  "vegetable",
+        "hanzi":  "花椰菜",
+        "pinyin":  "Huāyēcài",
+        "en":  "Cauliflower",
+        "ta":  "காலிஃபிளவர்"
+    },
+    {
+        "id":  "vegetable-012",
+        "categoryId":  "vegetable",
+        "hanzi":  "菠菜",
+        "pinyin":  "Bōcài",
+        "en":  "Spinach",
+        "ta":  "பசலைக்கீரை"
+    },
+    {
+        "id":  "vegetable-013",
+        "categoryId":  "vegetable",
+        "hanzi":  "黄瓜",
+        "pinyin":  "Huángguā",
+        "en":  "Cucumber",
+        "ta":  "வெள்ளரிக்காய்"
+    },
+    {
+        "id":  "vegetable-014",
+        "categoryId":  "vegetable",
+        "hanzi":  "茄子",
+        "pinyin":  "Qiézi",
+        "en":  "Eggplant / Brinjal",
+        "ta":  "கத்தரிக்காய்"
+    },
+    {
+        "id":  "vegetable-015",
+        "categoryId":  "vegetable",
+        "hanzi":  "辣椒",
+        "pinyin":  "Làjiāo",
+        "en":  "Chilli",
+        "ta":  "மிளகாய்"
+    },
+    {
+        "id":  "vegetable-016",
+        "categoryId":  "vegetable",
+        "hanzi":  "豆子",
+        "pinyin":  "Dòuzi",
+        "en":  "Beans",
+        "ta":  "பீன்ஸ் / பயறு வகைகள்"
+    },
+    {
+        "id":  "vegetable-017",
+        "categoryId":  "vegetable",
+        "hanzi":  "大蒜",
+        "pinyin":  "Dàsuàn",
+        "en":  "Garlic",
+        "ta":  "பூண்டு"
+    },
+    {
+        "id":  "vegetable-018",
+        "categoryId":  "vegetable",
+        "hanzi":  "生姜",
+        "pinyin":  "Shēngjiāng",
+        "en":  "Ginger",
+        "ta":  "இஞ்சி"
+    },
+    {
+        "id":  "vegetable-019",
+        "categoryId":  "vegetable",
+        "hanzi":  "斤",
+        "pinyin":  "Jīn",
+        "en":  "Jin — 500 grams in mainland China",
+        "ta":  "அரை கிலோ — 500 கிராம்"
+    },
+    {
+        "id":  "vegetable-020",
+        "categoryId":  "vegetable",
+        "hanzi":  "一公斤",
+        "pinyin":  "Yī gōngjīn",
+        "en":  "One kilogram",
+        "ta":  "ஒரு கிலோ"
+    },
+    {
+        "id":  "vegetable-021",
+        "categoryId":  "vegetable",
+        "hanzi":  "现金",
+        "pinyin":  "Xiànjīn",
+        "en":  "Cash",
+        "ta":  "ரொக்கப் பணம்"
+    },
+    {
+        "id":  "vegetable-022",
+        "categoryId":  "vegetable",
+        "hanzi":  "价格",
+        "pinyin":  "Jiàgé",
+        "en":  "Price",
+        "ta":  "விலை"
+    },
+    {
+        "id":  "vegetable-023",
+        "categoryId":  "vegetable",
+        "hanzi":  "袋子",
+        "pinyin":  "Dàizi",
+        "en":  "Bag",
+        "ta":  "பை"
+    },
+    {
+        "id":  "vegetable-024",
+        "categoryId":  "vegetable",
+        "hanzi":  "多少钱",
+        "pinyin":  "Duōshao qián",
+        "en":  "How much does it cost?",
+        "ta":  "என்ன விலை?"
+    },
+    {
+        "id":  "vegetable-025",
+        "categoryId":  "vegetable",
+        "hanzi":  "新鲜",
+        "pinyin":  "Xīnxiān",
+        "en":  "Fresh",
+        "ta":  "பசுமையான / புதிய"
+    },
+    {
+        "id":  "vegetable-026",
+        "categoryId":  "vegetable",
+        "hanzi":  "便宜",
+        "pinyin":  "Piányi",
+        "en":  "Cheap / Inexpensive",
+        "ta":  "மலிவான"
+    },
+    {
+        "id":  "vegetable-027",
+        "categoryId":  "vegetable",
+        "hanzi":  "贵",
+        "pinyin":  "Guì",
+        "en":  "Expensive",
+        "ta":  "விலை அதிகமான"
+    },
+    {
+        "id":  "vegetable-028",
+        "categoryId":  "vegetable",
+        "hanzi":  "称",
+        "pinyin":  "Chēng",
+        "en":  "Weigh",
+        "ta":  "எடை போடுதல்"
+    },
+    {
+        "id":  "vegetable-029",
+        "categoryId":  "vegetable",
+        "hanzi":  "从农场到餐桌，新鲜直达。",
+        "pinyin":  "Cóng nóngchǎng dào cānzhuō, xīnxiān zhídá.",
+        "en":  "Fresh from the farm to your table.",
+        "ta":  "பண்ணையிலிருந்து உங்கள் உணவு மேசைக்கு நேரடியாகப் பசுமையுடன்."
+    },
+    {
+        "id":  "metro-001",
+        "categoryId":  "metro",
+        "hanzi":  "地铁",
+        "pinyin":  "Dìtiě",
+        "en":  "Metro / Subway",
+        "ta":  "மெட்ரோ"
+    },
+    {
+        "id":  "metro-002",
+        "categoryId":  "metro",
+        "hanzi":  "地铁站",
+        "pinyin":  "Dìtiě zhàn",
+        "en":  "Metro station",
+        "ta":  "மெட்ரோ நிலையம்"
+    },
+    {
+        "id":  "metro-003",
+        "categoryId":  "metro",
+        "hanzi":  "入口",
+        "pinyin":  "Rùkǒu",
+        "en":  "Entrance",
+        "ta":  "நுழைவாயில்"
+    },
+    {
+        "id":  "metro-004",
+        "categoryId":  "metro",
+        "hanzi":  "出口",
+        "pinyin":  "Chūkǒu",
+        "en":  "Exit",
+        "ta":  "வெளியேறும் வாயில்"
+    },
+    {
+        "id":  "metro-005",
+        "categoryId":  "metro",
+        "hanzi":  "站",
+        "pinyin":  "Zhàn",
+        "en":  "Station / Stop",
+        "ta":  "நிலையம் / நிறுத்தம்"
+    },
+    {
+        "id":  "metro-006",
+        "categoryId":  "metro",
+        "hanzi":  "线路",
+        "pinyin":  "Xiànlù",
+        "en":  "Line / Route",
+        "ta":  "வழித்தடம்"
+    },
+    {
+        "id":  "metro-007",
+        "categoryId":  "metro",
+        "hanzi":  "地铁线",
+        "pinyin":  "Dìtiě xiàn",
+        "en":  "Metro line",
+        "ta":  "மெட்ரோ வழித்தடம்"
+    },
+    {
+        "id":  "metro-008",
+        "categoryId":  "metro",
+        "hanzi":  "换乘",
+        "pinyin":  "Huànchéng",
+        "en":  "Transfer / Change trains",
+        "ta":  "வேறு ரயிலுக்கு மாறுதல்"
+    },
+    {
+        "id":  "metro-009",
+        "categoryId":  "metro",
+        "hanzi":  "车票",
+        "pinyin":  "Chēpiào",
+        "en":  "Ticket",
+        "ta":  "பயணச்சீட்டு"
+    },
+    {
+        "id":  "metro-010",
+        "categoryId":  "metro",
+        "hanzi":  "单程票",
+        "pinyin":  "Dānchéng piào",
+        "en":  "One-way ticket",
+        "ta":  "ஒருவழிப் பயணச்சீட்டு"
+    },
+    {
+        "id":  "metro-011",
+        "categoryId":  "metro",
+        "hanzi":  "交通卡",
+        "pinyin":  "Jiāotōng kǎ",
+        "en":  "Transport card",
+        "ta":  "போக்குவரத்து அட்டை"
+    },
+    {
+        "id":  "metro-012",
+        "categoryId":  "metro",
+        "hanzi":  "自动售票机",
+        "pinyin":  "Zìdòng shòupiào jī",
+        "en":  "Automatic ticket machine",
+        "ta":  "தானியங்கிப் பயணச்சீட்டு இயந்திரம்"
+    },
+    {
+        "id":  "metro-013",
+        "categoryId":  "metro",
+        "hanzi":  "闸机",
+        "pinyin":  "Zhá jī",
+        "en":  "Ticket gate / Turnstile",
+        "ta":  "பயணச்சீட்டு சரிபார்ப்பு நுழைவாயில்"
+    },
+    {
+        "id":  "metro-014",
+        "categoryId":  "metro",
+        "hanzi":  "月台",
+        "pinyin":  "Yuètái",
+        "en":  "Platform",
+        "ta":  "ரயில் நடைமேடை"
+    },
+    {
+        "id":  "metro-015",
+        "categoryId":  "metro",
+        "hanzi":  "站台",
+        "pinyin":  "Zhàntái",
+        "en":  "Platform",
+        "ta":  "ரயில் நடைமேடை"
+    },
+    {
+        "id":  "metro-016",
+        "categoryId":  "metro",
+        "hanzi":  "列车",
+        "pinyin":  "Lièchē",
+        "en":  "Train",
+        "ta":  "ரயில்"
+    },
+    {
+        "id":  "metro-017",
+        "categoryId":  "metro",
+        "hanzi":  "车厢",
+        "pinyin":  "Chēxiāng",
+        "en":  "Train carriage",
+        "ta":  "ரயில் பெட்டி"
+    },
+    {
+        "id":  "metro-018",
+        "categoryId":  "metro",
+        "hanzi":  "座位",
+        "pinyin":  "Zuòwèi",
+        "en":  "Seat",
+        "ta":  "இருக்கை"
+    },
+    {
+        "id":  "metro-019",
+        "categoryId":  "metro",
+        "hanzi":  "扶梯",
+        "pinyin":  "Fútī",
+        "en":  "Escalator",
+        "ta":  "நகரும் படிக்கட்டு"
+    },
+    {
+        "id":  "metro-020",
+        "categoryId":  "metro",
+        "hanzi":  "电梯",
+        "pinyin":  "Diàntī",
+        "en":  "Elevator / Lift",
+        "ta":  "மின்தூக்கி"
+    },
+    {
+        "id":  "metro-021",
+        "categoryId":  "metro",
+        "hanzi":  "下一站",
+        "pinyin":  "Xià yī zhàn",
+        "en":  "Next station",
+        "ta":  "அடுத்த நிலையம்"
+    },
+    {
+        "id":  "metro-022",
+        "categoryId":  "metro",
+        "hanzi":  "上车",
+        "pinyin":  "Shàng chē",
+        "en":  "Get on / Board",
+        "ta":  "வாகனத்தில் ஏறுதல்"
+    },
+    {
+        "id":  "metro-023",
+        "categoryId":  "metro",
+        "hanzi":  "下车",
+        "pinyin":  "Xià chē",
+        "en":  "Get off / Get out",
+        "ta":  "வாகனத்திலிருந்து இறங்குதல்"
+    },
+    {
+        "id":  "metro-024",
+        "categoryId":  "metro",
+        "hanzi":  "到达",
+        "pinyin":  "Dàodá",
+        "en":  "Arrive",
+        "ta":  "வந்தடைதல்"
+    },
+    {
+        "id":  "metro-025",
+        "categoryId":  "metro",
+        "hanzi":  "方向",
+        "pinyin":  "Fāngxiàng",
+        "en":  "Direction",
+        "ta":  "திசை"
+    },
+    {
+        "id":  "metro-026",
+        "categoryId":  "metro",
+        "hanzi":  "终点站",
+        "pinyin":  "Zhōngdiǎnzhàn",
+        "en":  "Terminal / Final station",
+        "ta":  "இறுதி நிலையம்"
+    },
+    {
+        "id":  "restaurant-001",
+        "categoryId":  "restaurant",
+        "hanzi":  "餐厅",
+        "pinyin":  "Cāntīng",
+        "en":  "Restaurant",
+        "ta":  "உணவகம்"
+    },
+    {
+        "id":  "restaurant-002",
+        "categoryId":  "restaurant",
+        "hanzi":  "饭店",
+        "pinyin":  "Fàndiàn",
+        "en":  "Restaurant",
+        "ta":  "உணவகம்"
+    },
+    {
+        "id":  "restaurant-003",
+        "categoryId":  "restaurant",
+        "hanzi":  "菜单",
+        "pinyin":  "Càidān",
+        "en":  "Menu",
+        "ta":  "உணவுப் பட்டியல்"
+    },
+    {
+        "id":  "restaurant-004",
+        "categoryId":  "restaurant",
+        "hanzi":  "菜",
+        "pinyin":  "Cài",
+        "en":  "Dish",
+        "ta":  "உணவு வகை"
+    },
+    {
+        "id":  "restaurant-005",
+        "categoryId":  "restaurant",
+        "hanzi":  "食物",
+        "pinyin":  "Shíwù",
+        "en":  "Food",
+        "ta":  "உணவு"
+    },
+    {
+        "id":  "restaurant-006",
+        "categoryId":  "restaurant",
+        "hanzi":  "早餐",
+        "pinyin":  "Zǎocān",
+        "en":  "Breakfast",
+        "ta":  "காலை உணவு"
+    },
+    {
+        "id":  "restaurant-007",
+        "categoryId":  "restaurant",
+        "hanzi":  "午餐",
+        "pinyin":  "Wǔcān",
+        "en":  "Lunch",
+        "ta":  "மதிய உணவு"
+    },
+    {
+        "id":  "restaurant-008",
+        "categoryId":  "restaurant",
+        "hanzi":  "晚餐",
+        "pinyin":  "Wǎncān",
+        "en":  "Dinner",
+        "ta":  "இரவு உணவு"
+    },
+    {
+        "id":  "restaurant-009",
+        "categoryId":  "restaurant",
+        "hanzi":  "饮料",
+        "pinyin":  "Yǐnliào",
+        "en":  "Drink / Beverage",
+        "ta":  "பானம்"
+    },
+    {
+        "id":  "restaurant-010",
+        "categoryId":  "restaurant",
+        "hanzi":  "水",
+        "pinyin":  "Shuǐ",
+        "en":  "Water",
+        "ta":  "தண்ணீர்"
+    },
+    {
+        "id":  "restaurant-011",
+        "categoryId":  "restaurant",
+        "hanzi":  "茶",
+        "pinyin":  "Chá",
+        "en":  "Tea",
+        "ta":  "தேநீர்"
+    },
+    {
+        "id":  "restaurant-012",
+        "categoryId":  "restaurant",
+        "hanzi":  "咖啡",
+        "pinyin":  "Kāfēi",
+        "en":  "Coffee",
+        "ta":  "காப்பி"
+    },
+    {
+        "id":  "restaurant-013",
+        "categoryId":  "restaurant",
+        "hanzi":  "米饭",
+        "pinyin":  "Mǐfàn",
+        "en":  "Cooked rice",
+        "ta":  "சாதம்"
+    },
+    {
+        "id":  "restaurant-014",
+        "categoryId":  "restaurant",
+        "hanzi":  "面条",
+        "pinyin":  "Miàntiáo",
+        "en":  "Noodles",
+        "ta":  "நூடுல்ஸ்"
+    },
+    {
+        "id":  "restaurant-015",
+        "categoryId":  "restaurant",
+        "hanzi":  "鸡肉",
+        "pinyin":  "Jīròu",
+        "en":  "Chicken meat",
+        "ta":  "கோழி இறைச்சி"
+    },
+    {
+        "id":  "restaurant-016",
+        "categoryId":  "restaurant",
+        "hanzi":  "牛肉",
+        "pinyin":  "Niúròu",
+        "en":  "Beef",
+        "ta":  "மாட்டிறைச்சி"
+    },
+    {
+        "id":  "restaurant-017",
+        "categoryId":  "restaurant",
+        "hanzi":  "猪肉",
+        "pinyin":  "Zhūròu",
+        "en":  "Pork",
+        "ta":  "பன்றி இறைச்சி"
+    },
+    {
+        "id":  "restaurant-018",
+        "categoryId":  "restaurant",
+        "hanzi":  "鱼",
+        "pinyin":  "Yú",
+        "en":  "Fish",
+        "ta":  "மீன்"
+    },
+    {
+        "id":  "restaurant-019",
+        "categoryId":  "restaurant",
+        "hanzi":  "蔬菜",
+        "pinyin":  "Shūcài",
+        "en":  "Vegetables",
+        "ta":  "காய்கறிகள்"
+    },
+    {
+        "id":  "restaurant-020",
+        "categoryId":  "restaurant",
+        "hanzi":  "水果",
+        "pinyin":  "Shuǐguǒ",
+        "en":  "Fruit",
+        "ta":  "பழங்கள்"
+    },
+    {
+        "id":  "restaurant-021",
+        "categoryId":  "restaurant",
+        "hanzi":  "辣",
+        "pinyin":  "Là",
+        "en":  "Spicy",
+        "ta":  "காரம்"
+    },
+    {
+        "id":  "restaurant-022",
+        "categoryId":  "restaurant",
+        "hanzi":  "甜",
+        "pinyin":  "Tián",
+        "en":  "Sweet",
+        "ta":  "இனிப்பு"
+    },
+    {
+        "id":  "restaurant-023",
+        "categoryId":  "restaurant",
+        "hanzi":  "咸",
+        "pinyin":  "Xián",
+        "en":  "Salty",
+        "ta":  "உப்புச் சுவையுள்ள"
+    },
+    {
+        "id":  "restaurant-024",
+        "categoryId":  "restaurant",
+        "hanzi":  "好吃",
+        "pinyin":  "Hǎochī",
+        "en":  "Delicious",
+        "ta":  "சுவையான"
+    },
+    {
+        "id":  "restaurant-025",
+        "categoryId":  "restaurant",
+        "hanzi":  "服务员",
+        "pinyin":  "Fúwùyuán",
+        "en":  "Waiter / Server",
+        "ta":  "பரிமாறுபவர்"
+    },
+    {
+        "id":  "restaurant-026",
+        "categoryId":  "restaurant",
+        "hanzi":  "顾客",
+        "pinyin":  "Gùkè",
+        "en":  "Customer",
+        "ta":  "வாடிக்கையாளர்"
+    },
+    {
+        "id":  "restaurant-027",
+        "categoryId":  "restaurant",
+        "hanzi":  "桌子",
+        "pinyin":  "Zhuōzi",
+        "en":  "Table",
+        "ta":  "மேசை"
+    },
+    {
+        "id":  "restaurant-028",
+        "categoryId":  "restaurant",
+        "hanzi":  "椅子",
+        "pinyin":  "Yǐzi",
+        "en":  "Chair",
+        "ta":  "நாற்காலி"
+    },
+    {
+        "id":  "restaurant-029",
+        "categoryId":  "restaurant",
+        "hanzi":  "点菜",
+        "pinyin":  "Diǎn cài",
+        "en":  "Order food",
+        "ta":  "உணவை ஆர்டர் செய்தல்"
+    },
+    {
+        "id":  "restaurant-030",
+        "categoryId":  "restaurant",
+        "hanzi":  "预订",
+        "pinyin":  "Yùdìng",
+        "en":  "Reserve / Book",
+        "ta":  "முன்பதிவு செய்தல்"
+    },
+    {
+        "id":  "shopping-001",
+        "categoryId":  "shopping",
+        "hanzi":  "商场",
+        "pinyin":  "Shāngchǎng",
+        "en":  "Shopping mall",
+        "ta":  "வணிக வளாகம்"
+    },
+    {
+        "id":  "shopping-002",
+        "categoryId":  "shopping",
+        "hanzi":  "购物中心",
+        "pinyin":  "Gòuwù zhōngxīn",
+        "en":  "Shopping centre",
+        "ta":  "வணிக மையம்"
+    },
+    {
+        "id":  "shopping-003",
+        "categoryId":  "shopping",
+        "hanzi":  "商店",
+        "pinyin":  "Shāngdiàn",
+        "en":  "Shop / Store",
+        "ta":  "கடை"
+    },
+    {
+        "id":  "shopping-004",
+        "categoryId":  "shopping",
+        "hanzi":  "店铺",
+        "pinyin":  "Diànpù",
+        "en":  "Shop / Store",
+        "ta":  "கடை"
+    },
+    {
+        "id":  "shopping-005",
+        "categoryId":  "shopping",
+        "hanzi":  "购物",
+        "pinyin":  "Gòuwù",
+        "en":  "Shopping",
+        "ta":  "பொருட்கள் வாங்குதல்"
+    },
+    {
+        "id":  "shopping-006",
+        "categoryId":  "shopping",
+        "hanzi":  "买东西",
+        "pinyin":  "Mǎi dōngxi",
+        "en":  "Buy things",
+        "ta":  "பொருட்களை வாங்குதல்"
+    },
+    {
+        "id":  "shopping-007",
+        "categoryId":  "shopping",
+        "hanzi":  "特价",
+        "pinyin":  "Tèjià",
+        "en":  "Special price",
+        "ta":  "சிறப்பு விலை"
+    },
+    {
+        "id":  "shopping-008",
+        "categoryId":  "shopping",
+        "hanzi":  "商品",
+        "pinyin":  "Shāngpǐn",
+        "en":  "Goods / Merchandise",
+        "ta":  "விற்பனைப் பொருட்கள்"
+    },
+    {
+        "id":  "shopping-009",
+        "categoryId":  "shopping",
+        "hanzi":  "试穿",
+        "pinyin":  "Shìchuān",
+        "en":  "Try on clothes",
+        "ta":  "ஆடையை அணிந்து பார்த்தல்"
+    },
+    {
+        "id":  "shopping-010",
+        "categoryId":  "shopping",
+        "hanzi":  "价格",
+        "pinyin":  "Jiàgé",
+        "en":  "Price",
+        "ta":  "விலை"
+    },
+    {
+        "id":  "shopping-011",
+        "categoryId":  "shopping",
+        "hanzi":  "试衣间",
+        "pinyin":  "Shìyījiān",
+        "en":  "Fitting room",
+        "ta":  "ஆடை அணிந்து பார்க்கும் அறை"
+    },
+    {
+        "id":  "shopping-012",
+        "categoryId":  "shopping",
+        "hanzi":  "多少钱",
+        "pinyin":  "Duōshao qián",
+        "en":  "How much does it cost?",
+        "ta":  "என்ன விலை?"
+    },
+    {
+        "id":  "shopping-013",
+        "categoryId":  "shopping",
+        "hanzi":  "尺码",
+        "pinyin":  "Chǐmǎ",
+        "en":  "Clothing / Shoe size",
+        "ta":  "ஆடை / காலணி அளவு"
+    },
+    {
+        "id":  "shopping-014",
+        "categoryId":  "shopping",
+        "hanzi":  "颜色",
+        "pinyin":  "Yánsè",
+        "en":  "Colour",
+        "ta":  "நிறம்"
+    },
+    {
+        "id":  "shopping-015",
+        "categoryId":  "shopping",
+        "hanzi":  "折扣",
+        "pinyin":  "Zhékòu",
+        "en":  "Discount",
+        "ta":  "தள்ளுபடி"
+    },
+    {
+        "id":  "shopping-016",
+        "categoryId":  "shopping",
+        "hanzi":  "收银台",
+        "pinyin":  "Shōuyíntái",
+        "en":  "Checkout / Cashier counter",
+        "ta":  "பணம் செலுத்தும் கவுன்டர்"
+    },
+    {
+        "id":  "shopping-017",
+        "categoryId":  "shopping",
+        "hanzi":  "付款",
+        "pinyin":  "Fùkuǎn",
+        "en":  "Make a payment",
+        "ta":  "பணம் செலுத்துதல்"
+    },
+    {
+        "id":  "shopping-018",
+        "categoryId":  "shopping",
+        "hanzi":  "现金",
+        "pinyin":  "Xiànjīn",
+        "en":  "Cash",
+        "ta":  "ரொக்கப் பணம்"
+    },
+    {
+        "id":  "shopping-019",
+        "categoryId":  "shopping",
+        "hanzi":  "信用卡",
+        "pinyin":  "Xìnyòngkǎ",
+        "en":  "Credit card",
+        "ta":  "கடன் அட்டை"
+    },
+    {
+        "id":  "shopping-020",
+        "categoryId":  "shopping",
+        "hanzi":  "发票",
+        "pinyin":  "Fāpiào",
+        "en":  "Invoice / Official tax receipt",
+        "ta":  "விலைப்பட்டியல் / அதிகாரப்பூர்வ வரி ரசீது"
+    },
+    {
+        "id":  "shopping-021",
+        "categoryId":  "shopping",
+        "hanzi":  "小票",
+        "pinyin":  "Xiǎopiào",
+        "en":  "Purchase receipt",
+        "ta":  "கொள்முதல் ரசீது"
+    },
+    {
+        "id":  "shopping-022",
+        "categoryId":  "shopping",
+        "hanzi":  "退货",
+        "pinyin":  "Tuì huò",
+        "en":  "Return goods",
+        "ta":  "வாங்கிய பொருட்களைத் திருப்பிக் கொடுத்தல்"
+    },
+    {
+        "id":  "shopping-023",
+        "categoryId":  "shopping",
+        "hanzi":  "换货",
+        "pinyin":  "Huàn huò",
+        "en":  "Exchange goods",
+        "ta":  "வாங்கிய பொருட்களை மாற்றிக் கொள்ளுதல்"
+    },
+    {
+        "id":  "shopping-024",
+        "categoryId":  "shopping",
+        "hanzi":  "食品",
+        "pinyin":  "Shípǐn",
+        "en":  "Food products",
+        "ta":  "உணவுப் பொருட்கள்"
+    },
+    {
+        "id":  "shopping-025",
+        "categoryId":  "shopping",
+        "hanzi":  "服装",
+        "pinyin":  "Fúzhuāng",
+        "en":  "Clothing",
+        "ta":  "ஆடைகள்"
+    },
+    {
+        "id":  "shopping-026",
+        "categoryId":  "shopping",
+        "hanzi":  "鞋子",
+        "pinyin":  "Xiézi",
+        "en":  "Shoes",
+        "ta":  "காலணிகள்"
+    },
+    {
+        "id":  "shopping-027",
+        "categoryId":  "shopping",
+        "hanzi":  "化妆品",
+        "pinyin":  "Huàzhuāngpǐn",
+        "en":  "Cosmetics",
+        "ta":  "அழகுசாதனப் பொருட்கள்"
+    },
+    {
+        "id":  "shopping-028",
+        "categoryId":  "shopping",
+        "hanzi":  "电器",
+        "pinyin":  "Diànqì",
+        "en":  "Electrical appliances",
+        "ta":  "மின்சாதனங்கள்"
+    },
+    {
+        "id":  "shopping-029",
+        "categoryId":  "shopping",
+        "hanzi":  "电梯",
+        "pinyin":  "Diàntī",
+        "en":  "Elevator / Lift",
+        "ta":  "மின்தூக்கி"
+    },
+    {
+        "id":  "shopping-030",
+        "categoryId":  "shopping",
+        "hanzi":  "祝您购物愉快！",
+        "pinyin":  "Zhù nín gòuwù yúkuài!",
+        "en":  "Enjoy shopping!",
+        "ta":  "மகிழ்ச்சியாகப் பொருட்களை வாங்குங்கள்!"
+    },
+    {
+        "id":  "canton-fair-001",
+        "categoryId":  "canton-fair",
+        "hanzi":  "广交会",
+        "pinyin":  "Guǎngjiāohuì",
+        "en":  "Canton Fair",
+        "ta":  "காண்டன் வர்த்தகக் கண்காட்சி"
+    },
+    {
+        "id":  "canton-fair-002",
+        "categoryId":  "canton-fair",
+        "hanzi":  "展会",
+        "pinyin":  "Zhǎnhuì",
+        "en":  "Exhibition / Trade fair",
+        "ta":  "கண்காட்சி / வர்த்தகக் கண்காட்சி"
+    },
+    {
+        "id":  "canton-fair-003",
+        "categoryId":  "canton-fair",
+        "hanzi":  "展览会",
+        "pinyin":  "Zhǎnlǎnhuì",
+        "en":  "Exhibition / Fair",
+        "ta":  "கண்காட்சி"
+    },
+    {
+        "id":  "canton-fair-004",
+        "categoryId":  "canton-fair",
+        "hanzi":  "展馆",
+        "pinyin":  "Zhǎnguǎn",
+        "en":  "Exhibition hall",
+        "ta":  "கண்காட்சி மண்டபம்"
+    },
+    {
+        "id":  "canton-fair-005",
+        "categoryId":  "canton-fair",
+        "hanzi":  "展位",
+        "pinyin":  "Zhǎnwèi",
+        "en":  "Booth / Stand",
+        "ta":  "கண்காட்சி அரங்கு"
+    },
+    {
+        "id":  "canton-fair-006",
+        "categoryId":  "canton-fair",
+        "hanzi":  "参展商",
+        "pinyin":  "Cānzhǎnshāng",
+        "en":  "Exhibitor",
+        "ta":  "கண்காட்சியில் பங்கேற்கும் வணிகர்"
+    },
+    {
+        "id":  "canton-fair-007",
+        "categoryId":  "canton-fair",
+        "hanzi":  "采购商",
+        "pinyin":  "Cǎigòushāng",
+        "en":  "Buyer / Purchaser",
+        "ta":  "கொள்முதல் செய்பவர்"
+    },
+    {
+        "id":  "canton-fair-008",
+        "categoryId":  "canton-fair",
+        "hanzi":  "客户",
+        "pinyin":  "Kèhù",
+        "en":  "Customer / Client",
+        "ta":  "வாடிக்கையாளர்"
+    },
+    {
+        "id":  "canton-fair-009",
+        "categoryId":  "canton-fair",
+        "hanzi":  "产品",
+        "pinyin":  "Chǎnpǐn",
+        "en":  "Product",
+        "ta":  "தயாரிப்பு"
+    },
+    {
+        "id":  "canton-fair-010",
+        "categoryId":  "canton-fair",
+        "hanzi":  "样品",
+        "pinyin":  "Yàngpǐn",
+        "en":  "Sample",
+        "ta":  "மாதிரி"
+    },
+    {
+        "id":  "canton-fair-011",
+        "categoryId":  "canton-fair",
+        "hanzi":  "目录",
+        "pinyin":  "Mùlù",
+        "en":  "Catalogue",
+        "ta":  "பொருட்களின் பட்டியல்"
+    },
+    {
+        "id":  "canton-fair-012",
+        "categoryId":  "canton-fair",
+        "hanzi":  "名片",
+        "pinyin":  "Míngpiàn",
+        "en":  "Business card",
+        "ta":  "வணிக அறிமுக அட்டை"
+    },
+    {
+        "id":  "canton-fair-013",
+        "categoryId":  "canton-fair",
+        "hanzi":  "价格",
+        "pinyin":  "Jiàgé",
+        "en":  "Price",
+        "ta":  "விலை"
+    },
+    {
+        "id":  "canton-fair-014",
+        "categoryId":  "canton-fair",
+        "hanzi":  "报价",
+        "pinyin":  "Bàojià",
+        "en":  "Price quotation",
+        "ta":  "விலை மேற்கோள்"
+    },
+    {
+        "id":  "canton-fair-015",
+        "categoryId":  "canton-fair",
+        "hanzi":  "批发价",
+        "pinyin":  "Pīfā jià",
+        "en":  "Wholesale price",
+        "ta":  "மொத்த விற்பனை விலை"
+    },
+    {
+        "id":  "canton-fair-016",
+        "categoryId":  "canton-fair",
+        "hanzi":  "最低价",
+        "pinyin":  "Zuìdī jià",
+        "en":  "Lowest price",
+        "ta":  "மிகக் குறைந்த விலை"
+    },
+    {
+        "id":  "canton-fair-017",
+        "categoryId":  "canton-fair",
+        "hanzi":  "质量",
+        "pinyin":  "Zhìliàng",
+        "en":  "Quality",
+        "ta":  "தரம்"
+    },
+    {
+        "id":  "canton-fair-018",
+        "categoryId":  "canton-fair",
+        "hanzi":  "订单",
+        "pinyin":  "Dìngdān",
+        "en":  "Order / Purchase order",
+        "ta":  "கொள்முதல் ஆணை"
+    },
+    {
+        "id":  "canton-fair-019",
+        "categoryId":  "canton-fair",
+        "hanzi":  "最小起订量",
+        "pinyin":  "Zuìxiǎo qǐdìngliàng",
+        "en":  "Minimum order quantity (MOQ)",
+        "ta":  "குறைந்தபட்ச ஆர்டர் அளவு"
+    },
+    {
+        "id":  "canton-fair-020",
+        "categoryId":  "canton-fair",
+        "hanzi":  "付款方式",
+        "pinyin":  "Fùkuǎn fāngshì",
+        "en":  "Payment method",
+        "ta":  "பணம் செலுத்தும் முறை"
+    },
+    {
+        "id":  "canton-fair-021",
+        "categoryId":  "canton-fair",
+        "hanzi":  "合作",
+        "pinyin":  "Hézuò",
+        "en":  "Cooperation / Collaboration",
+        "ta":  "ஒத்துழைப்பு"
+    },
+    {
+        "id":  "taxi-001",
+        "categoryId":  "taxi",
+        "hanzi":  "出租车",
+        "pinyin":  "Chūzūchē",
+        "en":  "Taxi",
+        "ta":  "டாக்சி"
+    },
+    {
+        "id":  "taxi-002",
+        "categoryId":  "taxi",
+        "hanzi":  "打车",
+        "pinyin":  "Dǎ chē",
+        "en":  "Take / Hail a taxi",
+        "ta":  "டாக்சி பிடித்தல்"
+    },
+    {
+        "id":  "taxi-003",
+        "categoryId":  "taxi",
+        "hanzi":  "司机",
+        "pinyin":  "Sījī",
+        "en":  "Driver",
+        "ta":  "ஓட்டுநர்"
+    },
+    {
+        "id":  "taxi-004",
+        "categoryId":  "taxi",
+        "hanzi":  "乘客",
+        "pinyin":  "Chéngkè",
+        "en":  "Passenger",
+        "ta":  "பயணி"
+    },
+    {
+        "id":  "taxi-005",
+        "categoryId":  "taxi",
+        "hanzi":  "车",
+        "pinyin":  "Chē",
+        "en":  "Car / Vehicle",
+        "ta":  "கார் / வாகனம்"
+    },
+    {
+        "id":  "taxi-006",
+        "categoryId":  "taxi",
+        "hanzi":  "目的地",
+        "pinyin":  "Mùdìdì",
+        "en":  "Destination",
+        "ta":  "செல்ல வேண்டிய இடம்"
+    },
+    {
+        "id":  "taxi-007",
+        "categoryId":  "taxi",
+        "hanzi":  "地址",
+        "pinyin":  "Dìzhǐ",
+        "en":  "Address",
+        "ta":  "முகவரி"
+    },
+    {
+        "id":  "taxi-008",
+        "categoryId":  "taxi",
+        "hanzi":  "路",
+        "pinyin":  "Lù",
+        "en":  "Road",
+        "ta":  "சாலை"
+    },
+    {
+        "id":  "taxi-009",
+        "categoryId":  "taxi",
+        "hanzi":  "车站",
+        "pinyin":  "Chēzhàn",
+        "en":  "Station / Stop",
+        "ta":  "நிலையம் / நிறுத்தம்"
+    },
+    {
+        "id":  "taxi-010",
+        "categoryId":  "taxi",
+        "hanzi":  "机场",
+        "pinyin":  "Jīchǎng",
+        "en":  "Airport",
+        "ta":  "விமான நிலையம்"
+    },
+    {
+        "id":  "taxi-011",
+        "categoryId":  "taxi",
+        "hanzi":  "酒店",
+        "pinyin":  "Jiǔdiàn",
+        "en":  "Hotel",
+        "ta":  "ஹோட்டல் / தங்கும் விடுதி"
+    },
+    {
+        "id":  "taxi-012",
+        "categoryId":  "taxi",
+        "hanzi":  "车费",
+        "pinyin":  "Chēfèi",
+        "en":  "Fare",
+        "ta":  "பயணக் கட்டணம்"
+    },
+    {
+        "id":  "taxi-013",
+        "categoryId":  "taxi",
+        "hanzi":  "多少钱",
+        "pinyin":  "Duōshao qián",
+        "en":  "How much does it cost?",
+        "ta":  "என்ன விலை?"
+    },
+    {
+        "id":  "taxi-014",
+        "categoryId":  "taxi",
+        "hanzi":  "现金",
+        "pinyin":  "Xiànjīn",
+        "en":  "Cash",
+        "ta":  "ரொக்கப் பணம்"
+    },
+    {
+        "id":  "taxi-015",
+        "categoryId":  "taxi",
+        "hanzi":  "付款",
+        "pinyin":  "Fùkuǎn",
+        "en":  "Make a payment",
+        "ta":  "பணம் செலுத்துதல்"
+    },
+    {
+        "id":  "taxi-016",
+        "categoryId":  "taxi",
+        "hanzi":  "停车",
+        "pinyin":  "Tíng chē",
+        "en":  "Stop / Park the vehicle",
+        "ta":  "வாகனத்தை நிறுத்துதல்"
+    },
+    {
+        "id":  "taxi-017",
+        "categoryId":  "taxi",
+        "hanzi":  "下车",
+        "pinyin":  "Xià chē",
+        "en":  "Get off / Get out",
+        "ta":  "வாகனத்திலிருந்து இறங்குதல்"
+    },
+    {
+        "id":  "taxi-018",
+        "categoryId":  "taxi",
+        "hanzi":  "左边",
+        "pinyin":  "Zuǒbian",
+        "en":  "Left side",
+        "ta":  "இடது பக்கம்"
+    },
+    {
+        "id":  "taxi-019",
+        "categoryId":  "taxi",
+        "hanzi":  "右边",
+        "pinyin":  "Yòubian",
+        "en":  "Right side",
+        "ta":  "வலது பக்கம்"
+    },
+    {
+        "id":  "taxi-020",
+        "categoryId":  "taxi",
+        "hanzi":  "直走",
+        "pinyin":  "Zhí zǒu",
+        "en":  "Go straight",
+        "ta":  "நேராகச் செல்லுதல்"
+    },
+    {
+        "id":  "colours-001",
+        "categoryId":  "colours",
+        "hanzi":  "白色",
+        "pinyin":  "Báisè",
+        "en":  "White",
+        "ta":  "வெள்ளை"
+    },
+    {
+        "id":  "colours-002",
+        "categoryId":  "colours",
+        "hanzi":  "黑色",
+        "pinyin":  "Hēisè",
+        "en":  "Black",
+        "ta":  "கருப்பு"
+    },
+    {
+        "id":  "colours-003",
+        "categoryId":  "colours",
+        "hanzi":  "红色",
+        "pinyin":  "Hóngsè",
+        "en":  "Red",
+        "ta":  "சிவப்பு"
+    },
+    {
+        "id":  "colours-004",
+        "categoryId":  "colours",
+        "hanzi":  "黄色",
+        "pinyin":  "Huángsè",
+        "en":  "Yellow",
+        "ta":  "மஞ்சள்"
+    },
+    {
+        "id":  "colours-005",
+        "categoryId":  "colours",
+        "hanzi":  "绿色",
+        "pinyin":  "Lǜsè",
+        "en":  "Green",
+        "ta":  "பச்சை"
+    },
+    {
+        "id":  "colours-006",
+        "categoryId":  "colours",
+        "hanzi":  "蓝色",
+        "pinyin":  "Lánsè",
+        "en":  "Blue",
+        "ta":  "நீலம்"
+    },
+    {
+        "id":  "colours-007",
+        "categoryId":  "colours",
+        "hanzi":  "褐色",
+        "pinyin":  "Hèsè",
+        "en":  "Brown",
+        "ta":  "பழுப்பு"
+    },
+    {
+        "id":  "colours-008",
+        "categoryId":  "colours",
+        "hanzi":  "橙色",
+        "pinyin":  "Chéngsè",
+        "en":  "Orange",
+        "ta":  "ஆரஞ்சு"
+    },
+    {
+        "id":  "colours-009",
+        "categoryId":  "colours",
+        "hanzi":  "灰色",
+        "pinyin":  "Huīsè",
+        "en":  "Grey",
+        "ta":  "சாம்பல் நிறம்"
+    },
+    {
+        "id":  "colours-010",
+        "categoryId":  "colours",
+        "hanzi":  "粉红色",
+        "pinyin":  "Fěnhóngsè",
+        "en":  "Pink",
+        "ta":  "இளஞ்சிவப்பு"
+    },
+    {
+        "id":  "colours-011",
+        "categoryId":  "colours",
+        "hanzi":  "紫色",
+        "pinyin":  "Zǐsè",
+        "en":  "Purple",
+        "ta":  "ஊதா"
+    },
+    {
+        "id":  "weather-001",
+        "categoryId":  "weather",
+        "hanzi":  "晴天",
+        "pinyin":  "Qíngtiān",
+        "en":  "Sunny / Clear day",
+        "ta":  "வெயிலான / தெளிவான நாள்"
+    },
+    {
+        "id":  "weather-002",
+        "categoryId":  "weather",
+        "hanzi":  "多云",
+        "pinyin":  "Duōyún",
+        "en":  "Cloudy",
+        "ta":  "மேகமூட்டமான"
+    },
+    {
+        "id":  "weather-003",
+        "categoryId":  "weather",
+        "hanzi":  "下雨",
+        "pinyin":  "Xià yǔ",
+        "en":  "Rain / To rain",
+        "ta":  "மழை பெய்தல்"
+    },
+    {
+        "id":  "weather-004",
+        "categoryId":  "weather",
+        "hanzi":  "下雪",
+        "pinyin":  "Xià xuě",
+        "en":  "Snow / To snow",
+        "ta":  "பனி பொழிதல்"
+    },
+    {
+        "id":  "weather-005",
+        "categoryId":  "weather",
+        "hanzi":  "刮风",
+        "pinyin":  "Guā fēng",
+        "en":  "Wind blows / Windy",
+        "ta":  "காற்று வீசுதல்"
+    },
+    {
+        "id":  "weather-006",
+        "categoryId":  "weather",
+        "hanzi":  "炎热",
+        "pinyin":  "Yánrè",
+        "en":  "Very hot",
+        "ta":  "கடும் வெப்பமான"
+    },
+    {
+        "id":  "weather-007",
+        "categoryId":  "weather",
+        "hanzi":  "寒冷",
+        "pinyin":  "Hánlěng",
+        "en":  "Very cold",
+        "ta":  "கடும் குளிரான"
+    },
+    {
+        "id":  "weather-008",
+        "categoryId":  "weather",
+        "hanzi":  "雷电",
+        "pinyin":  "Léidiàn",
+        "en":  "Thunder and lightning",
+        "ta":  "இடி மின்னல்"
+    },
+    {
+        "id":  "weather-009",
+        "categoryId":  "weather",
+        "hanzi":  "彩虹",
+        "pinyin":  "Cǎihóng",
+        "en":  "Rainbow",
+        "ta":  "வானவில்"
+    },
+    {
+        "id":  "weather-010",
+        "categoryId":  "weather",
+        "hanzi":  "雾",
+        "pinyin":  "Wù",
+        "en":  "Fog",
+        "ta":  "மூடுபனி"
+    },
+    {
+        "id":  "weather-011",
+        "categoryId":  "weather",
+        "hanzi":  "台风",
+        "pinyin":  "Táifēng",
+        "en":  "Typhoon",
+        "ta":  "சூறாவளிப் புயல்"
+    },
+    {
+        "id":  "weather-012",
+        "categoryId":  "weather",
+        "hanzi":  "地震",
+        "pinyin":  "Dìzhèn",
+        "en":  "Earthquake",
+        "ta":  "நிலநடுக்கம்"
+    },
+    {
+        "id":  "weather-013",
+        "categoryId":  "weather",
+        "hanzi":  "干旱",
+        "pinyin":  "Gānhàn",
+        "en":  "Drought",
+        "ta":  "வறட்சி"
+    },
+    {
+        "id":  "weather-014",
+        "categoryId":  "weather",
+        "hanzi":  "海啸",
+        "pinyin":  "Hǎixiào",
+        "en":  "Tsunami",
+        "ta":  "சுனாமி / ஆழிப்பேரலை"
+    },
+    {
+        "id":  "weather-015",
+        "categoryId":  "weather",
+        "hanzi":  "季节",
+        "pinyin":  "Jìjié",
+        "en":  "Season",
+        "ta":  "பருவம்"
+    },
+    {
+        "id":  "weather-016",
+        "categoryId":  "weather",
+        "hanzi":  "温度",
+        "pinyin":  "Wēndù",
+        "en":  "Temperature",
+        "ta":  "வெப்பநிலை"
+    },
+    {
+        "id":  "weather-017",
+        "categoryId":  "weather",
+        "hanzi":  "湿度",
+        "pinyin":  "Shīdù",
+        "en":  "Humidity",
+        "ta":  "ஈரப்பதம்"
+    },
+    {
+        "id":  "weather-018",
+        "categoryId":  "weather",
+        "hanzi":  "气候",
+        "pinyin":  "Qìhòu",
+        "en":  "Climate",
+        "ta":  "காலநிலை"
+    },
+    {
+        "id":  "weather-019",
+        "categoryId":  "weather",
+        "hanzi":  "天气预报",
+        "pinyin":  "Tiānqì yùbào",
+        "en":  "Weather forecast",
+        "ta":  "வானிலை முன்னறிவிப்பு"
+    },
+    {
+        "id":  "weather-020",
+        "categoryId":  "weather",
+        "hanzi":  "全球变暖",
+        "pinyin":  "Quánqiú biànnuǎn",
+        "en":  "Global warming",
+        "ta":  "புவி வெப்பமடைதல்"
+    },
+    {
+        "id":  "countries-001",
+        "categoryId":  "countries",
+        "hanzi":  "印度",
+        "pinyin":  "Yìndù",
+        "en":  "India",
+        "ta":  "இந்தியா"
+    },
+    {
+        "id":  "countries-002",
+        "categoryId":  "countries",
+        "hanzi":  "中国",
+        "pinyin":  "Zhōngguó",
+        "en":  "China",
+        "ta":  "சீனா"
+    },
+    {
+        "id":  "countries-003",
+        "categoryId":  "countries",
+        "hanzi":  "美国",
+        "pinyin":  "Měiguó",
+        "en":  "United States",
+        "ta":  "அமெரிக்கா"
+    },
+    {
+        "id":  "countries-004",
+        "categoryId":  "countries",
+        "hanzi":  "日本",
+        "pinyin":  "Rìběn",
+        "en":  "Japan",
+        "ta":  "ஜப்பான்"
+    },
+    {
+        "id":  "countries-005",
+        "categoryId":  "countries",
+        "hanzi":  "韩国",
+        "pinyin":  "Hánguó",
+        "en":  "South Korea",
+        "ta":  "தென் கொரியா"
+    },
+    {
+        "id":  "countries-006",
+        "categoryId":  "countries",
+        "hanzi":  "德国",
+        "pinyin":  "Déguó",
+        "en":  "Germany",
+        "ta":  "ஜெர்மனி"
+    },
+    {
+        "id":  "countries-007",
+        "categoryId":  "countries",
+        "hanzi":  "法国",
+        "pinyin":  "Fǎguó",
+        "en":  "France",
+        "ta":  "பிரான்ஸ்"
+    },
+    {
+        "id":  "countries-008",
+        "categoryId":  "countries",
+        "hanzi":  "英国",
+        "pinyin":  "Yīngguó",
+        "en":  "United Kingdom",
+        "ta":  "ஐக்கிய இராச்சியம்"
+    },
+    {
+        "id":  "countries-009",
+        "categoryId":  "countries",
+        "hanzi":  "加拿大",
+        "pinyin":  "Jiānádà",
+        "en":  "Canada",
+        "ta":  "கனடா"
+    },
+    {
+        "id":  "countries-010",
+        "categoryId":  "countries",
+        "hanzi":  "澳大利亚",
+        "pinyin":  "Àodàlìyà",
+        "en":  "Australia",
+        "ta":  "ஆஸ்திரேலியா"
+    },
+    {
+        "id":  "countries-011",
+        "categoryId":  "countries",
+        "hanzi":  "意大利",
+        "pinyin":  "Yìdàlì",
+        "en":  "Italy",
+        "ta":  "இத்தாலி"
+    },
+    {
+        "id":  "countries-012",
+        "categoryId":  "countries",
+        "hanzi":  "俄罗斯",
+        "pinyin":  "Éluósī",
+        "en":  "Russia",
+        "ta":  "ரஷ்யா"
+    },
+    {
+        "id":  "countries-013",
+        "categoryId":  "countries",
+        "hanzi":  "马来西亚",
+        "pinyin":  "Mǎláixīyà",
+        "en":  "Malaysia",
+        "ta":  "மலேசியா"
+    },
+    {
+        "id":  "countries-014",
+        "categoryId":  "countries",
+        "hanzi":  "新加坡",
+        "pinyin":  "Xīnjiāpō",
+        "en":  "Singapore",
+        "ta":  "சிங்கப்பூர்"
+    },
+    {
+        "id":  "countries-015",
+        "categoryId":  "countries",
+        "hanzi":  "泰国",
+        "pinyin":  "Tàiguó",
+        "en":  "Thailand",
+        "ta":  "தாய்லாந்து"
+    },
+    {
+        "id":  "countries-016",
+        "categoryId":  "countries",
+        "hanzi":  "越南",
+        "pinyin":  "Yuènán",
+        "en":  "Vietnam",
+        "ta":  "வியட்நாம்"
+    },
+    {
+        "id":  "countries-017",
+        "categoryId":  "countries",
+        "hanzi":  "印度尼西亚",
+        "pinyin":  "Yìndùníxīyà",
+        "en":  "Indonesia",
+        "ta":  "இந்தோனேஷியா"
+    },
+    {
+        "id":  "countries-018",
+        "categoryId":  "countries",
+        "hanzi":  "菲律宾",
+        "pinyin":  "Fēilǜbīn",
+        "en":  "Philippines",
+        "ta":  "பிலிப்பைன்ஸ்"
+    },
+    {
+        "id":  "countries-019",
+        "categoryId":  "countries",
+        "hanzi":  "文莱",
+        "pinyin":  "Wénlái",
+        "en":  "Brunei",
+        "ta":  "புரூனை"
+    },
+    {
+        "id":  "countries-020",
+        "categoryId":  "countries",
+        "hanzi":  "柬埔寨",
+        "pinyin":  "Jiǎnpǔzhài",
+        "en":  "Cambodia",
+        "ta":  "கம்போடியா"
+    },
+    {
+        "id":  "countries-021",
+        "categoryId":  "countries",
+        "hanzi":  "缅甸",
+        "pinyin":  "Miǎndiàn",
+        "en":  "Myanmar",
+        "ta":  "மியான்மர்"
+    },
+    {
+        "id":  "countries-022",
+        "categoryId":  "countries",
+        "hanzi":  "老挝",
+        "pinyin":  "Lǎowō",
+        "en":  "Laos",
+        "ta":  "லாவோஸ்"
+    },
+    {
+        "id":  "countries-023",
+        "categoryId":  "countries",
+        "hanzi":  "沙特阿拉伯",
+        "pinyin":  "Shātè Ālābó",
+        "en":  "Saudi Arabia",
+        "ta":  "சவுதி அரேபியா"
+    },
+    {
+        "id":  "countries-024",
+        "categoryId":  "countries",
+        "hanzi":  "阿联酋",
+        "pinyin":  "Āliánqiú",
+        "en":  "United Arab Emirates (UAE)",
+        "ta":  "ஐக்கிய அரபு அமீரகம்"
+    },
+    {
+        "id":  "countries-025",
+        "categoryId":  "countries",
+        "hanzi":  "卡塔尔",
+        "pinyin":  "Kǎtǎ’ěr",
+        "en":  "Qatar",
+        "ta":  "கத்தார்"
+    },
+    {
+        "id":  "countries-026",
+        "categoryId":  "countries",
+        "hanzi":  "科威特",
+        "pinyin":  "Kēwēitè",
+        "en":  "Kuwait",
+        "ta":  "குவைத்"
+    },
+    {
+        "id":  "countries-027",
+        "categoryId":  "countries",
+        "hanzi":  "巴林",
+        "pinyin":  "Bālín",
+        "en":  "Bahrain",
+        "ta":  "பஹ்ரைன்"
+    },
+    {
+        "id":  "countries-028",
+        "categoryId":  "countries",
+        "hanzi":  "伊拉克",
+        "pinyin":  "Yīlākè",
+        "en":  "Iraq",
+        "ta":  "ஈராக்"
+    },
+    {
+        "id":  "countries-029",
+        "categoryId":  "countries",
+        "hanzi":  "巴基斯坦",
+        "pinyin":  "Bājīsītǎn",
+        "en":  "Pakistan",
+        "ta":  "பாகிஸ்தான்"
+    },
+    {
+        "id":  "countries-030",
+        "categoryId":  "countries",
+        "hanzi":  "孟加拉国",
+        "pinyin":  "Mèngjiālāguó",
+        "en":  "Bangladesh",
+        "ta":  "வங்காளதேசம்"
+    },
+    {
+        "id":  "countries-031",
+        "categoryId":  "countries",
+        "hanzi":  "斯里兰卡",
+        "pinyin":  "Sīlǐlánkǎ",
+        "en":  "Sri Lanka",
+        "ta":  "இலங்கை"
+    },
+    {
+        "id":  "countries-032",
+        "categoryId":  "countries",
+        "hanzi":  "尼泊尔",
+        "pinyin":  "Níbó’ěr",
+        "en":  "Nepal",
+        "ta":  "நேபாளம்"
+    },
+    {
+        "id":  "countries-033",
+        "categoryId":  "countries",
+        "hanzi":  "以色列",
+        "pinyin":  "Yǐsèliè",
+        "en":  "Israel",
+        "ta":  "இஸ்ரேல்"
+    },
+    {
+        "id":  "hotel-001",
+        "categoryId":  "hotel",
+        "hanzi":  "酒店",
+        "pinyin":  "Jiǔdiàn",
+        "en":  "Hotel",
+        "ta":  "ஹோட்டல் / தங்கும் விடுதி"
+    },
+    {
+        "id":  "hotel-002",
+        "categoryId":  "hotel",
+        "hanzi":  "房间",
+        "pinyin":  "Fángjiān",
+        "en":  "Room",
+        "ta":  "அறை"
+    },
+    {
+        "id":  "hotel-003",
+        "categoryId":  "hotel",
+        "hanzi":  "前台",
+        "pinyin":  "Qiántái",
+        "en":  "Reception / Front desk",
+        "ta":  "வரவேற்பு மேசை"
+    },
+    {
+        "id":  "hotel-004",
+        "categoryId":  "hotel",
+        "hanzi":  "预订",
+        "pinyin":  "Yùdìng",
+        "en":  "Reserve / Book",
+        "ta":  "முன்பதிவு செய்தல்"
+    },
+    {
+        "id":  "hotel-005",
+        "categoryId":  "hotel",
+        "hanzi":  "入住",
+        "pinyin":  "Rùzhù",
+        "en":  "Check in",
+        "ta":  "தங்குவதற்குப் பதிவு செய்தல்"
+    },
+    {
+        "id":  "hotel-006",
+        "categoryId":  "hotel",
+        "hanzi":  "退房",
+        "pinyin":  "Tuì fáng",
+        "en":  "Check out",
+        "ta":  "அறையைக் காலி செய்து வெளியேறுதல்"
+    },
+    {
+        "id":  "hotel-007",
+        "categoryId":  "hotel",
+        "hanzi":  "单人间",
+        "pinyin":  "Dānrénjiān",
+        "en":  "Single room",
+        "ta":  "ஒருவர் தங்கும் அறை"
+    },
+    {
+        "id":  "hotel-008",
+        "categoryId":  "hotel",
+        "hanzi":  "双人间",
+        "pinyin":  "Shuāngrénjiān",
+        "en":  "Double / Two-person room",
+        "ta":  "இருவர் தங்கும் அறை"
+    },
+    {
+        "id":  "hotel-009",
+        "categoryId":  "hotel",
+        "hanzi":  "房卡",
+        "pinyin":  "Fángkǎ",
+        "en":  "Room key card",
+        "ta":  "அறைச் சாவி அட்டை"
+    },
+    {
+        "id":  "hotel-010",
+        "categoryId":  "hotel",
+        "hanzi":  "行李",
+        "pinyin":  "Xíngli",
+        "en":  "Luggage",
+        "ta":  "பயணச் சாமான்கள்"
+    },
+    {
+        "id":  "hotel-011",
+        "categoryId":  "hotel",
+        "hanzi":  "电梯",
+        "pinyin":  "Diàntī",
+        "en":  "Elevator / Lift",
+        "ta":  "மின்தூக்கி"
+    },
+    {
+        "id":  "hotel-012",
+        "categoryId":  "hotel",
+        "hanzi":  "早餐",
+        "pinyin":  "Zǎocān",
+        "en":  "Breakfast",
+        "ta":  "காலை உணவு"
+    },
+    {
+        "id":  "hotel-013",
+        "categoryId":  "hotel",
+        "hanzi":  "无线网",
+        "pinyin":  "Wúxiànwǎng",
+        "en":  "Wireless network / Wi-Fi",
+        "ta":  "வயர்லெஸ் இணையம் / வைஃபை"
+    },
+    {
+        "id":  "hotel-014",
+        "categoryId":  "hotel",
+        "hanzi":  "洗手间",
+        "pinyin":  "Xǐshǒujiān",
+        "en":  "Restroom / Toilet",
+        "ta":  "கழிப்பறை"
+    },
+    {
+        "id":  "hotel-015",
+        "categoryId":  "hotel",
+        "hanzi":  "空调",
+        "pinyin":  "Kōngtiáo",
+        "en":  "Air conditioning / Air conditioner",
+        "ta":  "குளிர்சாதன வசதி / குளிரூட்டி"
+    },
+    {
+        "id":  "hotel-016",
+        "categoryId":  "hotel",
+        "hanzi":  "住得舒心，一天更美好。",
+        "pinyin":  "Zhù de shūxīn, yī tiān gèng měihǎo.",
+        "en":  "A comfortable stay makes a better day.",
+        "ta":  "சுகமான தங்கல் நாளை மேலும் இனிமையாக்கும்."
+    },
+    {
+        "id":  "technology-001",
+        "categoryId":  "technology",
+        "hanzi":  "电脑",
+        "pinyin":  "Diànnǎo",
+        "en":  "Computer",
+        "ta":  "கணினி"
+    },
+    {
+        "id":  "technology-002",
+        "categoryId":  "technology",
+        "hanzi":  "手机",
+        "pinyin":  "Shǒujī",
+        "en":  "Mobile phone",
+        "ta":  "கைபேசி / மொபைல் போன்"
+    },
+    {
+        "id":  "technology-003",
+        "categoryId":  "technology",
+        "hanzi":  "平板",
+        "pinyin":  "Píngbǎn",
+        "en":  "Tablet",
+        "ta":  "டேப்லெட்"
+    },
+    {
+        "id":  "technology-004",
+        "categoryId":  "technology",
+        "hanzi":  "耳机",
+        "pinyin":  "Ěrjī",
+        "en":  "Earphones / Headphones",
+        "ta":  "காதுக்கேட்பான்"
+    },
+    {
+        "id":  "technology-005",
+        "categoryId":  "technology",
+        "hanzi":  "屏幕",
+        "pinyin":  "Píngmù",
+        "en":  "Screen",
+        "ta":  "திரை"
+    },
+    {
+        "id":  "technology-006",
+        "categoryId":  "technology",
+        "hanzi":  "鼠标",
+        "pinyin":  "Shǔbiāo",
+        "en":  "Mouse",
+        "ta":  "சுட்டி"
+    },
+    {
+        "id":  "technology-007",
+        "categoryId":  "technology",
+        "hanzi":  "键盘",
+        "pinyin":  "Jiànpán",
+        "en":  "Keyboard",
+        "ta":  "விசைப்பலகை"
+    },
+    {
+        "id":  "technology-008",
+        "categoryId":  "technology",
+        "hanzi":  "充电器",
+        "pinyin":  "Chōngdiànqì",
+        "en":  "Charger",
+        "ta":  "மின்னேற்றி / சார்ஜர்"
+    },
+    {
+        "id":  "technology-009",
+        "categoryId":  "technology",
+        "hanzi":  "电池",
+        "pinyin":  "Diànchí",
+        "en":  "Battery",
+        "ta":  "மின்கலம்"
+    },
+    {
+        "id":  "technology-010",
+        "categoryId":  "technology",
+        "hanzi":  "无线网络",
+        "pinyin":  "Wúxiàn wǎngluò",
+        "en":  "Wireless network",
+        "ta":  "வயர்லெஸ் வலையமைப்பு"
+    },
+    {
+        "id":  "technology-011",
+        "categoryId":  "technology",
+        "hanzi":  "主机",
+        "pinyin":  "Zhǔjī",
+        "en":  "Computer system unit / Tower",
+        "ta":  "கணினியின் முதன்மைப் பெட்டி"
+    },
+    {
+        "id":  "technology-012",
+        "categoryId":  "technology",
+        "hanzi":  "打印机",
+        "pinyin":  "Dǎyìnjī",
+        "en":  "Printer",
+        "ta":  "அச்சுப்பொறி"
+    },
+    {
+        "id":  "technology-013",
+        "categoryId":  "technology",
+        "hanzi":  "文件",
+        "pinyin":  "Wénjiàn",
+        "en":  "File / Document",
+        "ta":  "கோப்பு / ஆவணம்"
+    },
+    {
+        "id":  "technology-014",
+        "categoryId":  "technology",
+        "hanzi":  "文件夹",
+        "pinyin":  "Wénjiànjiā",
+        "en":  "Folder",
+        "ta":  "கோப்புறை"
+    },
+    {
+        "id":  "technology-015",
+        "categoryId":  "technology",
+        "hanzi":  "云",
+        "pinyin":  "Yún",
+        "en":  "Cloud",
+        "ta":  "மேகம் / கிளவுட்"
+    },
+    {
+        "id":  "technology-016",
+        "categoryId":  "technology",
+        "hanzi":  "电子邮件",
+        "pinyin":  "Diànzǐ yóujiàn",
+        "en":  "Email",
+        "ta":  "மின்னஞ்சல்"
+    },
+    {
+        "id":  "technology-017",
+        "categoryId":  "technology",
+        "hanzi":  "聊天",
+        "pinyin":  "Liáo tiān",
+        "en":  "Chat",
+        "ta":  "அரட்டை அடித்தல்"
+    },
+    {
+        "id":  "technology-018",
+        "categoryId":  "technology",
+        "hanzi":  "视频会议",
+        "pinyin":  "Shìpín huìyì",
+        "en":  "Video conference",
+        "ta":  "காணொளிக் கூட்டம்"
+    },
+    {
+        "id":  "technology-019",
+        "categoryId":  "technology",
+        "hanzi":  "搜索",
+        "pinyin":  "Sōusuǒ",
+        "en":  "Search",
+        "ta":  "தேடுதல்"
+    },
+    {
+        "id":  "technology-020",
+        "categoryId":  "technology",
+        "hanzi":  "互联网",
+        "pinyin":  "Hùliánwǎng",
+        "en":  "Internet",
+        "ta":  "இணையம்"
+    },
+    {
+        "id":  "technology-021",
+        "categoryId":  "technology",
+        "hanzi":  "应用程序",
+        "pinyin":  "Yìngyòng chéngxù",
+        "en":  "Application / App",
+        "ta":  "செயலி"
+    },
+    {
+        "id":  "technology-022",
+        "categoryId":  "technology",
+        "hanzi":  "编程",
+        "pinyin":  "Biānchéng",
+        "en":  "Programming",
+        "ta":  "நிரலாக்கம்"
+    },
+    {
+        "id":  "technology-023",
+        "categoryId":  "technology",
+        "hanzi":  "设置",
+        "pinyin":  "Shèzhì",
+        "en":  "Settings / Configure",
+        "ta":  "அமைப்புகள் / அமைத்தல்"
+    },
+    {
+        "id":  "technology-024",
+        "categoryId":  "technology",
+        "hanzi":  "病毒",
+        "pinyin":  "Bìngdú",
+        "en":  "Virus",
+        "ta":  "வைரஸ்"
+    },
+    {
+        "id":  "technology-025",
+        "categoryId":  "technology",
+        "hanzi":  "下载",
+        "pinyin":  "Xiàzài",
+        "en":  "Download",
+        "ta":  "பதிவிறக்கம் செய்தல்"
+    },
+    {
+        "id":  "fruits-001",
+        "categoryId":  "fruits",
+        "hanzi":  "水果",
+        "pinyin":  "Shuǐguǒ",
+        "en":  "Fruit",
+        "ta":  "பழங்கள்"
+    },
+    {
+        "id":  "fruits-002",
+        "categoryId":  "fruits",
+        "hanzi":  "苹果",
+        "pinyin":  "Píngguǒ",
+        "en":  "Apple",
+        "ta":  "ஆப்பிள்"
+    },
+    {
+        "id":  "fruits-003",
+        "categoryId":  "fruits",
+        "hanzi":  "香蕉",
+        "pinyin":  "Xiāngjiāo",
+        "en":  "Banana",
+        "ta":  "வாழைப்பழம்"
+    },
+    {
+        "id":  "fruits-004",
+        "categoryId":  "fruits",
+        "hanzi":  "橙子",
+        "pinyin":  "Chéngzi",
+        "en":  "Orange",
+        "ta":  "ஆரஞ்சு"
+    },
+    {
+        "id":  "fruits-005",
+        "categoryId":  "fruits",
+        "hanzi":  "芒果",
+        "pinyin":  "Mángguǒ",
+        "en":  "Mango",
+        "ta":  "மாம்பழம்"
+    },
+    {
+        "id":  "fruits-006",
+        "categoryId":  "fruits",
+        "hanzi":  "葡萄",
+        "pinyin":  "Pútao",
+        "en":  "Grapes",
+        "ta":  "திராட்சை"
+    },
+    {
+        "id":  "fruits-007",
+        "categoryId":  "fruits",
+        "hanzi":  "西瓜",
+        "pinyin":  "Xīguā",
+        "en":  "Watermelon",
+        "ta":  "தர்பூசணி"
+    },
+    {
+        "id":  "fruits-008",
+        "categoryId":  "fruits",
+        "hanzi":  "菠萝",
+        "pinyin":  "Bōluó",
+        "en":  "Pineapple",
+        "ta":  "அன்னாசிப்பழம்"
+    },
+    {
+        "id":  "fruits-009",
+        "categoryId":  "fruits",
+        "hanzi":  "木瓜",
+        "pinyin":  "Mùguā",
+        "en":  "Papaya",
+        "ta":  "பப்பாளி"
+    },
+    {
+        "id":  "fruits-010",
+        "categoryId":  "fruits",
+        "hanzi":  "石榴",
+        "pinyin":  "Shíliu",
+        "en":  "Pomegranate",
+        "ta":  "மாதுளை"
+    },
+    {
+        "id":  "fruits-011",
+        "categoryId":  "fruits",
+        "hanzi":  "草莓",
+        "pinyin":  "Cǎoméi",
+        "en":  "Strawberry",
+        "ta":  "ஸ்ட்ராபெரி"
+    },
+    {
+        "id":  "fruits-012",
+        "categoryId":  "fruits",
+        "hanzi":  "樱桃",
+        "pinyin":  "Yīngtáo",
+        "en":  "Cherry",
+        "ta":  "செர்ரி"
+    },
+    {
+        "id":  "fruits-013",
+        "categoryId":  "fruits",
+        "hanzi":  "柠檬",
+        "pinyin":  "Níngméng",
+        "en":  "Lemon",
+        "ta":  "எலுமிச்சை"
+    },
+    {
+        "id":  "fruits-014",
+        "categoryId":  "fruits",
+        "hanzi":  "牛油果",
+        "pinyin":  "Niúyóuguǒ",
+        "en":  "Avocado",
+        "ta":  "அவகாடோ"
+    },
+    {
+        "id":  "fruits-015",
+        "categoryId":  "fruits",
+        "hanzi":  "椰子",
+        "pinyin":  "Yēzi",
+        "en":  "Coconut",
+        "ta":  "தேங்காய்"
+    },
+    {
+        "id":  "fruits-016",
+        "categoryId":  "fruits",
+        "hanzi":  "猕猴桃",
+        "pinyin":  "Míhóutáo",
+        "en":  "Kiwi fruit",
+        "ta":  "கிவிப்பழம்"
+    },
+    {
+        "id":  "fruits-017",
+        "categoryId":  "fruits",
+        "hanzi":  "桃子",
+        "pinyin":  "Táozi",
+        "en":  "Peach",
+        "ta":  "பீச் பழம்"
+    },
+    {
+        "id":  "fruits-018",
+        "categoryId":  "fruits",
+        "hanzi":  "梨",
+        "pinyin":  "Lí",
+        "en":  "Pear",
+        "ta":  "பேரிக்காய்"
+    },
+    {
+        "id":  "fruits-019",
+        "categoryId":  "fruits",
+        "hanzi":  "西柚",
+        "pinyin":  "Xīyòu",
+        "en":  "Grapefruit",
+        "ta":  "கிரேப்ப்ஃப்ரூட்"
+    },
+    {
+        "id":  "fruits-020",
+        "categoryId":  "fruits",
+        "hanzi":  "果汁",
+        "pinyin":  "Guǒzhī",
+        "en":  "Fruit juice",
+        "ta":  "பழச்சாறு"
+    },
+    {
+        "id":  "fruits-021",
+        "categoryId":  "fruits",
+        "hanzi":  "新鲜",
+        "pinyin":  "Xīnxiān",
+        "en":  "Fresh",
+        "ta":  "பசுமையான / புதிய"
+    },
+    {
+        "id":  "fruits-022",
+        "categoryId":  "fruits",
+        "hanzi":  "成熟",
+        "pinyin":  "Chéngshú",
+        "en":  "Ripe",
+        "ta":  "பழுத்த"
+    },
+    {
+        "id":  "fruits-023",
+        "categoryId":  "fruits",
+        "hanzi":  "甜",
+        "pinyin":  "Tián",
+        "en":  "Sweet",
+        "ta":  "இனிப்பு"
+    },
+    {
+        "id":  "fruits-024",
+        "categoryId":  "fruits",
+        "hanzi":  "酸",
+        "pinyin":  "Suān",
+        "en":  "Sour",
+        "ta":  "புளிப்பு"
+    },
+    {
+        "id":  "fruits-025",
+        "categoryId":  "fruits",
+        "hanzi":  "便宜",
+        "pinyin":  "Piányi",
+        "en":  "Cheap / Inexpensive",
+        "ta":  "மலிவான"
+    },
+    {
+        "id":  "fruits-026",
+        "categoryId":  "fruits",
+        "hanzi":  "贵",
+        "pinyin":  "Guì",
+        "en":  "Expensive",
+        "ta":  "விலை அதிகமான"
+    },
+    {
+        "id":  "travel-001",
+        "categoryId":  "travel",
+        "hanzi":  "旅游",
+        "pinyin":  "Lǚyóu",
+        "en":  "Travel / Tourism",
+        "ta":  "சுற்றுலா"
+    },
+    {
+        "id":  "travel-002",
+        "categoryId":  "travel",
+        "hanzi":  "航班",
+        "pinyin":  "Hángbān",
+        "en":  "Flight / Flight service",
+        "ta":  "விமானச் சேவை"
+    },
+    {
+        "id":  "travel-003",
+        "categoryId":  "travel",
+        "hanzi":  "房间",
+        "pinyin":  "Fángjiān",
+        "en":  "Room",
+        "ta":  "அறை"
+    },
+    {
+        "id":  "travel-004",
+        "categoryId":  "travel",
+        "hanzi":  "旅行",
+        "pinyin":  "Lǚxíng",
+        "en":  "Travel / Journey",
+        "ta":  "பயணம்"
+    },
+    {
+        "id":  "travel-005",
+        "categoryId":  "travel",
+        "hanzi":  "机票",
+        "pinyin":  "Jīpiào",
+        "en":  "Flight ticket",
+        "ta":  "விமானப் பயணச்சீட்டு"
+    },
+    {
+        "id":  "travel-006",
+        "categoryId":  "travel",
+        "hanzi":  "预订",
+        "pinyin":  "Yùdìng",
+        "en":  "Reserve / Book",
+        "ta":  "முன்பதிவு செய்தல்"
+    },
+    {
+        "id":  "travel-007",
+        "categoryId":  "travel",
+        "hanzi":  "旅行者",
+        "pinyin":  "Lǚxíngzhě",
+        "en":  "Traveller",
+        "ta":  "பயணி"
+    },
+    {
+        "id":  "travel-008",
+        "categoryId":  "travel",
+        "hanzi":  "护照",
+        "pinyin":  "Hùzhào",
+        "en":  "Passport",
+        "ta":  "கடவுச்சீட்டு"
+    },
+    {
+        "id":  "travel-009",
+        "categoryId":  "travel",
+        "hanzi":  "前台",
+        "pinyin":  "Qiántái",
+        "en":  "Reception / Front desk",
+        "ta":  "வரவேற்பு மேசை"
+    },
+    {
+        "id":  "travel-010",
+        "categoryId":  "travel",
+        "hanzi":  "行李",
+        "pinyin":  "Xíngli",
+        "en":  "Luggage",
+        "ta":  "பயணச் சாமான்கள்"
+    },
+    {
+        "id":  "travel-011",
+        "categoryId":  "travel",
+        "hanzi":  "机场",
+        "pinyin":  "Jīchǎng",
+        "en":  "Airport",
+        "ta":  "விமான நிலையம்"
+    },
+    {
+        "id":  "travel-012",
+        "categoryId":  "travel",
+        "hanzi":  "飞机",
+        "pinyin":  "Fēijī",
+        "en":  "Airplane",
+        "ta":  "விமானம்"
+    },
+    {
+        "id":  "travel-013",
+        "categoryId":  "travel",
+        "hanzi":  "签证",
+        "pinyin":  "Qiānzhèng",
+        "en":  "Visa",
+        "ta":  "விசா"
+    },
+    {
+        "id":  "travel-014",
+        "categoryId":  "travel",
+        "hanzi":  "酒店",
+        "pinyin":  "Jiǔdiàn",
+        "en":  "Hotel",
+        "ta":  "ஹோட்டல் / தங்கும் விடுதி"
+    },
+    {
+        "id":  "travel-015",
+        "categoryId":  "travel",
+        "hanzi":  "行李箱",
+        "pinyin":  "Xínglixiāng",
+        "en":  "Suitcase",
+        "ta":  "பயணப்பெட்டி"
+    },
+    {
+        "id":  "travel-016",
+        "categoryId":  "travel",
+        "hanzi":  "出发",
+        "pinyin":  "Chūfā",
+        "en":  "Depart / Set off",
+        "ta":  "புறப்படுதல்"
+    },
+    {
+        "id":  "travel-017",
+        "categoryId":  "travel",
+        "hanzi":  "到达",
+        "pinyin":  "Dàodá",
+        "en":  "Arrive",
+        "ta":  "வந்தடைதல்"
+    },
+    {
+        "id":  "travel-018",
+        "categoryId":  "travel",
+        "hanzi":  "登机",
+        "pinyin":  "Dēng jī",
+        "en":  "Board a plane",
+        "ta":  "விமானத்தில் ஏறுதல்"
+    },
+    {
+        "id":  "travel-019",
+        "categoryId":  "travel",
+        "hanzi":  "登机牌",
+        "pinyin":  "Dēngjīpái",
+        "en":  "Boarding pass",
+        "ta":  "விமானத்தில் ஏறுவதற்கான அனுமதிச் சீட்டு"
+    },
+    {
+        "id":  "travel-020",
+        "categoryId":  "travel",
+        "hanzi":  "海关",
+        "pinyin":  "Hǎiguān",
+        "en":  "Customs",
+        "ta":  "சுங்கத்துறை"
+    },
+    {
+        "id":  "travel-021",
+        "categoryId":  "travel",
+        "hanzi":  "入境",
+        "pinyin":  "Rù jìng",
+        "en":  "Enter a country",
+        "ta":  "நாட்டிற்குள் நுழைதல்"
+    },
+    {
+        "id":  "travel-022",
+        "categoryId":  "travel",
+        "hanzi":  "出境",
+        "pinyin":  "Chū jìng",
+        "en":  "Leave a country",
+        "ta":  "நாட்டிலிருந்து வெளியேறுதல்"
+    },
+    {
+        "id":  "travel-023",
+        "categoryId":  "travel",
+        "hanzi":  "火车站",
+        "pinyin":  "Huǒchēzhàn",
+        "en":  "Railway station",
+        "ta":  "ரயில் நிலையம்"
+    },
+    {
+        "id":  "travel-024",
+        "categoryId":  "travel",
+        "hanzi":  "地铁",
+        "pinyin":  "Dìtiě",
+        "en":  "Metro / Subway",
+        "ta":  "மெட்ரோ"
+    },
+    {
+        "id":  "travel-025",
+        "categoryId":  "travel",
+        "hanzi":  "公交车",
+        "pinyin":  "Gōngjiāochē",
+        "en":  "Public bus",
+        "ta":  "பொதுப் பேருந்து"
+    },
+    {
+        "id":  "business-001",
+        "categoryId":  "business",
+        "hanzi":  "公司",
+        "pinyin":  "Gōngsī",
+        "en":  "Company",
+        "ta":  "நிறுவனம்"
+    },
+    {
+        "id":  "business-002",
+        "categoryId":  "business",
+        "hanzi":  "工作",
+        "pinyin":  "Gōngzuò",
+        "en":  "Work / Job",
+        "ta":  "வேலை"
+    },
+    {
+        "id":  "business-003",
+        "categoryId":  "business",
+        "hanzi":  "老板",
+        "pinyin":  "Lǎobǎn",
+        "en":  "Boss",
+        "ta":  "முதலாளி"
+    },
+    {
+        "id":  "business-004",
+        "categoryId":  "business",
+        "hanzi":  "员工",
+        "pinyin":  "Yuángōng",
+        "en":  "Employee",
+        "ta":  "பணியாளர்"
+    },
+    {
+        "id":  "business-005",
+        "categoryId":  "business",
+        "hanzi":  "客户",
+        "pinyin":  "Kèhù",
+        "en":  "Customer / Client",
+        "ta":  "வாடிக்கையாளர்"
+    },
+    {
+        "id":  "business-006",
+        "categoryId":  "business",
+        "hanzi":  "经理",
+        "pinyin":  "Jīnglǐ",
+        "en":  "Manager",
+        "ta":  "மேலாளர்"
+    },
+    {
+        "id":  "business-007",
+        "categoryId":  "business",
+        "hanzi":  "同事",
+        "pinyin":  "Tóngshì",
+        "en":  "Colleague",
+        "ta":  "சக ஊழியர்"
+    },
+    {
+        "id":  "business-008",
+        "categoryId":  "business",
+        "hanzi":  "合作",
+        "pinyin":  "Hézuò",
+        "en":  "Cooperation / Collaboration",
+        "ta":  "ஒத்துழைப்பு"
+    },
+    {
+        "id":  "business-009",
+        "categoryId":  "business",
+        "hanzi":  "生意",
+        "pinyin":  "Shēngyi",
+        "en":  "Business / Trade",
+        "ta":  "வணிகம்"
+    },
+    {
+        "id":  "business-010",
+        "categoryId":  "business",
+        "hanzi":  "产品",
+        "pinyin":  "Chǎnpǐn",
+        "en":  "Product",
+        "ta":  "தயாரிப்பு"
+    },
+    {
+        "id":  "business-011",
+        "categoryId":  "business",
+        "hanzi":  "服务",
+        "pinyin":  "Fúwù",
+        "en":  "Service",
+        "ta":  "சேவை"
+    },
+    {
+        "id":  "business-012",
+        "categoryId":  "business",
+        "hanzi":  "合同",
+        "pinyin":  "Hétong",
+        "en":  "Contract",
+        "ta":  "ஒப்பந்தம்"
+    },
+    {
+        "id":  "business-013",
+        "categoryId":  "business",
+        "hanzi":  "会议",
+        "pinyin":  "Huìyì",
+        "en":  "Meeting",
+        "ta":  "கூட்டம்"
+    },
+    {
+        "id":  "business-014",
+        "categoryId":  "business",
+        "hanzi":  "协议",
+        "pinyin":  "Xiéyì",
+        "en":  "Agreement",
+        "ta":  "உடன்படிக்கை"
+    },
+    {
+        "id":  "business-015",
+        "categoryId":  "business",
+        "hanzi":  "谈判",
+        "pinyin":  "Tánpàn",
+        "en":  "Negotiation",
+        "ta":  "பேச்சுவார்த்தை"
+    },
+    {
+        "id":  "communication-001",
+        "categoryId":  "communication",
+        "hanzi":  "手机",
+        "pinyin":  "Shǒujī",
+        "en":  "Mobile phone",
+        "ta":  "கைபேசி / மொபைல் போன்"
+    },
+    {
+        "id":  "communication-002",
+        "categoryId":  "communication",
+        "hanzi":  "电话",
+        "pinyin":  "Diànhuà",
+        "en":  "Telephone",
+        "ta":  "தொலைபேசி"
+    },
+    {
+        "id":  "communication-003",
+        "categoryId":  "communication",
+        "hanzi":  "电脑",
+        "pinyin":  "Diànnǎo",
+        "en":  "Computer",
+        "ta":  "கணினி"
+    },
+    {
+        "id":  "communication-004",
+        "categoryId":  "communication",
+        "hanzi":  "邮件",
+        "pinyin":  "Yóujiàn",
+        "en":  "Mail / Email",
+        "ta":  "அஞ்சல் / மின்னஞ்சல்"
+    },
+    {
+        "id":  "communication-005",
+        "categoryId":  "communication",
+        "hanzi":  "短信",
+        "pinyin":  "Duǎnxìn",
+        "en":  "SMS / Text message",
+        "ta":  "குறுஞ்செய்தி"
+    },
+    {
+        "id":  "communication-006",
+        "categoryId":  "communication",
+        "hanzi":  "微信",
+        "pinyin":  "Wēixìn",
+        "en":  "WeChat",
+        "ta":  "வீசாட்"
+    },
+    {
+        "id":  "communication-007",
+        "categoryId":  "communication",
+        "hanzi":  "视频",
+        "pinyin":  "Shìpín",
+        "en":  "Video",
+        "ta":  "காணொளி"
+    },
+    {
+        "id":  "communication-008",
+        "categoryId":  "communication",
+        "hanzi":  "视频会议",
+        "pinyin":  "Shìpín huìyì",
+        "en":  "Video conference",
+        "ta":  "காணொளிக் கூட்டம்"
+    },
+    {
+        "id":  "communication-009",
+        "categoryId":  "communication",
+        "hanzi":  "链接",
+        "pinyin":  "Liànjiē",
+        "en":  "Link",
+        "ta":  "இணைப்பு"
+    },
+    {
+        "id":  "communication-010",
+        "categoryId":  "communication",
+        "hanzi":  "文件",
+        "pinyin":  "Wénjiàn",
+        "en":  "File / Document",
+        "ta":  "கோப்பு / ஆவணம்"
+    },
+    {
+        "id":  "communication-011",
+        "categoryId":  "communication",
+        "hanzi":  "图片",
+        "pinyin":  "Túpiàn",
+        "en":  "Image / Picture",
+        "ta":  "படம்"
+    },
+    {
+        "id":  "communication-012",
+        "categoryId":  "communication",
+        "hanzi":  "发",
+        "pinyin":  "Fā",
+        "en":  "Send / Send out",
+        "ta":  "அனுப்புதல்"
+    },
+    {
+        "id":  "communication-013",
+        "categoryId":  "communication",
+        "hanzi":  "接收",
+        "pinyin":  "Jiēshōu",
+        "en":  "Receive",
+        "ta":  "பெறுதல்"
+    },
+    {
+        "id":  "communication-014",
+        "categoryId":  "communication",
+        "hanzi":  "回复",
+        "pinyin":  "Huífù",
+        "en":  "Reply",
+        "ta":  "பதிலளித்தல்"
+    },
+    {
+        "id":  "tastes-001",
+        "categoryId":  "tastes",
+        "hanzi":  "酸",
+        "pinyin":  "Suān",
+        "en":  "Sour",
+        "ta":  "புளிப்பு"
+    },
+    {
+        "id":  "tastes-002",
+        "categoryId":  "tastes",
+        "hanzi":  "苦",
+        "pinyin":  "Kǔ",
+        "en":  "Bitter",
+        "ta":  "கசப்பு"
+    },
+    {
+        "id":  "tastes-003",
+        "categoryId":  "tastes",
+        "hanzi":  "甜",
+        "pinyin":  "Tián",
+        "en":  "Sweet",
+        "ta":  "இனிப்பு"
+    },
+    {
+        "id":  "tastes-004",
+        "categoryId":  "tastes",
+        "hanzi":  "辣",
+        "pinyin":  "Là",
+        "en":  "Spicy",
+        "ta":  "காரம்"
+    },
+    {
+        "id":  "household-001",
+        "categoryId":  "household",
+        "hanzi":  "沙发",
+        "pinyin":  "Shāfā",
+        "en":  "Sofa",
+        "ta":  "சோபா"
+    },
+    {
+        "id":  "household-002",
+        "categoryId":  "household",
+        "hanzi":  "牙膏",
+        "pinyin":  "Yágāo",
+        "en":  "Toothpaste",
+        "ta":  "பற்பசை"
+    },
+    {
+        "id":  "household-003",
+        "categoryId":  "household",
+        "hanzi":  "平板",
+        "pinyin":  "Píngbǎn",
+        "en":  "Tablet",
+        "ta":  "டேப்லெட்"
+    },
+    {
+        "id":  "household-004",
+        "categoryId":  "household",
+        "hanzi":  "垃圾桶",
+        "pinyin":  "Lājītǒng",
+        "en":  "Trash bin",
+        "ta":  "குப்பைத்தொட்டி"
+    },
+    {
+        "id":  "household-005",
+        "categoryId":  "household",
+        "hanzi":  "桌子",
+        "pinyin":  "Zhuōzi",
+        "en":  "Table",
+        "ta":  "மேசை"
+    },
+    {
+        "id":  "household-006",
+        "categoryId":  "household",
+        "hanzi":  "纸巾",
+        "pinyin":  "Zhǐjīn",
+        "en":  "Tissue",
+        "ta":  "துடைப்புக் காகிதம் / டிஷ்யூ"
+    },
+    {
+        "id":  "household-007",
+        "categoryId":  "household",
+        "hanzi":  "马桶",
+        "pinyin":  "Mǎtǒng",
+        "en":  "Toilet bowl",
+        "ta":  "கழிப்பறைக் கோப்பை"
+    },
+    {
+        "id":  "household-008",
+        "categoryId":  "household",
+        "hanzi":  "牙刷",
+        "pinyin":  "Yáshuā",
+        "en":  "Toothbrush",
+        "ta":  "பல் துலக்கி"
+    },
+    {
+        "id":  "household-009",
+        "categoryId":  "household",
+        "hanzi":  "毛巾",
+        "pinyin":  "Máojīn",
+        "en":  "Towel",
+        "ta":  "துண்டு"
+    },
+    {
+        "id":  "household-010",
+        "categoryId":  "household",
+        "hanzi":  "香皂",
+        "pinyin":  "Xiāngzào",
+        "en":  "Soap",
+        "ta":  "சோப்பு"
+    },
+    {
+        "id":  "household-011",
+        "categoryId":  "household",
+        "hanzi":  "洗衣机",
+        "pinyin":  "Xǐyījī",
+        "en":  "Washing machine",
+        "ta":  "துணி துவைக்கும் இயந்திரம்"
+    },
+    {
+        "id":  "household-012",
+        "categoryId":  "household",
+        "hanzi":  "冰箱",
+        "pinyin":  "Bīngxiāng",
+        "en":  "Refrigerator",
+        "ta":  "குளிர்சாதனப் பெட்டி"
+    },
+    {
+        "id":  "household-013",
+        "categoryId":  "household",
+        "hanzi":  "微波炉",
+        "pinyin":  "Wēibōlú",
+        "en":  "Microwave oven",
+        "ta":  "மைக்ரோவேவ் அடுப்பு"
+    },
+    {
+        "id":  "household-014",
+        "categoryId":  "household",
+        "hanzi":  "床",
+        "pinyin":  "Chuáng",
+        "en":  "Bed",
+        "ta":  "படுக்கை"
+    },
+    {
+        "id":  "household-015",
+        "categoryId":  "household",
+        "hanzi":  "枕头",
+        "pinyin":  "Zhěntou",
+        "en":  "Pillow",
+        "ta":  "தலையணை"
+    },
+    {
+        "id":  "household-016",
+        "categoryId":  "household",
+        "hanzi":  "椅子",
+        "pinyin":  "Yǐzi",
+        "en":  "Chair",
+        "ta":  "நாற்காலி"
+    },
+    {
+        "id":  "household-017",
+        "categoryId":  "household",
+        "hanzi":  "窗帘",
+        "pinyin":  "Chuānglián",
+        "en":  "Curtain",
+        "ta":  "திரைச்சீலை"
+    },
+    {
+        "id":  "household-018",
+        "categoryId":  "household",
+        "hanzi":  "钟",
+        "pinyin":  "Zhōng",
+        "en":  "Clock",
+        "ta":  "கடிகாரம்"
+    },
+    {
+        "id":  "household-019",
+        "categoryId":  "household",
+        "hanzi":  "台灯",
+        "pinyin":  "Táidēng",
+        "en":  "Desk lamp",
+        "ta":  "மேசை விளக்கு"
+    },
+    {
+        "id":  "food-001",
+        "categoryId":  "food",
+        "hanzi":  "面包",
+        "pinyin":  "Miànbāo",
+        "en":  "Bread",
+        "ta":  "ரொட்டி"
+    },
+    {
+        "id":  "food-002",
+        "categoryId":  "food",
+        "hanzi":  "黄油",
+        "pinyin":  "Huángyóu",
+        "en":  "Butter",
+        "ta":  "வெண்ணெய்"
+    },
+    {
+        "id":  "food-003",
+        "categoryId":  "food",
+        "hanzi":  "奶酪",
+        "pinyin":  "Nǎilào",
+        "en":  "Cheese",
+        "ta":  "சீஸ்"
+    },
+    {
+        "id":  "food-004",
+        "categoryId":  "food",
+        "hanzi":  "牛奶",
+        "pinyin":  "Niúnǎi",
+        "en":  "Milk",
+        "ta":  "பால்"
+    },
+    {
+        "id":  "food-005",
+        "categoryId":  "food",
+        "hanzi":  "鸡蛋",
+        "pinyin":  "Jīdàn",
+        "en":  "Egg",
+        "ta":  "முட்டை"
+    },
+    {
+        "id":  "food-006",
+        "categoryId":  "food",
+        "hanzi":  "肉",
+        "pinyin":  "Ròu",
+        "en":  "Meat",
+        "ta":  "இறைச்சி"
+    },
+    {
+        "id":  "food-007",
+        "categoryId":  "food",
+        "hanzi":  "鸡肉",
+        "pinyin":  "Jīròu",
+        "en":  "Chicken meat",
+        "ta":  "கோழி இறைச்சி"
+    },
+    {
+        "id":  "food-008",
+        "categoryId":  "food",
+        "hanzi":  "鱼",
+        "pinyin":  "Yú",
+        "en":  "Fish",
+        "ta":  "மீன்"
+    },
+    {
+        "id":  "food-009",
+        "categoryId":  "food",
+        "hanzi":  "虾",
+        "pinyin":  "Xiā",
+        "en":  "Shrimp / Prawn",
+        "ta":  "இறால்"
+    },
+    {
+        "id":  "food-010",
+        "categoryId":  "food",
+        "hanzi":  "鱿鱼",
+        "pinyin":  "Yóuyú",
+        "en":  "Squid",
+        "ta":  "கணவாய்"
+    },
+    {
+        "id":  "food-011",
+        "categoryId":  "food",
+        "hanzi":  "螃蟹",
+        "pinyin":  "Pángxiè",
+        "en":  "Crab",
+        "ta":  "நண்டு"
+    },
+    {
+        "id":  "food-012",
+        "categoryId":  "food",
+        "hanzi":  "贻贝",
+        "pinyin":  "Yíbèi",
+        "en":  "Mussel",
+        "ta":  "மஸ்ஸல் சிப்பி"
+    },
+    {
+        "id":  "food-013",
+        "categoryId":  "food",
+        "hanzi":  "扇贝",
+        "pinyin":  "Shànbèi",
+        "en":  "Scallop",
+        "ta":  "ஸ்காலப் / விசிறிச் சிப்பி"
+    },
+    {
+        "id":  "food-014",
+        "categoryId":  "food",
+        "hanzi":  "牡蛎",
+        "pinyin":  "Mǔlì",
+        "en":  "Oyster",
+        "ta":  "ஆய்ஸ்டர் சிப்பி"
+    },
+    {
+        "id":  "food-015",
+        "categoryId":  "food",
+        "hanzi":  "龙虾",
+        "pinyin":  "Lóngxiā",
+        "en":  "Lobster",
+        "ta":  "லாப்ஸ்டர் / பெரிய கடல் இறால்"
+    },
+    {
+        "id":  "food-016",
+        "categoryId":  "food",
+        "hanzi":  "盐",
+        "pinyin":  "Yán",
+        "en":  "Salt",
+        "ta":  "உப்பு"
+    },
+    {
+        "id":  "food-017",
+        "categoryId":  "food",
+        "hanzi":  "糖",
+        "pinyin":  "Táng",
+        "en":  "Sugar",
+        "ta":  "சர்க்கரை"
+    },
+    {
+        "id":  "food-018",
+        "categoryId":  "food",
+        "hanzi":  "胡椒",
+        "pinyin":  "Hújiāo",
+        "en":  "Pepper",
+        "ta":  "மிளகு"
+    },
+    {
+        "id":  "food-019",
+        "categoryId":  "food",
+        "hanzi":  "酱油",
+        "pinyin":  "Jiàngyóu",
+        "en":  "Soy sauce",
+        "ta":  "சோயா சாஸ்"
+    },
+    {
+        "id":  "food-020",
+        "categoryId":  "food",
+        "hanzi":  "醋",
+        "pinyin":  "Cù",
+        "en":  "Vinegar",
+        "ta":  "வினிகர்"
+    },
+    {
+        "id":  "food-021",
+        "categoryId":  "food",
+        "hanzi":  "橄榄油",
+        "pinyin":  "Gǎnlǎn yóu",
+        "en":  "Olive oil",
+        "ta":  "ஆலிவ் எண்ணெய்"
+    },
+    {
+        "id":  "food-022",
+        "categoryId":  "food",
+        "hanzi":  "芝麻油",
+        "pinyin":  "Zhīma yóu",
+        "en":  "Sesame oil",
+        "ta":  "எள்ளெண்ணெய் / நல்லெண்ணெய்"
+    },
+    {
+        "id":  "food-023",
+        "categoryId":  "food",
+        "hanzi":  "食用油",
+        "pinyin":  "Shíyòng yóu",
+        "en":  "Cooking oil",
+        "ta":  "சமையல் எண்ணெய்"
+    },
+    {
+        "id":  "food-024",
+        "categoryId":  "food",
+        "hanzi":  "番茄酱",
+        "pinyin":  "Fānqié jiàng",
+        "en":  "Tomato sauce / Ketchup",
+        "ta":  "தக்காளி சாஸ்"
+    },
+    {
+        "id":  "food-025",
+        "categoryId":  "food",
+        "hanzi":  "蛋黄酱",
+        "pinyin":  "Dànhuáng jiàng",
+        "en":  "Mayonnaise",
+        "ta":  "மயோனைஸ்"
+    }
+]
