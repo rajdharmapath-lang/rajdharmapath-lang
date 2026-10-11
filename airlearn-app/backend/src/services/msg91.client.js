@@ -2,10 +2,11 @@ const BASE_URL = 'https://control.msg91.com/api/v5/widget';
 const REQUEST_TIMEOUT_MS = 10000;
 
 class Msg91Error extends Error {
-  constructor(message, code) {
+  constructor(message, code, details = {}) {
     super(message);
     this.name = 'Msg91Error';
     this.code = code;
+    Object.assign(this, details);
   }
 }
 
@@ -44,6 +45,7 @@ function extractRequestId(data) {
 }
 
 async function requestJson(path, payload) {
+  const startedAt = Date.now();
   const config = getConfig();
   const headers = { Accept: 'application/json' };
   let body;
@@ -64,8 +66,13 @@ async function requestJson(path, payload) {
       body,
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     });
-  } catch {
-    throw new Msg91Error('Could not connect to MSG91', 'NETWORK');
+  } catch (error) {
+    throw new Msg91Error('Could not connect to MSG91', 'NETWORK', {
+      causeName: error?.name,
+      causeCode: error?.cause?.code || error?.code,
+      providerOperation: path,
+      providerDurationMs: Date.now() - startedAt,
+    });
   }
 
   let data = {};
@@ -77,7 +84,12 @@ async function requestJson(path, payload) {
 
   if (!response.ok) {
     const detail = responseMessage(data, `HTTP ${response.status}`);
-    throw new Msg91Error(`MSG91 rejected the request: ${detail}`, 'PROVIDER_ERROR');
+    throw new Msg91Error(`MSG91 rejected the request: ${detail}`, 'PROVIDER_ERROR', {
+      providerStatus: response.status,
+      providerCode: data?.code,
+      providerOperation: path,
+      providerDurationMs: Date.now() - startedAt,
+    });
   }
   return data;
 }
@@ -101,7 +113,12 @@ async function sendOtp(identifier) {
   if (!isSuccessful(data)) {
     throw new Msg91Error(
       `MSG91 could not send the OTP: ${responseMessage(data, 'provider rejected the request')}`,
-      'SEND_FAILED'
+      'SEND_FAILED',
+      {
+        providerStatus: 200,
+        providerCode: data?.code ?? data?.data?.code,
+        providerOperation: '/sendOtpMobile',
+      }
     );
   }
   const requestId = extractRequestId(data);

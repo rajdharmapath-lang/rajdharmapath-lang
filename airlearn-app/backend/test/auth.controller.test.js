@@ -23,6 +23,7 @@ test('verifyOtp stores the verified phone identity through the user repository',
     created: true,
   }));
   const verifyStub = mock.method(otpService, 'verifyOtp', async () => true);
+  mock.method(otpErrorLogger, 'logOtpEvent', () => {});
   let responseBody;
 
   try {
@@ -56,7 +57,8 @@ test('verifyOtp returns a service error when the database lookup fails', async (
     throw databaseError;
   });
   mock.method(otpService, 'verifyOtp', async () => true);
-  const logStub = mock.method(console, 'error', () => {});
+  const errorLogStub = mock.method(otpErrorLogger, 'logOtpError', async () => {});
+  mock.method(otpErrorLogger, 'logOtpEvent', () => {});
   let statusCode;
   let responseBody;
 
@@ -77,10 +79,9 @@ test('verifyOtp returns a service error when the database lookup fails', async (
     assert.equal(lookupStub.mock.calls.length, 1);
     assert.equal(statusCode, 503);
     assert.deepEqual(responseBody, { message: 'Could not load your account from the database.' });
-    assert.deepEqual(logStub.mock.calls[0].arguments, [
-      'OTP account database lookup failed:',
-      databaseError,
-    ]);
+    assert.equal(errorLogStub.mock.calls.length, 1);
+    assert.equal(errorLogStub.mock.calls[0].arguments[1].event, 'otp_account_lookup_failed');
+    assert.equal(errorLogStub.mock.calls[0].arguments[1].stage, 'account_lookup');
   } finally {
     mock.restoreAll();
   }
@@ -92,6 +93,7 @@ test('sendOtp returns service unavailable when MSG91 is not configured', async (
     error.code = 'NOT_CONFIGURED';
     throw error;
   });
+  mock.method(otpErrorLogger, 'logOtpEvent', () => {});
   let statusCode;
   let responseBody;
 
@@ -121,15 +123,21 @@ test('sendOtp returns the provider rejection so the client can show actionable f
     error.code = 'PROVIDER_ERROR';
     throw error;
   });
-  const logStub = mock.method(console, 'error', () => {});
   const otpLogStub = mock.method(otpErrorLogger, 'logOtpError', async () => {});
+  mock.method(otpErrorLogger, 'logOtpEvent', () => {});
   let statusCode;
   let responseBody;
+  let requestIdHeader;
 
   try {
     await sendOtp(
-      { body: { phone: '5550100', dialCode: '+1' } },
       {
+        body: { phone: '5550100', dialCode: '+1' },
+      },
+      {
+        setHeader(name, value) {
+          if (name === 'X-Request-ID') requestIdHeader = value;
+        },
         status(code) {
           statusCode = code;
           return this;
@@ -143,12 +151,13 @@ test('sendOtp returns the provider rejection so the client can show actionable f
     assert.deepEqual(responseBody, {
       message: 'MSG91 rejected the request: AuthenticationFailure',
     });
-    assert.equal(logStub.mock.calls.length, 1);
-    assert.deepEqual(otpLogStub.mock.calls[0].arguments[1], {
-      stage: 'send',
-      dialCode: '+1',
-      phone: '5550100',
-    });
+    const loggedContext = otpLogStub.mock.calls[0].arguments[1];
+    assert.equal(loggedContext.stage, 'send');
+    assert.equal(loggedContext.dialCode, '+1');
+    assert.equal(loggedContext.phone, '5550100');
+    assert.equal(loggedContext.statusCode, 502);
+    assert.equal(loggedContext.requestId, requestIdHeader);
+    assert.match(requestIdHeader, /^[0-9a-f-]{36}$/);
   } finally {
     mock.restoreAll();
   }

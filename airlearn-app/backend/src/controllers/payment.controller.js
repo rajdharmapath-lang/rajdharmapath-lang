@@ -1,6 +1,7 @@
 const crypto = require('crypto');
 const paymentRepository = require('../db/payment.repository');
 const razorpayClient = require('../services/razorpay.client');
+const logger = require('../services/logger');
 
 const PLANS = {
   foundation_videos: { batchId: 'foundation', tier: 'videos', price: 999 },
@@ -85,10 +86,12 @@ async function createOrder(req, res) {
       batchId: plan.batchId,
     });
   } catch (error) {
-    console.error('[payment] Razorpay order creation failed:', {
-      code: error.code || error.error?.code || 'UNKNOWN',
-      statusCode: error.statusCode || error.error?.statusCode,
-      description: error.error?.description || error.description || error.message,
+    logger.error('payment_order_creation_failed', {
+      module: 'payment',
+      stage: 'create_order',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
     });
     return res.status(503).json({ message: error.message || 'Could not create payment order.' });
   }
@@ -100,6 +103,13 @@ async function verifyPayment(req, res) {
   try {
     order = await paymentRepository.getPaymentOrder(orderId, req.userId);
   } catch (error) {
+    logger.error('payment_order_lookup_failed', {
+      module: 'payment',
+      stage: 'verify_order_lookup',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
     return res.status(503).json({ message: 'Could not load the payment order from the database.' });
   }
   if (!order) {
@@ -119,6 +129,13 @@ async function verifyPayment(req, res) {
         entitlement: entitlements[order.batchId],
       });
     } catch (error) {
+      logger.error('payment_entitlements_lookup_failed', {
+        module: 'payment',
+        stage: 'verify_existing_entitlements',
+        requestId: req.requestId,
+        statusCode: 503,
+        error,
+      });
       return res.status(503).json({ message: 'Payment was verified, but entitlements could not be loaded.' });
     }
   }
@@ -131,6 +148,13 @@ async function verifyPayment(req, res) {
   try {
     ({ client: razorpay, keySecret } = getRazorpayConfig());
   } catch (error) {
+    logger.error('payment_configuration_invalid', {
+      module: 'payment',
+      stage: 'verify_configuration',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
     return res.status(503).json({ message: error.message });
   }
 
@@ -150,6 +174,13 @@ async function verifyPayment(req, res) {
       return res.status(400).json({ message: 'Payment is not captured for this order.' });
     }
   } catch (error) {
+    logger.error('payment_provider_verification_failed', {
+      module: 'payment',
+      stage: 'razorpay_payment_fetch',
+      requestId: req.requestId,
+      statusCode: 502,
+      error,
+    });
     return res.status(502).json({ message: 'Could not verify payment with Razorpay. Please retry verification.' });
   }
 
@@ -172,6 +203,13 @@ async function verifyPayment(req, res) {
       entitlement: result.entitlement,
     });
   } catch (error) {
+    logger.error('payment_capture_persistence_failed', {
+      module: 'payment',
+      stage: 'persist_captured_payment',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
     return res.status(503).json({ message: 'Payment was captured, but it could not be saved. Retry verification.' });
   }
 }
@@ -181,6 +219,13 @@ async function getEntitlements(req, res) {
     const purchasedBatches = await paymentRepository.getUserEntitlements(req.userId);
     return res.json({ purchasedBatches });
   } catch (error) {
+    logger.error('payment_entitlements_lookup_failed', {
+      module: 'payment',
+      stage: 'get_entitlements',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
     return res.status(503).json({ message: 'Could not load payment entitlements from the database.' });
   }
 }

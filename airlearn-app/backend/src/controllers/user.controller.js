@@ -2,6 +2,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const userRepository = require('../db/user.repository');
+const logger = require('../services/logger');
 
 const LEARNING_PDF_PATH = path.resolve(
   process.env.LEARNING_PDF_PATH ||
@@ -18,6 +19,13 @@ async function createAccount(req, res) {
     if (!user) return res.status(404).json({ message: 'User not found' });
     return res.json({ user });
   } catch (error) {
+    logger.error('user_account_update_failed', {
+      module: 'user',
+      stage: 'create_account',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
     return res.status(503).json({ message: 'Could not save your account to the database.' });
   }
 }
@@ -33,6 +41,13 @@ async function updateProfile(req, res) {
     if (!user) return res.status(404).json({ message: 'User not found' });
     return res.json({ user });
   } catch (error) {
+    logger.error('user_profile_update_failed', {
+      module: 'user',
+      stage: 'update_profile',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
     return res.status(503).json({ message: 'Could not save your account to the database.' });
   }
 }
@@ -47,6 +62,13 @@ async function setLanguage(req, res) {
     if (!user) return res.status(404).json({ message: 'User not found' });
     return res.json({ user });
   } catch (error) {
+    logger.error('user_language_update_failed', {
+      module: 'user',
+      stage: 'set_language',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
     return res.status(503).json({ message: 'Could not save your account to the database.' });
   }
 }
@@ -57,6 +79,13 @@ async function getMe(req, res) {
     if (!user) return res.status(404).json({ message: 'User not found' });
     return res.json({ user });
   } catch (error) {
+    logger.error('user_profile_load_failed', {
+      module: 'user',
+      stage: 'get_profile',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
     return res.status(503).json({ message: 'Could not load your account from the database.' });
   }
 }
@@ -66,7 +95,13 @@ async function claimStrokePreview(req, res) {
     const result = await userRepository.claimStrokePreview(req.userId);
     return res.json(result);
   } catch (error) {
-    console.error('Could not claim stroke practice preview:', error);
+    logger.error('user_stroke_preview_claim_failed', {
+      module: 'user',
+      stage: 'claim_stroke_preview',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
     return res.status(503).json({ message: 'Could not verify stroke practice access.' });
   }
 }
@@ -77,6 +112,13 @@ async function deleteAccount(req, res) {
     user = await userRepository.archiveAndDeleteUser(req.userId);
     if (!user) return res.status(404).json({ message: 'User not found' });
   } catch (error) {
+    logger.error('user_account_deletion_failed', {
+      module: 'user',
+      stage: 'delete_account',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
     return res.status(503).json({ message: 'Could not delete your account from the database.' });
   }
   return res.json({ success: true });
@@ -116,9 +158,12 @@ async function downloadLearningPdf(req, res) {
     try {
       const storageResponse = await fetch(objectUrl, { headers });
       if (!storageResponse.ok) {
-        console.error('Supabase Storage PDF download failed:', {
-          status: storageResponse.status,
-          statusText: storageResponse.statusText,
+        logger.error('learning_pdf_storage_request_failed', {
+          module: 'user',
+          stage: 'download_learning_pdf',
+          requestId: req.requestId,
+          statusCode: storageResponse.status === 404 ? 404 : 502,
+          providerStatus: storageResponse.status,
         });
         const status = storageResponse.status === 404 ? 404 : 502;
         return res.status(status).json({
@@ -131,17 +176,36 @@ async function downloadLearningPdf(req, res) {
       res.setHeader('Content-Disposition', 'attachment; filename="RD chinese workbook.pdf"');
       return res.status(200).send(pdf);
     } catch (error) {
-      console.error('Supabase Storage PDF download failed:', error);
+      logger.error('learning_pdf_storage_request_failed', {
+        module: 'user',
+        stage: 'download_learning_pdf',
+        requestId: req.requestId,
+        statusCode: 502,
+        error,
+      });
       return res.status(502).json({ message: 'Could not download the learning PDF.' });
     }
   }
 
   if (!fs.existsSync(LEARNING_PDF_PATH)) {
+    logger.info('learning_pdf_file_not_found', {
+      module: 'user',
+      stage: 'download_learning_pdf',
+      requestId: req.requestId,
+      statusCode: 404,
+    });
     return res.status(404).json({ message: 'The learning PDF is not available.' });
   }
 
   res.download(LEARNING_PDF_PATH, 'RD chinese workbook.pdf', (error) => {
     if (error && !res.headersSent) {
+      logger.error('learning_pdf_file_download_failed', {
+        module: 'user',
+        stage: 'download_learning_pdf',
+        requestId: req.requestId,
+        statusCode: 500,
+        error,
+      });
       res.status(500).json({ message: 'Could not download the learning PDF.' });
     }
   });

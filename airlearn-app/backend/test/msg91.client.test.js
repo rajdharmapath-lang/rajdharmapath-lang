@@ -49,6 +49,24 @@ test('sendOtp accepts a nested request ID from the widget response', async () =>
   assert.equal(await msg91Client.sendOtp('919876543210'), 'nested-request-123');
 });
 
+test('sendOtp preserves safe provider rejection details from a successful HTTP response', async () => {
+  global.fetch = async () => Response.json({
+    type: 'error',
+    data: {
+      code: 'TEMPLATE_NOT_APPROVED',
+      message: 'Template is not approved for this route',
+    },
+  });
+
+  await assert.rejects(
+    msg91Client.sendOtp('919876543210'),
+    (error) => error.code === 'SEND_FAILED' &&
+      error.providerStatus === 200 &&
+      error.providerCode === 'TEMPLATE_NOT_APPROVED' &&
+      error.message === 'MSG91 could not send the OTP: Template is not approved for this route'
+  );
+});
+
 test('sendOtp reports the safe MSG91 rejection instead of hiding it', async () => {
   global.fetch = async () => Response.json({
     type: 'error',
@@ -59,7 +77,28 @@ test('sendOtp reports the safe MSG91 rejection instead of hiding it', async () =
   await assert.rejects(
     msg91Client.sendOtp('919876543210'),
     (error) => error.code === 'PROVIDER_ERROR' &&
-      error.message === 'MSG91 rejected the request: AuthenticationFailure'
+      error.message === 'MSG91 rejected the request: AuthenticationFailure' &&
+      error.providerStatus === 401 &&
+      error.providerCode === 401 &&
+      error.providerOperation === '/sendOtpMobile'
+  );
+});
+
+test('network failures retain safe DNS/timeout diagnostics without exposing the cause message', async () => {
+  const networkError = new Error('request failed with private request details', {
+    cause: Object.assign(new Error('private network details'), { code: 'ECONNRESET' }),
+  });
+  global.fetch = async () => {
+    throw networkError;
+  };
+
+  await assert.rejects(
+    msg91Client.sendOtp('919876543210'),
+    (error) => error.code === 'NETWORK' &&
+      error.causeCode === 'ECONNRESET' &&
+      error.providerOperation === '/sendOtpMobile' &&
+      error.providerDurationMs >= 0 &&
+      !error.message.includes('private')
   );
 });
 
