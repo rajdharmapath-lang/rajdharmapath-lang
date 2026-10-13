@@ -14,11 +14,12 @@ function sanitizeMessage(message) {
 }
 
 function getDatabaseTarget() {
+  if (!process.env.SUPABASE_URL) return {};
   try {
-    const { hostname, port } = new URL(process.env.SUPABASE_DATABASE_URL);
+    const { hostname, port } = new URL(process.env.SUPABASE_URL);
     return {
-      databaseHost: hostname.replace(/\./g, '[.]'),
-      databasePort: port ? Number(port) : undefined,
+      supabaseHost: hostname.replace(/\./g, '[.]'),
+      supabasePort: port ? Number(port) : 443,
     };
   } catch {
     return {};

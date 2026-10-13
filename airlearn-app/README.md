@@ -39,15 +39,16 @@ key/secret pairing, capture verification, durable entitlement storage,
 reconciliation, and applicable app-store billing requirements. Never put
 Razorpay secrets in the frontend or commit `.env`.
 
-User profiles are stored in Supabase. Set `SUPABASE_DATABASE_URL` in
-`backend/.env` using the project's Session Pooler URI. Keep the
-database password on the backend only; never add it to the mobile app or commit
-it. URL-encode special characters in the password. Run
-`backend/supabase/schema.sql` in the Supabase SQL Editor to create the
-`public.users` table before signing in and rerun it after schema updates. The table stores the verified
-phone/dial code, name, email, occupation/type, language, and timestamps. Phone
-plus dial code is unique; email is not unique. WhatsApp OTP delivery remains
-separate from this database connection.
+User profiles and payment data are accessed through the Supabase HTTPS API.
+Set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in `backend/.env`; use the
+project API URL and a server-side secret/service-role key from Supabase. Keep
+the key on the backend only; never add it to the mobile app or commit it. Run
+`backend/supabase/schema.sql` and then `backend/supabase/rpc-functions.sql` in
+the Supabase SQL Editor before deploying the backend. The RPC SQL enables the
+atomic payment-capture, account-deletion, and practice-preview operations. The
+users table stores the verified phone/dial code, name, email, occupation/type,
+language, and timestamps. Phone plus dial code is unique; email is not unique.
+WhatsApp OTP delivery remains separate from Supabase database access.
 
 ### Payment flow
 
@@ -89,7 +90,7 @@ data are removed. Payment records are retained for applicable legal and
 accounting requirements; uncompleted orders are deleted and retained captured
 records have their account identifiers replaced with random identifiers. The
 payment tables have RLS enabled and client roles revoked; only the server-side
-database connection can access them.
+Supabase API key can access them.
 
 The Razorpay native checkout does not run inside stock Expo Go. Build and install
 a custom Android/iOS development client (or release build) after installing the

@@ -19,9 +19,9 @@ function safeFields(fields = {}) {
     method: fields.method ? sanitizeMessage(fields.method) : undefined,
     path: fields.path ? sanitizeMessage(fields.path) : undefined,
     port: Number.isFinite(Number(fields.port)) ? Number(fields.port) : undefined,
-    databaseHost: fields.databaseHost ? sanitizeMessage(fields.databaseHost) : undefined,
-    databasePort: Number.isFinite(Number(fields.databasePort))
-      ? Number(fields.databasePort)
+    supabaseHost: fields.supabaseHost ? sanitizeMessage(fields.supabaseHost) : undefined,
+    supabasePort: Number.isFinite(Number(fields.supabasePort))
+      ? Number(fields.supabasePort)
       : undefined,
     networkErrors: fields.networkErrors ? sanitizeMessage(fields.networkErrors) : undefined,
     syscall: fields.syscall ? sanitizeMessage(fields.syscall) : undefined,
