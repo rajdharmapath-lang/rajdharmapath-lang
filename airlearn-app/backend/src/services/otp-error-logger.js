@@ -13,6 +13,36 @@ function sanitizeMessage(message) {
   return logger.sanitizeMessage(message);
 }
 
+function getDatabaseTarget() {
+  try {
+    const { hostname, port } = new URL(process.env.SUPABASE_DATABASE_URL);
+    return {
+      databaseHost: hostname.replace(/\./g, '[.]'),
+      databasePort: port ? Number(port) : undefined,
+    };
+  } catch {
+    return {};
+  }
+}
+
+function getNetworkErrors(error) {
+  const candidates = [
+    error,
+    ...(Array.isArray(error?.errors) ? error.errors : []),
+    error?.cause,
+  ].filter(Boolean);
+  return candidates
+    .filter((candidate) => candidate.code || candidate.syscall || candidate.address || candidate.port)
+    .slice(0, 5)
+    .map((candidate) => [
+      candidate.code,
+      candidate.syscall,
+      typeof candidate.address === 'string' ? candidate.address.replace(/\./g, '[.]') : undefined,
+      candidate.port,
+    ].filter(Boolean).map(sanitizeMessage).join(':'))
+    .join(', ');
+}
+
 async function logOtpError(error, context) {
   const {
     event = 'otp_provider_error',
@@ -45,6 +75,11 @@ async function logOtpError(error, context) {
     message: sanitizeMessage(error?.message),
     phone: maskPhone(dialCode, phone),
   };
+  if (stage === 'account_lookup') {
+    Object.assign(entry, getDatabaseTarget(), {
+      networkErrors: getNetworkErrors(error) || undefined,
+    });
+  }
 
   logger.error(entry.event, { ...entry, module: 'auth' });
   const logPath = process.env.OTP_ERROR_LOG_PATH || DEFAULT_LOG_PATH;

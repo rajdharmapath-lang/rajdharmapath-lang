@@ -68,6 +68,42 @@ async function sendOtp(req, res) {
   }
 }
 
+async function retryOtp(req, res) {
+  const { phone, dialCode, reqId, retryChannel } = req.body;
+  const context = createRequestContext(req, res, 'retry');
+  logRequestEvent(context, 'otp_retry_received');
+  if (!phone || !dialCode || !reqId) {
+    logRequestEvent(context, 'otp_request_rejected', { code: 'MISSING_FIELDS', statusCode: 400 });
+    return res.status(400).json({ message: 'phone, dialCode and reqId are required' });
+  }
+  if (!otpService.normalizePhone(dialCode, phone)) {
+    logRequestEvent(context, 'otp_request_rejected', { code: 'INVALID_PHONE', statusCode: 400 });
+    return res.status(400).json({ message: 'Enter a valid phone number.' });
+  }
+  if (retryChannel !== undefined && (typeof retryChannel !== 'string' || retryChannel.length > 50)) {
+    logRequestEvent(context, 'otp_request_rejected', { code: 'INVALID_RETRY_CHANNEL', statusCode: 400 });
+    return res.status(400).json({ message: 'Invalid retry channel.' });
+  }
+
+  try {
+    const retried = await otpService.retryOtp(dialCode, phone, reqId, retryChannel);
+    if (!retried) {
+      logRequestEvent(context, 'otp_retry_rejected', { code: 'INVALID_OR_EXPIRED_REQUEST', statusCode: 400 });
+      return res.status(400).json({ message: 'OTP request is invalid or expired. Request a new code.' });
+    }
+    logRequestEvent(context, 'otp_retry_succeeded', { statusCode: 200 });
+    return res.json({ success: true });
+  } catch (error) {
+    await recordOtpError(error, { ...context, statusCode: error.code === 'NOT_CONFIGURED' ? 503 : 502 });
+    if (error.code === 'NOT_CONFIGURED') {
+      return res.status(503).json({ message: 'OTP delivery is not configured.' });
+    }
+    return res.status(502).json({
+      message: error.message || 'Could not resend the verification code. Please try again.',
+    });
+  }
+}
+
 async function verifyOtpHandler(req, res) {
   const { phone, dialCode, code, reqId } = req.body;
   const context = createRequestContext(req, res, 'verify');
@@ -85,7 +121,11 @@ async function verifyOtpHandler(req, res) {
     if (error.code === 'NOT_CONFIGURED') {
       return res.status(503).json({ message: 'OTP delivery is not configured.' });
     }
-    return res.status(502).json({ message: 'Could not verify the code. Please try again.' });
+    return res.status(502).json({
+      message: otpErrorLogger.sanitizeMessage(
+        error.message || 'Could not verify the code. Please try again.'
+      ),
+    });
   }
   if (!isValid) {
     logRequestEvent(context, 'otp_verification_rejected', { statusCode: 400 });
@@ -118,4 +158,4 @@ async function verifyOtpHandler(req, res) {
   });
 }
 
-module.exports = { sendOtp, verifyOtp: verifyOtpHandler };
+module.exports = { sendOtp, retryOtp, verifyOtp: verifyOtpHandler };

@@ -19,6 +19,13 @@ function safeFields(fields = {}) {
     method: fields.method ? sanitizeMessage(fields.method) : undefined,
     path: fields.path ? sanitizeMessage(fields.path) : undefined,
     port: Number.isFinite(Number(fields.port)) ? Number(fields.port) : undefined,
+    databaseHost: fields.databaseHost ? sanitizeMessage(fields.databaseHost) : undefined,
+    databasePort: Number.isFinite(Number(fields.databasePort))
+      ? Number(fields.databasePort)
+      : undefined,
+    networkErrors: fields.networkErrors ? sanitizeMessage(fields.networkErrors) : undefined,
+    syscall: fields.syscall ? sanitizeMessage(fields.syscall) : undefined,
+    address: fields.address ? sanitizeMessage(fields.address) : undefined,
     statusCode: Number.isInteger(fields.statusCode) ? fields.statusCode : undefined,
     durationMs: Number.isFinite(fields.durationMs) ? fields.durationMs : undefined,
     code: fields.code ? sanitizeMessage(fields.code) : undefined,

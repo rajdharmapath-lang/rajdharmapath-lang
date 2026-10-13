@@ -77,3 +77,43 @@ test('console OTP events only include allowlisted, masked diagnostic fields', ()
     mock.restoreAll();
   }
 });
+
+test('account lookup errors log the database target and nested network error codes without credentials', async () => {
+  const directory = await fs.mkdtemp(path.join(os.tmpdir(), 'airlearn-db-log-'));
+  const logPath = path.join(directory, 'otp-errors.log');
+  const previousPath = process.env.OTP_ERROR_LOG_PATH;
+  const previousDatabaseUrl = process.env.SUPABASE_DATABASE_URL;
+  process.env.OTP_ERROR_LOG_PATH = logPath;
+  process.env.SUPABASE_DATABASE_URL = 'postgresql://private-user:private-password@db.example.test:6543/postgres';
+  const consoleStub = mock.method(console, 'error', () => {});
+  const connectionError = Object.assign(new Error('connect EACCES'), {
+    code: 'EACCES',
+    syscall: 'connect',
+    address: 'db.example.test',
+    port: 6543,
+  });
+
+  try {
+    await logOtpError(new AggregateError([connectionError], 'Database connection failed'), {
+      event: 'otp_account_lookup_failed',
+      stage: 'account_lookup',
+      statusCode: 503,
+    });
+
+    const record = JSON.parse((await fs.readFile(logPath, 'utf8')).trim());
+    assert.equal(record.databaseHost, 'db[.]example[.]test');
+    assert.equal(record.databasePort, 6543);
+    assert.match(record.networkErrors, /EACCES:connect:db\[.\]example\[.\]test:6543/);
+    assert.equal(JSON.stringify(record).includes('private-user'), false);
+    assert.equal(JSON.stringify(record).includes('private-password'), false);
+    assert.match(consoleStub.mock.calls[0].arguments[0], /databaseHost: db\[.\]example\[.\]test/);
+    assert.match(consoleStub.mock.calls[0].arguments[0], /networkErrors: EACCES:connect:db\[.\]example\[.\]test:6543/);
+  } finally {
+    mock.restoreAll();
+    if (previousPath === undefined) delete process.env.OTP_ERROR_LOG_PATH;
+    else process.env.OTP_ERROR_LOG_PATH = previousPath;
+    if (previousDatabaseUrl === undefined) delete process.env.SUPABASE_DATABASE_URL;
+    else process.env.SUPABASE_DATABASE_URL = previousDatabaseUrl;
+    await fs.rm(directory, { recursive: true, force: true });
+  }
+});

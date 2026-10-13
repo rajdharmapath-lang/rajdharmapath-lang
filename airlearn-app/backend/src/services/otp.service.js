@@ -1,4 +1,8 @@
+const jwt = require('jsonwebtoken');
 const msg91Client = require('./msg91.client');
+const { JWT_SECRET } = require('../middleware/auth.middleware');
+
+const OTP_REQUEST_PURPOSE = 'msg91_otp_request';
 
 function normalizePhone(dialCode, phone) {
   const countryDigits = String(dialCode || '').replace(/\D/g, '');
@@ -15,18 +19,47 @@ async function generateOtp(dialCode, phone) {
   const identifier = normalizePhone(dialCode, phone);
   if (!identifier) throw new Error('Invalid phone number');
 
-  return msg91Client.sendOtp(identifier);
+  const providerRequestId = await msg91Client.sendOtp(identifier);
+  return jwt.sign(
+    { purpose: OTP_REQUEST_PURPOSE, identifier, providerRequestId },
+    JWT_SECRET,
+    { expiresIn: '10m' }
+  );
+}
+
+function readOtpRequestToken(requestToken, identifier) {
+  if (!requestToken) return null;
+  try {
+    const claims = jwt.verify(requestToken, JWT_SECRET);
+    if (
+      claims.purpose !== OTP_REQUEST_PURPOSE ||
+      (identifier && claims.identifier !== identifier) ||
+      typeof claims.providerRequestId !== 'string' ||
+      !claims.providerRequestId
+    ) {
+      return null;
+    }
+    return claims;
+  } catch {
+    return null;
+  }
+}
+
+async function retryOtp(dialCode, phone, requestToken, retryChannel) {
+  const identifier = normalizePhone(dialCode, phone);
+  const claims = readOtpRequestToken(requestToken, identifier);
+  if (!identifier || !claims) return false;
+
+  await msg91Client.retryOtp(claims.providerRequestId, retryChannel);
+  return true;
 }
 
 async function verifyOtp(dialCode, phone, submittedCode, requestId) {
   const identifier = normalizePhone(dialCode, phone);
-  if (!identifier || !requestId) return false;
+  const claims = readOtpRequestToken(requestId, identifier);
+  if (!identifier || !claims) return false;
 
-  const result = await msg91Client.verifyOtp(requestId, String(submittedCode));
-  if (!result.success) return false;
-
-  const verifiedIdentifier = await msg91Client.verifyAccessToken(result.accessToken);
-  return verifiedIdentifier.replace(/\D/g, '') === identifier;
+  return msg91Client.verifyOtp(claims.providerRequestId, String(submittedCode));
 }
 
-module.exports = { generateOtp, verifyOtp, normalizePhone };
+module.exports = { generateOtp, retryOtp, verifyOtp, normalizePhone };

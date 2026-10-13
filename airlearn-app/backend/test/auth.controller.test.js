@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const jwt = require('jsonwebtoken');
 const otpService = require('../src/services/otp.service');
 const otpErrorLogger = require('../src/services/otp-error-logger');
-const { sendOtp, verifyOtp } = require('../src/controllers/auth.controller');
+const { sendOtp, retryOtp, verifyOtp } = require('../src/controllers/auth.controller');
 const userRepository = require('../src/db/user.repository');
 const { JWT_SECRET } = require('../src/middleware/auth.middleware');
 
@@ -123,6 +123,39 @@ test('sendOtp returns the provider rejection so the client can show actionable f
     error.code = 'PROVIDER_ERROR';
     throw error;
   });
+
+  test('retryOtp invokes the provider retry operation for the pending request', async () => {
+    const retryStub = mock.method(otpService, 'retryOtp', async () => true);
+    mock.method(otpErrorLogger, 'logOtpEvent', () => {});
+    let statusCode;
+    let responseBody;
+
+    try {
+      await retryOtp(
+        { body: { phone: '5550100', dialCode: '+1', reqId: 'signed-request-token' } },
+        {
+          status(code) {
+            statusCode = code;
+            return this;
+          },
+          json(body) {
+            responseBody = body;
+          },
+        }
+      );
+
+      assert.deepEqual(retryStub.mock.calls[0].arguments, [
+        '+1',
+        '5550100',
+        'signed-request-token',
+        undefined,
+      ]);
+      assert.equal(statusCode, undefined);
+      assert.deepEqual(responseBody, { success: true });
+    } finally {
+      mock.restoreAll();
+    }
+  });
   const otpLogStub = mock.method(otpErrorLogger, 'logOtpError', async () => {});
   mock.method(otpErrorLogger, 'logOtpEvent', () => {});
   let statusCode;
@@ -158,6 +191,40 @@ test('sendOtp returns the provider rejection so the client can show actionable f
     assert.equal(loggedContext.statusCode, 502);
     assert.equal(loggedContext.requestId, requestIdHeader);
     assert.match(requestIdHeader, /^[0-9a-f-]{36}$/);
+  } finally {
+    mock.restoreAll();
+  }
+});
+
+test('verifyOtp returns a sanitized provider error to the client', async () => {
+  const providerError = new Error('MSG91 rejected the request: invalid OTP=123456');
+  providerError.code = 'PROVIDER_ERROR';
+  mock.method(otpService, 'verifyOtp', async () => {
+    throw providerError;
+  });
+  mock.method(otpErrorLogger, 'logOtpError', async () => {});
+  mock.method(otpErrorLogger, 'logOtpEvent', () => {});
+  let statusCode;
+  let responseBody;
+
+  try {
+    await verifyOtp(
+      { body: { phone: '5550100', dialCode: '+1', code: '123456', reqId: 'request-123' } },
+      {
+        status(code) {
+          statusCode = code;
+          return this;
+        },
+        json(body) {
+          responseBody = body;
+        },
+      }
+    );
+
+    assert.equal(statusCode, 502);
+    assert.deepEqual(responseBody, {
+      message: 'MSG91 rejected the request: invalid OTP=[REDACTED]',
+    });
   } finally {
     mock.restoreAll();
   }

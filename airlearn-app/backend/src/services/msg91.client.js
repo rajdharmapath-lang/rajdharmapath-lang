@@ -1,4 +1,4 @@
-const BASE_URL = 'https://control.msg91.com/api/v5/widget';
+const BASE_URL = 'https://api.msg91.com/api/v5/widget';
 const REQUEST_TIMEOUT_MS = 10000;
 
 class Msg91Error extends Error {
@@ -12,58 +12,68 @@ class Msg91Error extends Error {
 
 function getConfig() {
   const authKey = (process.env.MSG91_AUTH_KEY || process.env.MSG91_AUTHKEY || '').trim();
-  const tokenAuth = (process.env.MSG91_TOKEN_AUTH || process.env.MSG91_TOKENAUTH || '').trim();
   const widgetId = (process.env.MSG91_WIDGET_ID || '').trim();
 
-  if (!authKey || !tokenAuth || !widgetId) {
+  if (!authKey || !widgetId) {
     throw new Msg91Error('MSG91 OTP is not configured', 'NOT_CONFIGURED');
   }
-  return { authKey, tokenAuth, widgetId };
+  return { authKey, widgetId };
+}
+
+function getResultData(data) {
+  return data?.data && typeof data.data === 'object' ? data.data : data;
 }
 
 function responseMessage(data, fallback) {
-  const source = typeof data?.message === 'string' ? data : data?.data;
+  const source = [getResultData(data), data].find((result) =>
+    typeof result?.message === 'string'
+  );
   const message = typeof source?.message === 'string' ? source.message.trim() : '';
   if (!message || message.length > 180) return fallback;
   return message.replace(/\+?\d{7,15}/g, (number) => `***${number.slice(-4)}`);
 }
 
-function messageIsRequestId(message) {
-  return typeof message === 'string' && /^[a-zA-Z0-9_-]{8,}$/.test(message.trim());
+function isSuccessful(data) {
+  return [data, getResultData(data)].some((result) =>
+    String(result?.type || '').toLowerCase() === 'success' ||
+    String(result?.status || '').toLowerCase() === 'success' ||
+    result?.success === true
+  );
 }
 
 function extractRequestId(data) {
-  const candidates = [data, data?.data];
+  const candidates = [data, getResultData(data)];
   for (const candidate of candidates) {
     const requestId = candidate?.reqId || candidate?.requestId || candidate?.request_id;
     if (typeof requestId === 'string' && requestId.trim()) return requestId.trim();
   }
-  if (String(data?.type || '').toLowerCase() !== 'error' && messageIsRequestId(data?.message)) {
-    return data.message.trim();
+  for (const candidate of candidates) {
+    const message = candidate?.message;
+    const type = String(candidate?.type || data?.type || '').toLowerCase();
+    if (
+      type !== 'error' &&
+      typeof message === 'string' &&
+      /^[a-zA-Z0-9_-]{8,}$/.test(message.trim())
+    ) {
+      return message.trim();
+    }
   }
   return null;
 }
 
 async function requestJson(path, payload) {
   const startedAt = Date.now();
-  const config = getConfig();
-  const headers = { Accept: 'application/json' };
-  let body;
-
-  if (path === '/verifyAccessToken') {
-    headers['Content-Type'] = 'application/json';
-    body = JSON.stringify({ ...payload, authkey: config.authKey });
-  } else {
-    headers['Content-Type'] = 'application/json';
-    body = JSON.stringify(payload);
-  }
-
+  const { authKey } = getConfig();
   let response;
   try {
     response = await fetch(`${BASE_URL}${path}`, {
       method: 'POST',
-      headers,
-      body,
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        authkey: authKey,
+      },
+      body: JSON.stringify(payload),
       signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
     });
   } catch (error) {
@@ -79,103 +89,91 @@ async function requestJson(path, payload) {
   try {
     data = await response.json();
   } catch {
-    if (response.ok) throw new Msg91Error('MSG91 returned an invalid response', 'INVALID_RESPONSE');
+    if (response.ok) {
+      throw new Msg91Error('MSG91 returned an invalid response', 'INVALID_RESPONSE', {
+        providerStatus: response.status,
+        providerOperation: path,
+        providerDurationMs: Date.now() - startedAt,
+      });
+    }
   }
 
   if (!response.ok) {
-    const detail = responseMessage(data, `HTTP ${response.status}`);
-    throw new Msg91Error(`MSG91 rejected the request: ${detail}`, 'PROVIDER_ERROR', {
-      providerStatus: response.status,
-      providerCode: data?.code,
-      providerOperation: path,
-      providerDurationMs: Date.now() - startedAt,
-    });
-  }
-  return data;
-}
-
-function isSuccessful(data) {
-  return [data, data?.data].some((result) =>
-    String(result?.type || '').toLowerCase() === 'success' ||
-    String(result?.status || '').toLowerCase() === 'success' ||
-    result?.success === true
-  );
-}
-
-async function sendOtp(identifier) {
-  const { tokenAuth, widgetId } = getConfig();
-  const data = await requestJson('/sendOtpMobile', {
-    widgetId,
-    tokenAuth,
-    identifier,
-  });
-
-  if (!isSuccessful(data)) {
     throw new Msg91Error(
-      `MSG91 could not send the OTP: ${responseMessage(data, 'provider rejected the request')}`,
-      'SEND_FAILED',
+      `MSG91 rejected the request: ${responseMessage(data, `HTTP ${response.status}`)}`,
+      'PROVIDER_ERROR',
       {
-        providerStatus: 200,
-        providerCode: data?.code ?? data?.data?.code,
-        providerOperation: '/sendOtpMobile',
+        providerStatus: response.status,
+        providerCode: getResultData(data)?.code ?? data?.code,
+        providerOperation: path,
+        providerDurationMs: Date.now() - startedAt,
       }
     );
   }
-  const requestId = extractRequestId(data);
+
+  return { data, providerStatus: response.status, durationMs: Date.now() - startedAt };
+}
+
+function assertProviderSuccess(data, operation, providerPath, providerStatus, providerDurationMs) {
+  if (!isSuccessful(data)) {
+    throw new Msg91Error(
+      `MSG91 could not ${operation}: ${responseMessage(data, 'provider rejected the request')}`,
+      'PROVIDER_REJECTED',
+      {
+        providerStatus,
+        providerCode: getResultData(data)?.code ?? data?.code,
+        providerOperation: providerPath,
+        providerDurationMs,
+      }
+    );
+  }
+}
+
+async function sendOtp(identifier) {
+  const { widgetId } = getConfig();
+  const result = await requestJson('/sendOtp', { widgetId, identifier });
+  assertProviderSuccess(
+    result.data,
+    'send the OTP',
+    '/sendOtp',
+    result.providerStatus,
+    result.durationMs
+  );
+
+  const requestId = extractRequestId(result.data);
   if (!requestId) {
-    throw new Msg91Error('MSG91 accepted the request but returned no OTP request ID', 'INVALID_RESPONSE');
+    throw new Msg91Error('MSG91 accepted the request but returned no OTP request ID', 'INVALID_RESPONSE', {
+      providerStatus: result.providerStatus,
+      providerOperation: '/sendOtp',
+      providerDurationMs: result.durationMs,
+    });
   }
   return requestId;
 }
 
+async function retryOtp(requestId, retryChannel) {
+  const { widgetId } = getConfig();
+  const payload = { widgetId, reqId: requestId };
+  if (retryChannel) payload.retryChannel = retryChannel;
+  const result = await requestJson('/retryOtp', payload);
+  assertProviderSuccess(
+    result.data,
+    'retry the OTP',
+    '/retryOtp',
+    result.providerStatus,
+    result.durationMs
+  );
+  return true;
+}
+
 async function verifyOtp(requestId, otp) {
-  const { tokenAuth, widgetId } = getConfig();
-  const data = await requestJson('/verifyOtp', {
+  const { widgetId } = getConfig();
+  const result = await requestJson('/verifyOtp', {
     widgetId,
-    tokenAuth,
     reqId: requestId,
     otp,
   });
-
-  if (!isSuccessful(data)) {
-    return {
-      success: false,
-      message: responseMessage(data, 'MSG91 rejected the OTP'),
-    };
-  }
-  const resultData = data?.data && typeof data.data === 'object' ? data.data : data;
-  const messageToken = typeof resultData?.message === 'string' &&
-    /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(resultData.message)
-    ? resultData.message
-    : null;
-  const accessToken = resultData?.['access-token'] ||
-    resultData?.accessToken ||
-    resultData?.access_token ||
-    resultData?.token ||
-    messageToken;
-  if (!accessToken) {
-    throw new Msg91Error('MSG91 did not return a verified access token', 'INVALID_RESPONSE');
-  }
-  return { success: true, accessToken };
+  return isSuccessful(result.data);
 }
 
-async function verifyAccessToken(accessToken) {
-  const data = await requestJson('/verifyAccessToken', { 'access-token': accessToken });
-  if (!isSuccessful(data)) {
-    throw new Msg91Error(
-      `MSG91 access token verification failed: ${responseMessage(data, 'provider rejected the token')}`,
-      'VERIFY_FAILED'
-    );
-  }
-  const resultData = data?.data && typeof data.data === 'object' ? data.data : data;
-  const identifier = resultData?.identifier ||
-    resultData?.mobile ||
-    resultData?.email ||
-    resultData?.message;
-  if (typeof identifier !== 'string' || !identifier.trim()) {
-    throw new Msg91Error('MSG91 did not return the verified phone number', 'INVALID_RESPONSE');
-  }
-  return identifier;
-}
-
-module.exports = { sendOtp, verifyOtp, verifyAccessToken, Msg91Error };
+module.exports = { sendOtp, retryOtp, verifyOtp, Msg91Error };
