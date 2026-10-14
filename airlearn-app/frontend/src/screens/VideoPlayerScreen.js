@@ -1,6 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, Pressable, StyleSheet, FlatList } from 'react-native';
+import { View, Text, Pressable, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 import { Video, ResizeMode } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
@@ -11,6 +11,7 @@ import { lessonsByBatch } from '../data/courses';
 import { useProgress } from '../context/ProgressContext';
 import { usePayment } from '../context/PaymentContext';
 import { redirectToPaywall, useAccessGate } from '../utils/paywall';
+import { userApi } from '../api/client';
 
 export default function VideoPlayerScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
@@ -28,6 +29,38 @@ export default function VideoPlayerScreen({ route, navigation }) {
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0); // 0..1
+  const [videoUrl, setVideoUrl] = useState(lesson?.videoUrl || null);
+  const [videoLoading, setVideoLoading] = useState(false);
+  const [videoError, setVideoError] = useState(null);
+
+  const loadVideoUrl = useCallback(async () => {
+    if (batchId !== 'foundation' || !lesson || lesson.videoUrl) return;
+    setVideoLoading(true);
+    setVideoError(null);
+    try {
+      const { data } = await userApi.getFoundationWelcomeVideo();
+      if (typeof data?.videoUrl !== 'string' || !data.videoUrl) {
+        throw new Error('The video service returned an invalid URL.');
+      }
+      setVideoUrl(data.videoUrl);
+    } catch {
+      setVideoError('Unable to load this video. Check your connection and try again.');
+    } finally {
+      setVideoLoading(false);
+    }
+  }, [batchId, lesson]);
+
+  useEffect(() => {
+    if (lesson?.videoUrl) {
+      setVideoUrl(lesson.videoUrl);
+      setVideoError(null);
+      return;
+    }
+    if (batchId === 'foundation' && lesson) {
+      setVideoUrl(null);
+      loadVideoUrl();
+    }
+  }, [batchId, lesson, loadVideoUrl]);
 
   const togglePlay = async () => {
     if (!videoRef.current) return;
@@ -64,14 +97,29 @@ export default function VideoPlayerScreen({ route, navigation }) {
         <Text style={styles.title}>Lesson {currentIndex + 1}</Text>
 
         <View style={styles.playerCard}>
-          {lesson?.videoUrl ? (
+          {videoLoading ? (
+            <View style={styles.videoMessage}>
+              <ActivityIndicator color={colors.playerCircle} />
+              <Text style={styles.videoMessageText}>Loading video...</Text>
+            </View>
+          ) : videoError ? (
+            <Pressable style={styles.videoMessage} onPress={loadVideoUrl}>
+              <Text style={styles.videoMessageText}>{videoError}</Text>
+              <Text style={styles.retryText}>Tap to retry</Text>
+            </Pressable>
+          ) : videoUrl ? (
             <>
               <Video
                 ref={videoRef}
-                source={{ uri: lesson.videoUrl }}
+                source={{ uri: videoUrl }}
                 style={styles.videoSurface}
                 resizeMode={ResizeMode.COVER}
                 onPlaybackStatusUpdate={handleStatusUpdate}
+                onError={() => {
+                  setIsPlaying(false);
+                  setVideoError('Unable to play this video. Tap to try again.');
+                }}
+                isMuted={false}
                 useNativeControls={false}
               />
               {!isPlaying && (
@@ -138,6 +186,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   videoSurface: { ...StyleSheetAbsoluteFill() },
+  videoMessage: {
+    ...StyleSheetAbsoluteFill(),
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+  },
+  videoMessageText: { ...typography.small, color: colors.textLabel, textAlign: 'center' },
+  retryText: { ...typography.bodyBold, color: colors.accentRedAlt, marginTop: 8 },
   playOverlay: {
     ...StyleSheetAbsoluteFill(),
     alignItems: 'center',

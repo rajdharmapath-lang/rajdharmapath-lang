@@ -11,11 +11,13 @@ fs.writeFileSync(testPdfPath, 'test pdf');
 process.env.LEARNING_PDF_PATH = testPdfPath;
 
 const userRepository = require('../src/db/user.repository');
+const supabase = require('../src/db/supabase');
 const {
   claimStrokePreview,
   createAccount,
   deleteAccount,
   downloadLearningPdf,
+  getFoundationWelcomeVideo,
   setLanguage,
 } = require('../src/controllers/user.controller');
 const { issueToken, requireAuth } = require('../src/middleware/auth.middleware');
@@ -180,6 +182,44 @@ test('downloadLearningPdf sends the supplied learning PDF with its filename', ()
   assert.equal(fs.existsSync(testPdfPath), true);
   assert.equal(sentFile, testPdfPath);
   assert.equal(sentName, 'RD chinese workbook.pdf');
+});
+
+test('getFoundationWelcomeVideo returns a signed URL for the Foundation lesson video', async () => {
+  const videoUrl = 'https://project.example/storage/v1/object/sign/Rajdharma_app_pdf/Videos/Welcome.mp4?token=signed';
+  let bucket;
+  let objectPath;
+  let expiresIn;
+  mock.method(supabase, 'getClient', () => ({
+    storage: {
+      from(name) {
+        bucket = name;
+        return {
+          async createSignedUrl(path, duration) {
+            objectPath = path;
+            expiresIn = duration;
+            return { data: { signedUrl: videoUrl }, error: null };
+          },
+        };
+      },
+    },
+  }));
+
+  try {
+    let responseBody;
+    await getFoundationWelcomeVideo({ requestId: 'video-test' }, {
+      json(body) {
+        responseBody = body;
+        return this;
+      },
+    });
+
+    assert.equal(bucket, 'Rajdharma_app_pdf');
+    assert.equal(objectPath, 'Videos/Welcome.mp4');
+    assert.equal(expiresIn, 60 * 60);
+    assert.deepEqual(responseBody, { videoUrl });
+  } finally {
+    mock.restoreAll();
+  }
 });
 
 test('downloadLearningPdf fetches the configured Supabase Storage object', async () => {

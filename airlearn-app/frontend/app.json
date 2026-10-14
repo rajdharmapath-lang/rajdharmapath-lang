@@ -1,14 +1,12 @@
 {
   "expo": {
-    "name": "Raj Dharma Learn",
+    "name": "RajDharma Chinese",
     "slug": "airlearn",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
       "backgroundColor": "#FDF9F6"
     },
     "assetBundlePatterns": [
@@ -41,8 +39,8 @@
       [
         "expo-speech-recognition",
         {
-          "microphonePermission": "Allow Raj Dharma Learn to use the microphone for speech practice.",
-          "speechRecognitionPermission": "Allow Raj Dharma Learn to transcribe your speech during practice."
+          "microphonePermission": "Allow RajDharma Chinese to use the microphone for speech practice.",
+          "speechRecognitionPermission": "Allow RajDharma Chinese to transcribe your speech during practice."
         }
       ],
       "./plugins/withAndroid12SplashIcon"

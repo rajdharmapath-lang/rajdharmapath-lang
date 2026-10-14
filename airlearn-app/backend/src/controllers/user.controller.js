@@ -2,6 +2,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const userRepository = require('../db/user.repository');
+const supabase = require('../db/supabase');
 const logger = require('../services/logger');
 
 const LEARNING_PDF_PATH = path.resolve(
@@ -211,6 +212,27 @@ async function downloadLearningPdf(req, res) {
   });
 }
 
+async function getFoundationWelcomeVideo(req, res) {
+  try {
+    const { data, error } = await supabase.getClient()
+      .storage
+      .from('Rajdharma_app_pdf')
+      .createSignedUrl('Videos/Welcome.mp4', 60 * 60);
+    if (error) throw error;
+    if (!data?.signedUrl) throw new Error('Supabase did not return a signed video URL.');
+    return res.json({ videoUrl: data.signedUrl });
+  } catch (error) {
+    logger.error('foundation_welcome_video_url_failed', {
+      module: 'user',
+      stage: 'foundation_welcome_video_url',
+      requestId: req.requestId,
+      statusCode: 502,
+      error,
+    });
+    return res.status(502).json({ message: 'Could not load the Foundation Batch video.' });
+  }
+}
+
 module.exports = {
   createAccount,
   updateProfile,
@@ -219,4 +241,5 @@ module.exports = {
   claimStrokePreview,
   deleteAccount,
   downloadLearningPdf,
+  getFoundationWelcomeVideo,
 };

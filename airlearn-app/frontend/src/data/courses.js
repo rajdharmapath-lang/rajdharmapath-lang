@@ -45,7 +45,6 @@ export const lessonsByBatch = {
       title: 'Welcome to Foundation',
       subtitle: 'Introduction',
       locked: false,
-      videoUrl: 'https://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4',
     },
     { id: 'f2', title: 'Chinese Sounds (Pinyin)', subtitle: 'Vowels & Consonants', locked: true },
     { id: 'f3', title: 'Greeting', subtitle: 'Basic Greeting', locked: true },
