@@ -1,26 +1,34 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 
 export default function QuizProgressHeader({
   quizName,
   current,
   total,
-  onBack,
-  onFinish,
-  finishDisabled = false,
+  onPrevious,
+  previousDisabled = false,
 }) {
   const progress = total > 0 ? current / total : 0;
+  const canGoPrevious = current > 1 && !previousDisabled;
 
   return (
     <View>
       <View style={styles.row}>
-        <Pressable onPress={onBack} hitSlop={12} style={{ width: 26 }}>
-          <Ionicons name="chevron-back" size={26} color={colors.border} />
+        <Pressable
+          onPress={onPrevious}
+          disabled={!canGoPrevious}
+          hitSlop={8}
+          style={[styles.previousButton, !canGoPrevious && styles.previousButtonDisabled]}
+          accessibilityRole="button"
+          accessibilityLabel="Previous question"
+        >
+          <Text style={styles.previousText}>Prev</Text>
         </Pressable>
-        <Text style={styles.quizName}>{quizName}</Text>
-        <Text style={styles.counter}>
+        <Text style={styles.quizName} numberOfLines={1}>
+          {quizName}
+        </Text>
+        <Text style={styles.counter} numberOfLines={1}>
           {current}/{total}
         </Text>
       </View>
@@ -28,14 +36,6 @@ export default function QuizProgressHeader({
         <View style={styles.track}>
           <View style={[styles.fill, { width: `${Math.min(progress, 1) * 100}%` }]} />
         </View>
-        <Pressable
-          style={[styles.finishButton, finishDisabled && styles.finishButtonDisabled]}
-          onPress={onFinish}
-          disabled={finishDisabled}
-          accessibilityRole="button"
-        >
-          <Text style={styles.finishButtonText}>Finish Test</Text>
-        </Pressable>
       </View>
     </View>
   );
@@ -48,9 +48,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginBottom: 12,
   },
-  quizName: { fontSize: 17, fontWeight: '700', color: colors.accentRedAlt },
-  counter: { fontSize: 17, fontWeight: '700', color: colors.accentRedAlt, width: 44, textAlign: 'right' },
-  progressRow: { flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 24 },
+  previousButton: { width: 48, paddingVertical: 6 },
+  previousButtonDisabled: { opacity: 0.35 },
+  previousText: { fontSize: 15, fontWeight: '700', color: colors.accentRedAlt },
+  quizName: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: '700',
+    color: colors.accentRedAlt,
+    textAlign: 'center',
+    marginHorizontal: 4,
+  },
+  counter: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: colors.accentRedAlt,
+    width: 58,
+    flexShrink: 0,
+    textAlign: 'right',
+  },
+  progressRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 24 },
   track: {
     flex: 1,
     height: 4,
@@ -62,14 +79,4 @@ const styles = StyleSheet.create({
     backgroundColor: colors.strokeAccent,
     borderRadius: 2,
   },
-  finishButton: {
-    minHeight: 34,
-    paddingHorizontal: 12,
-    borderRadius: 17,
-    backgroundColor: colors.primary,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  finishButtonDisabled: { opacity: 0.45 },
-  finishButtonText: { color: '#fff', fontSize: 12, fontWeight: '700' },
 });

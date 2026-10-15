@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { colors } from '../theme/colors';
 import { useResponsive } from '../theme/responsive';
 import { useAuth } from '../context/AuthContext';
@@ -31,14 +31,17 @@ export default function QuizPlayScreen({ route, navigation }) {
   const questionsInRun = questions.length - firstQuestionIndex;
 
   const [index, setIndex] = useState(firstQuestionIndex);
-  const [correctCount, setCorrectCount] = useState(0);
-  const [answeredCount, setAnsweredCount] = useState(0);
+  const [answersByIndex, setAnswersByIndex] = useState({});
   const [answerPending, setAnswerPending] = useState(false);
   const startTimeRef = useRef(Date.now());
 
   const question = questions[index];
 
-  const finishQuiz = (finalCorrectCount, finalAnsweredCount) => {
+  const finishQuiz = (finalAnswers) => {
+    const answers = Object.values(finalAnswers);
+    const finalCorrectCount = answers.filter((answer) => answer.isCorrect).length;
+    const finalAnsweredCount = answers.length;
+    const finalReviews = answers.map(({ review, isCorrect }) => ({ ...review, isCorrect }));
     const elapsedMs = Date.now() - startTimeRef.current;
     navigation.replace('QuizResult', {
       batchId,
@@ -48,29 +51,36 @@ export default function QuizPlayScreen({ route, navigation }) {
       answeredCount: finalAnsweredCount,
       elapsedMs,
       startIndex,
+      answerReviews: finalReviews,
+      language,
     });
   };
 
-  const handleAnswered = (isCorrect) => {
-    const nextCorrectCount = correctCount + (isCorrect ? 1 : 0);
-    const nextAnsweredCount = answeredCount + 1;
+  const handleAnswered = (questionIndex, isCorrect, review) => {
+    const nextAnswers = {
+      ...answersByIndex,
+      [questionIndex]: { isCorrect, review },
+    };
+    const nextAnsweredCount = Object.keys(nextAnswers).length;
     if (!hasPrimeAccess() && nextAnsweredCount >= 1) {
       redirectToPaywall(navigation, route, batchId);
       return;
     }
-    setCorrectCount(nextCorrectCount);
-    setAnsweredCount(nextAnsweredCount);
+    setAnswersByIndex(nextAnswers);
 
     if (index < questions.length - 1) {
       setIndex(index + 1);
     } else {
-      finishQuiz(nextCorrectCount, nextAnsweredCount);
+      finishQuiz(nextAnswers);
     }
   };
 
-  const handleFinishTest = () => {
-    if (answerPending) return;
-    finishQuiz(correctCount, answeredCount);
+  const handlePrevious = () => {
+    if (index > firstQuestionIndex) setIndex(index - 1);
+  };
+
+  const handleFinishQuiz = () => {
+    finishQuiz(answersByIndex);
   };
 
   if (!question) {
@@ -97,18 +107,30 @@ export default function QuizPlayScreen({ route, navigation }) {
           quizName={quiz.name}
           current={index - firstQuestionIndex + 1}
           total={questionsInRun}
-          onBack={() => navigation.goBack()}
-          onFinish={handleFinishTest}
-          finishDisabled={answerPending}
+          onPrevious={handlePrevious}
+          previousDisabled={answerPending}
         />
 
-        <QuizQuestionRenderer
-          key={question.id}
-          question={question}
-          language={language}
-          onAnswered={handleAnswered}
-          onAnswerPending={setAnswerPending}
-        />
+        <View style={styles.questionArea}>
+          <QuizQuestionRenderer
+            key={`${question.id}-${index}`}
+            question={question}
+            language={language}
+            onAnswered={(isCorrect, review) => handleAnswered(index, isCorrect, review)}
+            onAnswerPending={setAnswerPending}
+          />
+        </View>
+
+        <Pressable
+          style={[styles.finishButton, answerPending && styles.finishButtonDisabled]}
+          onPress={handleFinishQuiz}
+          disabled={answerPending}
+          accessibilityRole="button"
+        >
+          <Text style={styles.finishButtonText}>
+            {language === 'tamil' ? 'சோதனையை முடிக்கவும்' : 'Finish Test'}
+          </Text>
+        </Pressable>
       </View>
 
       <BottomNav
@@ -127,5 +149,17 @@ export default function QuizPlayScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.background },
   container: { flex: 1, paddingHorizontal: 24, paddingTop: 20 },
+  questionArea: { flex: 1, justifyContent: 'center' },
+  finishButton: {
+    minHeight: 48,
+    borderRadius: 24,
+    backgroundColor: colors.homeOrangeLight,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 12,
+    marginBottom: 12,
+  },
+  finishButtonDisabled: { opacity: 0.5 },
+  finishButtonText: { fontSize: 16, fontWeight: '700', color: '#fff' },
   emptyText: { textAlign: 'center', marginTop: 60, color: colors.textLabel },
 });

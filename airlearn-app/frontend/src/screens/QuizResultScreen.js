@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet, ScrollView } from 'react-native';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
@@ -30,7 +30,11 @@ export default function QuizResultScreen({ route, navigation }) {
     answeredCount,
     elapsedMs = 0,
     startIndex = 0,
+    answerReviews = [],
+    language = 'english',
   } = route?.params || {};
+  const isTamil = language === 'tamil';
+  const incorrectReviews = answerReviews.filter((review) => !review.isCorrect);
 
   const stats = useMemo(() => {
     const answered = Math.min(answeredCount ?? total, total);
@@ -48,13 +52,22 @@ export default function QuizResultScreen({ route, navigation }) {
 
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
-      <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
-          <Text style={styles.title}>Practice Complete</Text>
+      <ScrollView
+        style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}
+        contentContainerStyle={styles.content}
+      >
+        <Text style={styles.title}>{isTamil ? 'பயிற்சி முடிந்தது' : 'Practice Complete'}</Text>
 
         <View style={styles.card}>
-          <Text style={styles.great}>{stats.correctPct >= 60 ? 'Great!' : 'Keep practicing!'}</Text>
+          <Text style={styles.great}>
+            {stats.correctPct >= 60
+              ? isTamil ? 'நன்று!' : 'Great!'
+              : isTamil ? 'தொடர்ந்து பயிற்சி செய்யுங்கள்!' : 'Keep practicing!'}
+          </Text>
           <Text style={styles.subtitle}>
-            {stats.correctPct >= 60 ? 'you did well' : "you'll get it next time"}
+            {stats.correctPct >= 60
+              ? isTamil ? 'நன்றாக செய்தீர்கள்' : 'You did well'
+              : isTamil ? 'அடுத்த முறை சிறப்பாக செய்வீர்கள்' : "You'll get it next time"}
           </Text>
 
           <View style={styles.ringWrap}>
@@ -63,28 +76,51 @@ export default function QuizResultScreen({ route, navigation }) {
 
           <View style={styles.statsRow}>
             <View style={styles.statItem}>
-              <Text style={styles.statLabel}>Answered</Text>
+              <Text style={styles.statLabel}>{isTamil ? 'பதிலளித்தவை' : 'Answered'}</Text>
               <Text style={styles.statValue}>{stats.answered}/{total}</Text>
             </View>
             <View style={styles.statItem}>
-              <Text style={styles.statLabel}>Correct</Text>
+              <Text style={styles.statLabel}>{isTamil ? 'சரி' : 'Correct'}</Text>
               <Text style={styles.statValue}>{correctCount}</Text>
             </View>
             <View style={styles.statItem}>
-              <Text style={styles.statLabel}>Time</Text>
+              <Text style={styles.statLabel}>{isTamil ? 'தவறு' : 'Incorrect'}</Text>
+              <Text style={styles.statValue}>{Math.max(0, stats.answered - correctCount)}</Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statLabel}>{isTamil ? 'நேரம்' : 'Time'}</Text>
               <Text style={styles.statValue}>{formatElapsed(elapsedMs)}</Text>
             </View>
           </View>
         </View>
 
+        {incorrectReviews.length > 0 && (
+          <View style={styles.reviewSection}>
+            <Text style={styles.reviewTitle}>
+              {isTamil ? 'சரியான பதில்கள்' : 'Review incorrect answers'}
+            </Text>
+            {incorrectReviews.map((review, index) => (
+              <View key={`${review.question}-${index}`} style={styles.reviewCard}>
+                <Text style={styles.reviewQuestion}>{review.question}</Text>
+                <Text style={styles.reviewAnswer}>
+                  {isTamil ? 'சரியான பதில்: ' : 'Correct answer: '}
+                  <Text style={styles.correctAnswer}>{review.correctAnswer}</Text>
+                </Text>
+              </View>
+            ))}
+          </View>
+        )}
+
         <Pressable style={styles.primaryButton} onPress={handlePracticeAgain}>
-          <Text style={styles.primaryButtonText}>Play Again</Text>
+          <Text style={styles.primaryButtonText}>{isTamil ? 'மீண்டும் பயிற்சி' : 'Play Again'}</Text>
         </Pressable>
 
         <Pressable style={styles.secondaryButton} onPress={handleBackToQuizList}>
-          <Text style={styles.secondaryButtonText}>Back to Path</Text>
+          <Text style={styles.secondaryButtonText}>
+            {isTamil ? 'பாதைக்குத் திரும்பு' : 'Back to Path'}
+          </Text>
         </Pressable>
-      </View>
+      </ScrollView>
 
       <BottomNav
         active="Home"
@@ -101,7 +137,8 @@ export default function QuizResultScreen({ route, navigation }) {
 
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.background },
-  container: { flex: 1, paddingHorizontal: 20, paddingTop: 24 },
+  container: { flex: 1, paddingHorizontal: 20 },
+  content: { flexGrow: 1, paddingTop: 24, paddingBottom: 20 },
   title: { ...typography.h2, color: colors.accentRedAlt, textAlign: 'center', marginBottom: 20 },
   card: {
     backgroundColor: colors.homeOrangeBgAlt,
@@ -114,10 +151,28 @@ const styles = StyleSheet.create({
   great: { fontSize: 24, fontWeight: '700', color: colors.accentRedAlt, marginBottom: 4 },
   subtitle: { fontSize: 15, color: colors.textDark, marginBottom: 20 },
   ringWrap: { marginBottom: 24 },
-  statsRow: { flexDirection: 'row', width: '100%', justifyContent: 'space-around' },
-  statItem: { alignItems: 'center' },
-  statLabel: { fontSize: 13, color: colors.textLabel, marginBottom: 4 },
+  statsRow: { flexDirection: 'row', width: '100%', justifyContent: 'space-between' },
+  statItem: { flex: 1, alignItems: 'center' },
+  statLabel: { fontSize: 11, color: colors.textLabel, marginBottom: 4, textAlign: 'center' },
   statValue: { fontSize: 17, fontWeight: '700', color: colors.textDark },
+  reviewSection: { marginBottom: 24 },
+  reviewTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.accentRedAlt,
+    marginBottom: 12,
+  },
+  reviewCard: {
+    backgroundColor: colors.card,
+    borderWidth: 1,
+    borderColor: colors.borderLight,
+    borderRadius: 14,
+    padding: 14,
+    marginBottom: 10,
+  },
+  reviewQuestion: { fontSize: 15, fontWeight: '700', color: colors.textDark, marginBottom: 8 },
+  reviewAnswer: { fontSize: 14, color: colors.textLabel, marginTop: 3 },
+  correctAnswer: { color: colors.successGreen, fontWeight: '700' },
   primaryButton: {
     backgroundColor: colors.homeOrangeLight,
     borderRadius: 30,

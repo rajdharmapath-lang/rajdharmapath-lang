@@ -6,38 +6,10 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
-import StaggeredSlideItem from '../components/StaggeredSlideItem';
 import { batches } from '../data/courses';
 import { getQuizzesForBatch } from '../data/quizzes';
 import { usePayment } from '../context/PaymentContext';
 import { redirectToPaywall } from '../utils/paywall';
-
-const CHAPTERS = [
-  { id: 1, title: 'First Conversations', subtitle: 'Words and meaning' },
-  { id: 2, title: 'Listen & Speak', subtitle: 'Train your ear and voice' },
-  { id: 3, title: 'Character Writing', subtitle: 'Practice each stroke' },
-  { id: 4, title: 'Complete the Sentence', subtitle: 'Build simple Chinese sentences' },
-];
-
-const SKILL_LABELS = {
-  vocabulary: 'VOCABULARY',
-  image: 'PICTURE CLUE',
-  listening: 'LISTENING',
-  speech: 'SPEAKING',
-  stroke: 'WRITING',
-  sentence: 'SENTENCE BUILDING',
-  sentencePair: 'TWO-BLANK SENTENCE',
-};
-
-const SKILL_ICONS = {
-  vocabulary: 'book-outline',
-  image: 'image-outline',
-  listening: 'headset-outline',
-  speech: 'mic-outline',
-  stroke: 'create-outline',
-  sentence: 'chatbubble-ellipses-outline',
-  sentencePair: 'chatbubble-ellipses-outline',
-};
 
 export default function QuizListScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
@@ -47,6 +19,7 @@ export default function QuizListScreen({ route, navigation }) {
   const batch = batches.find((b) => b.id === batchId);
   const quizzes = getQuizzesForBatch(batchId).filter((quiz) => quiz.questions?.length);
   const quiz = quizzes[0];
+  const questionCount = quiz?.questions?.length || 0;
   const emptyCopy = batchId === 'elevation'
     ? {
         title: 'Your next practice path is taking shape',
@@ -87,81 +60,23 @@ export default function QuizListScreen({ route, navigation }) {
 
         {quiz ? (
           <ScrollView contentContainerStyle={styles.pathContent}>
-            {CHAPTERS.map((chapter, chapterIndex) => {
-              const chapterQuestions = quiz.questions
-                .map((question, questionIndex) => ({ question, questionIndex }))
-                .filter(({ question }) => question.chapter === chapter.id);
-
-              if (!chapterQuestions.length) return null;
-
-              return (
-                <View key={chapter.id} style={styles.chapter}>
-                  <View style={styles.chapterHeader}>
-                    <View style={styles.chapterHeading}>
-                      <Text style={styles.chapterEyebrow}>CHAPTER {chapterIndex + 1}</Text>
-                      <Text style={styles.chapterTitle}>{chapter.title}</Text>
-                      <Text style={styles.chapterSubtitle}>{chapter.subtitle}</Text>
-                    </View>
-                    <Text style={styles.chapterCount}>{chapterQuestions.length} STEPS</Text>
-                  </View>
-                  <View style={styles.chapterRule} />
-
-                  <View style={styles.pathTrack}>
-                    <View style={styles.pathLine} />
-                    {chapterQuestions.map(({ question, questionIndex }) => {
-                      const locked = questionIndex > 0 && (!loaded || !hasPrimeAccess());
-                      return (
-                        <StaggeredSlideItem
-                          key={question.id}
-                          index={questionIndex}
-                          style={styles.pathEntry}
-                        >
-                          <Pressable
-                            style={[styles.pathStep, locked && styles.pathStepLocked]}
-                            onPress={() => startQuestion(questionIndex)}
-                            accessibilityRole="button"
-                            accessibilityLabel={`Practice step ${questionIndex + 1}: ${question.pathTitle}${locked ? ', Prime members only' : ''}`}
-                            accessibilityState={{ disabled: questionIndex > 0 && !loaded }}
-                          >
-                            <View
-                              style={[
-                                styles.pathNode,
-                                questionIndex === 0 && styles.pathNodeActive,
-                                locked && styles.pathNodeLocked,
-                              ]}
-                            >
-                              {locked ? (
-                                <Ionicons name="lock-closed" size={16} color={colors.textLabel} />
-                              ) : questionIndex === 0 ? (
-                                <Ionicons name="play" size={17} color="#fff" />
-                              ) : (
-                                <Ionicons
-                                  name={SKILL_ICONS[question.type] || 'ellipse'}
-                                  size={17}
-                                  color={colors.accentRedAlt}
-                                />
-                              )}
-                            </View>
-                            <View style={styles.pathStepText}>
-                              <View style={styles.pathTitleRow}>
-                                <Text style={[styles.pathStepTitle, locked && styles.pathStepTextLocked]}>
-                                  {question.pathTitle}
-                                </Text>
-                                <Text style={styles.pathStepNumber}>{questionIndex + 1}/{quiz.questions.length}</Text>
-                              </View>
-                              <Text style={styles.pathSkill}>{SKILL_LABELS[question.type]}</Text>
-                            </View>
-                            {!locked && (
-                              <Ionicons name="chevron-forward" size={18} color={colors.border} />
-                            )}
-                          </Pressable>
-                        </StaggeredSlideItem>
-                      );
-                    })}
-                  </View>
-                </View>
-              );
-            })}
+            <Pressable
+              style={styles.topicRow}
+              onPress={() => startQuestion(0)}
+              accessibilityRole="button"
+              accessibilityLabel={`Start ${quiz.topicName || quiz.name}, ${questionCount} questions`}
+            >
+              <View style={styles.topicNode}>
+                <Ionicons name="play" size={17} color="#fff" />
+              </View>
+              <View style={styles.topicText}>
+                <Text style={styles.topicTitle}>{quiz.topicName || quiz.name}</Text>
+                <Text style={styles.questionCount}>
+                  {questionCount} {questionCount === 1 ? 'question' : 'questions'}
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward" size={18} color={colors.border} />
+            </Pressable>
           </ScrollView>
         ) : (
           <View style={styles.emptyState}>
@@ -197,49 +112,26 @@ const styles = StyleSheet.create({
   title: { ...typography.h2, color: colors.accentRedAlt, fontSize: 20 },
   batchTitle: { fontSize: 15, color: colors.textLabel, marginBottom: 20 },
   pathContent: { paddingBottom: 24 },
-  chapter: { marginBottom: 24 },
-  chapterHeader: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  chapterHeading: { flex: 1 },
-  chapterEyebrow: { fontSize: 10, fontWeight: '700', color: colors.homeOrange, marginBottom: 4 },
-  chapterTitle: { fontSize: 19, fontWeight: '700', color: colors.textDark },
-  chapterSubtitle: { fontSize: 12, color: colors.textLabel, marginTop: 3 },
-  chapterCount: { fontSize: 11, fontWeight: '700', color: colors.textLabel, marginLeft: 10 },
-  chapterRule: { height: 3, borderRadius: 2, backgroundColor: colors.homeOrangeLight, marginTop: 12, marginBottom: 10 },
-  pathTrack: { position: 'relative' },
-  pathLine: {
-    position: 'absolute',
-    top: 24,
-    bottom: 24,
-    left: 21,
-    width: 2,
-    backgroundColor: colors.homeOrangeLight,
+  topicRow: {
+    minHeight: 72,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
   },
-  pathEntry: { marginVertical: 3 },
-  pathStep: { minHeight: 64, flexDirection: 'row', alignItems: 'center', paddingVertical: 7 },
-  pathStepLocked: { opacity: 0.72 },
-  pathNode: {
+  topicNode: {
     width: 44,
     height: 44,
     borderRadius: 22,
-    backgroundColor: colors.homeOrangeBgAlt,
-    borderWidth: 1,
+    backgroundColor: colors.homeOrange,
+    borderWidth: 3,
     borderColor: colors.homeOrangeLight,
     alignItems: 'center',
     justifyContent: 'center',
-    marginRight: 12,
+    marginRight: 14,
   },
-  pathNodeActive: {
-    backgroundColor: colors.homeOrange,
-    borderColor: colors.homeOrangeLight,
-    borderWidth: 3,
-  },
-  pathNodeLocked: { backgroundColor: colors.background, borderColor: colors.borderLight },
-  pathStepText: { flex: 1 },
-  pathTitleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-  pathStepTitle: { flex: 1, fontSize: 15, fontWeight: '700', color: colors.textDark },
-  pathStepTextLocked: { color: colors.textLabel },
-  pathStepNumber: { fontSize: 11, color: colors.textLabel, marginLeft: 8 },
-  pathSkill: { fontSize: 10, fontWeight: '700', color: colors.textLabel, marginTop: 4 },
+  topicText: { flex: 1 },
+  topicTitle: { fontSize: 16, fontWeight: '700', color: colors.textDark },
+  questionCount: { fontSize: 12, color: colors.textLabel, marginTop: 3 },
   emptyState: { alignItems: 'center', paddingHorizontal: 24, paddingVertical: 48 },
   emptyTitle: { fontSize: 17, fontWeight: '700', color: colors.accentRedAlt, textAlign: 'center', marginTop: 14 },
   emptyMessage: { fontSize: 14, lineHeight: 20, color: colors.textLabel, textAlign: 'center', marginTop: 8 },
