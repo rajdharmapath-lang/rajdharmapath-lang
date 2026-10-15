@@ -20,8 +20,9 @@ export const plansByBatch = {
       price: 2999,
       originalPrice: 6000,
       duration: '3 months',
-      features: 'Recorded Videos+ Live Class 15 Days',
+      features: 'Recorded Videos',
       includesLive: true,
+      liveClassCount: 3,
     },
   ],
   elevation: [
@@ -42,8 +43,9 @@ export const plansByBatch = {
       price: 4999,
       originalPrice: 10000,
       duration: '3 months',
-      features: 'Recorded Videos+ Live Class 15 Days',
+      features: 'Recorded Videos',
       includesLive: true,
+      liveClassCount: 9,
     },
   ],
   distinction: [
@@ -64,8 +66,9 @@ export const plansByBatch = {
       price: 7999,
       originalPrice: 16000,
       duration: '3 months',
-      features: 'Recorded Videos+ Live Class 15 Days',
+      features: 'Recorded Videos',
       includesLive: true,
+      liveClassCount: 15,
     },
   ],
 };

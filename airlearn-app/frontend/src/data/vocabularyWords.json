@@ -3790,5 +3790,93 @@
         "pinyin":  "Dànhuáng jiàng",
         "en":  "Mayonnaise",
         "ta":  "மயோனைஸ்"
+    },
+    {
+        "id":  "g1",
+        "categoryId":  "greetings",
+        "hanzi":  "你好",
+        "pinyin":  "Nǐ hǎo",
+        "en":  "Hello",
+        "ta":  "வணக்கம்"
+    },
+    {
+        "id":  "g2",
+        "categoryId":  "greetings",
+        "hanzi":  "早上好",
+        "pinyin":  "Zǎoshang hǎo",
+        "en":  "Good morning",
+        "ta":  "காலை வணக்கம்"
+    },
+    {
+        "id":  "g3",
+        "categoryId":  "greetings",
+        "hanzi":  "晚上好",
+        "pinyin":  "Wǎnshang hǎo",
+        "en":  "Good evening",
+        "ta":  "மாலை வணக்கம்"
+    },
+    {
+        "id":  "g4",
+        "categoryId":  "greetings",
+        "hanzi":  "请",
+        "pinyin":  "Qǐng",
+        "en":  "Please",
+        "ta":  "தயவுசெய்து"
+    },
+    {
+        "id":  "g5",
+        "categoryId":  "greetings",
+        "hanzi":  "晚安",
+        "pinyin":  "Wǎn'ān",
+        "en":  "Good night",
+        "ta":  "இனிய இரவு"
+    },
+    {
+        "id":  "g6",
+        "categoryId":  "greetings",
+        "hanzi":  "不客气",
+        "pinyin":  "Bù kèqi",
+        "en":  "You're welcome",
+        "ta":  "பரவாயில்லை"
+    },
+    {
+        "id":  "g7",
+        "categoryId":  "greetings",
+        "hanzi":  "谢谢",
+        "pinyin":  "Xièxie",
+        "en":  "Thank you",
+        "ta":  "நன்றி"
+    },
+    {
+        "id":  "g8",
+        "categoryId":  "greetings",
+        "hanzi":  "再见",
+        "pinyin":  "Zàijiàn",
+        "en":  "Goodbye",
+        "ta":  "பிரியாவிடை"
+    },
+    {
+        "id":  "g9",
+        "categoryId":  "greetings",
+        "hanzi":  "你好吗？",
+        "pinyin":  "Nǐ hǎo ma?",
+        "en":  "How are you?",
+        "ta":  "நீங்கள் எப்படி இருக்கிறீர்கள்?"
+    },
+    {
+        "id":  "g10",
+        "categoryId":  "greetings",
+        "hanzi":  "请问",
+        "pinyin":  "Qǐngwèn",
+        "en":  "Excuse me",
+        "ta":  "மன்னிக்கவும்"
+    },
+    {
+        "id":  "g11",
+        "categoryId":  "greetings",
+        "hanzi":  "对不起",
+        "pinyin":  "Duìbuqǐ",
+        "en":  "Sorry",
+        "ta":  "மன்னிக்கவும்"
     }
 ]

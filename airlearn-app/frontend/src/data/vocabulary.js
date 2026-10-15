@@ -1,6 +1,7 @@
 import importedWords from './vocabularyWords.json';
 
 const TOPICS = [
+  ['greetings', 'Greetings'],
   ['numbers', 'Numbers'],
   ['self-introduction', 'Self Introduction'],
   ['family', 'Family'],

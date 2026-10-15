@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useCallback, useRef } from 'react';
 import { View, Pressable, StyleSheet, Image } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { colors } from '../theme/colors';
+import { useBottomNavContext } from '../context/BottomNavContext';
 
 const TABS = [
   { key: 'Home', image: require('../../assets/home.png'), label: 'Home' },
@@ -15,8 +18,29 @@ const TABS = [
 ];
 
 export default function BottomNav({ active, onNavigate }) {
+  const bottomNavContext = useBottomNavContext();
+  const registerNavigation = bottomNavContext?.registerNavigation;
+  const onNavigateRef = useRef(onNavigate);
+  onNavigateRef.current = onNavigate;
+
+  const handleNavigate = useCallback((key) => {
+    onNavigateRef.current?.(key);
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      if (!registerNavigation) return undefined;
+      return registerNavigation({ active, onNavigate: handleNavigate });
+    }, [active, registerNavigation, handleNavigate])
+  );
+
+  if (bottomNavContext) return null;
+  return <BottomNavBar active={active} onNavigate={onNavigate} />;
+}
+
+function BottomNavBar({ active, onNavigate, bottomInset = 0 }) {
   return (
-    <View style={styles.bar}>
+    <View style={[styles.bar, { paddingBottom: bottomInset, height: 68 + bottomInset }]}>
       {TABS.map((tab) => {
         const isActive = active === tab.key;
         return (
@@ -43,15 +67,29 @@ export default function BottomNav({ active, onNavigate }) {
   );
 }
 
+export function PersistentBottomNav() {
+  const bottomNavContext = useBottomNavContext();
+  const insets = useSafeAreaInsets();
+  if (!bottomNavContext?.navigation) return null;
+
+  return (
+    <BottomNavBar
+      active={bottomNavContext.navigation.active}
+      onNavigate={bottomNavContext.navigation.onNavigate}
+      bottomInset={insets.bottom}
+    />
+  );
+}
+
 const styles = StyleSheet.create({
   bar: {
     flexDirection: 'row',
     borderTopWidth: 1,
     borderTopColor: colors.navInactiveBg,
-    height: 68,
     flexShrink: 0,
     backgroundColor: colors.background,
     elevation: 8,
+    zIndex: 10,
   },
   tab: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   icon: { width: 30, height: 30 },

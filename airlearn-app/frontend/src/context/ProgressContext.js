@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LEARNED_WORDS_KEY = 'progressLearnedWordIds';
 const COMPLETED_VIDEOS_KEY = 'progressCompletedVideoIds';
+const COMPLETED_CHARACTERS_KEY = 'progressCompletedStrokeCharacters';
 const STREAK_KEY = 'progressStreak';
 
 const ProgressContext = createContext(null);
@@ -19,18 +20,21 @@ function daysBetween(a, b) {
 export function ProgressProvider({ children }) {
   const [learnedWordIds, setLearnedWordIds] = useState([]);
   const [completedVideoIds, setCompletedVideoIds] = useState([]);
+  const [completedStrokeCharacters, setCompletedStrokeCharacters] = useState([]);
   const [streak, setStreak] = useState({ lastActiveDate: null, currentStreak: 0 });
 
   useEffect(() => {
     (async () => {
       try {
-        const [wordsRaw, videosRaw, streakRaw] = await Promise.all([
+        const [wordsRaw, videosRaw, charactersRaw, streakRaw] = await Promise.all([
           AsyncStorage.getItem(LEARNED_WORDS_KEY),
           AsyncStorage.getItem(COMPLETED_VIDEOS_KEY),
+          AsyncStorage.getItem(COMPLETED_CHARACTERS_KEY),
           AsyncStorage.getItem(STREAK_KEY),
         ]);
         if (wordsRaw) setLearnedWordIds(JSON.parse(wordsRaw));
         if (videosRaw) setCompletedVideoIds(JSON.parse(videosRaw));
+        if (charactersRaw) setCompletedStrokeCharacters(JSON.parse(charactersRaw));
         if (streakRaw) setStreak(JSON.parse(streakRaw));
       } catch (e) {
         // start fresh
@@ -86,13 +90,34 @@ export function ProgressProvider({ children }) {
     [recordActivity]
   );
 
+  const recordStrokeCharacterCompleted = useCallback(
+    (character) => {
+      setCompletedStrokeCharacters((prev) => {
+        if (prev.includes(character)) return prev;
+        const next = [...prev, character];
+        AsyncStorage.setItem(COMPLETED_CHARACTERS_KEY, JSON.stringify(next)).catch((error) => {
+          console.error('Could not save completed stroke character:', error);
+        });
+        return next;
+      });
+      recordActivity();
+    },
+    [recordActivity]
+  );
+
   const clearProgress = useCallback(async () => {
     setLearnedWordIds([]);
     setCompletedVideoIds([]);
+    setCompletedStrokeCharacters([]);
     setStreak({ lastActiveDate: null, currentStreak: 0 });
-    await AsyncStorage.multiRemove([LEARNED_WORDS_KEY, COMPLETED_VIDEOS_KEY, STREAK_KEY]).catch(
-      () => {}
-    );
+    await AsyncStorage.multiRemove([
+      LEARNED_WORDS_KEY,
+      COMPLETED_VIDEOS_KEY,
+      COMPLETED_CHARACTERS_KEY,
+      STREAK_KEY,
+    ]).catch((error) => {
+      console.error('Could not clear learning progress:', error);
+    });
   }, []);
 
   return (
@@ -101,9 +126,11 @@ export function ProgressProvider({ children }) {
         wordsLearnedCount: learnedWordIds.length,
         videosCompletedCount: completedVideoIds.length,
         completedVideoIds,
+        completedStrokeCharacters,
         daysStreak: streak.currentStreak,
         recordWordLearned,
         recordVideoCompleted,
+        recordStrokeCharacterCompleted,
         recordActivity,
         clearProgress,
       }}

@@ -12,11 +12,23 @@ import { plansByBatch } from '../data/plans';
 export default function PaywallChoosePlanScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
-  const { batchId, returnTo } = route?.params || {};
+  const { batchId, returnTo, upgradeMessage } = route?.params || {};
   const batchesToShow = batchId ? batches.filter((batch) => batch.id === batchId) : batches;
 
   const handleSelectPlan = (plan) => {
     navigation.navigate('Checkout', { planId: plan.id, returnTo });
+  };
+
+  const handleBack = () => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+      return;
+    }
+    if (returnTo?.name) {
+      navigation.navigate(returnTo.name, returnTo.params);
+      return;
+    }
+    navigation.navigate('Home');
   };
 
   return (
@@ -24,12 +36,19 @@ export default function PaywallChoosePlanScreen({ route, navigation }) {
       <ScrollView>
         <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
           <View style={styles.header}>
-            <Pressable onPress={() => navigation.goBack()} hitSlop={12}>
+            <Pressable
+              onPress={handleBack}
+              hitSlop={12}
+              accessibilityRole="button"
+              accessibilityLabel="Go back"
+            >
               <Ionicons name="chevron-back" size={26} color={colors.border} />
             </Pressable>
             <Text style={styles.title}>Choose Plan</Text>
             <View style={{ width: 26 }} />
           </View>
+
+          {upgradeMessage && <Text style={styles.upgradeMessage}>{upgradeMessage}</Text>}
 
           {batchesToShow.map((batch) => (
             <View
@@ -53,7 +72,16 @@ export default function PaywallChoosePlanScreen({ route, navigation }) {
                     <Text style={styles.originalPrice}>₹{plan.originalPrice}</Text>
                   </View>
                   <Text style={styles.duration}>{plan.duration}</Text>
-                  <Text style={styles.features}>{plan.features}</Text>
+                  <View style={styles.features}>
+                    <Text style={styles.featureLine}>
+                      {plan.includesLive ? 'Recorded Videos +' : plan.features}
+                    </Text>
+                    {plan.includesLive && plan.liveClassCount != null && (
+                      <Text style={styles.featureLine}>
+                        Live Classes: {plan.liveClassCount}
+                      </Text>
+                    )}
+                  </View>
                 </Pressable>
               ))}
             </View>
@@ -84,6 +112,14 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   title: { ...typography.h2, color: colors.accentRedAlt },
+  upgradeMessage: {
+    ...typography.body,
+    color: colors.textDark,
+    backgroundColor: colors.homeOrangeBg,
+    borderRadius: 14,
+    padding: 14,
+    marginBottom: 18,
+  },
   batchSection: {
     borderRadius: 18,
     padding: 16,
@@ -109,5 +145,6 @@ const styles = StyleSheet.create({
     textDecorationLine: 'line-through',
   },
   duration: { fontSize: 13, color: colors.textDark, width: 66 },
-  features: { fontSize: 13, color: colors.textDark, flex: 1 },
+  features: { flex: 1, minWidth: 0 },
+  featureLine: { fontSize: 13, color: colors.textDark, lineHeight: 16 },
 });

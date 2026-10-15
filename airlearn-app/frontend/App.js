@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { View as NativeView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -10,6 +11,8 @@ import { VocabularyProvider } from './src/context/VocabularyContext';
 import { ProgressProvider } from './src/context/ProgressContext';
 import { NetworkProvider, useNetwork } from './src/context/NetworkContext';
 import { loadVoiceSpeed } from './src/services/audio';
+import { BottomNavProvider } from './src/context/BottomNavContext';
+import { PersistentBottomNav } from './src/components/BottomNav';
 
 import NoInternetScreen from './src/screens/NoInternetScreen';
 
@@ -78,11 +81,19 @@ function RootNavigator({ initialRouteName }) {
       <Stack.Screen name="CreateAccount" component={CreateAccountScreen} />
       <Stack.Screen name="LanguageChoose" component={LanguageChooseScreen} />
 
-      <Stack.Screen name="Home" component={HomeScreen} options={{ animation: 'none' }} />
+      <Stack.Screen name="Home" component={HomeScreen} />
 
-      <Stack.Screen name="BatchList" component={BatchListScreen} options={{ animation: 'none' }} />
-      <Stack.Screen name="VideoList" component={VideoListScreen} />
-      <Stack.Screen name="VideoPlayer" component={VideoPlayerScreen} />
+      <Stack.Screen name="BatchList" component={BatchListScreen} />
+      <Stack.Screen
+        name="VideoList"
+        component={VideoListScreen}
+        options={{ animation: 'slide_from_right' }}
+      />
+      <Stack.Screen
+        name="VideoPlayer"
+        component={VideoPlayerScreen}
+        options={{ animation: 'slide_from_right' }}
+      />
       <Stack.Screen name="LiveClass" component={LiveClassScreen} />
       <Stack.Screen name="LearningPdf" component={LearningPdfScreen} />
 
@@ -90,7 +101,7 @@ function RootNavigator({ initialRouteName }) {
       <Stack.Screen name="StrokePractice" component={StrokePracticeScreen} />
       <Stack.Screen name="StrokeResult" component={StrokeResultScreen} />
 
-      <Stack.Screen name="Vocabulary" component={VocabularyScreen} options={{ animation: 'none' }} />
+      <Stack.Screen name="Vocabulary" component={VocabularyScreen} />
       <Stack.Screen name="VocabularyCategoryList" component={VocabularyCategoryListScreen} />
       <Stack.Screen name="FullVocabulary" component={FullVocabularyScreen} />
 
@@ -109,13 +120,10 @@ function RootNavigator({ initialRouteName }) {
       <Stack.Screen name="PaymentSuccess" component={PaymentSuccessScreen} />
       <Stack.Screen name="PaymentFailed" component={PaymentFailedScreen} />
 
-      <Stack.Screen name="Settings" component={SettingsScreen} options={{ animation: 'none' }} />
+      <Stack.Screen name="Settings" component={SettingsScreen} />
       <Stack.Screen name="SettingsAccount" component={SettingsAccountScreen} />
       <Stack.Screen name="SettingsLanguage" component={SettingsLanguageScreen} />
-      <Stack.Screen
-        name="SettingsLearningPreference"
-        component={SettingsLearningPreferenceScreen}
-      />
+      <Stack.Screen name="SettingsLearningPreference" component={SettingsLearningPreferenceScreen} />
     </Stack.Navigator>
   );
 }
@@ -127,7 +135,14 @@ function AppNavigation() {
 
   return (
     <NavigationContainer onReady={() => ExpoSplashScreen.hideAsync().catch(() => {})}>
-      <RootNavigator initialRouteName={user ? 'Home' : 'PhoneEntry'} />
+      <BottomNavProvider>
+        <NativeView style={{ flex: 1 }}>
+          <NativeView style={{ flex: 1 }}>
+            <RootNavigator initialRouteName={user ? 'Home' : 'PhoneEntry'} />
+          </NativeView>
+          <PersistentBottomNav />
+        </NativeView>
+      </BottomNavProvider>
     </NavigationContainer>
   );
 }

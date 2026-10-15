@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { View, Text, Pressable, StyleSheet, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,32 +11,44 @@ import { redirectToPaywall } from '../utils/paywall';
 import { ChineseStrokeWriter } from '../vendor/chinese-stroke-rn/src';
 import { getCharacterMeta } from '../data/characterMeta';
 import BottomNav from '../components/BottomNav';
+import { useProgress } from '../context/ProgressContext';
 
 export default function StrokePracticeScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth, width } = useResponsive();
   const { user } = useAuth();
   const { hasPrimeAccess } = usePayment();
+  const { recordStrokeCharacterCompleted } = useProgress();
   const language = user?.language === 'tamil' ? 'tamil' : 'english';
   const characters = route?.params?.characters?.length ? route.params.characters : ['学'];
 
   const [index, setIndex] = useState(0);
-  // Per-character result, keyed by index: { mistakes, totalStrokes, completed }
-  const [results, setResults] = useState({});
+  const resultsRef = useRef({});
+  const completedIndexesRef = useRef(new Set());
+  const advanceTimerRef = useRef(null);
 
   const writerRef = useRef(null);
   const character = characters[index];
   const meta = getCharacterMeta(character, language);
   const canvasSize = Math.min(width - 80, 320);
 
-  const currentResult = results[index] || { mistakes: 0, totalStrokes: 0, completed: false };
-
   const updateResult = (patch) => {
-    setResults((prev) => ({
-      ...prev,
-      [index]: { ...(prev[index] || { mistakes: 0, totalStrokes: 0, completed: false }), ...patch },
-    }));
+    const nextResults = {
+      ...resultsRef.current,
+      [index]: {
+        ...(resultsRef.current[index] || { mistakes: 0, totalStrokes: 0, completed: false }),
+        ...patch,
+      },
+    };
+    resultsRef.current = nextResults;
   };
+
+  useEffect(
+    () => () => {
+      if (advanceTimerRef.current) clearTimeout(advanceTimerRef.current);
+    },
+    []
+  );
 
   const goToResults = (finalResults) => {
     navigation.navigate('StrokeResult', {
@@ -45,40 +57,57 @@ export default function StrokePracticeScreen({ route, navigation }) {
     });
   };
 
-  const handleNext = () => {
-    if (!hasPrimeAccess() && index === 0) {
-      if (!currentResult.completed) {
-        Alert.alert('Practice first', 'Complete this character before continuing.');
+  const handleStrokeComplete = () => {
+    if (completedIndexesRef.current.has(index)) return;
+    completedIndexesRef.current.add(index);
+
+    const nextResults = {
+      ...resultsRef.current,
+      [index]: {
+        ...(resultsRef.current[index] || { mistakes: 0, totalStrokes: 0, completed: false }),
+        completed: true,
+      },
+    };
+    resultsRef.current = nextResults;
+    recordStrokeCharacterCompleted(character);
+
+    advanceTimerRef.current = setTimeout(() => {
+      if (!hasPrimeAccess() && index === 0 && index < characters.length - 1) {
+        redirectToPaywall(navigation, route);
         return;
       }
-      redirectToPaywall(navigation, route);
-      return;
-    }
-    if (index < characters.length - 1) {
-      setIndex(index + 1);
+      if (index < characters.length - 1) {
+        setIndex(index + 1);
+      } else {
+        goToResults(nextResults);
+      }
+    }, 600);
+  };
+
+  const handleBack = () => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
     } else {
-      goToResults(results);
+      navigation.navigate('Home');
     }
-  };
-
-  const handlePrevious = () => {
-    if (index > 0) setIndex(index - 1);
-  };
-
-  const handleReplay = () => {
-    writerRef.current?.reset();
-    updateResult({ mistakes: 0, completed: false });
-    setTimeout(() => writerRef.current?.start(), 50);
   };
 
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
-        <Pressable onPress={() => navigation.goBack()} hitSlop={12} style={styles.backButton}>
-          <Ionicons name="chevron-back" size={26} color={colors.border} />
-        </Pressable>
-
-        <Text style={styles.title}>Stroke Writing</Text>
+        <View style={styles.header}>
+          <Pressable
+            onPress={handleBack}
+            hitSlop={12}
+            style={styles.backButton}
+            accessibilityRole="button"
+            accessibilityLabel="Go back"
+          >
+            <Ionicons name="chevron-back" size={26} color={colors.border} />
+          </Pressable>
+          <Text style={styles.title}>Stroke Writing</Text>
+          <View style={styles.headerSpacer} />
+        </View>
 
         <View style={styles.infoBar}>
           <Text style={styles.infoHanzi} numberOfLines={1}>{character}</Text>
@@ -98,7 +127,7 @@ export default function StrokePracticeScreen({ route, navigation }) {
             showGuide
             onReady={(totalStrokes) => updateResult({ totalStrokes })}
             onMistake={(e) => updateResult({ mistakes: e.mistakes })}
-            onComplete={() => updateResult({ completed: true })}
+            onComplete={handleStrokeComplete}
             onError={(message) => {
               console.warn('Stroke practice failed to render:', message);
               Alert.alert('Stroke practice error (dev)', message);
@@ -118,26 +147,6 @@ export default function StrokePracticeScreen({ route, navigation }) {
           />
         </View>
 
-        <View style={styles.controlsRow}>
-          <Pressable
-            style={[styles.controlItem, index === 0 && styles.controlDisabled]}
-            onPress={handlePrevious}
-            disabled={index === 0}
-          >
-            <Ionicons name="arrow-back-circle-outline" size={26} color={colors.strokeAccent} />
-            <Text style={styles.controlLabel}>Previous</Text>
-          </Pressable>
-
-          <Pressable style={styles.controlItem} onPress={handleReplay}>
-            <Ionicons name="refresh" size={26} color={colors.strokeAccent} />
-            <Text style={styles.controlLabel}>Replay</Text>
-          </Pressable>
-
-          <Pressable style={styles.controlItem} onPress={handleNext}>
-            <Ionicons name="arrow-forward-circle-outline" size={26} color={colors.strokeAccent} />
-            <Text style={styles.controlLabel}>Next</Text>
-          </Pressable>
-        </View>
       </View>
 
       <BottomNav
@@ -156,13 +165,24 @@ export default function StrokePracticeScreen({ route, navigation }) {
 const styles = StyleSheet.create({
   flex: { flex: 1, backgroundColor: colors.background },
   container: { flex: 1, paddingHorizontal: 20, paddingTop: 20 },
-  backButton: { width: 40, height: 40, justifyContent: 'center' },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+    zIndex: 1,
+  },
+  backButton: {
+    width: 44,
+    height: 44,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+  },
+  headerSpacer: { width: 44 },
   title: {
     ...typography.h2,
     color: colors.accentRedAlt,
     textAlign: 'center',
-    marginTop: -32,
-    marginBottom: 20,
   },
   infoBar: {
     flexDirection: 'row',
@@ -193,14 +213,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    marginBottom: 24,
+    marginBottom: 0,
   },
-  controlsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingBottom: 24,
-  },
-  controlItem: { alignItems: 'center', gap: 4 },
-  controlDisabled: { opacity: 0.35 },
-  controlLabel: { fontSize: 13, color: colors.strokeAccent, fontWeight: '600' },
 });

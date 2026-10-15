@@ -3,7 +3,7 @@
     "name": "RajDharma Chinese",
     "slug": "airlearn",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
@@ -36,6 +36,12 @@
       "expo-font",
       "expo-asset",
       "expo-dev-client",
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "DEFAULT"
+        }
+      ],
       [
         "expo-speech-recognition",
         {

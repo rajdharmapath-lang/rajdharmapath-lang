@@ -60,6 +60,8 @@ export default function HomeScreen({ navigation }) {
             <Text style={styles.subtitle}>Let's continue your Chinese Learning.</Text>
           </View>
 
+          <View style={styles.sectionDivider} />
+
           <View style={styles.learningSections}>
             <View style={styles.progressCard}>
               <Text style={styles.progressLabel}>Your Progress</Text>
@@ -85,6 +87,8 @@ export default function HomeScreen({ navigation }) {
               </View>
             </View>
 
+            <View style={styles.sectionDivider} />
+
             <View>
               <Text style={styles.sectionTitle}>Continue Learning</Text>
               {continueLesson && (
@@ -108,6 +112,8 @@ export default function HomeScreen({ navigation }) {
                 </Pressable>
               )}
             </View>
+
+            <View style={styles.sectionDivider} />
 
             <View>
               <Text style={styles.sectionTitle}>Access</Text>
@@ -174,14 +180,20 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     paddingBottom: 20,
   },
-  learningSections: { marginTop: 12, gap: 8 },
+  learningSections: { marginTop: 8, gap: 8 },
   greeting: { ...typography.h2, color: colors.accentRedAlt, marginBottom: 4 },
-  subtitle: { ...typography.body, color: colors.textDark, marginBottom: 20 },
+  subtitle: { ...typography.body, color: colors.textDark, marginBottom: 12 },
+  sectionDivider: {
+    width: '100%',
+    height: 1,
+    backgroundColor: colors.homeOrangeLight,
+    alignSelf: 'center',
+  },
   progressCard: {
     backgroundColor: colors.homeOrangeBg,
     borderRadius: 18,
     padding: 22,
-    marginBottom: 24,
+    marginBottom: 8,
   },
   progressLabel: { fontSize: 16, color: colors.textDark, marginBottom: 4 },
   progressRow: {
@@ -204,7 +216,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 14,
     minHeight: 108,
-    marginBottom: 24,
+    marginBottom: 8,
   },
   continueThumb: {
     width: 100,

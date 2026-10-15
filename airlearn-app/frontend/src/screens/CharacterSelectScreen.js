@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { View, Text, TextInput, Pressable, StyleSheet, FlatList, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
@@ -11,16 +11,27 @@ import { HSK500_CHARACTERS } from '../vendor/chinese-stroke-rn/src';
 import { getCharacterMeta } from '../data/characterMeta';
 import { userApi } from '../api/client';
 import { redirectToPaywall } from '../utils/paywall';
+import { useProgress } from '../context/ProgressContext';
 
 export default function CharacterSelectScreen({ navigation, route }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const { user } = useAuth();
+  const { completedStrokeCharacters } = useProgress();
   const language = user?.language === 'tamil' ? 'tamil' : 'english';
   const [query, setQuery] = useState('');
   const [selectionMode, setSelectionMode] = useState(false);
   const [selected, setSelected] = useState([]); // array of characters, in the order picked
   const [isStartingPractice, setIsStartingPractice] = useState(false);
+  const longPressGuardRef = useRef(false);
+  const longPressGuardTimerRef = useRef(null);
+
+  useEffect(
+    () => () => {
+      if (longPressGuardTimerRef.current) clearTimeout(longPressGuardTimerRef.current);
+    },
+    []
+  );
 
   // Lead with characters we have captions for so the grid reads well; the rest of
   // HSK500 still works for practice, it just shows without a pinyin/meaning caption.
@@ -45,16 +56,14 @@ export default function CharacterSelectScreen({ navigation, route }) {
   }, [query, orderedCharacters, language]);
 
   const toggleSelect = (char) => {
-    setSelected((prev) =>
+    const isRemovingLast = selected.length === 1 && selected.includes(char);
+    setSelected((prev) => (
       prev.includes(char) ? prev.filter((c) => c !== char) : [...prev, char]
-    );
-  };
-
-  const handleToggleSelectionMode = () => {
-    if (selectionMode) {
+    ));
+    if (isRemovingLast) {
       setSelected([]);
+      setSelectionMode(false);
     }
-    setSelectionMode((v) => !v);
   };
 
   const startPracticeWith = async (characters) => {
@@ -79,6 +88,14 @@ export default function CharacterSelectScreen({ navigation, route }) {
   };
 
   const handleCardPress = (char) => {
+    if (longPressGuardRef.current) {
+      longPressGuardRef.current = false;
+      if (longPressGuardTimerRef.current) {
+        clearTimeout(longPressGuardTimerRef.current);
+        longPressGuardTimerRef.current = null;
+      }
+      return;
+    }
     if (selectionMode) {
       toggleSelect(char);
     } else {
@@ -96,9 +113,7 @@ export default function CharacterSelectScreen({ navigation, route }) {
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
         <View style={styles.header}>
-          <Pressable onPress={() => navigation.goBack()} hitSlop={12}>
-            <Ionicons name="chevron-back" size={26} color={colors.border} />
-          </Pressable>
+          <View style={styles.headerSpacer} />
           <Text style={styles.title}>Choose Characters</Text>
           <View style={styles.headerSpacer} />
         </View>
@@ -117,11 +132,11 @@ export default function CharacterSelectScreen({ navigation, route }) {
 
         <View style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>Characters</Text>
-          <Pressable onPress={handleToggleSelectionMode}>
+          {selectionMode && (
             <Text style={styles.selectLink}>
-              {selectionMode ? `${selected.length} Select` : 'Select'}
+              {selected.length} Selected
             </Text>
-          </Pressable>
+          )}
         </View>
 
         <FlatList
@@ -133,18 +148,34 @@ export default function CharacterSelectScreen({ navigation, route }) {
           renderItem={({ item }) => {
             const meta = getCharacterMeta(item, language);
             const isSelected = selected.includes(item);
+            const isCompleted = completedStrokeCharacters.includes(item);
             return (
               <Pressable
-                style={[styles.card, isSelected && styles.cardSelected]}
+                style={[
+                  styles.card,
+                  isCompleted && styles.cardCompleted,
+                  isSelected && styles.cardSelected,
+                ]}
                 onPress={() => handleCardPress(item)}
                 disabled={isStartingPractice}
                 onLongPress={() => {
-                  if (!selectionMode) setSelectionMode(true);
-                  toggleSelect(item);
+                  longPressGuardRef.current = true;
+                  if (longPressGuardTimerRef.current) clearTimeout(longPressGuardTimerRef.current);
+                  longPressGuardTimerRef.current = setTimeout(() => {
+                    longPressGuardRef.current = false;
+                    longPressGuardTimerRef.current = null;
+                  }, 800);
+                  setSelectionMode(true);
+                  if (!isSelected) toggleSelect(item);
                 }}
               >
                 {isSelected && (
-                  <View style={styles.checkBadge}>
+                  <View style={[styles.checkBadge, styles.selectedBadge]}>
+                    <Ionicons name="checkmark" size={13} color="#fff" />
+                  </View>
+                )}
+                {isCompleted && (
+                  <View style={styles.completedBadge}>
                     <Ionicons name="checkmark" size={13} color="#fff" />
                   </View>
                 )}
@@ -160,13 +191,17 @@ export default function CharacterSelectScreen({ navigation, route }) {
           }}
         />
 
-        <Pressable
-          style={[styles.startButton, selected.length === 0 && styles.startButtonDisabled]}
-          disabled={selected.length === 0 || isStartingPractice}
-          onPress={handleStartPractice}
-        >
-          <Text style={styles.startButtonText}>Start Practice</Text>
-        </Pressable>
+        {selected.length > 0 && (
+          <Pressable
+            style={styles.startButton}
+            disabled={isStartingPractice}
+            onPress={handleStartPractice}
+          >
+            <Text style={styles.startButtonText}>
+              {isStartingPractice ? 'Starting...' : `Practice ${selected.length} Selected`}
+            </Text>
+          </Pressable>
+        )}
       </View>
 
       <BottomNav
@@ -228,6 +263,10 @@ const styles = StyleSheet.create({
   cardSelected: {
     backgroundColor: colors.homeOrangeBg,
   },
+  cardCompleted: {
+    borderColor: '#58A66A',
+    backgroundColor: '#F1F8F1',
+  },
   checkBadge: {
     position: 'absolute',
     top: 6,
@@ -236,6 +275,18 @@ const styles = StyleSheet.create({
     height: 18,
     borderRadius: 9,
     backgroundColor: colors.strokeAccent,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  selectedBadge: { left: 6, right: undefined, backgroundColor: colors.strokeAccent },
+  completedBadge: {
+    position: 'absolute',
+    top: 6,
+    right: 6,
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    backgroundColor: '#58A66A',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -258,6 +309,5 @@ const styles = StyleSheet.create({
     marginTop: 4,
     marginBottom: 12,
   },
-  startButtonDisabled: { opacity: 0.5 },
   startButtonText: { color: colors.strokeAccent, fontWeight: '700', fontSize: 16 },
 });

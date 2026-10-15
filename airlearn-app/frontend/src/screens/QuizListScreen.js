@@ -151,11 +151,9 @@ export default function QuizListScreen({ route, navigation }) {
                               </View>
                               <Text style={styles.pathSkill}>{SKILL_LABELS[question.type]}</Text>
                             </View>
-                            <Ionicons
-                              name={locked ? 'lock-closed-outline' : 'chevron-forward'}
-                              size={18}
-                              color={locked ? colors.textLabel : colors.border}
-                            />
+                            {!locked && (
+                              <Ionicons name="chevron-forward" size={18} color={colors.border} />
+                            )}
                           </Pressable>
                         </StaggeredSlideItem>
                       );
