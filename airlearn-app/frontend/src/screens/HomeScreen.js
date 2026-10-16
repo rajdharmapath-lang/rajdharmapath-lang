@@ -9,8 +9,9 @@ import BottomNav from '../components/BottomNav';
 import ProgressRing from '../components/ProgressRing';
 import StaggeredSlideItem from '../components/StaggeredSlideItem';
 import { useAuth } from '../context/AuthContext';
+import { usePayment } from '../context/PaymentContext';
 import { useProgress } from '../context/ProgressContext';
-import { lessonsByBatch } from '../data/courses';
+import { batches, lessonsByBatch } from '../data/courses';
 
 const ACCESS_ITEMS = [
   { key: 'stroke', label: 'Stroke', glyph: '学', destination: 'CharacterSelect', enabled: true },
@@ -35,15 +36,24 @@ export default function HomeScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const { user } = useAuth();
-  const { wordsLearnedCount, videosCompletedCount, daysStreak } = useProgress();
+  const { purchasedBatches } = usePayment();
+  const { wordsLearnedCount, completedVideoIds, daysStreak } = useProgress();
 
-  const foundationLessons = lessonsByBatch.foundation || [];
-  const continueLesson = foundationLessons[0];
-  // Real progress against the Foundation batch's actual lesson count — not a
-  // hardcoded "10 videos" like the original mock, since only a handful of
-  // lessons have real content right now (see data/courses.js).
-  const batchPercent = foundationLessons.length
-    ? Math.round((videosCompletedCount / foundationLessons.length) * 100)
+  const enrolledBatchId =
+    Object.entries(purchasedBatches)
+      .sort(([, first], [, second]) => (second.purchasedAt || 0) - (first.purchasedAt || 0))[0]?.[0] ||
+    'foundation';
+  const enrolledBatch = batches.find((batch) => batch.id === enrolledBatchId) ||
+    batches.find((batch) => batch.id === 'foundation');
+  const enrolledLessons = enrolledBatch?.contentComingSoon
+    ? []
+    : lessonsByBatch[enrolledBatchId] || [];
+  const completedEnrolledVideos = enrolledLessons.filter((lesson) =>
+    completedVideoIds.includes(lesson.id)
+  ).length;
+  const continueLesson = enrolledLessons[0];
+  const batchPercent = enrolledLessons.length
+    ? Math.round((completedEnrolledVideos / enrolledLessons.length) * 100)
     : 0;
 
   const handleAccessPress = (item) => {
@@ -66,12 +76,12 @@ export default function HomeScreen({ navigation }) {
             <View style={styles.progressCard}>
               <Text style={styles.progressLabel}>Your Progress</Text>
               <View style={styles.progressRow}>
-                <Text style={styles.batchName}>Foundation Batch</Text>
+                <Text style={styles.batchName}>{enrolledBatch?.name || 'Foundation Batch'}</Text>
                 <ProgressRing percent={batchPercent} size={72} strokeWidth={7} />
               </View>
               <View style={styles.statsRow}>
                 <View style={styles.statItem}>
-                  <Text style={styles.statValue}>{videosCompletedCount}</Text>
+                  <Text style={styles.statValue}>{completedEnrolledVideos}</Text>
                   <Text style={styles.statLabel}>Videos Completed</Text>
                 </View>
                 <View style={styles.statDivider} />
@@ -96,7 +106,7 @@ export default function HomeScreen({ navigation }) {
                   style={styles.continueCard}
                   onPress={() =>
                     navigation.navigate('VideoPlayer', {
-                      batchId: 'foundation',
+                      batchId: enrolledBatchId,
                       lessonId: continueLesson.id,
                     })
                   }

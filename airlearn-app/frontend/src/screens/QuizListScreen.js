@@ -18,8 +18,6 @@ export default function QuizListScreen({ route, navigation }) {
   const batchId = route?.params?.batchId || 'foundation';
   const batch = batches.find((b) => b.id === batchId);
   const quizzes = getQuizzesForBatch(batchId).filter((quiz) => quiz.questions?.length);
-  const quiz = quizzes[0];
-  const questionCount = quiz?.questions?.length || 0;
   const emptyCopy = batchId === 'elevation'
     ? {
         title: 'Your next practice path is taking shape',
@@ -30,7 +28,7 @@ export default function QuizListScreen({ route, navigation }) {
         message: 'We are crafting advanced practice for your next stage of Chinese learning.',
       };
 
-  const startQuestion = (questionIndex) => {
+  const startQuestion = (quiz, questionIndex) => {
     if (questionIndex > 0) {
       if (!loaded) return;
       if (!hasPrimeAccess()) {
@@ -58,25 +56,31 @@ export default function QuizListScreen({ route, navigation }) {
         </View>
         <Text style={styles.batchTitle}>{batch?.name || 'Batch'}</Text>
 
-        {quiz ? (
+        {quizzes.length > 0 ? (
           <ScrollView contentContainerStyle={styles.pathContent}>
-            <Pressable
-              style={styles.topicRow}
-              onPress={() => startQuestion(0)}
-              accessibilityRole="button"
-              accessibilityLabel={`Start ${quiz.topicName || quiz.name}, ${questionCount} questions`}
-            >
-              <View style={styles.topicNode}>
-                <Ionicons name="play" size={17} color="#fff" />
-              </View>
-              <View style={styles.topicText}>
-                <Text style={styles.topicTitle}>{quiz.topicName || quiz.name}</Text>
-                <Text style={styles.questionCount}>
-                  {questionCount} {questionCount === 1 ? 'question' : 'questions'}
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color={colors.border} />
-            </Pressable>
+            {quizzes.map((quiz) => {
+              const questionCount = quiz.questions.length;
+              return (
+                <Pressable
+                  key={quiz.id}
+                  style={styles.topicRow}
+                  onPress={() => startQuestion(quiz, 0)}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Start ${quiz.topicName || quiz.name}, ${questionCount} questions`}
+                >
+                  <View style={styles.topicNode}>
+                    <Ionicons name="play" size={17} color="#fff" />
+                  </View>
+                  <View style={styles.topicText}>
+                    <Text style={styles.topicTitle}>{quiz.topicName || quiz.name}</Text>
+                    <Text style={styles.questionCount}>
+                      {questionCount} {questionCount === 1 ? 'question' : 'questions'}
+                    </Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={18} color={colors.border} />
+                </Pressable>
+              );
+            })}
           </ScrollView>
         ) : (
           <View style={styles.emptyState}>

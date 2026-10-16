@@ -11,6 +11,7 @@ fs.writeFileSync(testPdfPath, 'test pdf');
 process.env.LEARNING_PDF_PATH = testPdfPath;
 
 const userRepository = require('../src/db/user.repository');
+const paymentRepository = require('../src/db/payment.repository');
 const supabase = require('../src/db/supabase');
 const {
   claimStrokePreview,
@@ -168,20 +169,55 @@ test('claimStrokePreview allows three free stroke attempts and Prime access', as
   }
 });
 
-test('downloadLearningPdf sends the supplied learning PDF with its filename', () => {
+test('downloadLearningPdf requires an active purchase from any batch', async () => {
+  mock.method(paymentRepository, 'getUserEntitlements', async () => ({
+    distinction: { tier: 'videos_live' },
+  }));
   let sentFile;
   let sentName;
 
-  downloadLearningPdf({}, {
-    download(filePath, fileName) {
-      sentFile = filePath;
-      sentName = fileName;
-    },
-  });
+  try {
+    await downloadLearningPdf({ userId: 'paid-user' }, {
+      download(filePath, fileName) {
+        sentFile = filePath;
+        sentName = fileName;
+      },
+    });
 
-  assert.equal(fs.existsSync(testPdfPath), true);
-  assert.equal(sentFile, testPdfPath);
-  assert.equal(sentName, 'RD chinese workbook.pdf');
+    assert.equal(fs.existsSync(testPdfPath), true);
+    assert.equal(sentFile, testPdfPath);
+    assert.equal(sentName, 'RD chinese workbook.pdf');
+  } finally {
+    mock.restoreAll();
+  }
+});
+
+test('downloadLearningPdf denies users without an active batch purchase', async () => {
+  mock.method(paymentRepository, 'getUserEntitlements', async () => ({}));
+  let statusCode;
+  let responseBody;
+
+  try {
+    await downloadLearningPdf({ userId: 'free-user' }, {
+      status(code) {
+        statusCode = code;
+        return this;
+      },
+      json(body) {
+        responseBody = body;
+      },
+      download() {
+        assert.fail('The PDF must not be sent without an active purchase.');
+      },
+    });
+
+    assert.equal(statusCode, 403);
+    assert.deepEqual(responseBody, {
+      message: 'An active batch purchase is required to download the learning PDF.',
+    });
+  } finally {
+    mock.restoreAll();
+  }
 });
 
 test('getFoundationWelcomeVideo returns a signed URL for the Foundation lesson video', async () => {
@@ -240,6 +276,9 @@ test('downloadLearningPdf fetches the configured Supabase Storage object', async
   let responseStatus;
   let responseBody;
   const responseHeaders = {};
+  mock.method(paymentRepository, 'getUserEntitlements', async () => ({
+    elevation: { tier: 'videos_live' },
+  }));
 
   process.env.SUPABASE_URL = 'https://legacy-project.example';
   process.env.SUPABASE_STORAGE_URL = 'https://project.example';
@@ -281,6 +320,7 @@ test('downloadLearningPdf fetches the configured Supabase Storage object', async
     assert.equal(responseHeaders['Content-Type'], 'application/pdf');
     assert.equal(responseHeaders['Content-Disposition'], 'attachment; filename="RD chinese workbook.pdf"');
   } finally {
+    mock.restoreAll();
     for (const key of environmentKeys) {
       if (previousEnvironment[key] === undefined) delete process.env[key];
       else process.env[key] = previousEnvironment[key];
@@ -305,6 +345,9 @@ test('downloadLearningPdf fetches the configured Supabase object URL directly', 
     'https://tfniorcovtstaswpakfn.supabase.co/storage/v1/object/public/Rajdharma_app_pdf/Work%20book.pdf';
   let responseStatus;
   let responseBody;
+  mock.method(paymentRepository, 'getUserEntitlements', async () => ({
+    foundation: { tier: 'videos_live' },
+  }));
 
   process.env.SUPABASE_STORAGE_OBJECT_URL = objectUrl;
   delete process.env.SUPABASE_STORAGE_BUCKET;
@@ -337,6 +380,7 @@ test('downloadLearningPdf fetches the configured Supabase object URL directly', 
     assert.equal(responseStatus, 200);
     assert.deepEqual(responseBody, Buffer.from('storage pdf'));
   } finally {
+    mock.restoreAll();
     for (const key of environmentKeys) {
       if (previousEnvironment[key] === undefined) delete process.env[key];
       else process.env[key] = previousEnvironment[key];

@@ -47,7 +47,7 @@ export default function QuizResultScreen({ route, navigation }) {
   };
 
   const handleBackToQuizList = () => {
-    navigation.navigate('QuizList', { batchId });
+    navigation.navigate('QuizBatchList');
   };
 
   return (

@@ -97,7 +97,8 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
     question.type === 'listening' ||
     question.type === 'sentence' ||
     question.type === 'meaningChoice' ||
-    question.type === 'spokenNumberChoice';
+    question.type === 'spokenNumberChoice' ||
+    question.type === 'spokenExpressionChoice';
 
   const word = question.wordId ? findWordById(question.wordId) : null;
 
@@ -109,9 +110,15 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
   const getOptionLabel = (option) => {
     if (!option) return '';
     if (question.type === 'meaningChoice') {
+      if (option.hanzi) return `${option.hanzi}${option.pinyin ? ` · ${option.pinyin}` : ''}`;
       return language === 'tamil' ? option.labelTamil : option.labelEnglish;
     }
     if (question.type === 'spokenNumberChoice') return option.digit;
+    if (question.type === 'spokenExpressionChoice') {
+      if (option.hanzi) return `${option.hanzi}${option.pinyin ? ` · ${option.pinyin}` : ''}`;
+      if (option.digit) return option.digit;
+      return language === 'tamil' ? option.labelTamil : option.labelEnglish;
+    }
     if (question.type === 'sentence') return `${option.hanzi} · ${option.pinyin}`;
     return language === 'tamil' ? option.ta : option.en;
   };
@@ -135,7 +142,11 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
   const shuffledOptions = useMemo(() => {
     if (!isMcq) return [];
     if (question.type === 'sentence') return shuffleArray(question.options || []);
-    if (question.type === 'meaningChoice' || question.type === 'spokenNumberChoice') {
+    if (
+      question.type === 'meaningChoice' ||
+      question.type === 'spokenNumberChoice' ||
+      question.type === 'spokenExpressionChoice'
+    ) {
       return question.options || [];
     }
     if (!question.optionWordIds) return [];
@@ -154,6 +165,17 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
       question: localizedQuestion(),
       userAnswer: getOptionLabel(optionWord),
       correctAnswer: getOptionLabel(correctOption),
+    });
+  };
+
+  const handleSubmitText = (value = numberAnswer) => {
+    if (answerSubmittedRef.current || !value.trim()) return;
+    answerSubmittedRef.current = true;
+    setSelectedId('submitted');
+    queueAnswer(value.trim() === question.answer, {
+      question: localizedQuestion(),
+      userAnswer: value.trim(),
+      correctAnswer: question.answer,
     });
   };
 
@@ -226,7 +248,10 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
   };
 
   const numberMatchPairs = useMemo(
-    () => (question.type === 'numberMatching' ? question.pairs || [] : []),
+    () =>
+      question.type === 'numberMatching' || question.type === 'expressionMatching'
+        ? question.pairs || []
+        : [],
     [question.id]
   );
   const shuffledChineseNumbers = useMemo(
@@ -269,14 +294,26 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
     if (nextMatches.length === numberMatchPairs.length) {
       answerSubmittedRef.current = true;
       const isCorrect = nextMatches.every((match) => match.chineseId === match.digitId);
-      const pairLabel = (id) => {
-        const matchedPair = numberMatchPairs.find((item) => item.id === id);
-        return `${matchedPair.hanzi} (${matchedPair.pinyin}) — ${matchedPair.digit}`;
+      const leftLabel = (id) => {
+        const pair = numberMatchPairs.find((item) => item.id === id);
+        return `${pair.hanzi} (${pair.pinyin})`;
+      };
+      const rightLabel = (id) => {
+        const pair = numberMatchPairs.find((item) => item.id === id);
+        return question.type === 'expressionMatching'
+          ? language === 'tamil'
+            ? pair.labelTamil
+            : pair.labelEnglish
+          : pair.digit;
       };
       queueAnswer(isCorrect, {
         question: localizedQuestion(),
-        userAnswer: nextMatches.map((match) => pairLabel(match.chineseId)).join('; '),
-        correctAnswer: numberMatchPairs.map((item) => pairLabel(item.id)).join('; '),
+        userAnswer: nextMatches
+          .map((match) => `${leftLabel(match.chineseId)} — ${rightLabel(match.digitId)}`)
+          .join('; '),
+        correctAnswer: numberMatchPairs
+          .map((pair) => `${leftLabel(pair.id)} — ${rightLabel(pair.id)}`)
+          .join('; '),
       });
     }
   };
@@ -522,8 +559,9 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
     );
   }
 
-  if (question.type === 'numberMatching') {
+  if (question.type === 'numberMatching' || question.type === 'expressionMatching') {
     const isTamil = language === 'tamil';
+    const isExpressionMatch = question.type === 'expressionMatching';
     const matchFor = (side, id) =>
       numberMatches.find((match) => (side === 'chinese' ? match.chineseId : match.digitId) === id);
     const isMatchCorrect = (match) => match?.chineseId === match?.digitId;
@@ -541,7 +579,15 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
           onPress={() => handleNumberMatchSelect(side, pair)}
           disabled={answerSubmittedRef.current}
           accessibilityRole="button"
-          accessibilityLabel={side === 'chinese' ? `${pair.hanzi}, ${pair.pinyin}` : pair.digit}
+          accessibilityLabel={
+            side === 'chinese'
+              ? `${pair.hanzi}, ${pair.pinyin}`
+              : isExpressionMatch
+                ? isTamil
+                  ? pair.labelTamil
+                  : pair.labelEnglish
+                : pair.digit
+          }
         >
           {side === 'chinese' ? (
             <>
@@ -549,7 +595,13 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
               <Text style={styles.numberMatchPinyin}>{pair.pinyin}</Text>
             </>
           ) : (
-            <Text style={styles.numberMatchDigit}>{pair.digit}</Text>
+            <Text style={[styles.numberMatchDigit, isExpressionMatch && styles.expressionMatchLabel]}>
+              {isExpressionMatch
+                ? isTamil
+                  ? pair.labelTamil
+                  : pair.labelEnglish
+                : pair.digit}
+            </Text>
           )}
         </Pressable>
       );
@@ -561,21 +613,29 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
         <View style={styles.numberMatchingColumns}>
           <View style={styles.numberMatchingColumn}>
             <Text style={styles.numberMatchingHeading}>
-              {isTamil ? question.chineseHeadingTamil : question.chineseHeadingEnglish}
+              {isExpressionMatch
+                ? isTamil ? '中文' : 'Chinese expression'
+                : isTamil ? question.chineseHeadingTamil : question.chineseHeadingEnglish}
             </Text>
             {shuffledChineseNumbers.map((pair) => renderChoice('chinese', pair))}
           </View>
           <View style={styles.numberMatchingColumn}>
             <Text style={styles.numberMatchingHeading}>
-              {isTamil ? question.digitHeadingTamil : question.digitHeadingEnglish}
+              {isExpressionMatch
+                ? isTamil ? 'பொருள்' : 'Meaning'
+                : isTamil ? question.digitHeadingTamil : question.digitHeadingEnglish}
             </Text>
             {shuffledDigits.map((pair) => renderChoice('digit', pair))}
           </View>
         </View>
         <Text style={styles.numberMatchingHint}>
-          {isTamil
-            ? 'ஒரு சீன எண்ணையும் அதற்குரிய எண்ணையும் தேர்ந்தெடுக்கவும். எந்தப் பக்கத்திலிருந்தும் தொடங்கலாம்.'
-            : 'Select a Chinese number and its matching digit. You can start from either side.'}
+          {isExpressionMatch
+            ? isTamil
+              ? 'சீனச் சொற்றொடரையும் அதன் பொருளையும் பொருத்தவும்.'
+              : 'Match each Chinese expression with its meaning.'
+            : isTamil
+              ? 'ஒரு சீன எண்ணையும் அதற்குரிய எண்ணையும் தேர்ந்தெடுக்கவும். எந்தப் பக்கத்திலிருந்தும் தொடங்கலாம்.'
+              : 'Select a Chinese number and its matching digit. You can start from either side.'}
         </Text>
       </View>
     );
@@ -606,10 +666,35 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
           placeholderTextColor={colors.textLabel}
           keyboardType="number-pad"
           returnKeyType="done"
-          onSubmitEditing={handleSubmitNumber}
+          onSubmitEditing={() => handleSubmitNumber()}
           maxLength={String(question.answer).length}
           editable={!selectedId}
           accessibilityLabel="Enter the number"
+        />
+      </View>
+    );
+  }
+
+  if (question.type === 'textInput') {
+    return (
+      <View style={styles.numberQuestion}>
+        <Text style={styles.prompt}>{localizedQuestion()}</Text>
+        <TextInput
+          style={styles.numberInput}
+          value={numberAnswer}
+          onChangeText={(value) => {
+            setNumberAnswer(value);
+            if (value.trim().length === question.answer.length) handleSubmitText(value);
+          }}
+          placeholder={language === 'tamil' ? question.placeholderTamil : question.placeholder}
+          placeholderTextColor={colors.textLabel}
+          keyboardType="default"
+          returnKeyType="done"
+          onSubmitEditing={() => handleSubmitText()}
+          maxLength={question.answer.length}
+          editable={!selectedId}
+          accessibilityLabel={language === 'tamil' ? question.placeholderTamil : question.placeholder}
+          autoCapitalize="none"
         />
       </View>
     );
@@ -623,19 +708,30 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
             <Text style={styles.prompt}>{localizedQuestion()}</Text>
             {question.character && (
               <Text style={styles.numberCharacterLine}>
-                {question.character} ({question.pinyin})
+                {question.pinyin
+                  ? `${question.character} (${question.pinyin})`
+                  : question.character}
               </Text>
             )}
           </>
         )}
-        {question.type === 'spokenNumberChoice' && (
+        {(question.type === 'spokenNumberChoice' ||
+          question.type === 'spokenExpressionChoice') && (
           <>
             <Text style={styles.prompt}>{localizedQuestion()}</Text>
             <Pressable
               style={styles.spokenNumberAudioButton}
               onPress={handleToggleListen}
               accessibilityRole="button"
-              accessibilityLabel={language === 'tamil' ? 'சீன எண்ணின் ஒலியைக் கேளுங்கள்' : 'Play Chinese number pronunciation'}
+              accessibilityLabel={
+                question.type === 'spokenExpressionChoice'
+                  ? language === 'tamil'
+                    ? 'சீனச் சொற்றொடரின் ஒலியைக் கேளுங்கள்'
+                    : 'Play Chinese expression pronunciation'
+                  : language === 'tamil'
+                    ? 'சீன எண்ணின் ஒலியைக் கேளுங்கள்'
+                    : 'Play Chinese number pronunciation'
+              }
             >
               <Ionicons
                 name={isPlaying ? 'volume-high' : 'volume-medium'}
@@ -688,7 +784,8 @@ export default function QuizQuestionRenderer({ question, language, onAnswered, o
                   ? getOptionLabel(optionWord)
                   : question.type === 'sentence'
                     ? `${optionWord.hanzi} · ${optionWord.pinyin}`
-                    : question.type === 'spokenNumberChoice'
+                    : question.type === 'spokenNumberChoice' ||
+                        question.type === 'spokenExpressionChoice'
                       ? getOptionLabel(optionWord)
                       : language === 'tamil' ? optionWord.ta : optionWord.en
               }
@@ -894,6 +991,7 @@ const styles = StyleSheet.create({
   numberMatchHanzi: { fontSize: 25, fontWeight: '700', color: colors.textDark },
   numberMatchPinyin: { fontSize: 13, color: colors.textLabel, marginTop: 2 },
   numberMatchDigit: { fontSize: 25, fontWeight: '700', color: colors.textDark },
+  expressionMatchLabel: { fontSize: 15, lineHeight: 20, textAlign: 'center' },
   numberMatchingHint: {
     fontSize: 13,
     lineHeight: 19,

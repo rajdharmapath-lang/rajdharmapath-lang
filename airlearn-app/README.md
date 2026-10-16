@@ -98,7 +98,9 @@ native package. Store releases may require Google Play Billing or Apple In-App
 Purchase unless your app is approved for an external-payment program.
 
 The Notes screen downloads its PDF through the authenticated
-`/api/user/learning-pdf` backend endpoint. Set `SUPABASE_STORAGE_URL`,
+`/api/user/learning-pdf` backend endpoint. Download access requires an active
+purchase for any batch; both the app and backend enforce this entitlement.
+Set `SUPABASE_STORAGE_URL`,
 `SUPABASE_STORAGE_BUCKET`, `SUPABASE_STORAGE_OBJECT_PATH`, and
 `SUPABASE_STORAGE_PUBLIC` in `backend/.env`. The object path is relative to the
 bucket and can include folders. `SUPABASE_URL` is also accepted as a fallback

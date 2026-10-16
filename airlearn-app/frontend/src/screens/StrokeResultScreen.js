@@ -7,25 +7,29 @@ import { useResponsive } from '../theme/responsive';
 import ProgressRing from '../components/ProgressRing';
 import BottomNav from '../components/BottomNav';
 import { useProgress } from '../context/ProgressContext';
+import { HSK500_CHARACTERS } from '../vendor/chinese-stroke-rn/src';
 
 // Scoring is intentionally simple and easy to retune later:
 // - accuracy: average of each character's (100 - mistakes*15), floored at 0
 // - stroke order correct: characters finished with zero mistakes (first-try correct order)
 // - overall score (ring): blend of the two above
 function computeScore(characters, results) {
-  const total = characters.length || 1;
+  const attemptedIndexes = characters
+    .map((_, index) => index)
+    .filter((index) => results?.[index]?.attempted || results?.[index]?.completed);
+  const total = attemptedIndexes.length;
   let accuracySum = 0;
   let perfectCount = 0;
 
-  characters.forEach((_, i) => {
-    const r = results?.[i] || { mistakes: 0, completed: false };
+  attemptedIndexes.forEach((i) => {
+    const r = results[i] || { mistakes: 0, completed: false };
     const charAccuracy = Math.max(0, 100 - r.mistakes * 15);
     accuracySum += charAccuracy;
     if (r.completed && r.mistakes === 0) perfectCount += 1;
   });
 
-  const accuracy = Math.round(accuracySum / total);
-  const strokeOrderPct = Math.round((perfectCount / total) * 100);
+  const accuracy = total ? Math.round(accuracySum / total) : 0;
+  const strokeOrderPct = total ? Math.round((perfectCount / total) * 100) : 0;
   const overall = Math.round((accuracy + strokeOrderPct) / 2);
 
   return { accuracy, strokeOrderCorrect: perfectCount, total, overall };
@@ -42,9 +46,24 @@ export default function StrokeResultScreen({ route, navigation }) {
   const results = route?.params?.results || {};
 
   const score = useMemo(() => computeScore(characters, results), [characters, results]);
+  const lastAttemptedIndex = characters.reduce(
+    (lastIndex, _, index) =>
+      results?.[index]?.attempted || results?.[index]?.completed ? index : lastIndex,
+    -1
+  );
+  const lastAttemptedCharacter =
+    characters[lastAttemptedIndex >= 0 ? lastAttemptedIndex : characters.length - 1];
+  const characterSequenceIndex = HSK500_CHARACTERS.indexOf(lastAttemptedCharacter);
+  const nextCharacter =
+    characterSequenceIndex >= 0 ? HSK500_CHARACTERS[characterSequenceIndex + 1] : null;
 
   const handlePracticeAgain = () => {
     navigation.replace('StrokePractice', { characters });
+  };
+
+  const handleNextCharacter = () => {
+    if (!nextCharacter) return;
+    navigation.replace('StrokePractice', { characters: [nextCharacter] });
   };
 
   const handleBackToCharacters = () => {
@@ -59,7 +78,7 @@ export default function StrokeResultScreen({ route, navigation }) {
         <View style={styles.card}>
           <Text style={styles.great}>Great!</Text>
           <Text style={styles.subtitle}>
-            You completed all {characters.length} character{characters.length === 1 ? '' : 's'}
+            You tried {score.total} of {characters.length} character{characters.length === 1 ? '' : 's'}
           </Text>
 
           <View style={styles.ringWrap}>
@@ -80,11 +99,17 @@ export default function StrokeResultScreen({ route, navigation }) {
           </View>
         </View>
 
-        <Pressable style={styles.primaryButton} onPress={handlePracticeAgain}>
+        {nextCharacter && (
+          <Pressable style={styles.primaryButton} onPress={handleNextCharacter}>
+            <Text style={styles.primaryButtonText}>Next Letter: {nextCharacter}</Text>
+          </Pressable>
+        )}
+
+        <Pressable style={styles.secondaryButton} onPress={handlePracticeAgain}>
           <Text style={styles.primaryButtonText}>Practice Again</Text>
         </Pressable>
 
-        <Pressable style={styles.secondaryButton} onPress={handleBackToCharacters}>
+        <Pressable style={styles.outlineButton} onPress={handleBackToCharacters}>
           <Text style={styles.secondaryButtonText}>Back to Characters</Text>
         </Pressable>
       </View>
@@ -130,6 +155,13 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: { color: '#fff', fontWeight: '700', fontSize: 16 },
   secondaryButton: {
+    backgroundColor: colors.homeOrangeLight,
+    borderRadius: 30,
+    paddingVertical: 16,
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  outlineButton: {
     borderWidth: 1.5,
     borderColor: colors.strokeAccent,
     borderRadius: 30,

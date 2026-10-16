@@ -6,7 +6,7 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
-import { batches, liveClass } from '../data/courses';
+import { batches, lessonsByBatch, liveClass } from '../data/courses';
 import { usePayment } from '../context/PaymentContext';
 import { redirectToPaywall } from '../utils/paywall';
 
@@ -53,49 +53,56 @@ export default function BatchListScreen({ navigation, route }) {
         <View style={[styles.container, { maxWidth, alignSelf: 'center', width: '100%' }]}>
           <Text style={styles.title}>Videos</Text>
 
-          {batches.map((batch, index) => (
-            <Animated.View
-              key={batch.id}
-              style={[
-                styles.cardAnimation,
-                {
-                  opacity: cardAnimations[index],
-                  transform: [
-                    {
-                      translateX: cardAnimations[index].interpolate({
-                        inputRange: [0, 1],
-                        outputRange: [-24, 0],
-                      }),
-                    },
-                  ],
-                },
-              ]}
-            >
-              <Pressable
-                style={[styles.card, { backgroundColor: colors[batch.colorBg] }]}
-                onPress={() => navigation.navigate('VideoList', { batchId: batch.id })}
+          {batches.map((batch, index) => {
+            const videoCount = batch.contentComingSoon
+              ? 0
+              : (lessonsByBatch[batch.id] || []).length;
+            return (
+              <Animated.View
+                key={batch.id}
+                style={[
+                  styles.cardAnimation,
+                  {
+                    opacity: cardAnimations[index],
+                    transform: [
+                      {
+                        translateX: cardAnimations[index].interpolate({
+                          inputRange: [0, 1],
+                          outputRange: [-24, 0],
+                        }),
+                      },
+                    ],
+                  },
+                ]}
               >
-                <Image
-                  source={BATCH_ARTWORK[batch.id]}
-                  style={styles.batchArtwork}
-                  resizeMode="stretch"
-                  accessible={false}
-                />
-                <View style={styles.cardContent}>
-                  <View style={styles.cardText}>
-                    <Text style={[styles.cardName, { color: colors[batch.colorAccent] }]}>
-                      {batch.name}
-                    </Text>
-                    <Text style={styles.cardSubtitle}>{batch.subtitle}</Text>
-                    <Text style={styles.cardCount}>{batch.videoCount} Videos</Text>
+                <Pressable
+                  style={[styles.card, { backgroundColor: colors[batch.colorBg] }]}
+                  onPress={() => navigation.navigate('VideoList', { batchId: batch.id })}
+                >
+                  <Image
+                    source={BATCH_ARTWORK[batch.id]}
+                    style={styles.batchArtwork}
+                    resizeMode="stretch"
+                    accessible={false}
+                  />
+                  <View style={styles.cardContent}>
+                    <View style={styles.cardText}>
+                      <Text style={[styles.cardName, { color: colors[batch.colorAccent] }]}>
+                        {batch.name}
+                      </Text>
+                      <Text style={styles.cardSubtitle}>{batch.subtitle}</Text>
+                      <Text style={styles.cardCount}>
+                        {videoCount} {videoCount === 1 ? 'Video' : 'Videos'}
+                      </Text>
+                    </View>
+                    <View style={[styles.badge, { backgroundColor: colors[batch.colorAccent] }]}>
+                      <Text style={styles.badgeGlyph}>{batch.glyph}</Text>
+                    </View>
                   </View>
-                  <View style={[styles.badge, { backgroundColor: colors[batch.colorAccent] }]}>
-                    <Text style={styles.badgeGlyph}>{batch.glyph}</Text>
-                  </View>
-                </View>
-              </Pressable>
-            </Animated.View>
-          ))}
+                </Pressable>
+              </Animated.View>
+            );
+          })}
 
           {liveClass.status ? (
             <View style={styles.liveBanner}>

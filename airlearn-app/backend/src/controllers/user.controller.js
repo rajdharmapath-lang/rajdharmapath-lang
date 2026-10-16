@@ -2,6 +2,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 const userRepository = require('../db/user.repository');
+const paymentRepository = require('../db/payment.repository');
 const supabase = require('../db/supabase');
 const logger = require('../services/logger');
 
@@ -126,6 +127,23 @@ async function deleteAccount(req, res) {
 }
 
 async function downloadLearningPdf(req, res) {
+  let purchasedBatches;
+  try {
+    purchasedBatches = await paymentRepository.getUserEntitlements(req.userId);
+  } catch (error) {
+    logger.error('learning_pdf_access_check_failed', {
+      module: 'user',
+      stage: 'download_learning_pdf_access_check',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
+    return res.status(503).json({ message: 'Could not verify access to the learning PDF.' });
+  }
+  if (!Object.keys(purchasedBatches).length) {
+    return res.status(403).json({ message: 'An active batch purchase is required to download the learning PDF.' });
+  }
+
   const storageObjectUrl = process.env.SUPABASE_STORAGE_OBJECT_URL;
   const storageBucket = process.env.SUPABASE_STORAGE_BUCKET;
   const storageObjectPath = process.env.SUPABASE_STORAGE_OBJECT_PATH;

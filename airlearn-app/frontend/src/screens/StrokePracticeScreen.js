@@ -6,8 +6,6 @@ import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import { useAuth } from '../context/AuthContext';
-import { usePayment } from '../context/PaymentContext';
-import { redirectToPaywall } from '../utils/paywall';
 import { ChineseStrokeWriter } from '../vendor/chinese-stroke-rn/src';
 import { getCharacterMeta } from '../data/characterMeta';
 import BottomNav from '../components/BottomNav';
@@ -17,7 +15,6 @@ export default function StrokePracticeScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth, width } = useResponsive();
   const { user } = useAuth();
-  const { hasPrimeAccess } = usePayment();
   const { recordStrokeCharacterCompleted } = useProgress();
   const language = user?.language === 'tamil' ? 'tamil' : 'english';
   const characters = route?.params?.characters?.length ? route.params.characters : ['学'];
@@ -26,6 +23,7 @@ export default function StrokePracticeScreen({ route, navigation }) {
   const resultsRef = useRef({});
   const completedIndexesRef = useRef(new Set());
   const advanceTimerRef = useRef(null);
+  const resultsShownRef = useRef(false);
 
   const writerRef = useRef(null);
   const character = characters[index];
@@ -51,10 +49,20 @@ export default function StrokePracticeScreen({ route, navigation }) {
   );
 
   const goToResults = (finalResults) => {
-    navigation.navigate('StrokeResult', {
+    if (resultsShownRef.current) return;
+    resultsShownRef.current = true;
+    navigation.replace('StrokeResult', {
       characters,
       results: finalResults,
     });
+  };
+
+  const handleFinishPractice = () => {
+    if (advanceTimerRef.current) {
+      clearTimeout(advanceTimerRef.current);
+      advanceTimerRef.current = null;
+    }
+    goToResults(resultsRef.current);
   };
 
   const handleStrokeComplete = () => {
@@ -64,7 +72,14 @@ export default function StrokePracticeScreen({ route, navigation }) {
     const nextResults = {
       ...resultsRef.current,
       [index]: {
-        ...(resultsRef.current[index] || { mistakes: 0, totalStrokes: 0, completed: false }),
+        ...(resultsRef.current[index] || {
+          mistakes: 0,
+          totalStrokes: 0,
+          completedStrokes: 0,
+          attempted: true,
+          completed: false,
+        }),
+        attempted: true,
         completed: true,
       },
     };
@@ -72,10 +87,6 @@ export default function StrokePracticeScreen({ route, navigation }) {
     recordStrokeCharacterCompleted(character);
 
     advanceTimerRef.current = setTimeout(() => {
-      if (!hasPrimeAccess() && index === 0 && index < characters.length - 1) {
-        redirectToPaywall(navigation, route);
-        return;
-      }
       if (index < characters.length - 1) {
         setIndex(index + 1);
       } else {
@@ -126,7 +137,13 @@ export default function StrokePracticeScreen({ route, navigation }) {
             showOutline
             showGuide
             onReady={(totalStrokes) => updateResult({ totalStrokes })}
-            onMistake={(e) => updateResult({ mistakes: e.mistakes })}
+            onProgress={(event) =>
+              updateResult({
+                attempted: true,
+                completedStrokes: event.strokesCompleted,
+              })
+            }
+            onMistake={(e) => updateResult({ attempted: true, mistakes: e.mistakes })}
             onComplete={handleStrokeComplete}
             onError={(message) => {
               console.warn('Stroke practice failed to render:', message);
@@ -147,6 +164,15 @@ export default function StrokePracticeScreen({ route, navigation }) {
           />
         </View>
 
+        <Pressable
+          style={styles.finishButton}
+          onPress={handleFinishPractice}
+          accessibilityRole="button"
+        >
+          <Text style={styles.finishButtonText}>
+            {language === 'tamil' ? 'பயிற்சியை முடிக்கவும்' : 'Finish Practice'}
+          </Text>
+        </Pressable>
       </View>
 
       <BottomNav
@@ -215,4 +241,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 0,
   },
+  finishButton: {
+    minHeight: 48,
+    borderRadius: 24,
+    backgroundColor: colors.homeOrangeLight,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 14,
+    marginBottom: 12,
+  },
+  finishButtonText: { fontSize: 16, fontWeight: '700', color: '#fff' },
 });

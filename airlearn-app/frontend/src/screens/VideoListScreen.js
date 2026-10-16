@@ -25,6 +25,7 @@ export default function VideoListScreen({ route, navigation }) {
   const batch = batches.find((b) => b.id === batchId);
   const lessons = lessonsByBatch[batchId] || [];
   const rowAnimations = useRef(lessons.map(() => new Animated.Value(0))).current;
+  const isComingSoon = batchId === 'elevation' || batchId === 'distinction';
 
   useEffect(() => {
     Animated.stagger(
@@ -102,32 +103,42 @@ export default function VideoListScreen({ route, navigation }) {
           <View style={styles.headerSpacer} />
         </View>
 
-        <FlatList
-          data={lessons}
-          keyExtractor={(item) => item.id}
-          contentContainerStyle={{ paddingBottom: 20 }}
-          renderItem={({ item, index }) => (
-            <Animated.View style={{ opacity: rowAnimations[index] }}>
-              <Pressable
-                style={styles.row}
-                onPress={() => handleOpenLesson(item)}
-              >
-                <View style={styles.thumb}>
-                  <Ionicons name="play-circle-outline" size={30} color={colors.navInactive} />
-                </View>
-                <View style={styles.rowText}>
-                  <Text style={styles.rowTitle}>{item.title}</Text>
-                  <Text style={styles.rowSubtitle}>{item.subtitle}</Text>
-                </View>
-                <Ionicons
-                  name={isLessonLocked(item.id, index) ? 'lock-closed-outline' : 'lock-open-outline'}
-                  size={20}
-                  color={colors.lockGray}
-                />
-              </Pressable>
-            </Animated.View>
-          )}
-        />
+        {isComingSoon ? (
+          <View style={styles.comingSoon}>
+            <Ionicons name="time-outline" size={42} color={colors.homeOrange} />
+            <Text style={styles.comingSoonTitle}>Videos coming soon</Text>
+            <Text style={styles.comingSoonMessage}>
+              Lessons for this batch will be available soon.
+            </Text>
+          </View>
+        ) : (
+          <FlatList
+            data={lessons}
+            keyExtractor={(item) => item.id}
+            contentContainerStyle={{ paddingBottom: 20 }}
+            renderItem={({ item, index }) => (
+              <Animated.View style={{ opacity: rowAnimations[index] }}>
+                <Pressable
+                  style={styles.row}
+                  onPress={() => handleOpenLesson(item)}
+                >
+                  <View style={styles.thumb}>
+                    <Ionicons name="play-circle-outline" size={30} color={colors.navInactive} />
+                  </View>
+                  <View style={styles.rowText}>
+                    <Text style={styles.rowTitle}>{item.title}</Text>
+                    <Text style={styles.rowSubtitle}>{item.subtitle}</Text>
+                  </View>
+                  <Ionicons
+                    name={isLessonLocked(item.id, index) ? 'lock-closed-outline' : 'lock-open-outline'}
+                    size={20}
+                    color={colors.lockGray}
+                  />
+                </Pressable>
+              </Animated.View>
+            )}
+          />
+        )}
       </View>
 
       <Modal
@@ -188,6 +199,25 @@ const styles = StyleSheet.create({
   },
   title: { ...typography.h2, color: colors.accentRedAlt, textAlign: 'center' },
   headerSpacer: { width: 26 },
+  comingSoon: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+    paddingBottom: 60,
+  },
+  comingSoonTitle: {
+    ...typography.h2,
+    color: colors.textDark,
+    textAlign: 'center',
+    marginTop: 16,
+  },
+  comingSoonMessage: {
+    ...typography.body,
+    color: colors.textLabel,
+    textAlign: 'center',
+    marginTop: 8,
+  },
   row: {
     flexDirection: 'row',
     alignItems: 'center',

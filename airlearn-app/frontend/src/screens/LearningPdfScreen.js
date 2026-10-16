@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   ActivityIndicator,
@@ -15,6 +15,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { useResponsive } from '../theme/responsive';
 import { getAuthenticatedDownloadRequest } from '../api/client';
+import { usePayment } from '../context/PaymentContext';
+import { redirectToPaywall } from '../utils/paywall';
 import BottomNav from '../components/BottomNav';
 
 const PDF_FILE_NAME = 'RD chinese workbook.pdf';
@@ -27,15 +29,32 @@ const NOTE_FILES = [
   },
 ];
 
-export default function LearningPdfScreen({ navigation }) {
+export default function LearningPdfScreen({ navigation, route }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
+  const { loaded, hasAnyBatchAccess } = usePayment();
   const [downloading, setDownloading] = useState(null);
   const [downloadMessage, setDownloadMessage] = useState('');
   const [downloadError, setDownloadError] = useState(false);
+  const canDownload = loaded && hasAnyBatchAccess();
+
+  useEffect(() => {
+    if (loaded && !hasAnyBatchAccess()) {
+      redirectToPaywall(navigation, route);
+    }
+  }, [hasAnyBatchAccess, loaded, navigation, route]);
 
   const handleDownload = async (files, downloadKey) => {
     if (downloading) return;
+    if (!loaded) {
+      setDownloadMessage('Checking your purchase access. Please try again shortly.');
+      setDownloadError(false);
+      return;
+    }
+    if (!hasAnyBatchAccess()) {
+      redirectToPaywall(navigation, route);
+      return;
+    }
     setDownloading(downloadKey);
     setDownloadMessage('');
     setDownloadError(false);
@@ -154,7 +173,7 @@ export default function LearningPdfScreen({ navigation }) {
                 <Pressable
                   style={styles.fileDownloadButton}
                   onPress={() => handleDownload([file], file.id)}
-                  disabled={Boolean(downloading)}
+                  disabled={Boolean(downloading) || !canDownload}
                   accessibilityRole="button"
                   accessibilityLabel={`Download ${file.title}`}
                 >
@@ -169,9 +188,12 @@ export default function LearningPdfScreen({ navigation }) {
           </View>
 
           <Pressable
-            style={[styles.downloadButton, downloading && styles.downloadButtonDisabled]}
+            style={[
+              styles.downloadButton,
+              (downloading || !canDownload) && styles.downloadButtonDisabled,
+            ]}
             onPress={() => handleDownload(NOTE_FILES, 'all')}
-            disabled={Boolean(downloading)}
+            disabled={Boolean(downloading) || !canDownload}
             accessibilityRole="button"
           >
             {downloading === 'all' ? (
