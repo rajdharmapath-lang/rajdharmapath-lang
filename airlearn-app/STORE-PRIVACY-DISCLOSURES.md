@@ -1,44 +1,63 @@
 # Store privacy disclosure checklist
 
-Use this as a code-based starting point for Google Play Data Safety and Apple
-App Privacy. Confirm each answer against the production build, provider
-configuration, and current store definitions before submitting. This is not a
-completed store declaration or legal determination.
+Use this code-informed checklist when completing Google Play Data safety and
+Apple App Privacy disclosures. Store definitions differ, and the final answers
+must be verified against the production build, provider configuration, and
+each store's current requirements. This checklist is not a completed store
+declaration or legal determination.
 
 | Data category | App behavior found in code | Purpose | Store review note |
 |---|---|---|---|
-| Phone number | Collected for OTP login; sent to MSG91 and stored with country dial code in Supabase | Authentication and account recovery | Declare as account/contact information; shared with MSG91 |
-| Name and email | Collected for the user profile and stored in Supabase | Account/profile | Declare as personal/contact information |
-| Occupation and language | Occupation is required during account creation; language is stored as a profile preference in Supabase | Profile and personalization | Declare if included in the store's categories |
-| Purchase/order data | Backend stores plan, amount, currency, discount, Razorpay order/payment identifiers, method, status, and timestamps | Payment verification, access, disputes/accounting | Razorpay handles checkout credentials; confirm the SDK's exact collection and sharing behavior |
-| Speech/audio | Microphone recording and speech recognition occur when the user chooses speech practice; app code does not upload the recording/transcript to its backend | Speech-practice feature | Verify Apple/Google speech service behavior and declare any collection by included platform SDKs |
-| Learning activity | Favorites, recent words, completed videos, learned-word count, and streak are stored locally; stroke-preview count is sent to the backend | Learning features and preview enforcement | Distinguish on-device-only data from the backend preview counter |
-| IP/connection data | No app-level IP logging was found; GoDaddy or network infrastructure may process connection details | Hosting and security | Verify whether this meets the store's "collected" definition and confirm GoDaddy log retention |
-| Device ID, location, contacts, photos | No code or app permission for these was found | Not used by the app | Recheck the final native manifest and all bundled SDK disclosures |
-| Analytics, ads, crash reports | No dedicated SDK was found in the frontend dependencies or app code inspected | Not used by the app | Recheck the release build and any newly added SDKs |
+| Phone number and country dial code | Collected for OTP sign-in, sent to MSG91, and stored with the account profile in Supabase | Authentication and account support | Review the applicable personal/contact information categories and disclose sharing with MSG91 and backend providers |
+| Name, email, occupation, and learning language | Name, email, occupation, and language preference are stored in the account profile in Supabase | Account profile and personalization | Map each field to the store's current categories; occupation and language may be treated differently by each store |
+| Authentication information | OTP verification is used to sign in; an authentication token is stored in app storage on the device | Account access and session maintenance | Check store definitions for authentication information and whether the token is considered collected |
+| Purchase and order information | Backend stores plan and batch, amount, currency, discounts, Razorpay order/payment references, payment method where supplied, status, and timestamps | Payment verification, entitlement delivery, support, and financial records | Razorpay handles checkout credentials. Confirm its SDK and current production configuration for the exact collection/sharing disclosures |
+| Speech and audio | When a user chooses speech practice, the device captures and persists a recording and uses the configured OS speech-recognition provider. The app's pronunciation assessment is simulated and does not upload the recording or transcript to its backend | Speech practice | Verify whether the device provider transmits or retains audio/transcripts and declare any provider collection required by store rules |
+| Learning activity and preferences | Favorites, recent words, learned-word identifiers, completed videos and stroke characters, streak, voice speed, and Foundation preview identifiers are stored locally. The backend stores stroke-practice preview counts and paid-access entitlements | Learning features, personalization, preview limits, and content access | Distinguish on-device data from data transmitted to or stored by the backend |
+| Downloaded learning materials | An authenticated request checks access and retrieves the requested PDF; the user chooses the save destination on Android | Delivering purchased learning content | Verify whether store definitions count downloads or saved files as collected data; saved copies are controlled by the user/device storage provider |
+| IP address and connection/request metadata | The API records request ID, method, route, status, duration, timestamp, and sanitized error details. Hosting and network providers may process IP and connection information | Service operation, security, and troubleshooting | Verify hosting-provider logs, access, and retention in production and map to applicable store definitions |
+| Device ID, precise location, contacts, and photos | No use was identified in the app code and permissions reviewed | Not used by the app | Recheck the final native manifests, permissions, and all bundled SDK declarations |
+| Analytics, advertising, and crash reporting | No dedicated analytics, advertising, or crash-reporting SDK was identified in the app code and frontend dependencies reviewed | Not currently used by the app | Recheck the release build, native dependencies, and provider configuration before submission |
 
-## Account deletion and sharing
+## Account deletion, retention, and sharing
 
-- Users can delete their account from Settings. The backend removes the profile,
-  entitlement, and stroke-preview records; the app clears local learning data.
-- Payment records are retained for applicable obligations and have their
-  account identifier randomized upon deletion; uncompleted orders are deleted.
-- MSG91 receives phone numbers for OTP. Razorpay processes checkout and payment
-  details. Supabase stores backend data. GoDaddy hosts the backend API.
-- The app does not sell personal data or use an advertising SDK for tracking.
+- Users can initiate account deletion from Profile → Account. The backend
+  removes the active account profile, but the deletion process also writes a
+  deletion-audit record containing a profile snapshot. Payment and
+  stroke-preview records may remain and may retain the account's internal
+  identifier.
+- The privacy policy states that personal details, including deletion-audit
+  copies, will be permanently deleted after more than 12 consecutive months
+  without an active batch subscription, subject to legal or financial
+  obligations. The current backend does not automatically expire deletion-
+  audit records. Ensure the stated retention commitment is operationally
+  fulfilled and determine the applicable store disclosure for retained data.
+- Account deletion also clears sign-in and certain learning data on the
+  current device. Some preferences and preview identifiers, device speech
+  recordings, and files saved outside the app may remain.
+- MSG91 receives phone numbers for OTP delivery. Razorpay processes checkout.
+  Supabase provides database and configured file-storage services. The API
+  hosting provider operates the backend. Device-configured speech services
+  may process speech input. Confirm actual production providers and their
+  respective disclosures.
+- The app does not sell personal data or currently use an advertising SDK for
+  tracking.
 
 ## Before store submission
 
-1. Run the updated `backend/supabase/schema.sql` migration. It drops the legacy
-   `user_deletion_audit` table and permanently deletes the profile snapshots
-   stored there.
-2. Confirm the release API uses HTTPS and the production backend has a strong
-   `JWT_SECRET`.
-3. Confirm the production GoDaddy access-log, backup, and retention settings.
-4. Confirm what audio/transcript data Apple's and Google's speech services
-   collect in the supported OS versions and device settings.
-5. Resolve the lack of in-app age/guardian verification if minors in locations
-   requiring parental consent will be allowed to register.
-6. Confirm the payment-record retention schedule with an India-qualified
-   accounting/legal adviser and arrange deletion or anonymization once records
-   are no longer required.
+1. Verify production providers and settings for MSG91, Supabase, Razorpay, API
+   hosting, and speech recognition; review their collection, sharing, and
+   retention practices.
+2. Confirm the release API uses HTTPS and that production authentication and
+   database access are securely configured.
+3. Confirm production API logs, backups, deletion-audit handling, and the
+   process that fulfills the 12-month inactive-subscription deletion
+   commitment. Do not represent this deletion as automated unless it is.
+4. Confirm what audio and transcript data the supported operating systems'
+   speech services collect, transmit, and retain.
+5. Recheck final native manifests, permissions, and all bundled SDKs for
+   additional data collection or sharing.
+6. Confirm payment-record retention and account-linkage handling with the
+   payment provider and an appropriate legal/accounting adviser.
+7. Confirm age eligibility and any parental-consent obligations for the
+   locations where the app will be offered.

@@ -11,8 +11,8 @@ const CONTACTS = [
   {
     icon: 'call-outline',
     label: 'Phone',
-    value: '8939107990',
-    url: 'tel:8939107990',
+    value: '+91 89391 07990',
+    url: 'tel:+918939107990',
   },
   {
     icon: 'logo-whatsapp',
