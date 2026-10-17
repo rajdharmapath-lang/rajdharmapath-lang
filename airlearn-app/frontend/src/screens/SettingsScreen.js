@@ -135,9 +135,14 @@ export default function SettingsScreen({ navigation }) {
               onPress={() => handleComingSoon('Notifications')}
             />
             <SettingsRow
+              icon="headset-outline"
+              label="Support & Contact Us"
+              onPress={() => navigation.navigate('SupportContactUs')}
+            />
+            <SettingsRow
               icon="information-circle-outline"
-              label="Support & About"
-              onPress={() => handleComingSoon('Support & About')}
+              label="About"
+              onPress={() => navigation.navigate('About')}
               isLast
             />
           </View>

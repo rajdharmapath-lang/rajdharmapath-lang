@@ -65,6 +65,8 @@ import SettingsScreen from './src/screens/SettingsScreen';
 import SettingsAccountScreen from './src/screens/SettingsAccountScreen';
 import SettingsLanguageScreen from './src/screens/SettingsLanguageScreen';
 import SettingsLearningPreferenceScreen from './src/screens/SettingsLearningPreferenceScreen';
+import SupportContactUsScreen from './src/screens/SupportContactUsScreen';
+import AboutScreen from './src/screens/AboutScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -124,6 +126,8 @@ function RootNavigator({ initialRouteName }) {
       <Stack.Screen name="SettingsAccount" component={SettingsAccountScreen} />
       <Stack.Screen name="SettingsLanguage" component={SettingsLanguageScreen} />
       <Stack.Screen name="SettingsLearningPreference" component={SettingsLearningPreferenceScreen} />
+      <Stack.Screen name="SupportContactUs" component={SupportContactUsScreen} />
+      <Stack.Screen name="About" component={AboutScreen} />
     </Stack.Navigator>
   );
 }
