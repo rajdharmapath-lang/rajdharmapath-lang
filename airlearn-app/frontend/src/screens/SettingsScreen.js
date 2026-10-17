@@ -40,10 +40,6 @@ export default function SettingsScreen({ navigation }) {
     setProfileDialog({ type: 'logout', title: 'Log out?', message: 'Are you sure you want to log out?' });
   };
 
-  const handleComingSoon = (feature) => {
-    setProfileDialog({ type: 'notice', title: feature });
-  };
-
   const dismissProfileDialog = () => {
     if (loggingOut) return;
     setProfileDialog(null);
@@ -130,11 +126,6 @@ export default function SettingsScreen({ navigation }) {
               onPress={() => navigation.navigate('SettingsLearningPreference')}
             />
             <SettingsRow
-              icon="notifications-outline"
-              label="Notification"
-              onPress={() => handleComingSoon('Notifications')}
-            />
-            <SettingsRow
               icon="headset-outline"
               label="Support & Contact Us"
               onPress={() => navigation.navigate('SupportContactUs')}
@@ -175,13 +166,7 @@ export default function SettingsScreen({ navigation }) {
           >
             <View style={styles.noticeIcon}>
               <Ionicons
-                name={
-                  profileDialog?.type === 'logout'
-                    ? 'log-out-outline'
-                    : profileDialog?.title === 'Notifications'
-                      ? 'notifications-outline'
-                      : 'information-circle-outline'
-                }
+                name={profileDialog?.type === 'logout' ? 'log-out-outline' : 'information-circle-outline'}
                 size={26}
                 color={profileDialog?.type === 'logout' ? colors.primary : colors.homeOrange}
               />

@@ -73,6 +73,8 @@ export const plansByBatch = {
   ],
 };
 
+export const batchesWithAvailablePlans = ['foundation'];
+
 export function getPlan(planId) {
   for (const plans of Object.values(plansByBatch)) {
     const found = plans.find((p) => p.id === planId);

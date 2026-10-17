@@ -9,19 +9,36 @@ const DEFAULT_VOICE_SPEED = 0.95;
 export const VOICE_SPEED_OPTIONS = [0.75, 0.8, 0.9, 0.95, 1.0];
 
 let currentVoiceSpeed = DEFAULT_VOICE_SPEED;
+let voiceSpeedLoaded = false;
+let voiceSpeedLoadPromise = null;
+let voiceSpeedRevision = 0;
 
 /**
  * Loads the persisted voice speed preference. Call once at app startup
  * (before any playWordAudio calls need to reflect the saved value).
  */
 export async function loadVoiceSpeed() {
-  try {
-    const raw = await AsyncStorage.getItem(VOICE_SPEED_KEY);
-    if (raw) currentVoiceSpeed = JSON.parse(raw);
-  } catch (e) {
-    // fall back to default
-  }
-  return currentVoiceSpeed;
+  if (voiceSpeedLoaded) return currentVoiceSpeed;
+  if (voiceSpeedLoadPromise) return voiceSpeedLoadPromise;
+
+  const revision = voiceSpeedRevision;
+  voiceSpeedLoadPromise = (async () => {
+    try {
+      const raw = await AsyncStorage.getItem(VOICE_SPEED_KEY);
+      const savedSpeed = raw ? JSON.parse(raw) : null;
+      if (revision === voiceSpeedRevision && VOICE_SPEED_OPTIONS.includes(savedSpeed)) {
+        currentVoiceSpeed = savedSpeed;
+      }
+    } catch (error) {
+      console.warn('[audio] Could not load pronunciation voice speed', error);
+    } finally {
+      voiceSpeedLoaded = true;
+      voiceSpeedLoadPromise = null;
+    }
+    return currentVoiceSpeed;
+  })();
+
+  return voiceSpeedLoadPromise;
 }
 
 export function getVoiceSpeed() {
@@ -29,7 +46,11 @@ export function getVoiceSpeed() {
 }
 
 export async function setVoiceSpeed(rate) {
+  if (!VOICE_SPEED_OPTIONS.includes(rate)) {
+    throw new RangeError(`Unsupported pronunciation voice speed: ${rate}`);
+  }
   currentVoiceSpeed = rate;
+  voiceSpeedRevision += 1;
   try {
     await AsyncStorage.setItem(VOICE_SPEED_KEY, JSON.stringify(rate));
   } catch (e) {
@@ -66,6 +87,7 @@ export async function setVoiceSpeed(rate) {
 export async function playWordAudio(word) {
   if (!word?.hanzi) return;
 
+  await loadVoiceSpeed();
   await Speech.stop();
   await new Promise((resolve, reject) => {
     Speech.speak(word.hanzi, {

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View as NativeView } from 'react-native';
+import { StyleSheet, View as NativeView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -156,10 +156,16 @@ function AppNavigation() {
 // back online — rather than a route you navigate to and lose your place.
 function ConnectivityGate({ children }) {
   const { isConnected } = useNetwork();
-  if (!isConnected) {
-    return <NoInternetScreen />;
-  }
-  return children;
+  return (
+    <NativeView style={{ flex: 1 }}>
+      {children}
+      {!isConnected && (
+        <NativeView style={StyleSheet.absoluteFill} accessibilityViewIsModal>
+          <NoInternetScreen />
+        </NativeView>
+      )}
+    </NativeView>
+  );
 }
 
 export default function App() {

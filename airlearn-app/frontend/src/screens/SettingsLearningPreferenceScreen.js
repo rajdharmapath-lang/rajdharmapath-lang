@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { View, Text, Pressable, StyleSheet, Alert, Linking } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
@@ -12,6 +13,12 @@ export default function SettingsLearningPreferenceScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const [selectedSpeed, setSelectedSpeed] = useState(getVoiceSpeed());
+
+  useFocusEffect(
+    useCallback(() => {
+      setSelectedSpeed(getVoiceSpeed());
+    }, [])
+  );
 
   const handleSelectSpeed = (speed) => {
     setSelectedSpeed(speed);

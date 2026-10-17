@@ -13,13 +13,22 @@ module.exports = (config) => withDangerousMod(config, [
       'res'
     );
     const drawableDirectory = path.join(resourceDirectory, 'drawable-nodpi');
+    const defaultDrawableDirectory = path.join(resourceDirectory, 'drawable');
     const stylesDirectory = path.join(resourceDirectory, 'values-v31');
 
-    fs.mkdirSync(drawableDirectory, { recursive: true });
+    fs.mkdirSync(defaultDrawableDirectory, { recursive: true });
     fs.mkdirSync(stylesDirectory, { recursive: true });
-    fs.copyFileSync(
-      path.join(modConfig.modRequest.projectRoot, 'assets', 'adaptive-icon.png'),
-      path.join(drawableDirectory, 'launch_splash_icon.png')
+    fs.rmSync(path.join(drawableDirectory, 'launch_splash_icon.png'), { force: true });
+    fs.writeFileSync(
+      path.join(defaultDrawableDirectory, 'launch_splash_icon.xml'),
+      `<vector xmlns:android="http://schemas.android.com/apk/res/android"
+  android:width="1dp"
+  android:height="1dp"
+  android:viewportWidth="1"
+  android:viewportHeight="1">
+  <path android:fillColor="#00000000" android:pathData="M0,0h1v1h-1z" />
+</vector>
+`
     );
     fs.writeFileSync(
       path.join(stylesDirectory, 'styles.xml'),

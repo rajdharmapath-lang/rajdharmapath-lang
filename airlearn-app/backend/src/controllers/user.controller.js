@@ -1,6 +1,8 @@
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const { Readable } = require('node:stream');
+const { pipeline } = require('node:stream/promises');
 const userRepository = require('../db/user.repository');
 const paymentRepository = require('../db/payment.repository');
 const supabase = require('../db/supabase');
@@ -190,10 +192,19 @@ async function downloadLearningPdf(req, res) {
         });
       }
 
-      const pdf = Buffer.from(await storageResponse.arrayBuffer());
+      if (!storageResponse.body) {
+        throw new Error('The learning PDF response did not include a readable body.');
+      }
+
       res.setHeader('Content-Type', 'application/pdf');
       res.setHeader('Content-Disposition', 'attachment; filename="RD chinese workbook.pdf"');
-      return res.status(200).send(pdf);
+      const contentLength = storageResponse.headers?.get('content-length');
+      if (contentLength && /^\d+$/.test(contentLength)) {
+        res.setHeader('Content-Length', contentLength);
+      }
+      res.status(200);
+      await pipeline(Readable.fromWeb(storageResponse.body), res);
+      return;
     } catch (error) {
       logger.error('learning_pdf_storage_request_failed', {
         module: 'user',
@@ -202,6 +213,10 @@ async function downloadLearningPdf(req, res) {
         statusCode: 502,
         error,
       });
+      if (res.headersSent || res.destroyed) {
+        res.destroy(error);
+        return;
+      }
       return res.status(502).json({ message: 'Could not download the learning PDF.' });
     }
   }

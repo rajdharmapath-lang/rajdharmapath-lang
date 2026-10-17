@@ -7,13 +7,15 @@ import { useResponsive } from '../theme/responsive';
 import { Ionicons } from '@expo/vector-icons';
 import BottomNav from '../components/BottomNav';
 import { batches } from '../data/courses';
-import { plansByBatch } from '../data/plans';
+import { batchesWithAvailablePlans, plansByBatch } from '../data/plans';
 
 export default function PaywallChoosePlanScreen({ route, navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
   const { batchId, returnTo, upgradeMessage } = route?.params || {};
-  const batchesToShow = batchId ? batches.filter((batch) => batch.id === batchId) : batches;
+  const batchesToShow = (batchId ? batches.filter((batch) => batch.id === batchId) : batches)
+    .filter((batch) => batchesWithAvailablePlans.includes(batch.id));
+  const unavailableBatch = batchId && batches.find((batch) => batch.id === batchId && !batchesWithAvailablePlans.includes(batch.id));
 
   const handleSelectPlan = (plan) => {
     navigation.navigate('Checkout', { planId: plan.id, returnTo });
@@ -49,6 +51,12 @@ export default function PaywallChoosePlanScreen({ route, navigation }) {
           </View>
 
           {upgradeMessage && <Text style={styles.upgradeMessage}>{upgradeMessage}</Text>}
+
+          {unavailableBatch && (
+            <Text style={styles.unavailableMessage}>
+              Plans for {unavailableBatch.name} are temporarily unavailable. Please check back later.
+            </Text>
+          )}
 
           {batchesToShow.map((batch) => (
             <View
@@ -115,6 +123,14 @@ const styles = StyleSheet.create({
   upgradeMessage: {
     ...typography.body,
     color: colors.textDark,
+    backgroundColor: colors.homeOrangeBg,
+    borderRadius: 14,
+    padding: 14,
+    marginBottom: 18,
+  },
+  unavailableMessage: {
+    ...typography.body,
+    color: colors.textLabel,
     backgroundColor: colors.homeOrangeBg,
     borderRadius: 14,
     padding: 14,

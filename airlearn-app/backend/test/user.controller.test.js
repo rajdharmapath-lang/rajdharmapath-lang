@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const os = require('node:os');
 const path = require('node:path');
+const { PassThrough, Readable } = require('node:stream');
 const testPdfDirectory = fs.mkdtempSync(path.join(os.tmpdir(), 'airlearn-pdf-test-'));
 const testPdfPath = path.join(testPdfDirectory, 'test-workbook.pdf');
 fs.writeFileSync(testPdfPath, 'test pdf');
@@ -24,6 +25,19 @@ const {
 const { issueToken, requireAuth } = require('../src/middleware/auth.middleware');
 
 after(() => fs.rmSync(testPdfDirectory, { recursive: true, force: true }));
+
+function createDownloadResponse() {
+  const response = new PassThrough();
+  response.headers = {};
+  response.setHeader = (name, value) => {
+    response.headers[name] = value;
+  };
+  response.status = (code) => {
+    response.statusCode = code;
+    return response;
+  };
+  return response;
+}
 
 test('deleteAccount removes the database user and invalidates existing tokens', async () => {
   const user = { id: 'user-test-1', dialCode: '+1', phone: '5550100' };
@@ -273,9 +287,9 @@ test('downloadLearningPdf fetches the configured Supabase Storage object', async
   );
   const previousFetch = global.fetch;
   const pdfContents = Buffer.from('storage pdf');
-  let responseStatus;
-  let responseBody;
-  const responseHeaders = {};
+  const response = createDownloadResponse();
+  const responseChunks = [];
+  response.on('data', (chunk) => responseChunks.push(chunk));
   mock.method(paymentRepository, 'getUserEntitlements', async () => ({
     elevation: { tier: 'videos_live' },
   }));
@@ -295,30 +309,19 @@ test('downloadLearningPdf fetches the configured Supabase Storage object', async
     assert.equal(options.headers.authorization, 'Bearer test-service-role-key');
     return {
       ok: true,
-      async arrayBuffer() {
-        return pdfContents;
-      },
+      body: Readable.toWeb(Readable.from([pdfContents])),
+      headers: new Headers({ 'content-length': String(pdfContents.length) }),
     };
   };
 
   try {
-    await downloadLearningPdf({}, {
-      setHeader(name, value) {
-        responseHeaders[name] = value;
-      },
-      status(code) {
-        responseStatus = code;
-        return this;
-      },
-      send(body) {
-        responseBody = body;
-      },
-    });
+    await downloadLearningPdf({}, response);
 
-    assert.equal(responseStatus, 200);
-    assert.deepEqual(responseBody, pdfContents);
-    assert.equal(responseHeaders['Content-Type'], 'application/pdf');
-    assert.equal(responseHeaders['Content-Disposition'], 'attachment; filename="RD chinese workbook.pdf"');
+    assert.equal(response.statusCode, 200);
+    assert.deepEqual(Buffer.concat(responseChunks), pdfContents);
+    assert.equal(response.headers['Content-Type'], 'application/pdf');
+    assert.equal(response.headers['Content-Length'], String(pdfContents.length));
+    assert.equal(response.headers['Content-Disposition'], 'attachment; filename="RD chinese workbook.pdf"');
   } finally {
     mock.restoreAll();
     for (const key of environmentKeys) {
@@ -329,7 +332,7 @@ test('downloadLearningPdf fetches the configured Supabase Storage object', async
   }
 });
 
-test('downloadLearningPdf fetches the configured Supabase object URL directly', async () => {
+test('downloadLearningPdf streams the configured Supabase object URL directly', async () => {
   const environmentKeys = [
     'SUPABASE_STORAGE_OBJECT_URL',
     'SUPABASE_STORAGE_BUCKET',
@@ -343,8 +346,10 @@ test('downloadLearningPdf fetches the configured Supabase object URL directly', 
   const previousFetch = global.fetch;
   const objectUrl =
     'https://tfniorcovtstaswpakfn.supabase.co/storage/v1/object/public/Rajdharma_app_pdf/Work%20book.pdf';
-  let responseStatus;
-  let responseBody;
+  const pdfContents = Buffer.from('storage pdf');
+  const response = createDownloadResponse();
+  const responseChunks = [];
+  response.on('data', (chunk) => responseChunks.push(chunk));
   mock.method(paymentRepository, 'getUserEntitlements', async () => ({
     foundation: { tier: 'videos_live' },
   }));
@@ -359,26 +364,17 @@ test('downloadLearningPdf fetches the configured Supabase object URL directly', 
     assert.deepEqual(options.headers, {});
     return {
       ok: true,
-      async arrayBuffer() {
-        return Buffer.from('storage pdf');
-      },
+      body: Readable.toWeb(Readable.from([pdfContents])),
+      headers: new Headers({ 'content-length': String(pdfContents.length) }),
     };
   };
 
   try {
-    await downloadLearningPdf({}, {
-      setHeader() {},
-      status(code) {
-        responseStatus = code;
-        return this;
-      },
-      send(body) {
-        responseBody = body;
-      },
-    });
+    await downloadLearningPdf({}, response);
 
-    assert.equal(responseStatus, 200);
-    assert.deepEqual(responseBody, Buffer.from('storage pdf'));
+    assert.equal(response.statusCode, 200);
+    assert.deepEqual(Buffer.concat(responseChunks), pdfContents);
+    assert.equal(response.headers['Content-Length'], String(pdfContents.length));
   } finally {
     mock.restoreAll();
     for (const key of environmentKeys) {
