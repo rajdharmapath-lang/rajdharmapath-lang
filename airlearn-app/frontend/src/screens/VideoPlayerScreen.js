@@ -368,22 +368,30 @@ export default function VideoPlayerScreen({ route, navigation }) {
         </View>
 
         {!isLandscape && (
-          <FlatList
-            data={upNext}
-            keyExtractor={(item) => item.id}
-            contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
-            renderItem={({ item }) => (
-              <Pressable style={styles.row} onPress={() => handleOpenLesson(item)}>
-                <View style={styles.thumb}>
-                  <Ionicons name="play-circle-outline" size={28} color={colors.navInactive} />
-                </View>
-                <View style={styles.rowText}>
-                  <Text style={styles.rowTitle}>{item.title}</Text>
-                  <Text style={styles.rowSubtitle}>{item.subtitle}</Text>
-                </View>
-              </Pressable>
-            )}
-          />
+          <>
+            {lesson?.description ? (
+              <View style={styles.descriptionCard}>
+                <Text style={styles.descriptionTitle}>About this video</Text>
+                <Text style={styles.descriptionText}>{lesson.description}</Text>
+              </View>
+            ) : null}
+            <FlatList
+              data={upNext}
+              keyExtractor={(item) => item.id}
+              contentContainerStyle={{ paddingTop: 20, paddingBottom: 20 }}
+              renderItem={({ item }) => (
+                <Pressable style={styles.row} onPress={() => handleOpenLesson(item)}>
+                  <View style={styles.thumb}>
+                    <Ionicons name="play-circle-outline" size={28} color={colors.navInactive} />
+                  </View>
+                  <View style={styles.rowText}>
+                    <Text style={styles.rowTitle}>{item.title}</Text>
+                    <Text style={styles.rowSubtitle}>{item.subtitle}</Text>
+                  </View>
+                </Pressable>
+              )}
+            />
+          </>
         )}
       </View>
 
@@ -455,6 +463,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   landscapePlayerCard: { flex: 1, height: undefined, borderRadius: 0, backgroundColor: '#000' },
+  descriptionCard: {
+    backgroundColor: colors.homeOrangeBgAlt,
+    borderRadius: 16,
+    padding: 16,
+    marginTop: 16,
+  },
+  descriptionTitle: { ...typography.bodyBold, color: colors.textDark, marginBottom: 6 },
+  descriptionText: { ...typography.small, color: colors.textLabel, lineHeight: 21 },
   videoSurface: { ...StyleSheetAbsoluteFill() },
   videoMessage: {
     ...StyleSheetAbsoluteFill(),

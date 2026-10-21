@@ -43,6 +43,7 @@ export const lessonsByBatch = {
       id: 'f1',
       title: 'Welcome to Foundation',
       subtitle: 'Introduction',
+      description: 'In this video, we will learn how to count numbers in Chinese Mandarin! Learn Chinese numbers with their Mandarin pronunciation and English meanings in a simple and easy way. This video is perfect for beginners who want to start learning Mandarin Chinese from the basics. Practice along with us and improve your Chinese speaking skills step by step.',
       locked: false,
     },
   ],

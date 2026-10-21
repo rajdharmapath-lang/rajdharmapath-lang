@@ -1,25 +1,15 @@
 import React from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Alert, Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
 import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
 
-const PRIVACY_POLICY_URL = 'https://rajdharma.org/privacy-policy.html';
-
 export default function AboutScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
-
-  const openPrivacyPolicy = async () => {
-    try {
-      await Linking.openURL(PRIVACY_POLICY_URL);
-    } catch (error) {
-      Alert.alert('Unable to open privacy policy', error?.message || 'Please try again later.');
-    }
-  };
 
   return (
     <View style={[styles.flex, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
@@ -38,10 +28,9 @@ export default function AboutScreen({ navigation }) {
               <View style={styles.appIcon}>
                 <Ionicons name="book-outline" size={30} color={colors.homeOrange} />
               </View>
-              <Text style={styles.appName}>Raj Dharma Chinese</Text>
+              <Text style={styles.appName}>Raj Dharma</Text>
             </View>
 
-            <Text style={styles.aboutHeading}>About Raj Dharma</Text>
             <Text style={styles.paragraph}>
               I am Raj Dharma, a passionate Chinese language educator dedicated to empowering our Tamil and Indian community through language and cultural learning.
             </Text>
@@ -58,17 +47,6 @@ export default function AboutScreen({ navigation }) {
               I dedicate these teachings to our beloved Tamil ancestors who migrated, worked hard, and sacrificed so much. Their strength, resilience, and determination continue to inspire us every day.
             </Text>
             <Text style={styles.quote}>“Break language barriers. Build a better future.”</Text>
-
-            <Pressable
-              style={styles.privacyRow}
-              onPress={openPrivacyPolicy}
-              accessibilityRole="link"
-              accessibilityLabel="Privacy Policy"
-            >
-              <Ionicons name="shield-checkmark-outline" size={20} color={colors.homeOrange} />
-              <Text style={styles.privacyLabel}>Privacy Policy</Text>
-              <Ionicons name="open-outline" size={18} color={colors.textLabel} />
-            </Pressable>
           </View>
         </ScrollView>
       </View>
@@ -114,12 +92,6 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   appName: { fontSize: 18, fontWeight: '700', color: colors.textDark, marginBottom: 22 },
-  aboutHeading: {
-    fontSize: 19,
-    fontWeight: '700',
-    color: colors.accentRedAlt,
-    marginBottom: 12,
-  },
   paragraph: {
     fontSize: 15,
     lineHeight: 23,
@@ -134,15 +106,5 @@ const styles = StyleSheet.create({
     color: colors.accentRedAlt,
     textAlign: 'center',
     marginTop: 2,
-    marginBottom: 22,
   },
-  privacyRow: {
-    width: '100%',
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderTopWidth: 1,
-    borderTopColor: colors.strokeTrackLight,
-    paddingTop: 18,
-  },
-  privacyLabel: { flex: 1, fontSize: 15, color: colors.textDark, marginLeft: 12 },
 });
