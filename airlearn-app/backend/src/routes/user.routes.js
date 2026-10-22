@@ -8,7 +8,7 @@ const {
 	claimStrokePreview,
 	deleteAccount,
 	downloadLearningPdf,
-	getFoundationWelcomeVideo,
+	getFoundationLessonVideo,
 } = require('../controllers/user.controller');
 
 const router = express.Router();
@@ -21,6 +21,6 @@ router.get('/me', getMe);
 router.post('/practice-previews/stroke/claim', claimStrokePreview);
 router.delete('/account', deleteAccount);
 router.get('/learning-pdf', downloadLearningPdf);
-router.get('/videos/foundation-welcome', getFoundationWelcomeVideo);
+router.get('/videos/foundation/:lessonId', getFoundationLessonVideo);
 
 module.exports = router;

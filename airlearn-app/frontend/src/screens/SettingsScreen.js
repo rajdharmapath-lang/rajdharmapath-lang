@@ -10,6 +10,8 @@ import SettingsRow from '../components/SettingsRow';
 import { useAuth } from '../context/AuthContext';
 import { usePayment } from '../context/PaymentContext';
 
+const SHOW_LEARNING_PREFERENCE = false;
+
 function formatDate(ms) {
   return new Date(ms).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 }
@@ -120,11 +122,13 @@ export default function SettingsScreen({ navigation }) {
               label="App Language"
               onPress={() => navigation.navigate('SettingsLanguage')}
             />
-            <SettingsRow
-              icon="book-outline"
-              label="Learning Preference"
-              onPress={() => navigation.navigate('SettingsLearningPreference')}
-            />
+            {SHOW_LEARNING_PREFERENCE && (
+              <SettingsRow
+                icon="book-outline"
+                label="Learning Preference"
+                onPress={() => navigation.navigate('SettingsLearningPreference')}
+              />
+            )}
             <SettingsRow
               icon="headset-outline"
               label="Support & Contact Us"

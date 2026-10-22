@@ -41,9 +41,16 @@ export const lessonsByBatch = {
   foundation: [
     {
       id: 'f1',
-      title: 'Welcome to Foundation',
-      subtitle: 'Introduction',
+      title: 'Lesson 1',
+      subtitle: 'Chinese Numbers',
       description: 'In this video, we will learn how to count numbers in Chinese Mandarin! Learn Chinese numbers with their Mandarin pronunciation and English meanings in a simple and easy way. This video is perfect for beginners who want to start learning Mandarin Chinese from the basics. Practice along with us and improve your Chinese speaking skills step by step.',
+      locked: false,
+    },
+    {
+      id: 'f2',
+      title: 'Lesson 2',
+      subtitle: 'Introductions and Family',
+      description: 'In this video, learn how to introduce yourself in Chinese Mandarin, talk about your nationality, and describe your family members! Learn useful Mandarin words, simple sentences, pronunciation, and their English meanings to help you communicate confidently in everyday conversations. Whether you are a beginner or starting your Chinese learning journey, this lesson will help you build your Mandarin vocabulary step by step.',
       locked: false,
     },
   ],

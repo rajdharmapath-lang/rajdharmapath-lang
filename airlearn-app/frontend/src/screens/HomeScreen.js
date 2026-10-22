@@ -32,6 +32,8 @@ const ACCESS_ITEMS = [
   },
 ];
 
+const HIDDEN_ACCESS_ITEM_KEYS = new Set(['speech']);
+
 export default function HomeScreen({ navigation }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
@@ -128,7 +130,7 @@ export default function HomeScreen({ navigation }) {
             <View>
               <Text style={styles.sectionTitle}>Access</Text>
               <View style={styles.accessGrid}>
-                {ACCESS_ITEMS.map((item, index) => (
+                {ACCESS_ITEMS.filter((item) => !HIDDEN_ACCESS_ITEM_KEYS.has(item.key)).map((item, index) => (
                   <StaggeredSlideItem
                     key={item.key}
                     index={index}
@@ -242,11 +244,10 @@ const styles = StyleSheet.create({
   continueSubtitle: { fontSize: 13, color: colors.textLabel },
   accessGrid: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
+    columnGap: 12,
     marginBottom: 12,
   },
-  accessTileAnimation: { width: '23%', aspectRatio: 0.76 },
+  accessTileAnimation: { flex: 1, aspectRatio: 0.9 },
   accessTile: {
     flex: 1,
     backgroundColor: colors.homeOrangeBgAlt,
@@ -257,14 +258,14 @@ const styles = StyleSheet.create({
   },
   accessTileDisabled: { opacity: 0.5 },
   accessIconSlot: {
-    width: 40,
-    height: 40,
+    width: 48,
+    height: 48,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 8,
   },
-  accessGlyph: { fontSize: 28, color: colors.homeOrange, fontWeight: '600' },
-  accessImage: { width: 34, height: 34 },
+  accessGlyph: { fontSize: 32, color: colors.homeOrange, fontWeight: '600' },
+  accessImage: { width: 42, height: 42 },
   speechIconCircle: {
     width: 40,
     height: 40,

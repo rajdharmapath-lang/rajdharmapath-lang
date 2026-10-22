@@ -129,7 +129,7 @@ export default function VideoPlayerScreen({ route, navigation }) {
     setVideoLoading(true);
     setVideoError(null);
     try {
-      const { data } = await userApi.getFoundationWelcomeVideo();
+      const { data } = await userApi.getFoundationLessonVideo(lesson.id);
       if (typeof data?.videoUrl !== 'string' || !data.videoUrl) {
         throw new Error('The video service returned an invalid URL.');
       }

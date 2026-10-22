@@ -19,7 +19,7 @@ const {
   createAccount,
   deleteAccount,
   downloadLearningPdf,
-  getFoundationWelcomeVideo,
+  getFoundationLessonVideo,
   setLanguage,
 } = require('../src/controllers/user.controller');
 const { issueToken, requireAuth } = require('../src/middleware/auth.middleware');
@@ -234,20 +234,21 @@ test('downloadLearningPdf denies users without an active batch purchase', async 
   }
 });
 
-test('getFoundationWelcomeVideo returns a signed URL for the Foundation lesson video', async () => {
-  const videoUrl = 'https://project.example/storage/v1/object/sign/Rajdharma_app_pdf/Videos/Welcome.mp4?token=signed';
-  let bucket;
-  let objectPath;
-  let expiresIn;
+test('getFoundationLessonVideo returns signed URLs for the whitelisted Supabase lesson videos', async () => {
+  const signedPaths = [];
   mock.method(supabase, 'getClient', () => ({
     storage: {
       from(name) {
-        bucket = name;
+        assert.equal(name, 'Rajdharma_app_pdf');
         return {
-          async createSignedUrl(path, duration) {
-            objectPath = path;
-            expiresIn = duration;
-            return { data: { signedUrl: videoUrl }, error: null };
+          async createSignedUrl(objectPath, expiresIn) {
+            signedPaths.push({ objectPath, expiresIn });
+            return {
+              data: {
+                signedUrl: `https://project.example/storage/${objectPath}?token=signed`,
+              },
+              error: null,
+            };
           },
         };
       },
@@ -255,21 +256,52 @@ test('getFoundationWelcomeVideo returns a signed URL for the Foundation lesson v
   }));
 
   try {
-    let responseBody;
-    await getFoundationWelcomeVideo({ requestId: 'video-test' }, {
-      json(body) {
-        responseBody = body;
-        return this;
-      },
-    });
+    for (const [lessonId, fileName] of [
+      ['f1', 'Lesson_1.mp4'],
+      ['f2', 'Lesson_2.mp4'],
+    ]) {
+      let responseBody;
+      await getFoundationLessonVideo(
+        { params: { lessonId }, requestId: 'video-test' },
+        {
+          json(body) {
+            responseBody = body;
+            return this;
+          },
+        }
+      );
+      assert.equal(responseBody.videoUrl, `https://project.example/storage/Videos/${fileName}?token=signed`);
+    }
 
-    assert.equal(bucket, 'Rajdharma_app_pdf');
-    assert.equal(objectPath, 'Videos/Welcome.mp4');
-    assert.equal(expiresIn, 60 * 60);
-    assert.deepEqual(responseBody, { videoUrl });
+    assert.deepEqual(signedPaths, [
+      { objectPath: 'Videos/Lesson_1.mp4', expiresIn: 60 * 60 },
+      { objectPath: 'Videos/Lesson_2.mp4', expiresIn: 60 * 60 },
+    ]);
   } finally {
     mock.restoreAll();
   }
+});
+
+test('getFoundationLessonVideo rejects lesson IDs outside the whitelist', async () => {
+  let statusCode;
+  let responseBody;
+  await getFoundationLessonVideo(
+    { params: { lessonId: '../private.mp4' }, requestId: 'video-test' },
+    {
+      status(code) {
+        statusCode = code;
+        return this;
+      },
+      json(body) {
+        responseBody = body;
+      },
+    }
+  );
+
+  assert.equal(statusCode, 404);
+  assert.deepEqual(responseBody, {
+    message: 'The Foundation Batch lesson video was not found.',
+  });
 });
 
 test('downloadLearningPdf fetches the configured Supabase Storage object', async () => {
