@@ -249,6 +249,8 @@ async function getFoundationLessonVideo(req, res) {
   const videoPaths = {
     f1: 'Videos/Lesson_1.mp4',
     f2: 'Videos/Lesson_2.mp4',
+    f3: 'Videos/Lesson_3.mp4',
+    f4: 'Videos/Lesson_4.mp4',
   };
   const objectPath = videoPaths[req.params.lessonId];
   if (!objectPath) {

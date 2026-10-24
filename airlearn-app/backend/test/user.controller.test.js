@@ -259,6 +259,8 @@ test('getFoundationLessonVideo returns signed URLs for the whitelisted Supabase 
     for (const [lessonId, fileName] of [
       ['f1', 'Lesson_1.mp4'],
       ['f2', 'Lesson_2.mp4'],
+      ['f3', 'Lesson_3.mp4'],
+      ['f4', 'Lesson_4.mp4'],
     ]) {
       let responseBody;
       await getFoundationLessonVideo(
@@ -276,6 +278,8 @@ test('getFoundationLessonVideo returns signed URLs for the whitelisted Supabase 
     assert.deepEqual(signedPaths, [
       { objectPath: 'Videos/Lesson_1.mp4', expiresIn: 60 * 60 },
       { objectPath: 'Videos/Lesson_2.mp4', expiresIn: 60 * 60 },
+      { objectPath: 'Videos/Lesson_3.mp4', expiresIn: 60 * 60 },
+      { objectPath: 'Videos/Lesson_4.mp4', expiresIn: 60 * 60 },
     ]);
   } finally {
     mock.restoreAll();

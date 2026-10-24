@@ -53,6 +53,20 @@ export const lessonsByBatch = {
       description: 'In this video, learn how to introduce yourself in Chinese Mandarin, talk about your nationality, and describe your family members! Learn useful Mandarin words, simple sentences, pronunciation, and their English meanings to help you communicate confidently in everyday conversations. Whether you are a beginner or starting your Chinese learning journey, this lesson will help you build your Mandarin vocabulary step by step.',
       locked: false,
     },
+    {
+      id: 'f3',
+      title: 'Lesson 3',
+      subtitle: 'Chinese Mandarin',
+      description: 'In this video, learn how to introduce yourself in Chinese Mandarin, talk about your nationality, and describe your family members! Learn useful Mandarin words, simple sentences, pronunciation, and their English meanings to help you communicate confidently in everyday conversations. Whether you are a beginner or starting your Chinese learning journey, this lesson will help you build your Mandarin vocabulary step by step.',
+      locked: false,
+    },
+    {
+      id: 'f4',
+      title: 'Lesson 4',
+      subtitle: 'Chinese Mandarin',
+      description: 'In this video, learn how to introduce yourself in Chinese Mandarin, talk about your nationality, and describe your family members! Learn useful Mandarin words, simple sentences, pronunciation, and their English meanings to help you communicate confidently in everyday conversations. Whether you are a beginner or starting your Chinese learning journey, this lesson will help you build your Mandarin vocabulary step by step.',
+      locked: false,
+    },
   ],
   elevation: [
     { id: 'e1', title: 'Sentence Building', subtitle: 'Structure Basics', locked: true },
