@@ -39,7 +39,7 @@ export default function HomeScreen({ navigation }) {
   const { maxWidth } = useResponsive();
   const { user } = useAuth();
   const { purchasedBatches } = usePayment();
-  const { wordsLearnedCount, completedVideoIds, daysStreak } = useProgress();
+  const { wordsLearnedCount, completedVideoIds, daysStreak, progressLoadError } = useProgress();
 
   const enrolledBatchId =
     Object.entries(purchasedBatches)
@@ -97,6 +97,11 @@ export default function HomeScreen({ navigation }) {
                   <Text style={styles.statLabel}>Days Streak</Text>
                 </View>
               </View>
+              {progressLoadError && (
+                <Text style={styles.progressError}>
+                  Your progress could not be loaded. Please try again later.
+                </Text>
+              )}
             </View>
 
             <View style={styles.sectionDivider} />
@@ -208,6 +213,7 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   progressLabel: { fontSize: 16, color: colors.textDark, marginBottom: 4 },
+  progressError: { fontSize: 12, color: colors.textLabel, marginTop: 8 },
   progressRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',

@@ -1,6 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, Pressable, StyleSheet, ScrollView, Animated, Image } from 'react-native';
+import {
+  Alert,
+  Linking,
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  ScrollView,
+  Animated,
+  Image,
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
@@ -8,7 +18,9 @@ import { useResponsive } from '../theme/responsive';
 import BottomNav from '../components/BottomNav';
 import { batches, lessonsByBatch, liveClass } from '../data/courses';
 import { usePayment } from '../context/PaymentContext';
+import { getLiveClassSchedule } from '../utils/liveClassSchedule';
 import { redirectToPaywall } from '../utils/paywall';
+import { userApi } from '../api/client';
 
 const BATCH_ARTWORK = {
   foundation: require('../../assets/foundatin Batch asset.png'),
@@ -19,8 +31,20 @@ const BATCH_ARTWORK = {
 export default function BatchListScreen({ navigation, route }) {
   const insets = useSafeAreaInsets();
   const { maxWidth } = useResponsive();
-  const { hasAnyLiveAccess } = usePayment();
+  const { loaded: entitlementsLoaded, hasAnyLiveAccess } = usePayment();
   const cardAnimations = useRef(batches.map(() => new Animated.Value(0))).current;
+  const [liveSchedule, setLiveSchedule] = useState(() => getLiveClassSchedule());
+  const hasLivePackage = entitlementsLoaded && hasAnyLiveAccess();
+  const isLiveActionDisabled =
+    !entitlementsLoaded || (hasLivePackage && !liveSchedule.isAvailable);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLiveSchedule(getLiveClassSchedule());
+    }, 60_000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     Animated.stagger(
@@ -35,16 +59,33 @@ export default function BatchListScreen({ navigation, route }) {
     ).start();
   }, [cardAnimations]);
 
-  // Note: liveClass isn't tied to a specific batch in the current data model
-  // (one global banner, not one per batch), so this checks "any batch with the
-  // Live tier" rather than a specific batch's live access. Once live classes
-  // become per-batch, this should switch to hasLiveAccess(thatBatchId).
-  const handleJoinLive = () => {
-    if (!hasAnyLiveAccess()) {
-      redirectToPaywall(navigation, route, undefined);
+  const handleJoinLive = async () => {
+    if (!entitlementsLoaded) {
       return;
     }
-    navigation.navigate('LiveClass');
+    if (!hasLivePackage) {
+      redirectToPaywall(
+        navigation,
+        route,
+        undefined,
+        'Upgrade to a Live Class package to join live classes.'
+      );
+      return;
+    }
+    if (!liveSchedule.isAvailable) return;
+
+    try {
+      const { data } = await userApi.getLiveClassMeetingLink();
+      if (typeof data?.meetingUrl !== 'string' || !data.meetingUrl.startsWith('https://')) {
+        throw new Error('The Zoom meeting link is not configured correctly.');
+      }
+      await Linking.openURL(data.meetingUrl);
+    } catch (error) {
+      Alert.alert(
+        'Unable to join live class',
+        error.response?.data?.message || error.message || 'Please try again later.'
+      );
+    }
   };
 
   return (
@@ -107,20 +148,36 @@ export default function BatchListScreen({ navigation, route }) {
           {liveClass.status ? (
             <View style={styles.liveBanner}>
               <View style={styles.liveRow}>
-                <View style={styles.liveDot} />
+                <View style={[styles.liveDot, !hasLivePackage && styles.liveDotInactive]} />
                 <Text style={styles.liveText}>
-                  LIVE CLASS <Text style={styles.liveUpcoming}>({liveClass.status})</Text>
+                  {hasLivePackage ? 'LIVE CLASS' : entitlementsLoaded ? 'NO LIVE' : 'LIVE CLASS'}
+                  <Text style={styles.liveUpcoming}>
+                    {' '}({hasLivePackage ? liveSchedule.status : entitlementsLoaded ? 'Upgrade required' : 'Checking access'})
+                  </Text>
                 </Text>
                 <View style={{ flex: 1 }} />
-                <Pressable style={styles.joinButton} onPress={handleJoinLive}>
-                  <Text style={styles.joinButtonText}>Join Live</Text>
+                <Pressable
+                  style={[styles.joinButton, isLiveActionDisabled && styles.joinButtonDisabled]}
+                  onPress={handleJoinLive}
+                  disabled={isLiveActionDisabled}
+                  accessibilityState={{ disabled: isLiveActionDisabled }}
+                >
+                  <Text style={styles.joinButtonText}>
+                    {hasLivePackage ? 'Join Live' : 'Upgrade for Live'}
+                  </Text>
                 </Pressable>
               </View>
               <View style={styles.scheduleRow}>
                 <View style={styles.videoIconCircle}>
                   <Ionicons name="videocam" size={14} color="#fff" />
                 </View>
-                <Text style={styles.scheduleText}>{liveClass.scheduleLabel}</Text>
+                <Text style={styles.scheduleText}>
+                  {hasLivePackage
+                    ? liveSchedule.scheduleLabel
+                    : entitlementsLoaded
+                      ? 'Upgrade to a Live Class package to get access (available from the 1st–10th each month).'
+                      : 'Checking your package access…'}
+                </Text>
               </View>
             </View>
           ) : (
@@ -205,6 +262,7 @@ const styles = StyleSheet.create({
   noLiveText: { fontSize: 14, color: colors.textDark, marginLeft: 10 },
   liveRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 12 },
   liveDot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.liveDot, marginRight: 8 },
+  liveDotInactive: { backgroundColor: colors.textLabel },
   liveText: { fontSize: 14, fontWeight: '700', color: colors.textDark },
   liveUpcoming: { fontWeight: '400', color: colors.textLabel },
   joinButton: {
@@ -213,6 +271,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 20,
   },
+  joinButtonDisabled: { opacity: 0.5 },
   joinButtonText: { color: '#fff', fontWeight: '600', fontSize: 13 },
   scheduleRow: { flexDirection: 'row', alignItems: 'center' },
   videoIconCircle: {

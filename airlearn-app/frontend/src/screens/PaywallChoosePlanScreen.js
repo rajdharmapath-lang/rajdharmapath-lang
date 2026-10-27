@@ -81,13 +81,13 @@ export default function PaywallChoosePlanScreen({ route, navigation }) {
                   </View>
                   <Text style={styles.duration}>{plan.duration}</Text>
                   <View style={styles.features}>
-                    <Text style={styles.featureLine}>
-                      {plan.includesLive ? 'Recorded Videos +' : plan.features}
-                    </Text>
-                    {plan.includesLive && plan.liveClassCount != null && (
-                      <Text style={styles.featureLine}>
-                        Live Classes: {plan.liveClassCount}
-                      </Text>
+                    {plan.includesLive ? (
+                      <>
+                        <Text style={styles.featureLine}>Recorded Videos +</Text>
+                        <Text style={styles.featureLine}>Live Classes</Text>
+                      </>
+                    ) : (
+                      <Text style={styles.featureLine}>{plan.features}</Text>
                     )}
                   </View>
                 </Pressable>

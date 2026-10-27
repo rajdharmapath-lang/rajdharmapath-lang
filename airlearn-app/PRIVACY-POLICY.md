@@ -1,8 +1,7 @@
 # Raj Dharma Privacy Policy
 
-**Effective date:** October 17, 2026
+**Effective date:** October 27, 2026
 **App:** Raj Dharma for Android and iOS
-**Website:** https://rajdharma.org/privacy-policy.html
 
 Raj Dharma is a language-learning app operated by Raj Dharma
 ("we", "us", or "our"). This policy describes the information handled when
@@ -28,12 +27,32 @@ The app stores some learning activity and preferences locally on your device.
 This can include favorite and recently viewed vocabulary, completed video
 lessons, completed stroke-practice characters, learned-word identifiers,
 practice streak dates, pronunciation voice speed, and Foundation free-preview
-lesson identifiers. Your preferred learning language is also saved in your
-account profile. The app does not use this information for advertising.
+lesson identifiers. Learning progress is stored under a key associated with
+your account on that device; it is not currently synchronized to our backend
+or across devices. Favorites, recent vocabulary, and some preferences are
+stored locally on the device. Your preferred learning language is also saved
+in your account profile. The app does not use this information for advertising.
 
 The backend stores a count of free stroke-practice previews claimed by your
 account to enforce the preview limit. The backend also stores purchase
 entitlements needed to provide access to paid content.
+
+### Live Classes and Zoom
+
+If you select **Join Live**, our backend checks that your account has an active
+Live Class package and that the class access window is open (the 1st through
+the 10th of each month, from 6:00 PM to 8:00 PM India Standard Time). If access
+is allowed, the backend sends the Zoom meeting link to the app, which opens it
+in the Zoom app or a browser on your device. The link includes meeting access
+information, such as a passcode.
+
+Zoom processes information when you open or join a meeting, such as connection
+and device information and information associated with your Zoom account or
+meeting participation. If you enable audio or video in Zoom, Zoom and other
+meeting participants may receive that audio or video. This processing is
+governed by Zoom's terms and privacy policy and your device and Zoom settings.
+The Raj Dharma app does not embed a Zoom meeting SDK or send your learning
+progress to Zoom.
 
 ### Speech practice and microphone
 
@@ -101,6 +120,8 @@ We use the information described above to:
 - provide and personalize learning features and save applicable preferences;
 - operate practice previews, check paid access, and deliver requested notes;
 - create and verify payments and provide purchased access;
+- verify live-class eligibility and open the Zoom meeting link during the
+  scheduled access window;
 - troubleshoot, protect, and maintain the service; and
 - respond to support, privacy, legal, and payment-related requests.
 
@@ -117,7 +138,8 @@ We share information only as needed to operate the app with:
 - **Supabase**, for account, learning-access, payment-reference, and configured
   file-storage services;
 - **Our API hosting provider**, to run the app backend;
-- **Razorpay**, to process checkout and verify payments; and
+- **Razorpay**, to process checkout and verify payments;
+- **Zoom**, when you open or join a live class through its app or website; and
 - **The speech-recognition and text-to-speech providers configured on your
   device**, when you use speaking practice or pronunciation playback.
 
@@ -127,35 +149,33 @@ reasonably necessary to protect users, the service, or our legal rights.
 
 ## Retention and account deletion
 
-We retain account information while an account is active. If an account has
-no active batch subscription for more than 12 consecutive months, we will
-permanently delete the user's personal details, including profile details
-and deletion-audit copies, unless a specific record must be retained to meet
-a legal or financial obligation. You can also start account deletion at any
-time in **Profile → Account → Delete Account**. This removes the active
-account profile and the app clears the sign-in token, learning progress, and
-vocabulary favorites and recents from the current device.
+You can delete your account in **Profile → Account → Delete Account**. The
+backend removes the active account profile and creates a deletion-audit record
+that includes a copy of the profile, including phone number, dial code, name,
+email, occupation, learning language, account dates, and a full profile
+snapshot.
 
-**Some server-side records are currently retained after account deletion.**
-The deletion process writes a deletion-audit record containing a copy of the
-profile, including phone number, dial code, name, email, occupation, language,
-account dates, and a full profile snapshot. The backend currently has no
-automatic expiry configured for this audit record, so the 12-month deletion
-rule is not yet automatically enforced by the application. Until the cleanup
-process is implemented and completed, these copies may remain after the
-12-month period; contact us to request deletion. Payment orders, transactions,
-and stroke-preview records may also remain in the database and may retain the
-account's internal identifier, subject to applicable legal and financial
-retention requirements. A deletion request therefore does not immediately
-erase all records or anonymize all retained records.
+**The deletion-audit record does not currently have an automatic expiry in the
+application.** Payment orders, transactions, entitlements, and stroke-practice
+preview records may also remain after account deletion and may retain the
+account's internal identifier. The application does not currently configure a
+specific expiry period or automatically anonymize all of these retained
+records. We retain records as needed to operate the service and address
+applicable legal, accounting, payment, and security requirements. Contact us
+to ask about retained records or to submit a privacy request.
 
-Some locally stored preview identifiers, pronunciation preferences, device
-speech recordings, temporary files left after an interrupted operation, and
-files you saved to a location you selected may not be removed by account
-deletion. You can clear app storage or uninstall the app to remove app data
+After the backend deletion succeeds, the app clears the sign-in token,
+account-scoped learning progress, and vocabulary favorites and recents from
+the current device. Some locally stored preview identifiers, pronunciation
+preferences, device speech recordings, temporary files left after an
+interrupted operation, and files you saved to a location you selected may
+remain. Learning progress is stored locally and is not synchronized to the
+backend, so deleting your account does not clear a copy on another device.
+You can clear app storage or uninstall the app to remove remaining app data
 from your device; files saved outside the app must be removed separately.
-MSG91, Razorpay, the speech service, and infrastructure providers may retain
-information under their own policies and legal obligations.
+MSG91, Razorpay, Zoom, speech-recognition services, and infrastructure
+providers may retain information under their own policies and legal
+obligations.
 
 ## Children
 

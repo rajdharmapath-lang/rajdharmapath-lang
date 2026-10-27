@@ -33,7 +33,6 @@ export const batches = [
 
 export const liveClass = {
   status: 'Upcoming',
-  scheduleLabel: 'Schedule Live Class Time : Date/Time',
   joinUrl: null, // set once the live-class screen/backend is wired up
 };
 

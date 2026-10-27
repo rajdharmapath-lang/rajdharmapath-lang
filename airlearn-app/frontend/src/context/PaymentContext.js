@@ -141,13 +141,13 @@ export function PaymentProvider({ children }) {
   );
 
   const hasLiveAccess = useCallback(
-    (batchId) => hasPrimeAccess() || purchasedBatches[batchId]?.tier === 'videos_live',
-    [hasPrimeAccess, purchasedBatches]
+    (batchId) => purchasedBatches[batchId]?.tier === 'videos_live',
+    [purchasedBatches]
   );
 
   const hasAnyLiveAccess = useCallback(
-    () => hasPrimeAccess() || Object.values(purchasedBatches).some((b) => b.tier === 'videos_live'),
-    [hasPrimeAccess, purchasedBatches]
+    () => Object.values(purchasedBatches).some((batch) => batch.tier === 'videos_live'),
+    [purchasedBatches]
   );
 
   return (

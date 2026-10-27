@@ -115,6 +115,14 @@ When Storage settings are absent, the backend falls back to
 `LEARNING_PDF_PATH` or `Downloads/RD chinese workbook.pdf` in its user's home
 directory. Keep local PDFs out of Git.
 
+The Join Live action requests a Zoom URL from the authenticated
+`/api/user/live-class/meeting-link` endpoint. The backend returns the URL only
+to accounts with an active Live Class package, during the 1st–10th of each
+month from 6:00 PM to 8:00 PM IST. Configure `ZOOM_MEETING_URL` in the
+backend environment and in the hosting provider's secret environment settings
+before deploying the live-class feature. Keep the passcode-bearing URL out of
+tracked files.
+
 ### WhatsApp OTP
 
 OTP delivery and verification use the MSG91 OTP Widget from the backend. Set

@@ -7,6 +7,7 @@ const userRepository = require('../db/user.repository');
 const paymentRepository = require('../db/payment.repository');
 const supabase = require('../db/supabase');
 const logger = require('../services/logger');
+const { isLiveClassWindowOpen } = require('../services/live-class-schedule');
 
 const LEARNING_PDF_PATH = path.resolve(
   process.env.LEARNING_PDF_PATH ||
@@ -277,6 +278,68 @@ async function getFoundationLessonVideo(req, res) {
   }
 }
 
+function getLiveClassMeetingLink(req, res) {
+  return getLiveClassMeetingLinkAt(req, res, new Date());
+}
+
+async function getLiveClassMeetingLinkAt(req, res, now) {
+  let purchasedBatches;
+  try {
+    purchasedBatches = await paymentRepository.getUserEntitlements(req.userId);
+  } catch (error) {
+    logger.error('live_class_access_check_failed', {
+      module: 'user',
+      stage: 'live_class_meeting_link',
+      requestId: req.requestId,
+      statusCode: 503,
+      error,
+    });
+    return res.status(503).json({ message: 'Could not verify Live Class access.' });
+  }
+
+  const hasLivePackage = Object.values(purchasedBatches).some(
+    (entitlement) => entitlement.tier === 'videos_live'
+  );
+  if (!hasLivePackage) {
+    return res.status(403).json({ message: 'An active Live Class package is required.' });
+  }
+  if (!isLiveClassWindowOpen(now)) {
+    return res.status(403).json({
+      message: 'Live Classes are available from 6:00 PM to 8:00 PM IST on days 1–10.',
+    });
+  }
+
+  let meetingUrl;
+  try {
+    meetingUrl = new URL(process.env.ZOOM_MEETING_URL);
+  } catch (error) {
+    logger.error('live_class_meeting_link_not_configured', {
+      module: 'user',
+      stage: 'live_class_meeting_link',
+      requestId: req.requestId,
+      statusCode: 503,
+      errorName: error.name,
+    });
+    return res.status(503).json({ message: 'The Live Class meeting link is not configured.' });
+  }
+  if (
+    meetingUrl.protocol !== 'https:' ||
+    !['zoom.us', 'www.zoom.us', 'us06web.zoom.us'].includes(meetingUrl.hostname)
+  ) {
+    logger.error('live_class_meeting_link_invalid', {
+      module: 'user',
+      stage: 'live_class_meeting_link',
+      requestId: req.requestId,
+      statusCode: 503,
+    });
+    return res.status(503).json({
+      message: 'The Live Class meeting link is not configured correctly.',
+    });
+  }
+
+  return res.json({ meetingUrl: meetingUrl.toString() });
+}
+
 module.exports = {
   createAccount,
   updateProfile,
@@ -286,4 +349,6 @@ module.exports = {
   deleteAccount,
   downloadLearningPdf,
   getFoundationLessonVideo,
+  getLiveClassMeetingLink,
+  getLiveClassMeetingLinkAt,
 };

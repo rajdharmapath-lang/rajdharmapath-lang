@@ -1,10 +1,26 @@
-import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  useCallback,
+} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuth } from './AuthContext';
 
-const LEARNED_WORDS_KEY = 'progressLearnedWordIds';
-const COMPLETED_VIDEOS_KEY = 'progressCompletedVideoIds';
-const COMPLETED_CHARACTERS_KEY = 'progressCompletedStrokeCharacters';
-const STREAK_KEY = 'progressStreak';
+function getProgressStorageKeys(userId) {
+  const userKey = userId ? encodeURIComponent(String(userId)) : 'guest';
+  const prefix = `progress:${userKey}`;
+
+  return {
+    scope: userKey,
+    learnedWords: `${prefix}:learnedWordIds`,
+    completedVideos: `${prefix}:completedVideoIds`,
+    completedCharacters: `${prefix}:completedStrokeCharacters`,
+    streak: `${prefix}:streak`,
+  };
+}
 
 const ProgressContext = createContext(null);
 
@@ -18,29 +34,63 @@ function daysBetween(a, b) {
 }
 
 export function ProgressProvider({ children }) {
+  const { user } = useAuth();
+  const storageKeys = useMemo(() => getProgressStorageKeys(user?.id), [user?.id]);
   const [learnedWordIds, setLearnedWordIds] = useState([]);
   const [completedVideoIds, setCompletedVideoIds] = useState([]);
   const [completedStrokeCharacters, setCompletedStrokeCharacters] = useState([]);
   const [streak, setStreak] = useState({ lastActiveDate: null, currentStreak: 0 });
+  const [loadedScope, setLoadedScope] = useState(null);
+  const [loadError, setLoadError] = useState(null);
+  const progressLoaded = loadedScope === storageKeys.scope;
 
   useEffect(() => {
+    let active = true;
+    setLearnedWordIds([]);
+    setCompletedVideoIds([]);
+    setCompletedStrokeCharacters([]);
+    setStreak({ lastActiveDate: null, currentStreak: 0 });
+    setLoadedScope(null);
+    setLoadError(null);
+
     (async () => {
       try {
         const [wordsRaw, videosRaw, charactersRaw, streakRaw] = await Promise.all([
-          AsyncStorage.getItem(LEARNED_WORDS_KEY),
-          AsyncStorage.getItem(COMPLETED_VIDEOS_KEY),
-          AsyncStorage.getItem(COMPLETED_CHARACTERS_KEY),
-          AsyncStorage.getItem(STREAK_KEY),
+          AsyncStorage.getItem(storageKeys.learnedWords),
+          AsyncStorage.getItem(storageKeys.completedVideos),
+          AsyncStorage.getItem(storageKeys.completedCharacters),
+          AsyncStorage.getItem(storageKeys.streak),
         ]);
-        if (wordsRaw) setLearnedWordIds(JSON.parse(wordsRaw));
-        if (videosRaw) setCompletedVideoIds(JSON.parse(videosRaw));
-        if (charactersRaw) setCompletedStrokeCharacters(JSON.parse(charactersRaw));
-        if (streakRaw) setStreak(JSON.parse(streakRaw));
-      } catch (e) {
-        // start fresh
+        if (!active) return;
+
+        const words = wordsRaw ? JSON.parse(wordsRaw) : [];
+        const videos = videosRaw ? JSON.parse(videosRaw) : [];
+        const characters = charactersRaw ? JSON.parse(charactersRaw) : [];
+        const storedStreak = streakRaw ? JSON.parse(streakRaw) : { lastActiveDate: null, currentStreak: 0 };
+        if (
+          !Array.isArray(words) ||
+          !Array.isArray(videos) ||
+          !Array.isArray(characters) ||
+          typeof storedStreak.currentStreak !== 'number'
+        ) {
+          throw new Error('Stored learning progress has an invalid format.');
+        }
+
+        setLearnedWordIds(words);
+        setCompletedVideoIds(videos);
+        setCompletedStrokeCharacters(characters);
+        setStreak(storedStreak);
+      } catch (error) {
+        console.error('Could not load learning progress:', error);
+        if (active) setLoadError(error);
+      } finally {
+        if (active) setLoadedScope(storageKeys.scope);
       }
     })();
-  }, []);
+    return () => {
+      active = false;
+    };
+  }, [storageKeys]);
 
   // Call whenever the user does something that counts as "practiced today" —
   // learning a word, finishing a video, or completing a Stroke/Speech/Quiz
@@ -59,22 +109,26 @@ export function ProgressProvider({ children }) {
       }
 
       const next = { lastActiveDate: today, currentStreak: nextStreak };
-      AsyncStorage.setItem(STREAK_KEY, JSON.stringify(next)).catch(() => {});
+      AsyncStorage.setItem(storageKeys.streak, JSON.stringify(next)).catch((error) => {
+        console.error('Could not save learning streak:', error);
+      });
       return next;
     });
-  }, []);
+  }, [storageKeys.streak]);
 
   const recordWordLearned = useCallback(
     (wordId) => {
       setLearnedWordIds((prev) => {
         if (prev.includes(wordId)) return prev;
         const next = [...prev, wordId];
-        AsyncStorage.setItem(LEARNED_WORDS_KEY, JSON.stringify(next)).catch(() => {});
+        AsyncStorage.setItem(storageKeys.learnedWords, JSON.stringify(next)).catch((error) => {
+          console.error('Could not save learned vocabulary:', error);
+        });
         return next;
       });
       recordActivity();
     },
-    [recordActivity]
+    [recordActivity, storageKeys.learnedWords]
   );
 
   const recordVideoCompleted = useCallback(
@@ -82,12 +136,14 @@ export function ProgressProvider({ children }) {
       setCompletedVideoIds((prev) => {
         if (prev.includes(lessonId)) return prev;
         const next = [...prev, lessonId];
-        AsyncStorage.setItem(COMPLETED_VIDEOS_KEY, JSON.stringify(next)).catch(() => {});
+        AsyncStorage.setItem(storageKeys.completedVideos, JSON.stringify(next)).catch((error) => {
+          console.error('Could not save completed video:', error);
+        });
         return next;
       });
       recordActivity();
     },
-    [recordActivity]
+    [recordActivity, storageKeys.completedVideos]
   );
 
   const recordStrokeCharacterCompleted = useCallback(
@@ -95,14 +151,14 @@ export function ProgressProvider({ children }) {
       setCompletedStrokeCharacters((prev) => {
         if (prev.includes(character)) return prev;
         const next = [...prev, character];
-        AsyncStorage.setItem(COMPLETED_CHARACTERS_KEY, JSON.stringify(next)).catch((error) => {
+        AsyncStorage.setItem(storageKeys.completedCharacters, JSON.stringify(next)).catch((error) => {
           console.error('Could not save completed stroke character:', error);
         });
         return next;
       });
       recordActivity();
     },
-    [recordActivity]
+    [recordActivity, storageKeys.completedCharacters]
   );
 
   const clearProgress = useCallback(async () => {
@@ -111,23 +167,25 @@ export function ProgressProvider({ children }) {
     setCompletedStrokeCharacters([]);
     setStreak({ lastActiveDate: null, currentStreak: 0 });
     await AsyncStorage.multiRemove([
-      LEARNED_WORDS_KEY,
-      COMPLETED_VIDEOS_KEY,
-      COMPLETED_CHARACTERS_KEY,
-      STREAK_KEY,
+      storageKeys.learnedWords,
+      storageKeys.completedVideos,
+      storageKeys.completedCharacters,
+      storageKeys.streak,
     ]).catch((error) => {
       console.error('Could not clear learning progress:', error);
     });
-  }, []);
+  }, [storageKeys]);
 
   return (
     <ProgressContext.Provider
       value={{
-        wordsLearnedCount: learnedWordIds.length,
-        videosCompletedCount: completedVideoIds.length,
-        completedVideoIds,
-        completedStrokeCharacters,
-        daysStreak: streak.currentStreak,
+        progressLoaded,
+        progressLoadError: progressLoaded ? loadError : null,
+        wordsLearnedCount: progressLoaded ? learnedWordIds.length : 0,
+        videosCompletedCount: progressLoaded ? completedVideoIds.length : 0,
+        completedVideoIds: progressLoaded ? completedVideoIds : [],
+        completedStrokeCharacters: progressLoaded ? completedStrokeCharacters : [],
+        daysStreak: progressLoaded ? streak.currentStreak : 0,
         recordWordLearned,
         recordVideoCompleted,
         recordStrokeCharacterCompleted,

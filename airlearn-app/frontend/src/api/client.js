@@ -43,6 +43,7 @@ export const userApi = {
   claimStrokePreview: () => client.post('/user/practice-previews/stroke/claim'),
   deleteAccount: () => client.delete('/user/account'),
   getFoundationLessonVideo: (lessonId) => client.get(`/user/videos/foundation/${lessonId}`),
+  getLiveClassMeetingLink: () => client.get('/user/live-class/meeting-link'),
 };
 
 export const paymentApi = {

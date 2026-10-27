@@ -9,6 +9,7 @@ const {
 	deleteAccount,
 	downloadLearningPdf,
 	getFoundationLessonVideo,
+	getLiveClassMeetingLink,
 } = require('../controllers/user.controller');
 
 const router = express.Router();
@@ -22,5 +23,6 @@ router.post('/practice-previews/stroke/claim', claimStrokePreview);
 router.delete('/account', deleteAccount);
 router.get('/learning-pdf', downloadLearningPdf);
 router.get('/videos/foundation/:lessonId', getFoundationLessonVideo);
+router.get('/live-class/meeting-link', getLiveClassMeetingLink);
 
 module.exports = router;
