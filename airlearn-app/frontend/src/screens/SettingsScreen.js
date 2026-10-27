@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, Text, Pressable, StyleSheet, ScrollView, Modal } from 'react-native';
+import { Alert, Linking, View, Text, Pressable, StyleSheet, ScrollView, Modal } from 'react-native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { colors } from '../theme/colors';
 import { typography } from '../theme/typography';
@@ -11,6 +11,7 @@ import { useAuth } from '../context/AuthContext';
 import { usePayment } from '../context/PaymentContext';
 
 const SHOW_LEARNING_PREFERENCE = false;
+const PRIVACY_POLICY_URL = 'https://rajdharma.org/privacy-policy.html';
 
 function formatDate(ms) {
   return new Date(ms).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -59,6 +60,17 @@ export default function SettingsScreen({ navigation }) {
         message: err.message,
       });
       setLoggingOut(false);
+    }
+  };
+
+  const openPrivacyPolicy = async () => {
+    try {
+      await Linking.openURL(PRIVACY_POLICY_URL);
+    } catch (error) {
+      Alert.alert(
+        'Unable to open Privacy Policy',
+        error?.message || 'Please try again later.'
+      );
     }
   };
 
@@ -133,6 +145,16 @@ export default function SettingsScreen({ navigation }) {
               icon="headset-outline"
               label="Support & Contact Us"
               onPress={() => navigation.navigate('SupportContactUs')}
+            />
+            <SettingsRow
+              icon="document-text-outline"
+              label="Terms & Conditions"
+              onPress={() => navigation.navigate('TermsAndConditions')}
+            />
+            <SettingsRow
+              icon="shield-checkmark-outline"
+              label="Privacy Policy"
+              onPress={openPrivacyPolicy}
             />
             <SettingsRow
               icon="information-circle-outline"
