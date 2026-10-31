@@ -165,6 +165,14 @@ development build; it is not available in stock Expo Go. After changing the
 speech-recognition native dependency or permissions, rebuild with
 `npx expo run:android` or `npx expo run:ios`.
 
+### Android release signing
+
+The Android release build uses the private key at
+`frontend/android/app/release-key.jks` and credentials in
+`frontend/android/keystore.properties`. Both are intentionally ignored by Git.
+Back them up securely; do not commit or share them. Build a signed Play Store
+bundle from `frontend/android` with `.\gradlew.bat :app:bundleRelease`.
+
 Important - the backend URL: frontend/src/api/client.js points at
 localhost:4000 for iOS and 10.0.2.2:4000 for the Android emulator
 automatically. If you're testing on a physical device, change API_BASE_URL

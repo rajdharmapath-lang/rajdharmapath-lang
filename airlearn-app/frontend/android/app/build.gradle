@@ -3,6 +3,33 @@ apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
 
 def projectRoot = rootDir.getAbsoluteFile().getParentFile().getAbsolutePath()
+def releaseKeystorePropertiesFile = rootProject.file("keystore.properties")
+def releaseKeystoreProperties = new java.util.Properties()
+if (releaseKeystorePropertiesFile.exists()) {
+    releaseKeystorePropertiesFile.withInputStream { stream ->
+        releaseKeystoreProperties.load(stream)
+    }
+}
+def requiredReleaseSigningProperties = ['storeFile', 'storePassword', 'keyAlias', 'keyPassword']
+def hasReleaseSigningProperties = requiredReleaseSigningProperties.every {
+    releaseKeystoreProperties.getProperty(it)?.trim()
+}
+def releaseTaskRequested = gradle.startParameter.taskNames.any {
+    it.toLowerCase().contains("release")
+}
+if (releaseTaskRequested) {
+    def missingSigningProperties = requiredReleaseSigningProperties.findAll {
+        !releaseKeystoreProperties.getProperty(it)?.trim()
+    }
+    if (missingSigningProperties) {
+        throw new GradleException(
+            "Release signing is not configured. Add ${missingSigningProperties.join(', ')} to ${releaseKeystorePropertiesFile}."
+        )
+    }
+    if (!rootProject.file(releaseKeystoreProperties.getProperty('storeFile')).isFile()) {
+        throw new GradleException("Release keystore not found: ${releaseKeystoreProperties.getProperty('storeFile')}")
+    }
+}
 
 static def versionToNumber(major, minor, patch) {
   return patch * 100 + minor * 10000 + major * 1000000
@@ -124,15 +151,21 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            if (hasReleaseSigningProperties) {
+                storeFile rootProject.file(releaseKeystoreProperties.getProperty('storeFile'))
+                storePassword releaseKeystoreProperties.getProperty('storePassword')
+                keyAlias releaseKeystoreProperties.getProperty('keyAlias')
+                keyPassword releaseKeystoreProperties.getProperty('keyPassword')
+            }
+        }
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
-            // Caution! In production, you need to generate your own keystore file.
-            // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             shrinkResources (findProperty('android.enableShrinkResourcesInReleaseBuilds')?.toBoolean() ?: false)
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
